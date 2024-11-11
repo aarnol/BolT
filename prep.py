@@ -10,11 +10,13 @@ parser.add_argument("-a", "--atlas", type=str, choices=["schaefer7_400"], defaul
 argv = parser.parse_args()
 
 
-from Dataset.Prep.prep_abide import prep_abide
+from Dataset.Prep.prep_abide import prep_abide, prep_hcp
 
 
 if(argv.dataset == "abide1"):
     prep = prep_abide
+elif(argv.dataset == "hcpTask"):
+    prep = prep_hcp
 
 
 prep(argv.atlas)
