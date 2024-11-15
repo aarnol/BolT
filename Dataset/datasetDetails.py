@@ -39,9 +39,9 @@ datasetDetailsDict = {
         "targetTask" : "nback",
         "nOfClasses" : 2,        
         "dynamicLength" : 33,
-        "foldCount" : 5,
+        "foldCount" : 2,
         "atlas" : "schaefer7_400",
-        "nOfEpochs" : 10,
+        "nOfEpochs" : 1,
         "batchSize" : 32        
     }
 

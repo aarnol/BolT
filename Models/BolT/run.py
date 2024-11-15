@@ -57,6 +57,8 @@ def train(model, dataset, fold, nOfEpochs):
 
 
 
+
+
 def test(model, dataset, fold):
 
     dataLoader = dataset.getFold(fold, train=False)

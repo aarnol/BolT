@@ -198,7 +198,7 @@ def dumpTestResults(testName, hyperParams, modelName, datasetName, metricss):
     meanMetrics_seeds, stdMetrics_seeds, meanMetric_all, stdMetric_all = metricSummer(metricss, "test")
 
 
-    targetFolder = datasetNameToResultFolder[datasetName] + "/"+ modelName
+    targetFolder = datasetNameToResultFolder[datasetName] + "/"+ modelName + "/" + testName
     os.makedirs(targetFolder, exist_ok=True)    
 
     # text save, for human readable format
