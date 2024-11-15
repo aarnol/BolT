@@ -1,0 +1,9 @@
+
+ 
+ 
+ 
+
+ 
+
+{'train': {'accuracy': 0.8817229068294369, 'precision': np.float64(0.8738496071829405), 'recall': np.float64(0.893299678751721), 'roc': np.float64(0.9582333201579978)}, 'test': {'accuracy': 0.9475564776394652, 'precision': np.float64(0.9484440315838365), 'recall': np.float64(0.9460273337966181), 'roc': np.float64(0.9887194589081414)}}
+{'train': {'accuracy': 0.8847395112955279, 'precision': np.float64(0.8806518246499885), 'recall': np.float64(0.8888116747741487), 'roc': np.float64(0.95878278139058)}, 'test': {'accuracy': 0.9523206265115743, 'precision': np.float64(0.9445446348061316), 'recall': np.float64(0.9614502065167508), 'roc': np.float64(0.9903515957630243)}}
