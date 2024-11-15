@@ -14,16 +14,17 @@ def windowBoldSignal(boldSignal, windowLength, stride):
     # NOW WINDOWING 
     windowedBoldSignals = []
     samplingEndPoints = []
-
+    
     for windowIndex in range((T - windowLength)//stride + 1):
         
         sampledWindow = boldSignal[:, :, windowIndex * stride  : windowIndex * stride + windowLength]
         samplingEndPoints.append(windowIndex * stride + windowLength)
 
         sampledWindow = torch.unsqueeze(sampledWindow, dim=1)
+        
         windowedBoldSignals.append(sampledWindow)
         
-
+    
     windowedBoldSignals = torch.cat(windowedBoldSignals, dim=1)
 
     return windowedBoldSignals, samplingEndPoints

@@ -25,11 +25,11 @@ class Model():
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr = hyperParams.lr, weight_decay = hyperParams.weightDecay)
 
         # set scheduler
-        steps_per_epoch = int(np.ceil(details.nOfTrains / details.batchSize))        
+        steps_per_epoch = int(np.ceil(details.nOfTrains / details.batchSize))         
         
         divFactor = hyperParams.maxLr / hyperParams.lr
         finalDivFactor = hyperParams.lr / hyperParams.minLr
-        self.scheduler = torch.optim.lr_scheduler.OneCycleLR(self.optimizer, hyperParams.maxLr, details.nOfEpochs * (steps_per_epoch), div_factor=divFactor, final_div_factor=finalDivFactor, pct_start=0.3)
+        self.scheduler = torch.optim.lr_scheduler.OneCycleLR(self.optimizer, hyperParams.maxLr, details.nOfEpochs * (steps_per_epoch) +10, div_factor=divFactor, final_div_factor=finalDivFactor, pct_start=0.3)
         
     def step(self, x, y, train=True):
 
@@ -40,9 +40,10 @@ class Model():
         """
 
         # PREPARE INPUTS
-        
+    
         inputs, y = self.prepareInput(x, y)
-
+        
+        
         # DEFAULT TRAIN ROUTINE
         
         if(train):

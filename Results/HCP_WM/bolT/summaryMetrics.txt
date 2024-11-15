@@ -1,0 +1,9 @@
+
+ MEAN METRICS 
+ 
+{'accuracy': np.float64(0.9585809546902512), 'precision': np.float64(0.9506716540604323), 'recall': np.float64(0.9673004483078051), 'roc': np.float64(0.9928329778535199), 'loss': np.float32(0.21843326)}
+ 
+ 
+ STD METRICS 
+ 
+{'accuracy': np.float64(0.002931715603924269), 'precision': np.float64(0.006021977919387963), 'recall': np.float64(0.004729697552573613), 'roc': np.float64(0.0005459948812513748), 'loss': np.float32(0.008244723)}

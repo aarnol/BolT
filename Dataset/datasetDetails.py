@@ -34,6 +34,16 @@ datasetDetailsDict = {
         "nOfEpochs" : 20,
         "batchSize" : 32        
     },
+    "hcpWM" : {
+        "datasetName" : "hcpWM",
+        "targetTask" : "nback",
+        "nOfClasses" : 2,        
+        "dynamicLength" : 33,
+        "foldCount" : 5,
+        "atlas" : "schaefer7_400",
+        "nOfEpochs" : 10,
+        "batchSize" : 32        
+    }
 
  }
 

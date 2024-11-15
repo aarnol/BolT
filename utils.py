@@ -112,7 +112,7 @@ def calculateMetrics(resultss):
         metrics = []
 
         for result in results:
-
+            
             train_results = result["train"]        
             test_results = result["test"]
 
@@ -120,15 +120,16 @@ def calculateMetrics(resultss):
             train_labels = train_results["labels"]
             train_predictions = train_results["predictions"]
             train_probs = train_results["probs"] if "probs" in train_results else None
-
+            train_loss = train_results["loss"]
 
             test_labels = test_results["labels"]
             test_predictions = test_results["predictions"]
             test_probs = test_results["probs"] if "probs" in test_results else None
+            test_loss = test_results["loss"]
 
             isMultiClass = np.max(test_labels) > 1
             hasProbs = "probs" in train_results
-
+            
 
             # metrics
 
@@ -171,8 +172,8 @@ def calculateMetrics(resultss):
                     train_roc = np.nan
                     test_roc = np.nan
 
-            metric = {"train" : {"accuracy" : train_accuracy, "precision" : train_precision, "recall" : train_recall , "roc" : train_roc},
-                "test" : {"accuracy" : test_accuracy, "precision" : test_precision, "recall" : test_recall, "roc" : test_roc}}
+            metric = {"train" : {"accuracy" : train_accuracy, "precision" : train_precision, "recall" : train_recall , "roc" : train_roc, "loss" : train_loss},
+                "test" : {"accuracy" : test_accuracy, "precision" : test_precision, "recall" : test_recall, "roc" : test_roc, "loss" : test_loss}}
 
             metrics.append(metric)
 
@@ -188,7 +189,8 @@ def dumpTestResults(testName, hyperParams, modelName, datasetName, metricss):
         "abide1" : "./Results/ABIDE_I",
         "hcpRest" : "./Results/HCP_REST",
         "hcpTask" : "./Results/HCP_TASK",
-        "cobre" : "./Results/COBRE"
+        "cobre" : "./Results/COBRE",
+        "hcpWM" : "./Results/HCP_WM"
     }
 
     dumpPrepend = "{}_{}_{}".format(testName, modelName, datetime.today().strftime('%Y-%m-%d-%H:%M:%S'))
@@ -196,11 +198,11 @@ def dumpTestResults(testName, hyperParams, modelName, datasetName, metricss):
     meanMetrics_seeds, stdMetrics_seeds, meanMetric_all, stdMetric_all = metricSummer(metricss, "test")
 
 
-    targetFolder = datasetNameToResultFolder[datasetName] + "/{}/{}".format(modelName, dumpPrepend)
+    targetFolder = datasetNameToResultFolder[datasetName] + "/"+ modelName
     os.makedirs(targetFolder, exist_ok=True)    
 
     # text save, for human readable format
-    metricFile = open(targetFolder + "/" + dumpPrepend + "_metricss.txt", "w")
+    metricFile = open(targetFolder + "/" +  "metricss.txt", "w")
     metricFile.write("\n \n \n \n")
     for metrics in metricss:
         metricFile.write("\n \n")
@@ -209,7 +211,7 @@ def dumpTestResults(testName, hyperParams, modelName, datasetName, metricss):
     metricFile.close()
 
     # text save of summary metrics, interprettable format
-    summaryMetricFile = open(targetFolder + "/" + dumpPrepend + "_summaryMetrics.txt", "w")
+    summaryMetricFile = open(targetFolder + "/" + "summaryMetrics.txt", "w")
     # write mean metrics
     summaryMetricFile.write("\n MEAN METRICS \n \n")
     summaryMetricFile.write("{}".format(meanMetric_all))
@@ -220,10 +222,10 @@ def dumpTestResults(testName, hyperParams, modelName, datasetName, metricss):
 
 
     # save hyper params
-    hyperParamFile = open(targetFolder + "/" + dumpPrepend + "_hyperParams.txt", "w")
+    hyperParamFile = open(targetFolder + "/" + "hyperParams.txt", "w")
     for key in vars(hyperParams):
         hyperParamFile.write("\n{} : {}".format(key, vars(hyperParams)[key]))
     hyperParamFile.close()
 
     # torch save, for visualizer
-    torch.save(metricss, targetFolder + "/" + dumpPrepend + ".save")
+    torch.save(metricss, targetFolder + "/"  + "metrics.save")
