@@ -73,9 +73,7 @@ class Model():
         y = y.to("cpu")
         
         torch.cuda.empty_cache()
-        with open('loss_log.txt', 'a') as f:
-            f.write(f'{loss.item()}\n')
-
+        
         return loss, preds, probs, y
         
 

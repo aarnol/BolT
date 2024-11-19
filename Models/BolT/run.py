@@ -16,44 +16,66 @@ from utils import Option, calculateMetric
 
 from Models.BolT.model import Model
 from Dataset.dataset import getDataset
+from torch.nn.utils.rnn import pad_sequence
+
 
 def train(model, dataset, fold, nOfEpochs):
 
     dataLoader = dataset.getFold(fold, train=True)
-
+    test_metrics = []
+    test_results = []
+    step_metrics = []
+    losses = []
     for epoch in range(nOfEpochs):
 
-            preds = []
-            probs = []
-            groundTruths = []
-            losses = []
+        preds = []
+        probs = []
+        groundTruths = []
+        
+        
+        
 
-            for i, data in enumerate(tqdm(dataLoader, ncols=60, desc=f'fold:{fold} epoch:{epoch}')):
-                
-                xTrain = data["timeseries"] # (batchSize, N, dynamicLength)
-                yTrain = data["label"] # (batchSize, )
+        for i, data in enumerate(tqdm(dataLoader, ncols=60, desc=f'fold:{fold} epoch:{epoch}')):
+            
+            xTrain = data[0] # (batchSize, N, dynamicLength)
+            yTrain = data[1] # (batchSize, )
 
-                # NOTE: xTrain and yTrain are still on "cpu" at this point
+            # NOTE: xTrain and yTrain are still on "cpu" at this point
 
-                train_loss, train_preds, train_probs, yTrain = model.step(xTrain, yTrain, train=True)
+            train_loss, train_preds, train_probs, yTrain = model.step(xTrain, yTrain, train=True)
 
-                torch.cuda.empty_cache()
+            torch.cuda.empty_cache()
 
-                preds.append(train_preds)
-                probs.append(train_probs)
-                groundTruths.append(yTrain)
-                losses.append(train_loss)
+            preds.append(train_preds)
+            probs.append(train_probs)
+            groundTruths.append(yTrain)
+            losses.append(train_loss.item())
 
-            preds = torch.cat(preds, dim=0).numpy()
-            probs = torch.cat(probs, dim=0).numpy()
-            groundTruths = torch.cat(groundTruths, dim=0).numpy()
-            losses = torch.tensor(losses).numpy()
+            # Log metrics every step
+            step_metric = calculateMetric({"predictions":train_preds.numpy(), "probs":train_probs.numpy(), "labels":yTrain.numpy()})
+            step_metric['loss'] = train_loss.item()
+            step_metrics.append(step_metric)
 
-            metrics = calculateMetric({"predictions":preds, "probs":probs, "labels":groundTruths})
-            print("Train metrics : {}".format(metrics))                  
+        preds = torch.cat(preds, dim=0).numpy()
+        probs = torch.cat(probs, dim=0).numpy()
+        groundTruths = torch.cat(groundTruths, dim=0).numpy()
+        
 
+        metrics = calculateMetric({"predictions":preds, "probs":probs, "labels":groundTruths})
+        print(f"Epoch {epoch} train metrics: {metrics}")
 
-    return preds, probs, groundTruths, losses
+        test_preds, test_probs, test_groundTruths, test_loss, epoch_test_metrics= test(model, dataset, fold)
+        epoch_test_results = {}
+        epoch_test_results['loss'] = test_loss
+        epoch_test_results['predictions'] = test_preds
+        epoch_test_results['probs'] = test_probs
+        epoch_test_results['labels'] = test_groundTruths
+        print(f"Epoch {epoch} test metrics: {epoch_test_metrics}")
+        test_metrics.append(epoch_test_metrics)
+        test_results.append(epoch_test_results)
+    print(len(test_results))
+    print(len(test_metrics))
+    return preds, probs, groundTruths, losses, metrics, step_metrics, test_metrics, test_results
 
 
 
@@ -92,7 +114,7 @@ def test(model, dataset, fold):
     metrics = calculateMetric({"predictions":preds, "probs":probs, "labels":groundTruths})
     print("\n \n Test metrics : {}".format(metrics))                
     
-    return preds, probs, groundTruths, loss
+    return preds, probs, groundTruths, loss, metrics
     
 
 
@@ -125,23 +147,23 @@ def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False):
         model = Model(hyperParams, details)
 
 
-        train_preds, train_probs, train_groundTruths, train_loss = train(model, dataset, fold, nOfEpochs)   
-        test_preds, test_probs, test_groundTruths, test_loss = test(model, dataset, fold)
-
+        train_preds, train_probs, train_groundTruths, train_loss, epoch_metrics, step_metrics, test_metrics, test_results = train(model, dataset, fold, nOfEpochs)   
+        
         result = {
+            "fold" : fold,
 
             "train" : {
                 "labels" : train_groundTruths,
                 "predictions" : train_preds,
                 "probs" : train_probs,
-                "loss" : train_loss
+                "loss" : train_loss,
+                "epoch_metrics" : epoch_metrics,
+                "step_metrics" : step_metrics
             },
 
             "test" : {
-                "labels" : test_groundTruths,
-                "predictions" : test_preds,
-                "probs" : test_probs,
-                "loss" : test_loss
+                "results" : test_results,
+                "metrics" : test_metrics
             }
 
         }
@@ -153,6 +175,7 @@ def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False):
             targetSaveDir = "./Analysis/TargetSavedModels/{}/seed_{}/".format(datasetDetails.datasetName, datasetSeed)
             os.makedirs(targetSaveDir, exist_ok=True)
             torch.save(model, targetSaveDir + "/model_{}.save".format(fold))
+        break
 
 
     return results

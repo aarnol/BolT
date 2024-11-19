@@ -1,10 +1,11 @@
 
 from torch.utils.data import Dataset, DataLoader
+import torch
 from sklearn.model_selection import GroupKFold
 from random import shuffle, randrange
 import numpy as np
 import random
-
+from torch.nn.utils.rnn import pad_sequence
 #from .DataLoaders.hcpRestLoader import hcpRestLoader
 #from .DataLoaders.hcpTaskLoader import hcpTaskLoader
 #from .DataLoaders.abide1Loader importabide1Loader
@@ -16,7 +17,43 @@ loaderMapper = {
     #"abide1" : abide1Loader,
     "hcpWM": hcpWorkingMemLoader,
 }
+def custom_collate_fn(batch):
+    """
+    Custom collate function to pad or truncate sequences to the same length.
+    
+    Args:
+        batch (list of dict): A batch of data where each item is a dictionary 
+                              with keys 'timeseries' and 'label'.
+    
+    Returns:
+        inputs_padded (Tensor): Padded input sequences, shape (batch_size, max_seq_length, feature_dim).
+        labels_stacked (Tensor): Stacked labels, shape (batch_size, ...).
+    """
+    # Extract 'timeseries' and 'label' tensors
+    inputs = [torch.tensor(item['timeseries']) for item in batch]
+    labels = [torch.tensor(item['label']) for item in batch]
 
+    # Find the maximum time dimension in the batch
+    max_time = max(seq.size(1) for seq in inputs)
+
+    # Pad or truncate all sequences to the same time dimension
+    aligned_inputs = []
+    for seq in inputs:
+        if seq.size(1) < max_time:  # Pad if shorter
+            padding = torch.zeros(seq.size(0), max_time - seq.size(1))
+            aligned_inputs.append(torch.cat([seq, padding], dim=1))
+        elif seq.size(1) > max_time:  # Truncate if longer
+            aligned_inputs.append(seq[:, :max_time])
+        else:  # Already aligned
+            aligned_inputs.append(seq)
+    
+    # Stack aligned inputs
+    inputs_padded = torch.stack(aligned_inputs)
+
+    # Stack labels (assuming they are fixed-sized tensors)
+    labels_stacked = torch.stack(labels)
+
+    return inputs_padded, labels_stacked
 def getDataset(options):
     return SupervisedDataset(options)
 
@@ -95,7 +132,7 @@ class SupervisedDataset(Dataset):
         self.setFold(fold, train)
 
         if(train):
-            return DataLoader(self, batch_size=self.batchSize, shuffle=False)
+            return DataLoader(self, batch_size=self.batchSize, shuffle=False, collate_fn = custom_collate_fn)
         else:
             return DataLoader(self, batch_size=1, shuffle=False)            
 

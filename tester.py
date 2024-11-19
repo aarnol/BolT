@@ -17,6 +17,7 @@ parser.add_argument("--device", type=int, default=0)
 parser.add_argument("--name", type=str, default="noname")
 
 
+
 argv = parser.parse_args()
 
 
@@ -31,6 +32,7 @@ from Models.BolT.run import run_bolT
 
 from Models.SVM.hyperparams import getHyper_svm
 from Models.BolT.hyperparams import getHyper_bolT
+import pickle
 
 hyperParamDict = {
 
@@ -82,12 +84,41 @@ for i, seed in enumerate(seeds):
     
 
 
-metricss = calculateMetrics(resultss) 
-meanMetrics_seeds, stdMetrics_seeds, meanMetric_all, stdMetric_all = metricSummer(metricss, "test")
+# metricss = calculateMetrics(resultss) 
+# meanMetrics_seeds, stdMetrics_seeds, meanMetric_all, stdMetric_all = metricSummer(metricss, "test")
 
-# now dump metrics
-dumpTestResults(argv.name, hyperParams, argv.model, datasetName, metricss)
+# # now dump metrics
+# dumpTestResults(argv.name, hyperParams, argv.model, datasetName, metricss)
 
-print("\n \ n meanMetrics_all : {}".format(meanMetric_all))
-print("stdMetric_all : {}".format(stdMetric_all))
+# print("\n \ n meanMetrics_all : {}".format(meanMetric_all))
+# print("stdMetric_all : {}".format(stdMetric_all))
+# print(resultss)
+fold_0_results = resultss[0][0]
+step_metrics = fold_0_results["train"]["step_metrics"]
+
+# Save step metrics to a file
+with open('step_metrics.pkl', 'wb') as f:
+    pickle.dump(step_metrics, f)
+
+print("Step metrics saved to step_metrics.pkl")
+
+#save epoch metrics to a file
+epoch_metrics = fold_0_results["train"]["epoch_metrics"]
+with open('epoch_metrics.pkl', 'wb') as f:
+    pickle.dump(epoch_metrics, f)
+
+print("Epoch metrics saved to epoch_metrics.pkl")
+
+#save test metrics to a file
+test_metrics = fold_0_results["test"]["metrics"]
+with open('test_metrics.pkl', 'wb') as f:
+    pickle.dump(test_metrics, f)
+
+print("Test metrics saved to test_metrics.pkl")
+
+#save test results to a file
+test_results = fold_0_results["test"]["results"]
+with open('test_results.pkl', 'wb') as f:
+    pickle.dump(test_results, f)
+
 
