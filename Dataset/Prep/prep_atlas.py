@@ -14,6 +14,10 @@ def prep_atlas(atlas):
         if(not os.path.exists(datadir + "/Atlasses/{}".format(atlas))):
             atlasInfo = nil.datasets.fetch_atlas_schaefer_2018(n_rois=400, yeo_networks=7, resolution_mm=1, data_dir=datadir + "/Atlasses")            
             atlasImage = nil.image.load_img(atlasInfo["maps"])
+    elif(atlas == "AAL"):
+        if(not os.path.exists(datadir + "/Atlasses/{}".format(atlas))):
+            atlasInfo = nil.datasets.fetch_atlas_aal(data_dir=datadir + "/Atlasses")
+            atlasImage = nil.image.load_img(atlasInfo["maps"])
 
     return atlasImage
 
