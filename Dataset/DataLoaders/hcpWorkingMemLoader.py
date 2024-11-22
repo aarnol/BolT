@@ -22,7 +22,7 @@ def hcpWorkingMemLoader(atlas, targetTask):
         x : (#subjects, N)
     """
 
-    dataset = torch.load(datadir + "/dataset_hcpTask_{}.save".format(atlas))
+    dataset = torch.load(datadir + "/dataset_hcpWM_{}.save".format(atlas))
 
     x = []
     y = []

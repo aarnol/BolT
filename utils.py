@@ -10,9 +10,7 @@ import torch
 class Option(object):
       
     def __init__(self, my_dict):
-
         self.dict = my_dict
-
         for key in my_dict:
             setattr(self, key, my_dict[key])
 
@@ -21,35 +19,30 @@ class Option(object):
 
 
 def metricSummer(metricss, type):
-    
     meanMetrics_seeds = []
     meanMetric_all = {}
-
     stdMetrics_seeds = []
     stdMetric_all = {}
 
-    for metrics in metricss: # this is over different seeds
-
+    for metrics in metricss:  # this is over different seeds
         meanMetric = {}
         stdMetric = {}
 
-    
-        for metric in metrics: # this is over different folds 
+        for metric in metrics:  # this is over different folds
+            metric = metric[type]  # get results from the specified type
 
-            metric = metric[type] # get results from the specified type
-    
             for key in metric.keys():
-                if(key not in meanMetric):
+                if key not in meanMetric:
                     meanMetric[key] = []
 
                 meanMetric[key].append(metric[key])
 
         for key in meanMetric:
-            stdMetric[key] = np.std(meanMetric[key])            
+            stdMetric[key] = np.std(meanMetric[key])
             meanMetric[key] = np.mean(meanMetric[key])
 
         meanMetrics_seeds.append(meanMetric)
-        stdMetrics_seeds.append(stdMetric)            
+        stdMetrics_seeds.append(stdMetric)
 
     for key in meanMetrics_seeds[0].keys():
         meanMetric_all[key] = np.mean([metric[key] for metric in meanMetrics_seeds])
@@ -63,59 +56,65 @@ def calculateMetric(result):
     predictions = result["predictions"]
 
     isMultiClass = np.max(labels) > 1
-    hasProbs = "probs" in result 
+    hasProbs = "probs" in result
 
-    if(hasProbs):
+    if hasProbs:
         probs = result["probs"]
 
+    try:
+        accuracy = skmetr.accuracy_score(labels, predictions)
+    except Exception as e:
+        accuracy = np.nan
 
-    accuracy = skmetr.accuracy_score(labels, predictions)
+    if isMultiClass:
+        try:
+            precision = skmetr.precision_score(labels, predictions, average="micro")
+        except Exception as e:
+            precision = np.nan
 
+        try:
+            recall = skmetr.recall_score(labels, predictions, average="micro")
+        except Exception as e:
+            recall = np.nan
 
-    if(isMultiClass):
-
-        precision = skmetr.precision_score(labels, predictions, average="micro")
-
-        recall = skmetr.recall_score(labels, predictions, average="micro")
-
-        if(hasProbs):
-
-            roc = skmetr.roc_auc_score(labels, probs, average="macro", multi_class="ovr")
-
+        if hasProbs:
+            try:
+                roc = skmetr.roc_auc_score(labels, probs, average="macro", multi_class="ovr")
+            except Exception as e:
+                roc = np.nan
         else:
-
-            train_roc = np.nan
-
+            roc = np.nan
     else:
+        try:
+            precision = skmetr.precision_score(labels, predictions, average="binary")
+        except Exception as e:
+            precision = np.nan
 
-        precision = skmetr.precision_score(labels, predictions, average="binary")
+        try:
+            recall = skmetr.recall_score(labels, predictions, average="binary")
+        except Exception as e:
+            recall = np.nan
 
-        recall = skmetr.recall_score(labels, predictions, average="binary")
-
-        if(hasProbs):
-
-            roc = skmetr.roc_auc_score(labels, probs[:,1])
-
+        if hasProbs:
+            try:
+                roc = skmetr.roc_auc_score(labels, probs[:, 1])
+            except Exception as e:
+                roc = np.nan
         else:
-
             roc = np.nan
 
+    return {"accuracy": accuracy, "precision": precision, "recall": recall, "roc": roc}
 
-    return {"accuracy" : accuracy, "precision" : precision, "recall" : recall, "roc" : roc}
 
 def calculateMetrics(resultss):
-
     metricss = []
 
     for results in resultss:
-        
         metrics = []
 
         for result in results:
-            
-            train_results = result["train"]        
+            train_results = result["train"]
             test_results = result["test"]
-
 
             train_labels = train_results["labels"]
             train_predictions = train_results["predictions"]
@@ -129,51 +128,89 @@ def calculateMetrics(resultss):
 
             isMultiClass = np.max(test_labels) > 1
             hasProbs = "probs" in train_results
-            
 
             # metrics
+            try:
+                train_accuracy = skmetr.accuracy_score(train_labels, train_predictions)
+            except Exception as e:
+                train_accuracy = np.nan
 
-            train_accuracy = skmetr.accuracy_score(train_labels, train_predictions)
-            test_accuracy = skmetr.accuracy_score(test_labels, test_predictions)
+            try:
+                test_accuracy = skmetr.accuracy_score(test_labels, test_predictions)
+            except Exception as e:
+                test_accuracy = np.nan
 
-            if(isMultiClass):
+            if isMultiClass:
+                try:
+                    train_precision = skmetr.precision_score(train_labels, train_predictions, average="micro")
+                except Exception as e:
+                    train_precision = np.nan
 
-                train_precision = skmetr.precision_score(train_labels, train_predictions, average="micro")
-                test_precision = skmetr.precision_score(test_labels, test_predictions, average="micro")
+                try:
+                    test_precision = skmetr.precision_score(test_labels, test_predictions, average="micro")
+                except Exception as e:
+                    test_precision = np.nan
 
-                train_recall = skmetr.recall_score(train_labels, train_predictions, average="micro")
-                test_recall = skmetr.recall_score(test_labels, test_predictions, average="micro")
+                try:
+                    train_recall = skmetr.recall_score(train_labels, train_predictions, average="micro")
+                except Exception as e:
+                    train_recall = np.nan
 
-                if(hasProbs):
+                try:
+                    test_recall = skmetr.recall_score(test_labels, test_predictions, average="micro")
+                except Exception as e:
+                    test_recall = np.nan
 
-                    train_roc = skmetr.roc_auc_score(train_labels, train_probs, average="macro", multi_class="ovr")
-                    test_roc = skmetr.roc_auc_score(test_labels, test_probs, average="macro", multi_class="ovr")
+                if hasProbs:
+                    try:
+                        train_roc = skmetr.roc_auc_score(train_labels, train_probs, average="macro", multi_class="ovr")
+                    except Exception as e:
+                        train_roc = np.nan
 
+                    try:
+                        test_roc = skmetr.roc_auc_score(test_labels, test_probs, average="macro", multi_class="ovr")
+                    except Exception as e:
+                        test_roc = np.nan
                 else:
-
                     train_roc = np.nan
                     test_roc = np.nan
-
             else:
+                try:
+                    train_precision = skmetr.precision_score(train_labels, train_predictions, average="binary")
+                except Exception as e:
+                    train_precision = np.nan
 
-                train_precision = skmetr.precision_score(train_labels, train_predictions, average="binary")
-                test_precision = skmetr.precision_score(test_labels, test_predictions, average="binary")
+                try:
+                    test_precision = skmetr.precision_score(test_labels, test_predictions, average="binary")
+                except Exception as e:
+                    test_precision = np.nan
 
-                train_recall = skmetr.recall_score(train_labels, train_predictions, average="binary")
-                test_recall = skmetr.recall_score(test_labels, test_predictions, average="binary")
+                try:
+                    train_recall = skmetr.recall_score(train_labels, train_predictions, average="binary")
+                except Exception as e:
+                    train_recall = np.nan
 
-                if(hasProbs):
+                try:
+                    test_recall = skmetr.recall_score(test_labels, test_predictions, average="binary")
+                except Exception as e:
+                    test_recall = np.nan
 
-                    train_roc = skmetr.roc_auc_score(train_labels, train_probs[:,1])
-                    test_roc = skmetr.roc_auc_score(test_labels, test_probs[:,1])
+                if hasProbs:
+                    try:
+                        train_roc = skmetr.roc_auc_score(train_labels, train_probs[:, 1])
+                    except Exception as e:
+                        train_roc = np.nan
 
+                    try:
+                        test_roc = skmetr.roc_auc_score(test_labels, test_probs[:, 1])
+                    except Exception as e:
+                        test_roc = np.nan
                 else:
-
                     train_roc = np.nan
                     test_roc = np.nan
 
-            metric = {"train" : {"accuracy" : train_accuracy, "precision" : train_precision, "recall" : train_recall , "roc" : train_roc, "loss" : train_loss},
-                "test" : {"accuracy" : test_accuracy, "precision" : test_precision, "recall" : test_recall, "roc" : test_roc, "loss" : test_loss}}
+            metric = {"train": {"accuracy": train_accuracy, "precision": train_precision, "recall": train_recall, "roc": train_roc, "loss": train_loss},
+                      "test": {"accuracy": test_accuracy, "precision": test_precision, "recall": test_recall, "roc": test_roc, "loss": test_loss}}
 
             metrics.append(metric)
 
@@ -182,27 +219,24 @@ def calculateMetrics(resultss):
     return metricss
 
 
-
 def dumpTestResults(testName, hyperParams, modelName, datasetName, metricss):
-
     datasetNameToResultFolder = {
-        "abide1" : "./Results/ABIDE_I",
-        "hcpRest" : "./Results/HCP_REST",
-        "hcpTask" : "./Results/HCP_TASK",
-        "cobre" : "./Results/COBRE",
-        "hcpWM" : "./Results/HCP_WM"
+        "abide1": "./Results/ABIDE_I",
+        "hcpRest": "./Results/HCP_REST",
+        "hcpTask": "./Results/HCP_TASK",
+        "cobre": "./Results/COBRE",
+        "hcpWM": "./Results/HCP_WM"
     }
 
     dumpPrepend = "{}_{}_{}".format(testName, modelName, datetime.today().strftime('%Y-%m-%d-%H:%M:%S'))
 
     meanMetrics_seeds, stdMetrics_seeds, meanMetric_all, stdMetric_all = metricSummer(metricss, "test")
 
-
-    targetFolder = datasetNameToResultFolder[datasetName] + "/"+ modelName + "/" + testName
-    os.makedirs(targetFolder, exist_ok=True)    
+    targetFolder = datasetNameToResultFolder[datasetName] + "/" + modelName + "/" + testName
+    os.makedirs(targetFolder, exist_ok=True)
 
     # text save, for human readable format
-    metricFile = open(targetFolder + "/" +  "metricss.txt", "w")
+    metricFile = open(targetFolder + "/" + "metricss.txt", "w")
     metricFile.write("\n \n \n \n")
     for metrics in metricss:
         metricFile.write("\n \n")
@@ -220,7 +254,6 @@ def dumpTestResults(testName, hyperParams, modelName, datasetName, metricss):
     summaryMetricFile.write("{}".format(stdMetric_all))
     summaryMetricFile.close()
 
-
     # save hyper params
     hyperParamFile = open(targetFolder + "/" + "hyperParams.txt", "w")
     for key in vars(hyperParams):
@@ -228,4 +261,4 @@ def dumpTestResults(testName, hyperParams, modelName, datasetName, metricss):
     hyperParamFile.close()
 
     # torch save, for visualizer
-    torch.save(metricss, targetFolder + "/"  + "metrics.save")
+    torch.save(metricss, targetFolder + "/" + "metrics.save")

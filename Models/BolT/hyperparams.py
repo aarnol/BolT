@@ -15,7 +15,10 @@ def getHyper_bolT():
 
             # FOR BOLT
             "nOfLayers" : 4,
-            "dim" : 400,
+            #change this based on the atlas!
+            # Schaefer 400 = 400
+            # AAL = 116
+            "dim" : 116,        
 
             "numHeads" : 36,
             "headDim" : 20,
