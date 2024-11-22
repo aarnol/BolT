@@ -175,7 +175,7 @@ def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False):
             targetSaveDir = "./Analysis/TargetSavedModels/{}/seed_{}/".format(datasetDetails.datasetName, datasetSeed)
             os.makedirs(targetSaveDir, exist_ok=True)
             torch.save(model, targetSaveDir + "/model_{}.save".format(fold))
-        break
+        
 
 
     return results

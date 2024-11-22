@@ -43,6 +43,16 @@ datasetDetailsDict = {
         "atlas" : "schaefer7_400",
         "nOfEpochs" : 10,
         "batchSize" : 32        
+    },
+    "hcpWM_AAL" : {
+        "datasetName" : "hcpWM",
+        "targetTask" : "nback",
+        "nOfClasses" : 2,        
+        "dynamicLength" : 33,
+        "foldCount" : 5,
+        "atlas" : "AAL",
+        "nOfEpochs" : 10,
+        "batchSize" : 32        
     }
 
  }

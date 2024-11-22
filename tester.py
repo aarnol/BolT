@@ -4,7 +4,7 @@
 import argparse
 import torch
 from datetime import datetime
-
+import os
 
 from utils import Option, metricSummer, calculateMetrics, dumpTestResults
 
@@ -57,7 +57,6 @@ print("\nTest model is {}".format(argv.model))
 datasetName = argv.dataset
 datasetDetails = datasetDetailsDict[datasetName]
 hyperParams = getHyper()
-
 print("Dataset details : {}".format(datasetDetails))
 
 # test
@@ -93,32 +92,45 @@ for i, seed in enumerate(seeds):
 # print("\n \ n meanMetrics_all : {}".format(meanMetric_all))
 # print("stdMetric_all : {}".format(stdMetric_all))
 # print(resultss)
-fold_0_results = resultss[0][0]
-step_metrics = fold_0_results["train"]["step_metrics"]
+if(argv.analysis):
+    analysis_path = "Analysis/Logs/{}_{}_{}_{}".format(argv.name, argv.model, datasetName, datetime.now().strftime("%Y%m%d"))
+    if(not os.path.exists(analysis_path)):
+        os.makedirs(analysis_path)
 
-# Save step metrics to a file
-with open('step_metrics.pkl', 'wb') as f:
-    pickle.dump(step_metrics, f)
+    fold_0_results = resultss[0][0]
+    step_metrics = fold_0_results["train"]["step_metrics"]
 
-print("Step metrics saved to step_metrics.pkl")
+    # Save step metrics to a file
+    with open(os.path.join(analysis_path, 'step_metrics.pkl'), 'wb') as f:
+        pickle.dump(step_metrics, f)
 
-#save epoch metrics to a file
-epoch_metrics = fold_0_results["train"]["epoch_metrics"]
-with open('epoch_metrics.pkl', 'wb') as f:
-    pickle.dump(epoch_metrics, f)
+    print("Step metrics saved to {}/step_metrics.pkl".format(analysis_path))
 
-print("Epoch metrics saved to epoch_metrics.pkl")
+    # Save epoch metrics to a file
+    epoch_metrics = fold_0_results["train"]["epoch_metrics"]
+    with open(os.path.join(analysis_path, 'epoch_metrics.pkl'), 'wb') as f:
+        pickle.dump(epoch_metrics, f)
 
-#save test metrics to a file
-test_metrics = fold_0_results["test"]["metrics"]
-with open('test_metrics.pkl', 'wb') as f:
-    pickle.dump(test_metrics, f)
+    print("Epoch metrics saved to {}/epoch_metrics.pkl".format(analysis_path))
 
-print("Test metrics saved to test_metrics.pkl")
+    # Save test metrics to a file
+    test_metrics = fold_0_results["test"]["metrics"]
+    with open(os.path.join(analysis_path, 'test_metrics.pkl'), 'wb') as f:
+        pickle.dump(test_metrics, f)
 
-#save test results to a file
-test_results = fold_0_results["test"]["results"]
-with open('test_results.pkl', 'wb') as f:
-    pickle.dump(test_results, f)
+    print("Test metrics saved to {}/test_metrics.pkl".format(analysis_path))
+
+    # Save test results to a file
+    test_results = fold_0_results["test"]["results"]
+    with open(os.path.join(analysis_path, 'test_results.pkl'), 'wb') as f:
+        pickle.dump(test_results, f)
+    
+    print("Test results saved to {}/test_results.pkl".format(analysis_path))
+
+    # save hyper params
+    hyperParamFile = open(analysis_path + "/" + "hyperParams.txt", "w")
+    for key in vars(hyperParams):
+        hyperParamFile.write("\n{} : {}".format(key, vars(hyperParams)[key]))
+    hyperParamFile.close()
 
 
