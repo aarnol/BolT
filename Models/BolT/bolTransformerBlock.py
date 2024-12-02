@@ -421,7 +421,7 @@ class BolTransformerBlock(nn.Module):
 
         B, Z, C = x.shape
         device = x.device
-        
+        print("x shape", x.shape)
         #update z, incase some are dropped during windowing
         Z = self.windowSize + self.shiftSize * (cls.shape[1]-1)
         x = x[:, :Z]

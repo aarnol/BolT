@@ -8,13 +8,16 @@ def windowBoldSignal(boldSignal, windowLength, stride):
         boldSignal : (batchSize, N, T)
         output : (batchSize, (T-windowLength) // stride, N, windowLength )
     """
-
+    print("boldSignal shape: ",boldSignal.shape)
     T = boldSignal.shape[2]
 
     # NOW WINDOWING 
     windowedBoldSignals = []
     samplingEndPoints = []
-    
+    print("T: ",T)
+    print("windowLength: ",windowLength)
+    print("stride: ",stride)
+    print("range length",(T - windowLength)//stride + 1)
     for windowIndex in range((T - windowLength)//stride + 1):
         
         sampledWindow = boldSignal[:, :, windowIndex * stride  : windowIndex * stride + windowLength]
@@ -24,7 +27,8 @@ def windowBoldSignal(boldSignal, windowLength, stride):
         
         windowedBoldSignals.append(sampledWindow)
         
-    
+   
+    print("windowBoldSignal length: ",len(windowedBoldSignals))
     windowedBoldSignals = torch.cat(windowedBoldSignals, dim=1)
 
     return windowedBoldSignals, samplingEndPoints
