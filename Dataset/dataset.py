@@ -121,7 +121,7 @@ class SupervisedDataset(Dataset):
         self.targetData = [self.data[idx] for idx in trainIdx] if train else [self.data[idx] for idx in testIdx]
         self.targetLabels = [self.labels[idx] for idx in trainIdx] if train else [self.labels[idx] for idx in testIdx]
         self.targetSubjIds = [self.subjectIds[idx] for idx in trainIdx] if train else [self.subjectIds[idx] for idx in testIdx]
-
+        
         if(train and not isinstance(self.dynamicLength, type(None))):
             np.random.seed(self.seed+1)
             
@@ -153,7 +153,8 @@ class SupervisedDataset(Dataset):
             samplingInit = self.randomRanges[idx].pop()
 
             timeseries = timeseries[:, samplingInit : samplingInit + self.dynamicLength]
-
+        print("timeseries shape: ",timeseries.shape)
+        
         return {"timeseries" : timeseries.astype(np.float32), "label" : label, "subjId" : subjId}
 
 

@@ -18,12 +18,13 @@ def getHyper_bolT():
             #change this based on the atlas!
             # Schaefer 400 = 400
             # AAL = 116
-            "dim" : 116,        
+            "dim" : 400,        
 
             "numHeads" : 36,
             "headDim" : 20,
 
-            "windowSize" : 20,
+        
+            "windowSize" : 10, #changed for shorter sequences
             "shiftCoeff" : 2.0/5.0,            
             "fringeCoeff" : 2, # fringeSize = fringeCoeff * (windowSize) * 2 * (1-shiftCoeff)
             "focalRule" : "expand",
