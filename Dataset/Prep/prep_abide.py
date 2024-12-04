@@ -38,7 +38,7 @@ def process_scan(scanImage_fileName, atlasImage):
         return None  # Return None if there's an error
 
 
-def prep_abide(atlas):
+def prep_abide(atlas, fnirs = False):
     bulkDataDir = "/scratch/alpine/alar6830/WM_nback_labels/"
     atlasImage = prep_atlas(atlas)
 
@@ -76,12 +76,12 @@ def prep_abide(atlas):
     torch.save(dataset, f"{datadir}/dataset_abide_{atlas}.save")
 
 
-def prep_hcp(atlas):
+def prep_hcp(atlas, fnirs = False):
     # Define directory for HCP data
     bulkDataDir = "/scratch/alpine/alar6830/WM_nback_labels/"
     
     # Prepare the atlas image
-    atlasImage = prep_atlas(atlas)
+    atlasImage = prep_atlas(atlas, fnirs)
 
     if not os.path.exists(bulkDataDir):
         raise Exception("Data does not exist")

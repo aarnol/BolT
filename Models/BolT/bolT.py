@@ -131,7 +131,7 @@ class BolT(nn.Module):
 
         """
 
-
+        
         roiSignals = roiSignals.permute((0,2,1))
 
         batchSize = roiSignals.shape[0]
