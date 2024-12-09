@@ -9,6 +9,7 @@ from tqdm import tqdm
 from joblib import Parallel, delayed
 from nilearn.input_data import NiftiLabelsMasker
 from .prep_atlas import prep_atlas
+from .fnirs_utils import load_fnirs, calc_MNI_average, process_fnirs
 
 datadir = "/scratch/alpine/alar6830/BoltROIs/"
 
@@ -30,7 +31,8 @@ def process_scan(scanImage_fileName, atlasImage):
             "pheno": {
                 "subjectId": subjectId,
                 "encoding": enc,
-                "nback": nback
+                "nback": nback,
+                "modality": "fMRI"
             }
         }
     except Exception as e:
@@ -79,9 +81,17 @@ def prep_abide(atlas, fnirs = False):
 def prep_hcp(atlas, fnirs = False):
     # Define directory for HCP data
     bulkDataDir = "/scratch/alpine/alar6830/WM_nback_labels/"
-    
+
+    if(fnirs):
+        fnirs_folder = ""
+        data, digitization, timings = load_fnirs(fnirs_folder)
+        MNI_coords = calc_MNI_average(digitization)
+    else:
+        MNI_coords = None
+
+
     # Prepare the atlas image
-    atlasImage = prep_atlas(atlas, fnirs)
+    atlasImage = prep_atlas(atlas, datadir, MNI_coords)
 
     if not os.path.exists(bulkDataDir):
         raise Exception("Data does not exist")
@@ -100,6 +110,9 @@ def prep_hcp(atlas, fnirs = False):
             if result is not None:  # Only add successful results
                 dataset.append(result)
             pbar.update(1)  # Update the progress bar
-
+    #append fnirs data to dataset
+    fnirs_data = process_fnirs(data, timings)
+    for f in fnirs_data:
+        dataset.append(f)
     # Save dataset
     torch.save(dataset, f"{datadir}/dataset_hcp_{atlas}.save")
