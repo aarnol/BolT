@@ -10,6 +10,7 @@ from joblib import Parallel, delayed
 from nilearn.input_data import NiftiLabelsMasker
 from .prep_atlas import prep_atlas
 from .fnirs_utils import load_fnirs, calc_MNI_average, process_fnirs
+import numpy as np
 
 datadir = "/scratch/alpine/alar6830/BoltROIs/"
 
@@ -87,7 +88,7 @@ def prep_hcp(atlas, fnirs = False):
         data, digitization, timings = load_fnirs(fnirs_folder)
         MNI_coords = calc_MNI_average(digitization)
     else:
-        MNI_coords = None
+        MNI_coords = [[0, 0, 0],[100,100,100]]
 
 
     # Prepare the atlas image
