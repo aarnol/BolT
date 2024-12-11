@@ -13,6 +13,7 @@ datadir = "./Dataset/Data"
 import os
 import numpy as np
 from nilearn import datasets, image
+from .fnirs_utils import get_parcel_label
 def calc_COM(atlas_img):
     """
     Calculate the center of mass (COM) for each region in the given atlas image.
@@ -72,7 +73,7 @@ def prep_atlas(atlas, datadir, mni_coords=None):
     if mni_coords is None:
         # No filtering, return the full atlas
         # return atlas_img
-        mni_coords = sample(calc_COM(atlas_img),5)
+        return atlas_img
     
     # Convert MNI coordinates to voxel space and filter ROIs
     atlas_data = atlas_img.get_fdata()

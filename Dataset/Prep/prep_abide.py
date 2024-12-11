@@ -84,9 +84,9 @@ def prep_hcp(atlas, name, fnirs = False):
     bulkDataDir = "/scratch/alpine/alar6830/WM_nback_labels/"
 
     if(fnirs):
-        fnirs_folder = ""
-        data, digitization, timings = load_fnirs(fnirs_folder)
-        MNI_coords = calc_MNI_average(digitization)
+        fnirs_folder = os.path.join(os.path.dirname(__file__), '..','fNIRS')
+        fnirs_data, MNI_coords = load_fnirs(fnirs_folder)
+        
     else:
         MNI_coords = None
 
@@ -112,9 +112,6 @@ def prep_hcp(atlas, name, fnirs = False):
                 dataset.append(result)
             pbar.update(1)  # Update the progress bar
     #append fnirs data to dataset
-    if(fnirs):
-        fnirs_data = process_fnirs(data, timings)
-        for f in fnirs_data:
-            dataset.append(f)
+    dataset+= fnirs_data
     # Save dataset
     torch.save(dataset, f"{datadir}/dataset_hcp_{atlas}_{name}.save")
