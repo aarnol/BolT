@@ -15,6 +15,6 @@ conda activate BolT
 
 cd /projects/alar6830/BolT
 
-python prep.py --dataset hcpWM --atlas schaefer7_400 --name random5
+python prep.py --dataset hcpWM --atlas schaefer7_400 --name fNIRS_1 --fnirs True
 
 echo "done prepping"
