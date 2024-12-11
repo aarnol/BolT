@@ -9,7 +9,7 @@ from tqdm import tqdm
 from joblib import Parallel, delayed
 from nilearn.input_data import NiftiLabelsMasker
 from .prep_atlas import prep_atlas
-from .fnirs_utils import load_fnirs, calc_MNI_average, process_fnirs
+from .fnirs_utils import load_fnirs
 import numpy as np
 
 datadir = "/scratch/alpine/alar6830/BoltROIs/"
@@ -84,7 +84,7 @@ def prep_hcp(atlas, name, fnirs = False):
     bulkDataDir = "/scratch/alpine/alar6830/WM_nback_labels/"
 
     if(fnirs):
-        fnirs_folder = os.path.join(os.path.dirname(__file__), '..','fNIRS')
+        fnirs_folder = os.path.join(os.path.dirname(__file__), '..', 'Data','fNIRS')
         fnirs_data, MNI_coords = load_fnirs(fnirs_folder)
         
     else:

@@ -1,0 +1,2239 @@
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/__init__.py:67: FutureWarning: Python 3.7 support is deprecated and will be removed in release 0.12 of Nilearn. Consider switching to Python 3.9 or 3.10.
+  _python_deprecation_warnings()
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/input_data/__init__.py:23: FutureWarning: The import path 'nilearn.input_data' is deprecated in version 0.9. Importing from 'nilearn.input_data' will be possible at least until release 0.13.0. Please import from 'nilearn.maskers' instead.
+  warnings.warn(message, FutureWarning)
+
+
+Extracting ROIs...
+
+
+  0%|                             | 0/17383 [00:00<?, ?it/s]
+Processing files:   0%|          | 0/17383 [00:00<?, ?it/s][A
+Processing files:   0%|          | 16/17383 [00:04<1:18:24,  3.69it/s][A
+Processing files:   0%|          | 24/17383 [00:06<1:14:30,  3.88it/s][A
+Processing files:   0%|          | 32/17383 [00:07<1:07:26,  4.29it/s][A
+Processing files:   0%|          | 40/17383 [00:09<1:06:47,  4.33it/s][A
+Processing files:   0%|          | 48/17383 [00:11<1:04:06,  4.51it/s][A
+Processing files:   0%|          | 56/17383 [00:12<1:02:06,  4.65it/s][A
+Processing files:   0%|          | 64/17383 [00:14<1:01:50,  4.67it/s][A
+Processing files:   0%|          | 72/17383 [00:16<1:03:17,  4.56it/s][A
+Processing files:   0%|          | 80/17383 [00:18<1:09:05,  4.17it/s][A
+Processing files:   1%|          | 88/17383 [00:20<1:05:32,  4.40it/s][A
+Processing files:   1%|          | 96/17383 [00:21<1:03:00,  4.57it/s][A
+Processing files:   1%|          | 104/17383 [00:23<1:02:16,  4.62it/s][A
+Processing files:   1%|          | 112/17383 [00:25<1:04:47,  4.44it/s][A
+Processing files:   1%|          | 120/17383 [00:27<1:03:10,  4.55it/s][A
+Processing files:   1%|          | 128/17383 [00:28<1:03:43,  4.51it/s][A
+Processing files:   1%|          | 136/17383 [00:31<1:08:17,  4.21it/s][A
+Processing files:   1%|          | 144/17383 [00:32<1:05:34,  4.38it/s][A
+Processing files:   1%|          | 152/17383 [00:34<1:07:37,  4.25it/s][A
+Processing files:   1%|          | 160/17383 [00:36<1:10:05,  4.09it/s][A
+Processing files:   1%|          | 168/17383 [00:38<1:09:23,  4.13it/s][A
+Processing files:   1%|          | 176/17383 [00:40<1:05:28,  4.38it/s][A
+Processing files:   1%|          | 184/17383 [00:42<1:05:02,  4.41it/s][A
+Processing files:   1%|          | 192/17383 [00:44<1:07:48,  4.23it/s][A
+Processing files:   1%|          | 200/17383 [00:45<1:05:03,  4.40it/s][A
+Processing files:   1%|          | 208/17383 [00:47<1:07:37,  4.23it/s][A
+Processing files:   1%|          | 216/17383 [00:49<1:05:24,  4.37it/s][A
+Processing files:   1%|▏         | 224/17383 [00:51<1:03:34,  4.50it/s][A
+Processing files:   1%|▏         | 232/17383 [00:52<1:02:02,  4.61it/s][A
+Processing files:   1%|▏         | 240/17383 [00:54<1:01:18,  4.66it/s][A
+Processing files:   1%|▏         | 248/17383 [00:56<59:50,  4.77it/s]  [A
+Processing files:   1%|▏         | 256/17383 [00:57<59:09,  4.83it/s][A
+Processing files:   2%|▏         | 264/17383 [00:59<59:05,  4.83it/s][A
+Processing files:   2%|▏         | 272/17383 [01:01<58:24,  4.88it/s][A
+Processing files:   2%|▏         | 280/17383 [01:02<1:00:59,  4.67it/s][A
+Processing files:   2%|▏         | 288/17383 [01:04<1:00:30,  4.71it/s][A
+Processing files:   2%|▏         | 296/17383 [01:06<1:02:53,  4.53it/s][A
+Processing files:   2%|▏         | 304/17383 [01:08<1:01:25,  4.63it/s][A
+Processing files:   2%|▏         | 312/17383 [01:09<1:01:43,  4.61it/s][A
+Processing files:   2%|▏         | 320/17383 [01:11<1:00:10,  4.73it/s][A
+Processing files:   2%|▏         | 328/17383 [01:13<1:01:27,  4.63it/s][A
+Processing files:   2%|▏         | 336/17383 [01:15<1:04:55,  4.38it/s][A
+Processing files:   2%|▏         | 344/17383 [01:17<1:02:41,  4.53it/s][A
+Processing files:   2%|▏         | 352/17383 [01:18<1:01:10,  4.64it/s][A
+Processing files:   2%|▏         | 360/17383 [01:20<1:04:01,  4.43it/s][A
+Processing files:   2%|▏         | 368/17383 [01:22<1:07:11,  4.22it/s][A
+Processing files:   2%|▏         | 376/17383 [01:24<1:06:36,  4.26it/s][A
+Processing files:   2%|▏         | 384/17383 [01:26<1:07:22,  4.21it/s][A
+Processing files:   2%|▏         | 392/17383 [01:28<1:05:18,  4.34it/s][A
+Processing files:   2%|▏         | 400/17383 [01:29<1:03:53,  4.43it/s][A
+Processing files:   2%|▏         | 408/17383 [01:31<1:01:31,  4.60it/s][A
+Processing files:   2%|▏         | 416/17383 [01:33<1:00:42,  4.66it/s][A
+Processing files:   2%|▏         | 424/17383 [01:35<1:01:44,  4.58it/s][A
+Processing files:   2%|▏         | 432/17383 [01:36<1:01:01,  4.63it/s][A
+Processing files:   3%|▎         | 440/17383 [01:38<59:50,  4.72it/s]  [A
+Processing files:   3%|▎         | 448/17383 [01:40<1:00:17,  4.68it/s][A
+Processing files:   3%|▎         | 456/17383 [01:41<58:39,  4.81it/s]  [A
+Processing files:   3%|▎         | 464/17383 [01:43<59:35,  4.73it/s][A
+Processing files:   3%|▎         | 472/17383 [01:45<58:54,  4.78it/s][A
+Processing files:   3%|▎         | 480/17383 [01:47<1:03:36,  4.43it/s][A
+Processing files:   3%|▎         | 488/17383 [01:48<1:00:54,  4.62it/s][A
+Processing files:   3%|▎         | 496/17383 [01:51<1:07:42,  4.16it/s][A
+Processing files:   3%|▎         | 504/17383 [01:52<1:05:38,  4.29it/s][A
+Processing files:   3%|▎         | 512/17383 [01:54<1:03:29,  4.43it/s][A
+Processing files:   3%|▎         | 520/17383 [01:56<1:05:02,  4.32it/s][A
+Processing files:   3%|▎         | 528/17383 [01:58<1:05:18,  4.30it/s][A
+Processing files:   3%|▎         | 536/17383 [01:59<1:03:00,  4.46it/s][A
+Processing files:   3%|▎         | 544/17383 [02:01<1:02:15,  4.51it/s][A
+Processing files:   3%|▎         | 552/17383 [02:03<1:03:11,  4.44it/s][A
+Processing files:   3%|▎         | 560/17383 [02:05<1:05:38,  4.27it/s][A
+Processing files:   3%|▎         | 568/17383 [02:07<1:08:44,  4.08it/s][A
+Processing files:   3%|▎         | 576/17383 [02:09<1:05:01,  4.31it/s][A
+Processing files:   3%|▎         | 584/17383 [02:11<1:04:33,  4.34it/s][A
+Processing files:   3%|▎         | 592/17383 [02:13<1:06:03,  4.24it/s][A
+Processing files:   3%|▎         | 600/17383 [02:14<1:04:40,  4.32it/s][A
+Processing files:   3%|▎         | 608/17383 [02:16<1:04:20,  4.35it/s][A
+Processing files:   4%|▎         | 616/17383 [02:18<1:04:30,  4.33it/s][A
+Processing files:   4%|▎         | 624/17383 [02:20<1:09:58,  3.99it/s][A
+Processing files:   4%|▎         | 632/17383 [02:22<1:05:18,  4.27it/s][A
+Processing files:   4%|▎         | 640/17383 [02:24<1:08:52,  4.05it/s][A
+Processing files:   4%|▎         | 648/17383 [02:26<1:05:10,  4.28it/s][A
+Processing files:   4%|▍         | 656/17383 [02:28<1:02:31,  4.46it/s][A
+Processing files:   4%|▍         | 664/17383 [02:29<1:00:36,  4.60it/s][A
+Processing files:   4%|▍         | 672/17383 [02:31<59:28,  4.68it/s]  [A
+Processing files:   4%|▍         | 680/17383 [02:32<59:08,  4.71it/s][A
+Processing files:   4%|▍         | 688/17383 [02:34<59:01,  4.71it/s][A
+Processing files:   4%|▍         | 696/17383 [02:36<57:30,  4.84it/s][A
+Processing files:   4%|▍         | 704/17383 [02:37<57:15,  4.85it/s][A
+Processing files:   4%|▍         | 712/17383 [02:39<57:26,  4.84it/s][A
+Processing files:   4%|▍         | 720/17383 [02:41<57:46,  4.81it/s][A
+Processing files:   4%|▍         | 728/17383 [02:42<56:58,  4.87it/s][A
+Processing files:   4%|▍         | 736/17383 [02:44<1:01:53,  4.48it/s][A
+Processing files:   4%|▍         | 744/17383 [02:46<1:00:52,  4.56it/s][A
+Processing files:   4%|▍         | 752/17383 [02:48<1:03:21,  4.37it/s][A
+Processing files:   4%|▍         | 760/17383 [02:50<1:04:33,  4.29it/s][A
+Processing files:   4%|▍         | 768/17383 [02:52<1:02:46,  4.41it/s][A
+Processing files:   4%|▍         | 776/17383 [02:54<1:06:06,  4.19it/s][A
+Processing files:   5%|▍         | 784/17383 [02:56<1:04:54,  4.26it/s][A
+Processing files:   5%|▍         | 792/17383 [02:58<1:09:22,  3.99it/s][A
+Processing files:   5%|▍         | 800/17383 [03:00<1:04:57,  4.25it/s][A
+Processing files:   5%|▍         | 808/17383 [03:01<1:05:24,  4.22it/s][A
+Processing files:   5%|▍         | 816/17383 [03:03<1:02:55,  4.39it/s][A
+Processing files:   5%|▍         | 824/17383 [03:05<1:00:26,  4.57it/s][A
+Processing files:   5%|▍         | 832/17383 [03:06<59:30,  4.64it/s]  [A
+Processing files:   5%|▍         | 840/17383 [03:08<58:38,  4.70it/s][A
+Processing files:   5%|▍         | 848/17383 [03:10<58:13,  4.73it/s][A
+Processing files:   5%|▍         | 856/17383 [03:11<59:19,  4.64it/s][A
+Processing files:   5%|▍         | 864/17383 [03:13<58:52,  4.68it/s][A
+Processing files:   5%|▌         | 872/17383 [03:15<1:01:23,  4.48it/s][A
+Processing files:   5%|▌         | 880/17383 [03:17<59:48,  4.60it/s]  [A
+Processing files:   5%|▌         | 888/17383 [03:19<1:03:18,  4.34it/s][A
+Processing files:   5%|▌         | 896/17383 [03:21<1:01:23,  4.48it/s][A
+Processing files:   5%|▌         | 904/17383 [03:22<1:00:03,  4.57it/s][A
+Processing files:   5%|▌         | 912/17383 [03:24<1:01:27,  4.47it/s][A
+Processing files:   5%|▌         | 920/17383 [03:26<1:03:40,  4.31it/s][A
+Processing files:   5%|▌         | 928/17383 [03:28<1:01:19,  4.47it/s][A
+Processing files:   5%|▌         | 936/17383 [03:30<1:04:49,  4.23it/s][A
+Processing files:   5%|▌         | 944/17383 [03:32<1:04:18,  4.26it/s][A
+Processing files:   5%|▌         | 952/17383 [03:33<1:01:59,  4.42it/s][A
+Processing files:   6%|▌         | 960/17383 [03:35<59:35,  4.59it/s]  [A
+Processing files:   6%|▌         | 968/17383 [03:37<58:55,  4.64it/s][A
+Processing files:   6%|▌         | 976/17383 [03:38<58:57,  4.64it/s][A
+Processing files:   6%|▌         | 984/17383 [03:40<57:07,  4.78it/s][A
+Processing files:   6%|▌         | 992/17383 [03:41<56:36,  4.83it/s][A
+Processing files:   6%|▌         | 1000/17383 [03:43<55:33,  4.91it/s][A
+Processing files:   6%|▌         | 1008/17383 [03:45<55:26,  4.92it/s][A
+Processing files:   6%|▌         | 1016/17383 [03:47<58:58,  4.63it/s][A
+Processing files:   6%|▌         | 1024/17383 [03:49<1:01:03,  4.47it/s][A
+Processing files:   6%|▌         | 1032/17383 [03:50<58:53,  4.63it/s]  [A
+Processing files:   6%|▌         | 1040/17383 [03:52<57:19,  4.75it/s][A
+Processing files:   6%|▌         | 1048/17383 [03:53<56:34,  4.81it/s][A
+Processing files:   6%|▌         | 1056/17383 [03:56<1:02:32,  4.35it/s][A
+Processing files:   6%|▌         | 1064/17383 [03:58<1:03:47,  4.26it/s][A
+Processing files:   6%|▌         | 1072/17383 [04:00<1:09:20,  3.92it/s][A
+Processing files:   6%|▌         | 1080/17383 [04:03<1:14:45,  3.63it/s][A
+Processing files:   6%|▋         | 1088/17383 [04:04<1:08:36,  3.96it/s][A
+Processing files:   6%|▋         | 1096/17383 [04:06<1:06:54,  4.06it/s][A
+Processing files:   6%|▋         | 1104/17383 [04:08<1:06:16,  4.09it/s][A
+Processing files:   6%|▋         | 1112/17383 [04:10<1:02:28,  4.34it/s][A
+Processing files:   6%|▋         | 1120/17383 [04:12<1:06:03,  4.10it/s][A
+Processing files:   6%|▋         | 1128/17383 [04:13<1:02:10,  4.36it/s][A
+Processing files:   7%|▋         | 1136/17383 [04:15<1:00:00,  4.51it/s][A
+Processing files:   7%|▋         | 1144/17383 [04:17<58:35,  4.62it/s]  [A
+Processing files:   7%|▋         | 1152/17383 [04:18<57:29,  4.71it/s][A
+Processing files:   7%|▋         | 1160/17383 [04:20<56:51,  4.75it/s][A
+Processing files:   7%|▋         | 1168/17383 [04:22<59:08,  4.57it/s][A
+Processing files:   7%|▋         | 1176/17383 [04:23<57:19,  4.71it/s][A
+Processing files:   7%|▋         | 1184/17383 [04:25<56:57,  4.74it/s][A
+Processing files:   7%|▋         | 1192/17383 [04:27<56:14,  4.80it/s][A
+Processing files:   7%|▋         | 1200/17383 [04:28<55:29,  4.86it/s][A
+Processing files:   7%|▋         | 1208/17383 [04:30<55:47,  4.83it/s][A
+Processing files:   7%|▋         | 1216/17383 [04:32<1:01:22,  4.39it/s][A
+Processing files:   7%|▋         | 1224/17383 [04:34<59:35,  4.52it/s]  [A
+Processing files:   7%|▋         | 1232/17383 [04:36<1:02:55,  4.28it/s][A
+Processing files:   7%|▋         | 1240/17383 [04:37<1:00:18,  4.46it/s][A
+Processing files:   7%|▋         | 1248/17383 [04:39<58:52,  4.57it/s]  [A
+Processing files:   7%|▋         | 1256/17383 [04:41<59:51,  4.49it/s][A
+Processing files:   7%|▋         | 1264/17383 [04:43<1:02:02,  4.33it/s][A
+Processing files:   7%|▋         | 1272/17383 [04:45<1:03:37,  4.22it/s][A
+Processing files:   7%|▋         | 1280/17383 [04:47<1:01:49,  4.34it/s][A
+Processing files:   7%|▋         | 1288/17383 [04:48<59:33,  4.50it/s]  [A
+Processing files:   7%|▋         | 1296/17383 [04:50<59:26,  4.51it/s][A
+Processing files:   8%|▊         | 1304/17383 [04:52<58:07,  4.61it/s][A
+Processing files:   8%|▊         | 1312/17383 [04:53<57:08,  4.69it/s][A
+Processing files:   8%|▊         | 1320/17383 [04:55<57:19,  4.67it/s][A
+Processing files:   8%|▊         | 1328/17383 [04:57<1:00:05,  4.45it/s][A
+Processing files:   8%|▊         | 1336/17383 [04:59<58:33,  4.57it/s]  [A
+Processing files:   8%|▊         | 1344/17383 [05:00<56:46,  4.71it/s][A
+Processing files:   8%|▊         | 1352/17383 [05:02<57:47,  4.62it/s][A
+Processing files:   8%|▊         | 1360/17383 [05:04<56:13,  4.75it/s][A
+Processing files:   8%|▊         | 1368/17383 [05:05<55:02,  4.85it/s][A
+Processing files:   8%|▊         | 1376/17383 [05:07<55:29,  4.81it/s][A
+Processing files:   8%|▊         | 1384/17383 [05:09<56:01,  4.76it/s][A
+Processing files:   8%|▊         | 1392/17383 [05:10<54:45,  4.87it/s][A
+Processing files:   8%|▊         | 1400/17383 [05:12<54:34,  4.88it/s][A
+Processing files:   8%|▊         | 1408/17383 [05:13<54:08,  4.92it/s][A
+Processing files:   8%|▊         | 1416/17383 [05:15<53:58,  4.93it/s][A
+Processing files:   8%|▊         | 1424/17383 [05:17<54:08,  4.91it/s][A
+Processing files:   8%|▊         | 1432/17383 [05:19<57:11,  4.65it/s][A
+Processing files:   8%|▊         | 1440/17383 [05:20<56:32,  4.70it/s][A
+Processing files:   8%|▊         | 1448/17383 [05:22<55:50,  4.76it/s][A
+Processing files:   8%|▊         | 1456/17383 [05:24<1:00:37,  4.38it/s][A
+Processing files:   8%|▊         | 1464/17383 [05:26<58:45,  4.52it/s]  [A
+Processing files:   8%|▊         | 1472/17383 [05:27<57:25,  4.62it/s][A
+Processing files:   9%|▊         | 1480/17383 [05:29<59:00,  4.49it/s][A
+Processing files:   9%|▊         | 1488/17383 [05:31<57:15,  4.63it/s][A
+Processing files:   9%|▊         | 1496/17383 [05:33<1:04:04,  4.13it/s][A
+Processing files:   9%|▊         | 1504/17383 [05:35<1:05:28,  4.04it/s][A
+Processing files:   9%|▊         | 1512/17383 [05:37<1:01:47,  4.28it/s][A
+Processing files:   9%|▊         | 1520/17383 [05:39<1:08:04,  3.88it/s][A
+Processing files:   9%|▉         | 1528/17383 [05:41<1:04:00,  4.13it/s][A
+Processing files:   9%|▉         | 1536/17383 [05:43<1:02:35,  4.22it/s][A
+Processing files:   9%|▉         | 1544/17383 [05:45<1:05:54,  4.00it/s][A
+Processing files:   9%|▉         | 1552/17383 [05:47<1:02:06,  4.25it/s][A
+Processing files:   9%|▉         | 1560/17383 [05:48<1:00:10,  4.38it/s][A
+Processing files:   9%|▉         | 1568/17383 [05:50<59:21,  4.44it/s]  [A
+Processing files:   9%|▉         | 1576/17383 [05:52<58:45,  4.48it/s][A
+Processing files:   9%|▉         | 1584/17383 [05:54<57:09,  4.61it/s][A
+Processing files:   9%|▉         | 1592/17383 [05:56<1:00:08,  4.38it/s][A
+Processing files:   9%|▉         | 1600/17383 [05:57<58:08,  4.52it/s]  [A
+Processing files:   9%|▉         | 1608/17383 [05:59<56:30,  4.65it/s][A
+Processing files:   9%|▉         | 1616/17383 [06:01<56:17,  4.67it/s][A
+Processing files:   9%|▉         | 1624/17383 [06:03<1:05:24,  4.02it/s][A
+Processing files:   9%|▉         | 1632/17383 [06:05<1:01:59,  4.23it/s][A
+Processing files:   9%|▉         | 1640/17383 [06:06<59:16,  4.43it/s]  [A
+Processing files:   9%|▉         | 1648/17383 [06:08<56:58,  4.60it/s][A
+Processing files:  10%|▉         | 1656/17383 [06:10<55:39,  4.71it/s][A
+Processing files:  10%|▉         | 1664/17383 [06:11<54:28,  4.81it/s][A
+Processing files:  10%|▉         | 1672/17383 [06:13<53:58,  4.85it/s][A
+Processing files:  10%|▉         | 1680/17383 [06:14<53:25,  4.90it/s][A
+Processing files:  10%|▉         | 1688/17383 [06:16<53:52,  4.86it/s][A
+Processing files:  10%|▉         | 1696/17383 [06:18<53:32,  4.88it/s][A
+Processing files:  10%|▉         | 1704/17383 [06:19<53:10,  4.91it/s][A
+Processing files:  10%|▉         | 1712/17383 [06:22<1:01:40,  4.23it/s][A
+Processing files:  10%|▉         | 1720/17383 [06:24<1:02:14,  4.19it/s][A
+Processing files:  10%|▉         | 1728/17383 [06:26<1:00:15,  4.33it/s][A
+Processing files:  10%|▉         | 1736/17383 [06:27<58:34,  4.45it/s]  [A
+Processing files:  10%|█         | 1744/17383 [06:29<57:40,  4.52it/s][A
+Processing files:  10%|█         | 1752/17383 [06:31<58:11,  4.48it/s][A
+Processing files:  10%|█         | 1760/17383 [06:33<58:17,  4.47it/s][A
+Processing files:  10%|█         | 1768/17383 [06:34<59:12,  4.40it/s][A
+Processing files:  10%|█         | 1776/17383 [06:36<1:00:08,  4.33it/s][A
+Processing files:  10%|█         | 1784/17383 [06:38<57:54,  4.49it/s]  [A
+Processing files:  10%|█         | 1792/17383 [06:40<1:04:57,  4.00it/s][A
+Processing files:  10%|█         | 1800/17383 [06:42<1:01:33,  4.22it/s][A
+Processing files:  10%|█         | 1808/17383 [06:44<59:01,  4.40it/s]  [A
+Processing files:  10%|█         | 1816/17383 [06:46<58:24,  4.44it/s][A
+Processing files:  10%|█         | 1824/17383 [06:47<56:12,  4.61it/s][A
+Processing files:  11%|█         | 1832/17383 [06:49<55:31,  4.67it/s][A
+Processing files:  11%|█         | 1840/17383 [06:50<55:04,  4.70it/s][A
+Processing files:  11%|█         | 1848/17383 [06:52<54:01,  4.79it/s][A
+Processing files:  11%|█         | 1856/17383 [06:54<1:00:07,  4.30it/s][A
+Processing files:  11%|█         | 1864/17383 [06:56<57:22,  4.51it/s]  [A
+Processing files:  11%|█         | 1872/17383 [06:58<56:38,  4.56it/s][A
+Processing files:  11%|█         | 1880/17383 [06:59<57:11,  4.52it/s][A
+Processing files:  11%|█         | 1888/17383 [07:01<55:52,  4.62it/s][A
+Processing files:  11%|█         | 1896/17383 [07:03<58:33,  4.41it/s][A
+Processing files:  11%|█         | 1904/17383 [07:05<56:32,  4.56it/s][A
+Processing files:  11%|█         | 1912/17383 [07:07<1:00:24,  4.27it/s][A
+Processing files:  11%|█         | 1920/17383 [07:08<58:12,  4.43it/s]  [A
+Processing files:  11%|█         | 1928/17383 [07:10<56:19,  4.57it/s][A
+Processing files:  11%|█         | 1936/17383 [07:12<58:19,  4.41it/s][A
+Processing files:  11%|█         | 1944/17383 [07:14<57:12,  4.50it/s][A
+Processing files:  11%|█         | 1952/17383 [07:15<55:50,  4.61it/s][A
+Processing files:  11%|█▏        | 1960/17383 [07:17<55:52,  4.60it/s][A
+Processing files:  11%|█▏        | 1968/17383 [07:19<56:14,  4.57it/s][A
+Processing files:  11%|█▏        | 1976/17383 [07:21<55:44,  4.61it/s][A
+Processing files:  11%|█▏        | 1984/17383 [07:22<55:48,  4.60it/s][A
+Processing files:  11%|█▏        | 1992/17383 [07:24<54:19,  4.72it/s][A
+Processing files:  12%|█▏        | 2000/17383 [07:26<53:51,  4.76it/s][A
+Processing files:  12%|█▏        | 2008/17383 [07:27<52:59,  4.84it/s][A
+Processing files:  12%|█▏        | 2016/17383 [07:29<56:43,  4.52it/s][A
+Processing files:  12%|█▏        | 2024/17383 [07:31<57:59,  4.41it/s][A
+Processing files:  12%|█▏        | 2032/17383 [07:33<56:00,  4.57it/s][A
+Processing files:  12%|█▏        | 2040/17383 [07:34<55:26,  4.61it/s][A
+Processing files:  12%|█▏        | 2048/17383 [07:36<54:46,  4.67it/s][A
+Processing files:  12%|█▏        | 2056/17383 [07:38<54:52,  4.66it/s][A
+Processing files:  12%|█▏        | 2064/17383 [07:40<56:56,  4.48it/s][A
+Processing files:  12%|█▏        | 2072/17383 [07:42<1:01:45,  4.13it/s][A
+Processing files:  12%|█▏        | 2080/17383 [07:44<59:24,  4.29it/s]  [A
+Processing files:  12%|█▏        | 2088/17383 [07:46<1:00:57,  4.18it/s][A
+Processing files:  12%|█▏        | 2096/17383 [07:48<1:02:40,  4.07it/s][A
+Processing files:  12%|█▏        | 2104/17383 [07:50<59:47,  4.26it/s]  [A
+Processing files:  12%|█▏        | 2112/17383 [07:51<54:45,  4.65it/s][A
+Processing files:  12%|█▏        | 2120/17383 [07:53<53:34,  4.75it/s][A
+Processing files:  12%|█▏        | 2128/17383 [07:54<52:33,  4.84it/s][A
+Processing files:  12%|█▏        | 2136/17383 [07:56<53:07,  4.78it/s][A
+Processing files:  12%|█▏        | 2144/17383 [07:58<54:45,  4.64it/s][A
+Processing files:  12%|█▏        | 2152/17383 [07:59<54:07,  4.69it/s][A
+Processing files:  12%|█▏        | 2160/17383 [08:01<52:58,  4.79it/s][A
+Processing files:  12%|█▏        | 2168/17383 [08:03<52:36,  4.82it/s][A
+Processing files:  13%|█▎        | 2176/17383 [08:04<51:30,  4.92it/s][A
+Processing files:  13%|█▎        | 2184/17383 [08:06<51:06,  4.96it/s][A
+Processing files:  13%|█▎        | 2192/17383 [08:08<57:10,  4.43it/s][A
+Processing files:  13%|█▎        | 2200/17383 [08:10<55:42,  4.54it/s][A
+Processing files:  13%|█▎        | 2208/17383 [08:11<56:56,  4.44it/s][A
+Processing files:  13%|█▎        | 2216/17383 [08:13<55:16,  4.57it/s][A
+Processing files:  13%|█▎        | 2224/17383 [08:15<58:44,  4.30it/s][A
+Processing files:  13%|█▎        | 2232/17383 [08:17<56:10,  4.50it/s][A
+Processing files:  13%|█▎        | 2240/17383 [08:19<57:51,  4.36it/s][A
+Processing files:  13%|█▎        | 2248/17383 [08:20<56:11,  4.49it/s][A
+Processing files:  13%|█▎        | 2256/17383 [08:23<1:00:51,  4.14it/s][A
+Processing files:  13%|█▎        | 2264/17383 [08:24<59:03,  4.27it/s]  [A
+Processing files:  13%|█▎        | 2272/17383 [08:27<1:04:05,  3.93it/s][A
+Processing files:  13%|█▎        | 2280/17383 [08:29<1:00:09,  4.18it/s][A
+Processing files:  13%|█▎        | 2288/17383 [08:30<57:12,  4.40it/s]  [A
+Processing files:  13%|█▎        | 2296/17383 [08:32<54:47,  4.59it/s][A
+Processing files:  13%|█▎        | 2304/17383 [08:33<53:28,  4.70it/s][A
+Processing files:  13%|█▎        | 2312/17383 [08:35<54:44,  4.59it/s][A
+Processing files:  13%|█▎        | 2320/17383 [08:37<53:12,  4.72it/s][A
+Processing files:  13%|█▎        | 2328/17383 [08:39<56:01,  4.48it/s][A
+Processing files:  13%|█▎        | 2336/17383 [08:40<54:55,  4.57it/s][A
+Processing files:  13%|█▎        | 2344/17383 [08:42<56:11,  4.46it/s][A
+Processing files:  14%|█▎        | 2352/17383 [08:44<54:56,  4.56it/s][A
+Processing files:  14%|█▎        | 2360/17383 [08:46<54:14,  4.62it/s][A
+Processing files:  14%|█▎        | 2368/17383 [08:47<54:00,  4.63it/s][A
+Processing files:  14%|█▎        | 2376/17383 [08:49<53:14,  4.70it/s][A
+Processing files:  14%|█▎        | 2384/17383 [08:51<53:17,  4.69it/s][A
+Processing files:  14%|█▍        | 2392/17383 [08:52<53:03,  4.71it/s][A
+Processing files:  14%|█▍        | 2400/17383 [08:54<52:18,  4.77it/s][A
+Processing files:  14%|█▍        | 2408/17383 [08:56<51:17,  4.87it/s][A
+Processing files:  14%|█▍        | 2416/17383 [08:57<51:14,  4.87it/s][A
+Processing files:  14%|█▍        | 2424/17383 [08:59<50:40,  4.92it/s][A
+Processing files:  14%|█▍        | 2432/17383 [09:01<53:58,  4.62it/s][A
+Processing files:  14%|█▍        | 2440/17383 [09:03<54:19,  4.58it/s][A
+Processing files:  14%|█▍        | 2448/17383 [09:04<55:04,  4.52it/s][A
+Processing files:  14%|█▍        | 2456/17383 [09:06<53:43,  4.63it/s][A
+Processing files:  14%|█▍        | 2464/17383 [09:08<53:14,  4.67it/s][A
+Processing files:  14%|█▍        | 2472/17383 [09:10<59:12,  4.20it/s][A
+Processing files:  14%|█▍        | 2480/17383 [09:12<58:11,  4.27it/s][A
+Processing files:  14%|█▍        | 2488/17383 [09:13<55:32,  4.47it/s][A
+Processing files:  14%|█▍        | 2496/17383 [09:15<53:17,  4.66it/s][A
+Processing files:  14%|█▍        | 2504/17383 [09:17<52:30,  4.72it/s][A
+Processing files:  14%|█▍        | 2512/17383 [09:18<53:07,  4.67it/s][A
+Processing files:  14%|█▍        | 2520/17383 [09:20<53:20,  4.64it/s][A
+Processing files:  15%|█▍        | 2528/17383 [09:22<58:13,  4.25it/s][A
+Processing files:  15%|█▍        | 2536/17383 [09:24<55:27,  4.46it/s][A
+Processing files:  15%|█▍        | 2544/17383 [09:26<1:00:27,  4.09it/s][A
+Processing files:  15%|█▍        | 2552/17383 [09:28<57:13,  4.32it/s]  [A
+Processing files:  15%|█▍        | 2560/17383 [09:30<54:58,  4.49it/s][A
+Processing files:  15%|█▍        | 2568/17383 [09:31<55:28,  4.45it/s][A
+Processing files:  15%|█▍        | 2576/17383 [09:34<59:07,  4.17it/s][A
+Processing files:  15%|█▍        | 2584/17383 [09:35<56:59,  4.33it/s][A
+Processing files:  15%|█▍        | 2592/17383 [09:37<55:12,  4.46it/s][A
+Processing files:  15%|█▍        | 2600/17383 [09:39<53:52,  4.57it/s][A
+Processing files:  15%|█▌        | 2608/17383 [09:41<57:01,  4.32it/s][A
+Processing files:  15%|█▌        | 2616/17383 [09:42<54:54,  4.48it/s][A
+Processing files:  15%|█▌        | 2624/17383 [09:44<53:55,  4.56it/s][A
+Processing files:  15%|█▌        | 2632/17383 [09:46<58:30,  4.20it/s][A
+Processing files:  15%|█▌        | 2640/17383 [09:48<56:09,  4.38it/s][A
+Processing files:  15%|█▌        | 2648/17383 [09:50<55:29,  4.43it/s][A
+Processing files:  15%|█▌        | 2656/17383 [09:51<53:51,  4.56it/s][A
+Processing files:  15%|█▌        | 2664/17383 [09:53<52:17,  4.69it/s][A
+Processing files:  15%|█▌        | 2672/17383 [09:54<51:06,  4.80it/s][A
+Processing files:  15%|█▌        | 2680/17383 [09:56<53:22,  4.59it/s][A
+Processing files:  15%|█▌        | 2688/17383 [09:58<52:12,  4.69it/s][A
+Processing files:  16%|█▌        | 2696/17383 [10:00<51:41,  4.74it/s][A
+Processing files:  16%|█▌        | 2704/17383 [10:01<51:43,  4.73it/s][A
+Processing files:  16%|█▌        | 2712/17383 [10:04<56:23,  4.34it/s][A
+Processing files:  16%|█▌        | 2720/17383 [10:05<53:34,  4.56it/s][A
+Processing files:  16%|█▌        | 2728/17383 [10:07<52:31,  4.65it/s][A
+Processing files:  16%|█▌        | 2736/17383 [10:08<51:53,  4.70it/s][A
+Processing files:  16%|█▌        | 2744/17383 [10:10<51:18,  4.76it/s][A
+Processing files:  16%|█▌        | 2752/17383 [10:12<50:38,  4.82it/s][A
+Processing files:  16%|█▌        | 2760/17383 [10:13<49:19,  4.94it/s][A
+Processing files:  16%|█▌        | 2768/17383 [10:15<49:14,  4.95it/s][A
+Processing files:  16%|█▌        | 2776/17383 [10:16<49:25,  4.93it/s][A
+Processing files:  16%|█▌        | 2784/17383 [10:18<52:29,  4.63it/s][A
+Processing files:  16%|█▌        | 2792/17383 [10:20<52:49,  4.60it/s][A
+Processing files:  16%|█▌        | 2800/17383 [10:22<56:23,  4.31it/s][A
+Processing files:  16%|█▌        | 2808/17383 [10:24<53:49,  4.51it/s][A
+Processing files:  16%|█▌        | 2816/17383 [10:26<55:24,  4.38it/s][A
+Processing files:  16%|█▌        | 2824/17383 [10:27<53:03,  4.57it/s][A
+Processing files:  16%|█▋        | 2832/17383 [10:29<53:41,  4.52it/s][A
+Processing files:  16%|█▋        | 2840/17383 [10:31<52:52,  4.58it/s][A
+Processing files:  16%|█▋        | 2848/17383 [10:33<58:19,  4.15it/s][A
+Processing files:  16%|█▋        | 2856/17383 [10:35<55:23,  4.37it/s][A
+Processing files:  16%|█▋        | 2864/17383 [10:36<53:34,  4.52it/s][A
+Processing files:  17%|█▋        | 2872/17383 [10:39<56:47,  4.26it/s][A
+Processing files:  17%|█▋        | 2880/17383 [10:40<54:20,  4.45it/s][A
+Processing files:  17%|█▋        | 2888/17383 [10:42<58:17,  4.14it/s][A
+Processing files:  17%|█▋        | 2896/17383 [10:44<58:52,  4.10it/s][A
+Processing files:  17%|█▋        | 2904/17383 [10:46<55:45,  4.33it/s][A
+Processing files:  17%|█▋        | 2912/17383 [10:48<53:39,  4.50it/s][A
+Processing files:  17%|█▋        | 2920/17383 [10:50<55:02,  4.38it/s][A
+Processing files:  17%|█▋        | 2928/17383 [10:51<52:47,  4.56it/s][A
+Processing files:  17%|█▋        | 2936/17383 [10:53<51:51,  4.64it/s][A
+Processing files:  17%|█▋        | 2944/17383 [10:54<49:37,  4.85it/s][A
+Processing files:  17%|█▋        | 2952/17383 [10:56<49:13,  4.89it/s][A
+Processing files:  17%|█▋        | 2960/17383 [10:58<50:36,  4.75it/s][A
+Processing files:  17%|█▋        | 2968/17383 [10:59<50:40,  4.74it/s][A
+Processing files:  17%|█▋        | 2976/17383 [11:01<54:22,  4.42it/s][A
+Processing files:  17%|█▋        | 2984/17383 [11:03<52:56,  4.53it/s][A
+Processing files:  17%|█▋        | 2992/17383 [11:05<52:11,  4.60it/s][A
+Processing files:  17%|█▋        | 3000/17383 [11:07<53:28,  4.48it/s][A
+Processing files:  17%|█▋        | 3008/17383 [11:09<54:48,  4.37it/s][A
+Processing files:  17%|█▋        | 3016/17383 [11:10<52:33,  4.56it/s][A
+Processing files:  17%|█▋        | 3024/17383 [11:12<54:27,  4.39it/s][A
+Processing files:  17%|█▋        | 3032/17383 [11:14<53:50,  4.44it/s][A
+Processing files:  17%|█▋        | 3040/17383 [11:16<56:39,  4.22it/s][A
+Processing files:  18%|█▊        | 3048/17383 [11:18<55:01,  4.34it/s][A
+Processing files:  18%|█▊        | 3056/17383 [11:20<57:37,  4.14it/s][A
+Processing files:  18%|█▊        | 3064/17383 [11:22<54:52,  4.35it/s][A
+Processing files:  18%|█▊        | 3072/17383 [11:23<52:33,  4.54it/s][A
+Processing files:  18%|█▊        | 3080/17383 [11:25<51:36,  4.62it/s][A
+Processing files:  18%|█▊        | 3088/17383 [11:26<50:25,  4.72it/s][A
+Processing files:  18%|█▊        | 3096/17383 [11:28<50:00,  4.76it/s][A
+Processing files:  18%|█▊        | 3104/17383 [11:30<49:43,  4.79it/s][A
+Processing files:  18%|█▊        | 3112/17383 [11:31<49:38,  4.79it/s][A
+Processing files:  18%|█▊        | 3120/17383 [11:33<50:47,  4.68it/s][A
+Processing files:  18%|█▊        | 3128/17383 [11:35<50:01,  4.75it/s][A
+Processing files:  18%|█▊        | 3136/17383 [11:37<52:07,  4.56it/s][A
+Processing files:  18%|█▊        | 3144/17383 [11:38<51:10,  4.64it/s][A
+Processing files:  18%|█▊        | 3152/17383 [11:40<50:51,  4.66it/s][A
+Processing files:  18%|█▊        | 3160/17383 [11:42<50:11,  4.72it/s][A
+Processing files:  18%|█▊        | 3168/17383 [11:43<49:29,  4.79it/s][A
+Processing files:  18%|█▊        | 3176/17383 [11:45<49:32,  4.78it/s][A
+Processing files:  18%|█▊        | 3184/17383 [11:47<49:08,  4.82it/s][A
+Processing files:  18%|█▊        | 3192/17383 [11:48<48:33,  4.87it/s][A
+Processing files:  18%|█▊        | 3200/17383 [11:50<48:04,  4.92it/s][A
+Processing files:  18%|█▊        | 3208/17383 [11:52<48:48,  4.84it/s][A
+Processing files:  19%|█▊        | 3216/17383 [11:53<48:39,  4.85it/s][A
+Processing files:  19%|█▊        | 3224/17383 [11:55<48:13,  4.89it/s][A
+Processing files:  19%|█▊        | 3232/17383 [11:56<48:36,  4.85it/s][A
+Processing files:  19%|█▊        | 3240/17383 [11:59<56:35,  4.16it/s][A
+Processing files:  19%|█▊        | 3248/17383 [12:01<53:37,  4.39it/s][A
+Processing files:  19%|█▊        | 3256/17383 [12:03<56:51,  4.14it/s][A
+Processing files:  19%|█▉        | 3264/17383 [12:04<54:00,  4.36it/s][A
+Processing files:  19%|█▉        | 3272/17383 [12:06<53:44,  4.38it/s][A
+Processing files:  19%|█▉        | 3280/17383 [12:08<53:22,  4.40it/s][A
+Processing files:  19%|█▉        | 3288/17383 [12:10<51:43,  4.54it/s][A
+Processing files:  19%|█▉        | 3296/17383 [12:12<54:51,  4.28it/s][A
+Processing files:  19%|█▉        | 3304/17383 [12:14<53:46,  4.36it/s][A
+Processing files:  19%|█▉        | 3312/17383 [12:15<52:05,  4.50it/s][A
+Processing files:  19%|█▉        | 3320/17383 [12:17<51:21,  4.56it/s][A
+Processing files:  19%|█▉        | 3328/17383 [12:18<50:12,  4.67it/s][A
+Processing files:  19%|█▉        | 3336/17383 [12:21<53:30,  4.38it/s][A
+Processing files:  19%|█▉        | 3344/17383 [12:22<51:12,  4.57it/s][A
+Processing files:  19%|█▉        | 3352/17383 [12:24<50:29,  4.63it/s][A
+Processing files:  19%|█▉        | 3360/17383 [12:26<51:30,  4.54it/s][A
+Processing files:  19%|█▉        | 3368/17383 [12:27<51:46,  4.51it/s][A
+Processing files:  19%|█▉        | 3376/17383 [12:29<50:31,  4.62it/s][A
+Processing files:  19%|█▉        | 3384/17383 [12:31<49:29,  4.71it/s][A
+Processing files:  20%|█▉        | 3392/17383 [12:33<51:33,  4.52it/s][A
+Processing files:  20%|█▉        | 3400/17383 [12:34<50:12,  4.64it/s][A
+Processing files:  20%|█▉        | 3408/17383 [12:36<49:10,  4.74it/s][A
+Processing files:  20%|█▉        | 3416/17383 [12:37<48:29,  4.80it/s][A
+Processing files:  20%|█▉        | 3424/17383 [12:39<48:38,  4.78it/s][A
+Processing files:  20%|█▉        | 3432/17383 [12:41<48:06,  4.83it/s][A
+Processing files:  20%|█▉        | 3440/17383 [12:43<48:40,  4.77it/s][A
+Processing files:  20%|█▉        | 3448/17383 [12:44<48:52,  4.75it/s][A
+Processing files:  20%|█▉        | 3456/17383 [12:46<52:12,  4.45it/s][A
+Processing files:  20%|█▉        | 3464/17383 [12:48<51:31,  4.50it/s][A
+Processing files:  20%|█▉        | 3472/17383 [12:50<56:43,  4.09it/s][A
+Processing files:  20%|██        | 3480/17383 [12:52<53:24,  4.34it/s][A
+Processing files:  20%|██        | 3488/17383 [12:53<50:44,  4.56it/s][A
+Processing files:  20%|██        | 3496/17383 [12:56<54:09,  4.27it/s][A
+Processing files:  20%|██        | 3504/17383 [12:58<54:42,  4.23it/s][A
+Processing files:  20%|██        | 3512/17383 [13:00<55:41,  4.15it/s][A
+Processing files:  20%|██        | 3520/17383 [13:01<53:24,  4.33it/s][A
+Processing files:  20%|██        | 3528/17383 [13:03<53:11,  4.34it/s][A
+Processing files:  20%|██        | 3536/17383 [13:05<52:33,  4.39it/s][A
+Processing files:  20%|██        | 3544/17383 [13:07<53:29,  4.31it/s][A
+Processing files:  20%|██        | 3552/17383 [13:09<54:06,  4.26it/s][A
+Processing files:  20%|██        | 3560/17383 [13:10<52:11,  4.41it/s][A
+Processing files:  21%|██        | 3568/17383 [13:12<50:16,  4.58it/s][A
+Processing files:  21%|██        | 3576/17383 [13:14<48:59,  4.70it/s][A
+Processing files:  21%|██        | 3584/17383 [13:15<49:13,  4.67it/s][A
+Processing files:  21%|██        | 3592/17383 [13:17<48:20,  4.75it/s][A
+Processing files:  21%|██        | 3600/17383 [13:19<47:42,  4.82it/s][A
+Processing files:  21%|██        | 3608/17383 [13:20<47:05,  4.88it/s][A
+Processing files:  21%|██        | 3616/17383 [13:22<47:43,  4.81it/s][A
+Processing files:  21%|██        | 3624/17383 [13:23<47:12,  4.86it/s][A
+Processing files:  21%|██        | 3632/17383 [13:25<47:17,  4.85it/s][A
+Processing files:  21%|██        | 3640/17383 [13:27<50:35,  4.53it/s][A
+Processing files:  21%|██        | 3648/17383 [13:29<49:33,  4.62it/s][A
+Processing files:  21%|██        | 3656/17383 [13:31<50:36,  4.52it/s][A
+Processing files:  21%|██        | 3664/17383 [13:33<53:37,  4.26it/s][A
+Processing files:  21%|██        | 3672/17383 [13:34<51:28,  4.44it/s][A
+Processing files:  21%|██        | 3680/17383 [13:36<49:49,  4.58it/s][A
+Processing files:  21%|██        | 3688/17383 [13:38<48:19,  4.72it/s][A
+Processing files:  21%|██▏       | 3696/17383 [13:40<52:08,  4.38it/s][A
+Processing files:  21%|██▏       | 3704/17383 [13:42<52:52,  4.31it/s][A
+Processing files:  21%|██▏       | 3712/17383 [13:43<52:23,  4.35it/s][A
+Processing files:  21%|██▏       | 3720/17383 [13:46<56:34,  4.02it/s][A
+Processing files:  21%|██▏       | 3728/17383 [13:48<54:56,  4.14it/s][A
+Processing files:  21%|██▏       | 3736/17383 [13:50<58:42,  3.87it/s][A
+Processing files:  22%|██▏       | 3744/17383 [13:52<54:34,  4.17it/s][A
+Processing files:  22%|██▏       | 3752/17383 [13:53<52:14,  4.35it/s][A
+Processing files:  22%|██▏       | 3760/17383 [13:55<50:45,  4.47it/s][A
+Processing files:  22%|██▏       | 3768/17383 [13:57<53:12,  4.26it/s][A
+Processing files:  22%|██▏       | 3776/17383 [13:59<50:53,  4.46it/s][A
+Processing files:  22%|██▏       | 3784/17383 [14:01<52:56,  4.28it/s][A
+Processing files:  22%|██▏       | 3792/17383 [14:02<51:20,  4.41it/s][A
+Processing files:  22%|██▏       | 3800/17383 [14:04<49:51,  4.54it/s][A
+Processing files:  22%|██▏       | 3808/17383 [14:06<51:38,  4.38it/s][A
+Processing files:  22%|██▏       | 3816/17383 [14:08<50:02,  4.52it/s][A
+Processing files:  22%|██▏       | 3824/17383 [14:09<51:15,  4.41it/s][A
+Processing files:  22%|██▏       | 3832/17383 [14:11<49:45,  4.54it/s][A
+Processing files:  22%|██▏       | 3840/17383 [14:13<49:02,  4.60it/s][A
+Processing files:  22%|██▏       | 3848/17383 [14:15<52:04,  4.33it/s][A
+Processing files:  22%|██▏       | 3856/17383 [14:17<50:13,  4.49it/s][A
+Processing files:  22%|██▏       | 3864/17383 [14:18<48:23,  4.66it/s][A
+Processing files:  22%|██▏       | 3872/17383 [14:20<47:37,  4.73it/s][A
+Processing files:  22%|██▏       | 3880/17383 [14:22<51:10,  4.40it/s][A
+Processing files:  22%|██▏       | 3888/17383 [14:23<49:13,  4.57it/s][A
+Processing files:  22%|██▏       | 3896/17383 [14:25<48:07,  4.67it/s][A
+Processing files:  22%|██▏       | 3904/17383 [14:27<47:16,  4.75it/s][A
+Processing files:  23%|██▎       | 3912/17383 [14:28<46:41,  4.81it/s][A
+Processing files:  23%|██▎       | 3920/17383 [14:30<46:45,  4.80it/s][A
+Processing files:  23%|██▎       | 3928/17383 [14:32<46:53,  4.78it/s][A
+Processing files:  23%|██▎       | 3936/17383 [14:33<46:27,  4.82it/s][A
+Processing files:  23%|██▎       | 3944/17383 [14:35<50:22,  4.45it/s][A
+Processing files:  23%|██▎       | 3952/17383 [14:37<48:47,  4.59it/s][A
+Processing files:  23%|██▎       | 3960/17383 [14:39<54:18,  4.12it/s][A
+Processing files:  23%|██▎       | 3968/17383 [14:41<51:34,  4.34it/s][A
+Processing files:  23%|██▎       | 3976/17383 [14:43<55:27,  4.03it/s][A
+Processing files:  23%|██▎       | 3984/17383 [14:45<52:26,  4.26it/s][A
+Processing files:  23%|██▎       | 3992/17383 [14:47<54:27,  4.10it/s][A
+Processing files:  23%|██▎       | 4000/17383 [14:49<52:00,  4.29it/s][A
+Processing files:  23%|██▎       | 4008/17383 [14:50<50:29,  4.41it/s][A
+Processing files:  23%|██▎       | 4016/17383 [14:52<49:44,  4.48it/s][A
+Processing files:  23%|██▎       | 4024/17383 [14:54<48:44,  4.57it/s][A
+Processing files:  23%|██▎       | 4032/17383 [14:56<49:42,  4.48it/s][A
+Processing files:  23%|██▎       | 4040/17383 [14:57<48:07,  4.62it/s][A
+Processing files:  23%|██▎       | 4048/17383 [14:59<46:48,  4.75it/s][A
+Processing files:  23%|██▎       | 4056/17383 [15:01<46:25,  4.78it/s][A
+Processing files:  23%|██▎       | 4064/17383 [15:02<46:04,  4.82it/s][A
+Processing files:  23%|██▎       | 4072/17383 [15:04<46:17,  4.79it/s][A
+Processing files:  23%|██▎       | 4080/17383 [15:05<45:52,  4.83it/s][A
+Processing files:  24%|██▎       | 4088/17383 [15:07<46:04,  4.81it/s][A
+Processing files:  24%|██▎       | 4096/17383 [15:09<45:48,  4.83it/s][A
+Processing files:  24%|██▎       | 4104/17383 [15:10<45:35,  4.85it/s][A
+Processing files:  24%|██▎       | 4112/17383 [15:12<47:45,  4.63it/s][A
+Processing files:  24%|██▎       | 4120/17383 [15:14<50:45,  4.36it/s][A
+Processing files:  24%|██▎       | 4128/17383 [15:17<54:26,  4.06it/s][A
+Processing files:  24%|██▍       | 4136/17383 [15:18<51:37,  4.28it/s][A
+Processing files:  24%|██▍       | 4144/17383 [15:20<50:23,  4.38it/s][A
+Processing files:  24%|██▍       | 4152/17383 [15:22<49:28,  4.46it/s][A
+Processing files:  24%|██▍       | 4160/17383 [15:23<47:48,  4.61it/s][A
+Processing files:  24%|██▍       | 4168/17383 [15:25<47:31,  4.63it/s][A
+Processing files:  24%|██▍       | 4176/17383 [15:27<47:50,  4.60it/s][A
+Processing files:  24%|██▍       | 4184/17383 [15:29<48:04,  4.58it/s][A
+Processing files:  24%|██▍       | 4192/17383 [15:30<46:26,  4.73it/s][A
+Processing files:  24%|██▍       | 4200/17383 [15:32<45:50,  4.79it/s][A
+Processing files:  24%|██▍       | 4208/17383 [15:33<45:45,  4.80it/s][A
+Processing files:  24%|██▍       | 4216/17383 [15:36<53:45,  4.08it/s][A
+Processing files:  24%|██▍       | 4224/17383 [15:38<51:09,  4.29it/s][A
+Processing files:  24%|██▍       | 4232/17383 [15:39<49:03,  4.47it/s][A
+Processing files:  24%|██▍       | 4240/17383 [15:41<48:17,  4.54it/s][A
+Processing files:  24%|██▍       | 4248/17383 [15:43<47:18,  4.63it/s][A
+Processing files:  24%|██▍       | 4256/17383 [15:45<49:52,  4.39it/s][A
+Processing files:  25%|██▍       | 4264/17383 [15:46<48:22,  4.52it/s][A
+Processing files:  25%|██▍       | 4272/17383 [15:48<47:05,  4.64it/s][A
+Processing files:  25%|██▍       | 4280/17383 [15:50<46:31,  4.69it/s][A
+Processing files:  25%|██▍       | 4288/17383 [15:52<48:49,  4.47it/s][A
+Processing files:  25%|██▍       | 4296/17383 [15:53<47:20,  4.61it/s][A
+Processing files:  25%|██▍       | 4304/17383 [15:55<47:54,  4.55it/s][A
+Processing files:  25%|██▍       | 4312/17383 [15:57<47:02,  4.63it/s][A
+Processing files:  25%|██▍       | 4320/17383 [15:58<46:12,  4.71it/s][A
+Processing files:  25%|██▍       | 4328/17383 [16:01<51:22,  4.23it/s][A
+Processing files:  25%|██▍       | 4336/17383 [16:02<49:17,  4.41it/s][A
+Processing files:  25%|██▍       | 4344/17383 [16:04<50:15,  4.32it/s][A
+Processing files:  25%|██▌       | 4352/17383 [16:06<48:33,  4.47it/s][A
+Processing files:  25%|██▌       | 4360/17383 [16:08<46:48,  4.64it/s][A
+Processing files:  25%|██▌       | 4368/17383 [16:09<45:28,  4.77it/s][A
+Processing files:  25%|██▌       | 4376/17383 [16:11<44:56,  4.82it/s][A
+Processing files:  25%|██▌       | 4384/17383 [16:12<44:05,  4.91it/s][A
+Processing files:  25%|██▌       | 4392/17383 [16:14<43:25,  4.99it/s][A
+Processing files:  25%|██▌       | 4400/17383 [16:16<46:57,  4.61it/s][A
+Processing files:  25%|██▌       | 4408/17383 [16:17<46:04,  4.69it/s][A
+Processing files:  25%|██▌       | 4416/17383 [16:19<47:04,  4.59it/s][A
+Processing files:  25%|██▌       | 4424/17383 [16:21<46:32,  4.64it/s][A
+Processing files:  25%|██▌       | 4432/17383 [16:23<45:56,  4.70it/s][A
+Processing files:  26%|██▌       | 4440/17383 [16:25<47:22,  4.55it/s][A
+Processing files:  26%|██▌       | 4448/17383 [16:26<46:40,  4.62it/s][A
+Processing files:  26%|██▌       | 4456/17383 [16:28<48:02,  4.49it/s][A
+Processing files:  26%|██▌       | 4464/17383 [16:30<50:46,  4.24it/s][A
+Processing files:  26%|██▌       | 4472/17383 [16:32<49:13,  4.37it/s][A
+Processing files:  26%|██▌       | 4480/17383 [16:34<49:21,  4.36it/s][A
+Processing files:  26%|██▌       | 4488/17383 [16:35<47:49,  4.49it/s][A
+Processing files:  26%|██▌       | 4496/17383 [16:38<50:29,  4.25it/s][A
+Processing files:  26%|██▌       | 4504/17383 [16:39<47:59,  4.47it/s][A
+Processing files:  26%|██▌       | 4512/17383 [16:41<46:16,  4.64it/s][A
+Processing files:  26%|██▌       | 4520/17383 [16:42<45:45,  4.68it/s][A
+Processing files:  26%|██▌       | 4528/17383 [16:44<45:52,  4.67it/s][A
+Processing files:  26%|██▌       | 4536/17383 [16:46<43:58,  4.87it/s][A
+Processing files:  26%|██▌       | 4544/17383 [16:48<47:57,  4.46it/s][A
+Processing files:  26%|██▌       | 4552/17383 [16:50<52:57,  4.04it/s][A
+Processing files:  26%|██▌       | 4560/17383 [16:52<50:21,  4.24it/s][A
+Processing files:  26%|██▋       | 4568/17383 [16:54<51:48,  4.12it/s][A
+Processing files:  26%|██▋       | 4576/17383 [16:55<48:49,  4.37it/s][A
+Processing files:  26%|██▋       | 4584/17383 [16:57<49:43,  4.29it/s][A
+Processing files:  26%|██▋       | 4592/17383 [16:59<47:20,  4.50it/s][A
+Processing files:  26%|██▋       | 4600/17383 [17:01<47:18,  4.50it/s][A
+Processing files:  27%|██▋       | 4608/17383 [17:03<52:40,  4.04it/s][A
+Processing files:  27%|██▋       | 4616/17383 [17:05<49:40,  4.28it/s][A
+Processing files:  27%|██▋       | 4624/17383 [17:07<50:12,  4.24it/s][A
+Processing files:  27%|██▋       | 4632/17383 [17:08<47:48,  4.45it/s][A
+Processing files:  27%|██▋       | 4640/17383 [17:10<45:40,  4.65it/s][A
+Processing files:  27%|██▋       | 4648/17383 [17:11<44:33,  4.76it/s][A
+Processing files:  27%|██▋       | 4656/17383 [17:13<43:52,  4.83it/s][A
+Processing files:  27%|██▋       | 4664/17383 [17:15<43:27,  4.88it/s][A
+Processing files:  27%|██▋       | 4672/17383 [17:16<43:11,  4.90it/s][A
+Processing files:  27%|██▋       | 4680/17383 [17:18<44:28,  4.76it/s][A
+Processing files:  27%|██▋       | 4688/17383 [17:20<44:52,  4.72it/s][A
+Processing files:  27%|██▋       | 4696/17383 [17:21<44:25,  4.76it/s][A
+Processing files:  27%|██▋       | 4704/17383 [17:23<44:47,  4.72it/s][A
+Processing files:  27%|██▋       | 4712/17383 [17:25<48:51,  4.32it/s][A
+Processing files:  27%|██▋       | 4720/17383 [17:27<50:27,  4.18it/s][A
+Processing files:  27%|██▋       | 4728/17383 [17:29<49:31,  4.26it/s][A
+Processing files:  27%|██▋       | 4736/17383 [17:31<50:25,  4.18it/s][A
+Processing files:  27%|██▋       | 4744/17383 [17:33<51:48,  4.07it/s][A
+Processing files:  27%|██▋       | 4752/17383 [17:35<48:56,  4.30it/s][A
+Processing files:  27%|██▋       | 4760/17383 [17:37<47:21,  4.44it/s][A
+Processing files:  27%|██▋       | 4768/17383 [17:38<45:33,  4.61it/s][A
+Processing files:  27%|██▋       | 4776/17383 [17:40<44:44,  4.70it/s][A
+Processing files:  28%|██▊       | 4784/17383 [17:41<43:40,  4.81it/s][A
+Processing files:  28%|██▊       | 4792/17383 [17:43<43:17,  4.85it/s][A
+Processing files:  28%|██▊       | 4800/17383 [17:45<42:55,  4.89it/s][A
+Processing files:  28%|██▊       | 4808/17383 [17:46<42:48,  4.90it/s][A
+Processing files:  28%|██▊       | 4816/17383 [17:48<45:38,  4.59it/s][A
+Processing files:  28%|██▊       | 4824/17383 [17:50<44:54,  4.66it/s][A
+Processing files:  28%|██▊       | 4832/17383 [17:52<44:24,  4.71it/s][A
+Processing files:  28%|██▊       | 4840/17383 [17:53<45:57,  4.55it/s][A
+Processing files:  28%|██▊       | 4848/17383 [17:55<44:40,  4.68it/s][A
+Processing files:  28%|██▊       | 4856/17383 [17:57<47:10,  4.43it/s][A
+Processing files:  28%|██▊       | 4864/17383 [17:59<45:29,  4.59it/s][A
+Processing files:  28%|██▊       | 4872/17383 [18:01<47:25,  4.40it/s][A
+Processing files:  28%|██▊       | 4880/17383 [18:03<48:18,  4.31it/s][A
+Processing files:  28%|██▊       | 4888/17383 [18:04<46:37,  4.47it/s][A
+Processing files:  28%|██▊       | 4896/17383 [18:06<47:30,  4.38it/s][A
+Processing files:  28%|██▊       | 4904/17383 [18:08<46:23,  4.48it/s][A
+Processing files:  28%|██▊       | 4912/17383 [18:09<44:47,  4.64it/s][A
+Processing files:  28%|██▊       | 4920/17383 [18:11<46:18,  4.49it/s][A
+Processing files:  28%|██▊       | 4928/17383 [18:13<44:30,  4.66it/s][A
+Processing files:  28%|██▊       | 4936/17383 [18:15<46:17,  4.48it/s][A
+Processing files:  28%|██▊       | 4944/17383 [18:16<44:37,  4.65it/s][A
+Processing files:  28%|██▊       | 4952/17383 [18:18<44:02,  4.70it/s][A
+Processing files:  29%|██▊       | 4960/17383 [18:20<45:58,  4.50it/s][A
+Processing files:  29%|██▊       | 4968/17383 [18:22<45:18,  4.57it/s][A
+Processing files:  29%|██▊       | 4976/17383 [18:23<44:23,  4.66it/s][A
+Processing files:  29%|██▊       | 4984/17383 [18:25<43:53,  4.71it/s][A
+Processing files:  29%|██▊       | 4992/17383 [18:27<44:12,  4.67it/s][A
+Processing files:  29%|██▉       | 5000/17383 [18:29<45:17,  4.56it/s][A
+Processing files:  29%|██▉       | 5008/17383 [18:30<45:26,  4.54it/s][A
+Processing files:  29%|██▉       | 5016/17383 [18:32<45:07,  4.57it/s][A
+Processing files:  29%|██▉       | 5024/17383 [18:34<45:06,  4.57it/s][A
+Processing files:  29%|██▉       | 5032/17383 [18:35<44:10,  4.66it/s][A
+Processing files:  29%|██▉       | 5040/17383 [18:37<43:06,  4.77it/s][A
+Processing files:  29%|██▉       | 5048/17383 [18:39<45:48,  4.49it/s][A
+Processing files:  29%|██▉       | 5056/17383 [18:41<46:12,  4.45it/s][A
+Processing files:  29%|██▉       | 5064/17383 [18:43<44:21,  4.63it/s][A
+Processing files:  29%|██▉       | 5072/17383 [18:44<46:06,  4.45it/s][A
+Processing files:  29%|██▉       | 5080/17383 [18:46<44:32,  4.60it/s][A
+Processing files:  29%|██▉       | 5088/17383 [18:48<44:23,  4.62it/s][A
+Processing files:  29%|██▉       | 5096/17383 [18:49<43:43,  4.68it/s][A
+Processing files:  29%|██▉       | 5104/17383 [18:52<50:29,  4.05it/s][A
+Processing files:  29%|██▉       | 5112/17383 [18:54<48:15,  4.24it/s][A
+Processing files:  29%|██▉       | 5120/17383 [18:55<46:27,  4.40it/s][A
+Processing files:  30%|██▉       | 5128/17383 [18:57<45:16,  4.51it/s][A
+Processing files:  30%|██▉       | 5136/17383 [18:59<45:48,  4.46it/s][A
+Processing files:  30%|██▉       | 5144/17383 [19:01<46:16,  4.41it/s][A
+Processing files:  30%|██▉       | 5152/17383 [19:02<44:49,  4.55it/s][A
+Processing files:  30%|██▉       | 5160/17383 [19:04<44:03,  4.62it/s][A
+Processing files:  30%|██▉       | 5168/17383 [19:06<42:43,  4.77it/s][A
+Processing files:  30%|██▉       | 5176/17383 [19:07<42:36,  4.78it/s][A
+Processing files:  30%|██▉       | 5184/17383 [19:09<42:16,  4.81it/s][A
+Processing files:  30%|██▉       | 5192/17383 [19:11<45:36,  4.46it/s][A
+Processing files:  30%|██▉       | 5200/17383 [19:13<46:18,  4.39it/s][A
+Processing files:  30%|██▉       | 5208/17383 [19:15<47:21,  4.28it/s][A
+Processing files:  30%|███       | 5216/17383 [19:16<44:59,  4.51it/s][A
+Processing files:  30%|███       | 5224/17383 [19:18<43:50,  4.62it/s][A
+Processing files:  30%|███       | 5232/17383 [19:20<46:57,  4.31it/s][A
+Processing files:  30%|███       | 5240/17383 [19:22<46:30,  4.35it/s][A
+Processing files:  30%|███       | 5248/17383 [19:24<45:05,  4.49it/s][A
+Processing files:  30%|███       | 5256/17383 [19:26<47:55,  4.22it/s][A
+Processing files:  30%|███       | 5264/17383 [19:28<47:36,  4.24it/s][A
+Processing files:  30%|███       | 5272/17383 [19:29<45:45,  4.41it/s][A
+Processing files:  30%|███       | 5280/17383 [19:31<45:21,  4.45it/s][A
+Processing files:  30%|███       | 5288/17383 [19:33<43:39,  4.62it/s][A
+Processing files:  30%|███       | 5296/17383 [19:35<44:56,  4.48it/s][A
+Processing files:  31%|███       | 5304/17383 [19:36<44:20,  4.54it/s][A
+Processing files:  31%|███       | 5312/17383 [19:38<43:01,  4.68it/s][A
+Processing files:  31%|███       | 5320/17383 [19:40<45:16,  4.44it/s][A
+Processing files:  31%|███       | 5328/17383 [19:42<44:08,  4.55it/s][A
+Processing files:  31%|███       | 5336/17383 [19:43<42:50,  4.69it/s][A
+Processing files:  31%|███       | 5344/17383 [19:45<42:29,  4.72it/s][A
+Processing files:  31%|███       | 5352/17383 [19:47<42:49,  4.68it/s][A
+Processing files:  31%|███       | 5360/17383 [19:48<42:13,  4.75it/s][A
+Processing files:  31%|███       | 5368/17383 [19:50<43:38,  4.59it/s][A
+Processing files:  31%|███       | 5376/17383 [19:52<43:03,  4.65it/s][A
+Processing files:  31%|███       | 5384/17383 [19:53<42:39,  4.69it/s][A
+Processing files:  31%|███       | 5392/17383 [19:55<42:06,  4.75it/s][A
+Processing files:  31%|███       | 5400/17383 [19:57<41:27,  4.82it/s][A
+Processing files:  31%|███       | 5408/17383 [19:58<41:16,  4.83it/s][A
+Processing files:  31%|███       | 5416/17383 [20:00<41:02,  4.86it/s][A
+Processing files:  31%|███       | 5424/17383 [20:02<40:45,  4.89it/s][A
+Processing files:  31%|███       | 5432/17383 [20:04<44:05,  4.52it/s][A
+Processing files:  31%|███▏      | 5440/17383 [20:05<45:02,  4.42it/s][A
+Processing files:  31%|███▏      | 5448/17383 [20:07<43:47,  4.54it/s][A
+Processing files:  31%|███▏      | 5456/17383 [20:10<50:22,  3.95it/s][A
+Processing files:  31%|███▏      | 5464/17383 [20:11<47:11,  4.21it/s][A
+Processing files:  31%|███▏      | 5472/17383 [20:13<45:13,  4.39it/s][A
+Processing files:  32%|███▏      | 5480/17383 [20:15<43:54,  4.52it/s][A
+Processing files:  32%|███▏      | 5488/17383 [20:17<45:52,  4.32it/s][A
+Processing files:  32%|███▏      | 5496/17383 [20:19<45:44,  4.33it/s][A
+Processing files:  32%|███▏      | 5504/17383 [20:20<44:00,  4.50it/s][A
+Processing files:  32%|███▏      | 5512/17383 [20:22<44:02,  4.49it/s][A
+Processing files:  32%|███▏      | 5520/17383 [20:24<43:15,  4.57it/s][A
+Processing files:  32%|███▏      | 5528/17383 [20:26<46:57,  4.21it/s][A
+Processing files:  32%|███▏      | 5536/17383 [20:28<45:19,  4.36it/s][A
+Processing files:  32%|███▏      | 5544/17383 [20:29<44:46,  4.41it/s][A
+Processing files:  32%|███▏      | 5552/17383 [20:31<43:46,  4.50it/s][A
+Processing files:  32%|███▏      | 5560/17383 [20:33<42:57,  4.59it/s][A
+Processing files:  32%|███▏      | 5568/17383 [20:35<45:02,  4.37it/s][A
+Processing files:  32%|███▏      | 5576/17383 [20:36<43:57,  4.48it/s][A
+Processing files:  32%|███▏      | 5584/17383 [20:38<42:50,  4.59it/s][A
+Processing files:  32%|███▏      | 5592/17383 [20:40<44:49,  4.38it/s][A
+Processing files:  32%|███▏      | 5600/17383 [20:42<42:59,  4.57it/s][A
+Processing files:  32%|███▏      | 5608/17383 [20:43<41:50,  4.69it/s][A
+Processing files:  32%|███▏      | 5616/17383 [20:45<41:37,  4.71it/s][A
+Processing files:  32%|███▏      | 5624/17383 [20:47<45:02,  4.35it/s][A
+Processing files:  32%|███▏      | 5632/17383 [20:49<45:59,  4.26it/s][A
+Processing files:  32%|███▏      | 5640/17383 [20:51<47:18,  4.14it/s][A
+Processing files:  32%|███▏      | 5648/17383 [20:53<45:06,  4.34it/s][A
+Processing files:  33%|███▎      | 5656/17383 [20:55<46:36,  4.19it/s][A
+Processing files:  33%|███▎      | 5664/17383 [20:57<50:17,  3.88it/s][A
+Processing files:  33%|███▎      | 5672/17383 [20:59<46:59,  4.15it/s][A
+Processing files:  33%|███▎      | 5680/17383 [21:01<45:59,  4.24it/s][A
+Processing files:  33%|███▎      | 5688/17383 [21:03<46:19,  4.21it/s][A
+Processing files:  33%|███▎      | 5696/17383 [21:04<44:14,  4.40it/s][A
+Processing files:  33%|███▎      | 5704/17383 [21:07<48:55,  3.98it/s][A
+Processing files:  33%|███▎      | 5712/17383 [21:08<45:44,  4.25it/s][A
+Processing files:  33%|███▎      | 5720/17383 [21:10<44:39,  4.35it/s][A
+Processing files:  33%|███▎      | 5728/17383 [21:12<48:52,  3.97it/s][A
+Processing files:  33%|███▎      | 5736/17383 [21:14<45:51,  4.23it/s][A
+Processing files:  33%|███▎      | 5744/17383 [21:16<43:42,  4.44it/s][A
+Processing files:  33%|███▎      | 5752/17383 [21:17<41:51,  4.63it/s][A
+Processing files:  33%|███▎      | 5760/17383 [21:19<40:44,  4.75it/s][A
+Processing files:  33%|███▎      | 5768/17383 [21:21<42:08,  4.59it/s][A
+Processing files:  33%|███▎      | 5776/17383 [21:22<41:42,  4.64it/s][A
+Processing files:  33%|███▎      | 5784/17383 [21:24<41:28,  4.66it/s][A
+Processing files:  33%|███▎      | 5792/17383 [21:26<42:00,  4.60it/s][A
+Processing files:  33%|███▎      | 5800/17383 [21:27<41:18,  4.67it/s][A
+Processing files:  33%|███▎      | 5808/17383 [21:30<46:45,  4.13it/s][A
+Processing files:  33%|███▎      | 5816/17383 [21:32<44:21,  4.35it/s][A
+Processing files:  34%|███▎      | 5824/17383 [21:33<42:57,  4.48it/s][A
+Processing files:  34%|███▎      | 5832/17383 [21:35<44:39,  4.31it/s][A
+Processing files:  34%|███▎      | 5840/17383 [21:37<43:19,  4.44it/s][A
+Processing files:  34%|███▎      | 5848/17383 [21:39<46:25,  4.14it/s][A
+Processing files:  34%|███▎      | 5856/17383 [21:41<47:37,  4.03it/s][A
+Processing files:  34%|███▎      | 5864/17383 [21:43<44:37,  4.30it/s][A
+Processing files:  34%|███▍      | 5872/17383 [21:45<48:33,  3.95it/s][A
+Processing files:  34%|███▍      | 5880/17383 [21:47<47:07,  4.07it/s][A
+Processing files:  34%|███▍      | 5888/17383 [21:49<44:05,  4.35it/s][A
+Processing files:  34%|███▍      | 5896/17383 [21:50<42:46,  4.48it/s][A
+Processing files:  34%|███▍      | 5904/17383 [21:52<41:09,  4.65it/s][A
+Processing files:  34%|███▍      | 5912/17383 [21:54<42:31,  4.50it/s][A
+Processing files:  34%|███▍      | 5920/17383 [21:56<43:20,  4.41it/s][A
+Processing files:  34%|███▍      | 5928/17383 [21:57<42:01,  4.54it/s][A
+Processing files:  34%|███▍      | 5936/17383 [21:59<43:51,  4.35it/s][A
+Processing files:  34%|███▍      | 5944/17383 [22:01<42:06,  4.53it/s][A
+Processing files:  34%|███▍      | 5952/17383 [22:03<42:10,  4.52it/s][A
+Processing files:  34%|███▍      | 5960/17383 [22:05<44:23,  4.29it/s][A
+Processing files:  34%|███▍      | 5968/17383 [22:07<44:10,  4.31it/s][A
+Processing files:  34%|███▍      | 5976/17383 [22:08<42:33,  4.47it/s][A
+Processing files:  34%|███▍      | 5984/17383 [22:10<42:20,  4.49it/s][A
+Processing files:  34%|███▍      | 5992/17383 [22:12<41:29,  4.58it/s][A
+Processing files:  35%|███▍      | 6000/17383 [22:13<41:45,  4.54it/s][A
+Processing files:  35%|███▍      | 6008/17383 [22:15<40:37,  4.67it/s][A
+Processing files:  35%|███▍      | 6016/17383 [22:17<44:03,  4.30it/s][A
+Processing files:  35%|███▍      | 6024/17383 [22:19<44:51,  4.22it/s][A
+Processing files:  35%|███▍      | 6032/17383 [22:21<43:43,  4.33it/s][A
+Processing files:  35%|███▍      | 6040/17383 [22:23<44:46,  4.22it/s][A
+Processing files:  35%|███▍      | 6048/17383 [22:25<42:43,  4.42it/s][A
+Processing files:  35%|███▍      | 6056/17383 [22:26<41:13,  4.58it/s][A
+Processing files:  35%|███▍      | 6064/17383 [22:28<41:08,  4.59it/s][A
+Processing files:  35%|███▍      | 6072/17383 [22:30<45:01,  4.19it/s][A
+Processing files:  35%|███▍      | 6080/17383 [22:32<42:44,  4.41it/s][A
+Processing files:  35%|███▌      | 6088/17383 [22:34<43:45,  4.30it/s][A
+Processing files:  35%|███▌      | 6096/17383 [22:35<41:40,  4.51it/s][A
+Processing files:  35%|███▌      | 6104/17383 [22:37<43:16,  4.34it/s][A
+Processing files:  35%|███▌      | 6112/17383 [22:40<47:29,  3.95it/s][A
+Processing files:  35%|███▌      | 6120/17383 [22:41<44:26,  4.22it/s][A
+Processing files:  35%|███▌      | 6128/17383 [22:43<43:44,  4.29it/s][A
+Processing files:  35%|███▌      | 6136/17383 [22:45<43:45,  4.28it/s][A
+Processing files:  35%|███▌      | 6144/17383 [22:47<42:56,  4.36it/s][A
+Processing files:  35%|███▌      | 6152/17383 [22:48<41:43,  4.49it/s][A
+Processing files:  35%|███▌      | 6160/17383 [22:50<40:29,  4.62it/s][A
+Processing files:  35%|███▌      | 6168/17383 [22:52<42:45,  4.37it/s][A
+Processing files:  36%|███▌      | 6176/17383 [22:54<41:34,  4.49it/s][A
+Processing files:  36%|███▌      | 6184/17383 [22:55<40:30,  4.61it/s][A
+Processing files:  36%|███▌      | 6192/17383 [22:57<39:39,  4.70it/s][A
+Processing files:  36%|███▌      | 6200/17383 [22:59<39:16,  4.75it/s][A
+Processing files:  36%|███▌      | 6208/17383 [23:01<40:03,  4.65it/s][A
+Processing files:  36%|███▌      | 6216/17383 [23:02<39:11,  4.75it/s][A
+Processing files:  36%|███▌      | 6224/17383 [23:04<40:53,  4.55it/s][A
+Processing files:  36%|███▌      | 6232/17383 [23:06<39:36,  4.69it/s][A
+Processing files:  36%|███▌      | 6240/17383 [23:07<39:20,  4.72it/s][A
+Processing files:  36%|███▌      | 6248/17383 [23:09<38:51,  4.78it/s][A
+Processing files:  36%|███▌      | 6256/17383 [23:10<38:02,  4.88it/s][A
+Processing files:  36%|███▌      | 6264/17383 [23:12<39:16,  4.72it/s][A
+Processing files:  36%|███▌      | 6272/17383 [23:14<41:38,  4.45it/s][A
+Processing files:  36%|███▌      | 6280/17383 [23:16<41:01,  4.51it/s][A
+Processing files:  36%|███▌      | 6288/17383 [23:18<39:54,  4.63it/s][A
+Processing files:  36%|███▌      | 6296/17383 [23:20<44:38,  4.14it/s][A
+Processing files:  36%|███▋      | 6304/17383 [23:22<44:17,  4.17it/s][A
+Processing files:  36%|███▋      | 6312/17383 [23:24<42:24,  4.35it/s][A
+Processing files:  36%|███▋      | 6320/17383 [23:25<40:35,  4.54it/s][A
+Processing files:  36%|███▋      | 6328/17383 [23:27<40:01,  4.60it/s][A
+Processing files:  36%|███▋      | 6336/17383 [23:29<41:47,  4.41it/s][A
+Processing files:  36%|███▋      | 6344/17383 [23:31<41:06,  4.47it/s][A
+Processing files:  37%|███▋      | 6352/17383 [23:32<40:03,  4.59it/s][A
+Processing files:  37%|███▋      | 6360/17383 [23:34<39:20,  4.67it/s][A
+Processing files:  37%|███▋      | 6368/17383 [23:36<41:40,  4.41it/s][A
+Processing files:  37%|███▋      | 6376/17383 [23:38<40:38,  4.51it/s][A
+Processing files:  37%|███▋      | 6384/17383 [23:40<42:27,  4.32it/s][A
+Processing files:  37%|███▋      | 6392/17383 [23:41<40:40,  4.50it/s][A
+Processing files:  37%|███▋      | 6400/17383 [23:43<39:36,  4.62it/s][A
+Processing files:  37%|███▋      | 6408/17383 [23:45<39:38,  4.62it/s][A
+Processing files:  37%|███▋      | 6416/17383 [23:47<40:52,  4.47it/s][A
+Processing files:  37%|███▋      | 6424/17383 [23:48<40:02,  4.56it/s][A
+Processing files:  37%|███▋      | 6432/17383 [23:50<40:01,  4.56it/s][A
+Processing files:  37%|███▋      | 6440/17383 [23:52<43:07,  4.23it/s][A
+Processing files:  37%|███▋      | 6448/17383 [23:54<42:48,  4.26it/s][A
+Processing files:  37%|███▋      | 6456/17383 [23:56<43:44,  4.16it/s][A
+Processing files:  37%|███▋      | 6464/17383 [23:58<41:38,  4.37it/s][A
+Processing files:  37%|███▋      | 6472/17383 [24:00<43:34,  4.17it/s][A
+Processing files:  37%|███▋      | 6480/17383 [24:01<41:48,  4.35it/s][A
+Processing files:  37%|███▋      | 6488/17383 [24:03<41:51,  4.34it/s][A
+Processing files:  37%|███▋      | 6496/17383 [24:05<42:45,  4.24it/s][A
+Processing files:  37%|███▋      | 6504/17383 [24:07<41:12,  4.40it/s][A
+Processing files:  37%|███▋      | 6512/17383 [24:09<40:49,  4.44it/s][A
+Processing files:  38%|███▊      | 6520/17383 [24:11<43:03,  4.21it/s][A
+Processing files:  38%|███▊      | 6528/17383 [24:13<41:25,  4.37it/s][A
+Processing files:  38%|███▊      | 6536/17383 [24:14<40:38,  4.45it/s][A
+Processing files:  38%|███▊      | 6544/17383 [24:16<41:04,  4.40it/s][A
+Processing files:  38%|███▊      | 6552/17383 [24:18<39:52,  4.53it/s][A
+Processing files:  38%|███▊      | 6560/17383 [24:20<40:43,  4.43it/s][A
+Processing files:  38%|███▊      | 6568/17383 [24:21<39:21,  4.58it/s][A
+Processing files:  38%|███▊      | 6576/17383 [24:23<41:04,  4.39it/s][A
+Processing files:  38%|███▊      | 6584/17383 [24:25<39:56,  4.51it/s][A
+Processing files:  38%|███▊      | 6592/17383 [24:27<40:34,  4.43it/s][A
+Processing files:  38%|███▊      | 6600/17383 [24:29<43:41,  4.11it/s][A
+Processing files:  38%|███▊      | 6608/17383 [24:31<41:32,  4.32it/s][A
+Processing files:  38%|███▊      | 6616/17383 [24:32<40:07,  4.47it/s][A
+Processing files:  38%|███▊      | 6624/17383 [24:34<39:19,  4.56it/s][A
+Processing files:  38%|███▊      | 6632/17383 [24:36<38:23,  4.67it/s][A
+Processing files:  38%|███▊      | 6640/17383 [24:38<44:07,  4.06it/s][A
+Processing files:  38%|███▊      | 6648/17383 [24:40<41:53,  4.27it/s][A
+Processing files:  38%|███▊      | 6656/17383 [24:42<44:46,  3.99it/s][A
+Processing files:  38%|███▊      | 6664/17383 [24:44<42:19,  4.22it/s][A
+Processing files:  38%|███▊      | 6672/17383 [24:45<40:13,  4.44it/s][A
+Processing files:  38%|███▊      | 6680/17383 [24:47<40:26,  4.41it/s][A
+Processing files:  38%|███▊      | 6688/17383 [24:49<38:31,  4.63it/s][A
+Processing files:  39%|███▊      | 6696/17383 [24:50<37:25,  4.76it/s][A
+Processing files:  39%|███▊      | 6704/17383 [24:52<36:50,  4.83it/s][A
+Processing files:  39%|███▊      | 6712/17383 [24:55<43:18,  4.11it/s][A
+Processing files:  39%|███▊      | 6720/17383 [24:56<41:07,  4.32it/s][A
+Processing files:  39%|███▊      | 6728/17383 [24:58<40:30,  4.38it/s][A
+Processing files:  39%|███▉      | 6736/17383 [25:00<40:25,  4.39it/s][A
+Processing files:  39%|███▉      | 6744/17383 [25:01<39:37,  4.48it/s][A
+Processing files:  39%|███▉      | 6752/17383 [25:03<39:20,  4.50it/s][A
+Processing files:  39%|███▉      | 6760/17383 [25:05<38:45,  4.57it/s][A
+Processing files:  39%|███▉      | 6768/17383 [25:08<44:34,  3.97it/s][A
+Processing files:  39%|███▉      | 6776/17383 [25:10<45:51,  3.85it/s][A
+Processing files:  39%|███▉      | 6784/17383 [25:11<43:21,  4.07it/s][A
+Processing files:  39%|███▉      | 6792/17383 [25:13<42:13,  4.18it/s][A
+Processing files:  39%|███▉      | 6800/17383 [25:15<43:50,  4.02it/s][A
+Processing files:  39%|███▉      | 6808/17383 [25:17<43:06,  4.09it/s][A
+Processing files:  39%|███▉      | 6816/17383 [25:19<40:44,  4.32it/s][A
+Processing files:  39%|███▉      | 6824/17383 [25:21<40:54,  4.30it/s][A
+Processing files:  39%|███▉      | 6832/17383 [25:22<39:27,  4.46it/s][A
+Processing files:  39%|███▉      | 6840/17383 [25:24<38:04,  4.61it/s][A
+Processing files:  39%|███▉      | 6848/17383 [25:26<36:54,  4.76it/s][A
+Processing files:  39%|███▉      | 6856/17383 [25:27<36:04,  4.86it/s][A
+Processing files:  39%|███▉      | 6864/17383 [25:29<35:31,  4.94it/s][A
+Processing files:  40%|███▉      | 6872/17383 [25:30<35:00,  5.00it/s][A
+Processing files:  40%|███▉      | 6880/17383 [25:33<40:15,  4.35it/s][A
+Processing files:  40%|███▉      | 6888/17383 [25:34<38:53,  4.50it/s][A
+Processing files:  40%|███▉      | 6896/17383 [25:36<38:01,  4.60it/s][A
+Processing files:  40%|███▉      | 6904/17383 [25:38<38:58,  4.48it/s][A
+Processing files:  40%|███▉      | 6912/17383 [25:39<37:39,  4.63it/s][A
+Processing files:  40%|███▉      | 6920/17383 [25:41<38:26,  4.54it/s][A
+Processing files:  40%|███▉      | 6928/17383 [25:43<39:00,  4.47it/s][A
+Processing files:  40%|███▉      | 6936/17383 [25:45<37:45,  4.61it/s][A
+Processing files:  40%|███▉      | 6944/17383 [25:46<36:46,  4.73it/s][A
+Processing files:  40%|███▉      | 6952/17383 [25:48<38:24,  4.53it/s][A
+Processing files:  40%|████      | 6960/17383 [25:50<37:01,  4.69it/s][A
+Processing files:  40%|████      | 6968/17383 [25:52<38:22,  4.52it/s][A
+Processing files:  40%|████      | 6976/17383 [25:54<38:31,  4.50it/s][A
+Processing files:  40%|████      | 6984/17383 [25:55<37:34,  4.61it/s][A
+Processing files:  40%|████      | 6992/17383 [25:57<37:37,  4.60it/s][A
+Processing files:  40%|████      | 7000/17383 [25:59<40:49,  4.24it/s][A
+Processing files:  40%|████      | 7008/17383 [26:01<37:47,  4.58it/s][A
+Processing files:  40%|████      | 7016/17383 [26:02<37:02,  4.66it/s][A
+Processing files:  40%|████      | 7024/17383 [26:04<36:42,  4.70it/s][A
+Processing files:  40%|████      | 7032/17383 [26:06<37:46,  4.57it/s][A
+Processing files:  40%|████      | 7040/17383 [26:07<37:00,  4.66it/s][A
+Processing files:  41%|████      | 7048/17383 [26:09<38:34,  4.46it/s][A
+Processing files:  41%|████      | 7056/17383 [26:11<38:26,  4.48it/s][A
+Processing files:  41%|████      | 7064/17383 [26:13<38:09,  4.51it/s][A
+Processing files:  41%|████      | 7072/17383 [26:15<37:45,  4.55it/s][A
+Processing files:  41%|████      | 7080/17383 [26:16<37:07,  4.63it/s][A
+Processing files:  41%|████      | 7088/17383 [26:18<36:41,  4.68it/s][A
+Processing files:  41%|████      | 7096/17383 [26:20<36:14,  4.73it/s][A
+Processing files:  41%|████      | 7104/17383 [26:22<37:48,  4.53it/s][A
+Processing files:  41%|████      | 7112/17383 [26:23<37:02,  4.62it/s][A
+Processing files:  41%|████      | 7120/17383 [26:25<36:36,  4.67it/s][A
+Processing files:  41%|████      | 7128/17383 [26:27<37:35,  4.55it/s][A
+Processing files:  41%|████      | 7136/17383 [26:28<37:36,  4.54it/s][A
+Processing files:  41%|████      | 7144/17383 [26:30<36:44,  4.64it/s][A
+Processing files:  41%|████      | 7152/17383 [26:32<36:45,  4.64it/s][A
+Processing files:  41%|████      | 7160/17383 [26:33<36:02,  4.73it/s][A
+Processing files:  41%|████      | 7168/17383 [26:35<36:26,  4.67it/s][A
+Processing files:  41%|████▏     | 7176/17383 [26:37<36:29,  4.66it/s][A
+Processing files:  41%|████▏     | 7184/17383 [26:39<35:55,  4.73it/s][A
+Processing files:  41%|████▏     | 7192/17383 [26:40<35:23,  4.80it/s][A
+Processing files:  41%|████▏     | 7200/17383 [26:42<36:06,  4.70it/s][A
+Processing files:  41%|████▏     | 7208/17383 [26:44<35:58,  4.71it/s][A
+Processing files:  42%|████▏     | 7216/17383 [26:45<35:47,  4.73it/s][A
+Processing files:  42%|████▏     | 7224/17383 [26:47<38:36,  4.38it/s][A
+Processing files:  42%|████▏     | 7232/17383 [26:49<38:53,  4.35it/s][A
+Processing files:  42%|████▏     | 7240/17383 [26:51<37:33,  4.50it/s][A
+Processing files:  42%|████▏     | 7248/17383 [26:53<40:48,  4.14it/s][A
+Processing files:  42%|████▏     | 7256/17383 [26:55<39:34,  4.27it/s][A
+Processing files:  42%|████▏     | 7264/17383 [26:57<38:52,  4.34it/s][A
+Processing files:  42%|████▏     | 7272/17383 [26:58<37:56,  4.44it/s][A
+Processing files:  42%|████▏     | 7280/17383 [27:00<37:35,  4.48it/s][A
+Processing files:  42%|████▏     | 7288/17383 [27:02<36:51,  4.57it/s][A
+Processing files:  42%|████▏     | 7296/17383 [27:04<37:16,  4.51it/s][A
+Processing files:  42%|████▏     | 7304/17383 [27:05<36:26,  4.61it/s][A
+Processing files:  42%|████▏     | 7312/17383 [27:07<38:20,  4.38it/s][A
+Processing files:  42%|████▏     | 7320/17383 [27:09<37:46,  4.44it/s][A
+Processing files:  42%|████▏     | 7328/17383 [27:11<36:31,  4.59it/s][A
+Processing files:  42%|████▏     | 7336/17383 [27:13<37:50,  4.43it/s][A
+Processing files:  42%|████▏     | 7344/17383 [27:14<36:29,  4.59it/s][A
+Processing files:  42%|████▏     | 7352/17383 [27:16<38:40,  4.32it/s][A
+Processing files:  42%|████▏     | 7360/17383 [27:18<37:20,  4.47it/s][A
+Processing files:  42%|████▏     | 7368/17383 [27:20<36:26,  4.58it/s][A
+Processing files:  42%|████▏     | 7376/17383 [27:21<35:37,  4.68it/s][A
+Processing files:  42%|████▏     | 7384/17383 [27:23<38:11,  4.36it/s][A
+Processing files:  43%|████▎     | 7392/17383 [27:25<36:21,  4.58it/s][A
+Processing files:  43%|████▎     | 7400/17383 [27:27<38:11,  4.36it/s][A
+Processing files:  43%|████▎     | 7408/17383 [27:29<37:01,  4.49it/s][A
+Processing files:  43%|████▎     | 7416/17383 [27:30<36:45,  4.52it/s][A
+Processing files:  43%|████▎     | 7424/17383 [27:32<35:43,  4.65it/s][A
+Processing files:  43%|████▎     | 7432/17383 [27:34<36:22,  4.56it/s][A
+Processing files:  43%|████▎     | 7440/17383 [27:36<38:11,  4.34it/s][A
+Processing files:  43%|████▎     | 7448/17383 [27:38<36:59,  4.48it/s][A
+Processing files:  43%|████▎     | 7456/17383 [27:40<39:12,  4.22it/s][A
+Processing files:  43%|████▎     | 7464/17383 [27:41<38:09,  4.33it/s][A
+Processing files:  43%|████▎     | 7472/17383 [27:43<37:02,  4.46it/s][A
+Processing files:  43%|████▎     | 7480/17383 [27:45<36:28,  4.53it/s][A
+Processing files:  43%|████▎     | 7488/17383 [27:47<36:02,  4.58it/s][A
+Processing files:  43%|████▎     | 7496/17383 [27:49<38:02,  4.33it/s][A
+Processing files:  43%|████▎     | 7504/17383 [27:50<36:47,  4.48it/s][A
+Processing files:  43%|████▎     | 7512/17383 [27:52<36:11,  4.54it/s][A
+Processing files:  43%|████▎     | 7520/17383 [27:54<35:23,  4.64it/s][A
+Processing files:  43%|████▎     | 7528/17383 [27:55<34:27,  4.77it/s][A
+Processing files:  43%|████▎     | 7536/17383 [27:57<34:07,  4.81it/s][A
+Processing files:  43%|████▎     | 7544/17383 [27:58<33:51,  4.84it/s][A
+Processing files:  43%|████▎     | 7552/17383 [28:00<33:47,  4.85it/s][A
+Processing files:  43%|████▎     | 7560/17383 [28:02<33:43,  4.85it/s][A
+Processing files:  44%|████▎     | 7568/17383 [28:03<33:45,  4.85it/s][A
+Processing files:  44%|████▎     | 7576/17383 [28:05<32:57,  4.96it/s][A
+Processing files:  44%|████▎     | 7584/17383 [28:06<32:43,  4.99it/s][A
+Processing files:  44%|████▎     | 7592/17383 [28:08<33:03,  4.94it/s][A
+Processing files:  44%|████▎     | 7600/17383 [28:10<34:11,  4.77it/s][A
+Processing files:  44%|████▍     | 7608/17383 [28:12<35:42,  4.56it/s][A
+Processing files:  44%|████▍     | 7616/17383 [28:14<34:55,  4.66it/s][A
+Processing files:  44%|████▍     | 7624/17383 [28:15<34:12,  4.75it/s][A
+Processing files:  44%|████▍     | 7632/17383 [28:17<37:29,  4.33it/s][A
+Processing files:  44%|████▍     | 7640/17383 [28:19<39:22,  4.12it/s][A
+Processing files:  44%|████▍     | 7648/17383 [28:21<37:38,  4.31it/s][A
+Processing files:  44%|████▍     | 7656/17383 [28:23<36:48,  4.40it/s][A
+Processing files:  44%|████▍     | 7664/17383 [28:25<37:29,  4.32it/s][A
+Processing files:  44%|████▍     | 7672/17383 [28:26<35:53,  4.51it/s][A
+Processing files:  44%|████▍     | 7680/17383 [28:28<37:27,  4.32it/s][A
+Processing files:  44%|████▍     | 7688/17383 [28:30<35:38,  4.53it/s][A
+Processing files:  44%|████▍     | 7696/17383 [28:32<34:53,  4.63it/s][A
+Processing files:  44%|████▍     | 7704/17383 [28:33<34:41,  4.65it/s][A
+Processing files:  44%|████▍     | 7712/17383 [28:35<35:11,  4.58it/s][A
+Processing files:  44%|████▍     | 7720/17383 [28:37<36:09,  4.45it/s][A
+Processing files:  44%|████▍     | 7728/17383 [28:39<37:48,  4.26it/s][A
+Processing files:  45%|████▍     | 7736/17383 [28:41<38:00,  4.23it/s][A
+Processing files:  45%|████▍     | 7744/17383 [28:43<40:08,  4.00it/s][A
+Processing files:  45%|████▍     | 7752/17383 [28:45<40:02,  4.01it/s][A
+Processing files:  45%|████▍     | 7760/17383 [28:47<37:41,  4.25it/s][A
+Processing files:  45%|████▍     | 7768/17383 [28:49<39:17,  4.08it/s][A
+Processing files:  45%|████▍     | 7776/17383 [28:51<38:45,  4.13it/s][A
+Processing files:  45%|████▍     | 7784/17383 [28:52<36:28,  4.39it/s][A
+Processing files:  45%|████▍     | 7792/17383 [28:54<35:53,  4.45it/s][A
+Processing files:  45%|████▍     | 7800/17383 [28:56<34:53,  4.58it/s][A
+Processing files:  45%|████▍     | 7808/17383 [28:58<35:38,  4.48it/s][A
+Processing files:  45%|████▍     | 7816/17383 [28:59<34:19,  4.65it/s][A
+Processing files:  45%|████▌     | 7824/17383 [29:01<33:17,  4.78it/s][A
+Processing files:  45%|████▌     | 7832/17383 [29:03<33:55,  4.69it/s][A
+Processing files:  45%|████▌     | 7840/17383 [29:05<34:47,  4.57it/s][A
+Processing files:  45%|████▌     | 7848/17383 [29:06<34:12,  4.65it/s][A
+Processing files:  45%|████▌     | 7856/17383 [29:08<33:41,  4.71it/s][A
+Processing files:  45%|████▌     | 7864/17383 [29:10<33:45,  4.70it/s][A
+Processing files:  45%|████▌     | 7872/17383 [29:11<33:22,  4.75it/s][A
+Processing files:  45%|████▌     | 7880/17383 [29:14<38:10,  4.15it/s][A
+Processing files:  45%|████▌     | 7888/17383 [29:15<36:34,  4.33it/s][A
+Processing files:  45%|████▌     | 7896/17383 [29:17<35:31,  4.45it/s][A
+Processing files:  45%|████▌     | 7904/17383 [29:19<34:31,  4.58it/s][A
+Processing files:  46%|████▌     | 7912/17383 [29:20<34:17,  4.60it/s][A
+Processing files:  46%|████▌     | 7920/17383 [29:22<34:07,  4.62it/s][A
+Processing files:  46%|████▌     | 7928/17383 [29:24<33:42,  4.68it/s][A
+Processing files:  46%|████▌     | 7936/17383 [29:25<33:24,  4.71it/s][A
+Processing files:  46%|████▌     | 7944/17383 [29:28<36:22,  4.33it/s][A
+Processing files:  46%|████▌     | 7952/17383 [29:30<37:24,  4.20it/s][A
+Processing files:  46%|████▌     | 7960/17383 [29:32<39:51,  3.94it/s][A
+Processing files:  46%|████▌     | 7968/17383 [29:34<37:31,  4.18it/s][A
+Processing files:  46%|████▌     | 7976/17383 [29:35<36:23,  4.31it/s][A
+Processing files:  46%|████▌     | 7984/17383 [29:37<34:44,  4.51it/s][A
+Processing files:  46%|████▌     | 7992/17383 [29:39<34:16,  4.57it/s][A
+Processing files:  46%|████▌     | 8000/17383 [29:40<33:07,  4.72it/s][A
+Processing files:  46%|████▌     | 8008/17383 [29:42<32:52,  4.75it/s][A
+Processing files:  46%|████▌     | 8016/17383 [29:43<32:37,  4.79it/s][A
+Processing files:  46%|████▌     | 8024/17383 [29:45<32:19,  4.82it/s][A
+Processing files:  46%|████▌     | 8032/17383 [29:47<32:05,  4.86it/s][A
+Processing files:  46%|████▋     | 8040/17383 [29:48<31:45,  4.90it/s][A
+Processing files:  46%|████▋     | 8048/17383 [29:50<31:46,  4.90it/s][A
+Processing files:  46%|████▋     | 8056/17383 [29:52<31:40,  4.91it/s][A
+Processing files:  46%|████▋     | 8064/17383 [29:53<31:41,  4.90it/s][A
+Processing files:  46%|████▋     | 8072/17383 [29:56<36:29,  4.25it/s][A
+Processing files:  46%|████▋     | 8080/17383 [29:57<34:54,  4.44it/s][A
+Processing files:  47%|████▋     | 8088/17383 [30:00<37:25,  4.14it/s][A
+Processing files:  47%|████▋     | 8096/17383 [30:01<36:28,  4.24it/s][A
+Processing files:  47%|████▋     | 8104/17383 [30:03<34:31,  4.48it/s][A
+Processing files:  47%|████▋     | 8112/17383 [30:05<36:49,  4.20it/s][A
+Processing files:  47%|████▋     | 8120/17383 [30:07<35:42,  4.32it/s][A
+Processing files:  47%|████▋     | 8128/17383 [30:09<36:48,  4.19it/s][A
+Processing files:  47%|████▋     | 8136/17383 [30:10<35:15,  4.37it/s][A
+Processing files:  47%|████▋     | 8144/17383 [30:12<34:34,  4.45it/s][A
+Processing files:  47%|████▋     | 8152/17383 [30:14<33:37,  4.58it/s][A
+Processing files:  47%|████▋     | 8160/17383 [30:15<32:58,  4.66it/s][A
+Processing files:  47%|████▋     | 8168/17383 [30:17<33:19,  4.61it/s][A
+Processing files:  47%|████▋     | 8176/17383 [30:19<32:50,  4.67it/s][A
+Processing files:  47%|████▋     | 8184/17383 [30:21<35:09,  4.36it/s][A
+Processing files:  47%|████▋     | 8192/17383 [30:23<34:16,  4.47it/s][A
+Processing files:  47%|████▋     | 8200/17383 [30:24<33:27,  4.58it/s][A
+Processing files:  47%|████▋     | 8208/17383 [30:26<33:13,  4.60it/s][A
+Processing files:  47%|████▋     | 8216/17383 [30:28<32:34,  4.69it/s][A
+Processing files:  47%|████▋     | 8224/17383 [30:30<33:33,  4.55it/s][A
+Processing files:  47%|████▋     | 8232/17383 [30:31<32:51,  4.64it/s][A
+Processing files:  47%|████▋     | 8240/17383 [30:33<32:14,  4.73it/s][A
+Processing files:  47%|████▋     | 8248/17383 [30:34<31:53,  4.77it/s][A
+Processing files:  47%|████▋     | 8256/17383 [30:36<31:41,  4.80it/s][A
+Processing files:  48%|████▊     | 8264/17383 [30:38<31:57,  4.76it/s][A
+Processing files:  48%|████▊     | 8272/17383 [30:39<31:37,  4.80it/s][A
+Processing files:  48%|████▊     | 8280/17383 [30:42<35:14,  4.30it/s][A
+Processing files:  48%|████▊     | 8288/17383 [30:43<33:44,  4.49it/s][A
+Processing files:  48%|████▊     | 8296/17383 [30:45<34:56,  4.33it/s][A
+Processing files:  48%|████▊     | 8304/17383 [30:47<34:54,  4.33it/s][A
+Processing files:  48%|████▊     | 8312/17383 [30:49<33:29,  4.51it/s][A
+Processing files:  48%|████▊     | 8320/17383 [30:51<34:07,  4.43it/s][A
+Processing files:  48%|████▊     | 8328/17383 [30:53<34:14,  4.41it/s][A
+Processing files:  48%|████▊     | 8336/17383 [30:55<36:48,  4.10it/s][A
+Processing files:  48%|████▊     | 8344/17383 [30:56<34:56,  4.31it/s][A
+Processing files:  48%|████▊     | 8352/17383 [30:58<35:17,  4.27it/s][A
+Processing files:  48%|████▊     | 8360/17383 [31:00<34:30,  4.36it/s][A
+Processing files:  48%|████▊     | 8368/17383 [31:02<34:01,  4.42it/s][A
+Processing files:  48%|████▊     | 8376/17383 [31:03<33:03,  4.54it/s][A
+Processing files:  48%|████▊     | 8384/17383 [31:06<34:23,  4.36it/s][A
+Processing files:  48%|████▊     | 8392/17383 [31:07<33:03,  4.53it/s][A
+Processing files:  48%|████▊     | 8400/17383 [31:09<33:56,  4.41it/s][A
+Processing files:  48%|████▊     | 8408/17383 [31:11<33:30,  4.46it/s][A
+Processing files:  48%|████▊     | 8416/17383 [31:13<33:30,  4.46it/s][A
+Processing files:  48%|████▊     | 8424/17383 [31:14<32:54,  4.54it/s][A
+Processing files:  49%|████▊     | 8432/17383 [31:16<32:33,  4.58it/s][A
+Processing files:  49%|████▊     | 8440/17383 [31:18<32:00,  4.66it/s][A
+Processing files:  49%|████▊     | 8448/17383 [31:20<33:39,  4.43it/s][A
+Processing files:  49%|████▊     | 8456/17383 [31:21<32:52,  4.53it/s][A
+Processing files:  49%|████▊     | 8464/17383 [31:23<33:47,  4.40it/s][A
+Processing files:  49%|████▊     | 8472/17383 [31:25<32:55,  4.51it/s][A
+Processing files:  49%|████▉     | 8480/17383 [31:27<35:43,  4.15it/s][A
+Processing files:  49%|████▉     | 8488/17383 [31:29<34:41,  4.27it/s][A
+Processing files:  49%|████▉     | 8496/17383 [31:31<35:01,  4.23it/s][A
+Processing files:  49%|████▉     | 8504/17383 [31:33<33:35,  4.40it/s][A
+Processing files:  49%|████▉     | 8512/17383 [31:34<32:46,  4.51it/s][A
+Processing files:  49%|████▉     | 8520/17383 [31:36<35:07,  4.21it/s][A
+Processing files:  49%|████▉     | 8528/17383 [31:38<33:38,  4.39it/s][A
+Processing files:  49%|████▉     | 8536/17383 [31:40<33:39,  4.38it/s][A
+Processing files:  49%|████▉     | 8544/17383 [31:42<33:19,  4.42it/s][A
+Processing files:  49%|████▉     | 8552/17383 [31:44<34:14,  4.30it/s][A
+Processing files:  49%|████▉     | 8560/17383 [31:45<34:06,  4.31it/s][A
+Processing files:  49%|████▉     | 8568/17383 [31:47<33:21,  4.40it/s][A
+Processing files:  49%|████▉     | 8576/17383 [31:49<32:53,  4.46it/s][A
+Processing files:  49%|████▉     | 8584/17383 [31:51<32:07,  4.56it/s][A
+Processing files:  49%|████▉     | 8592/17383 [31:52<31:35,  4.64it/s][A
+Processing files:  49%|████▉     | 8600/17383 [31:54<31:04,  4.71it/s][A
+Processing files:  50%|████▉     | 8608/17383 [31:56<31:05,  4.70it/s][A
+Processing files:  50%|████▉     | 8616/17383 [31:57<30:39,  4.77it/s][A
+Processing files:  50%|████▉     | 8624/17383 [31:59<29:52,  4.89it/s][A
+Processing files:  50%|████▉     | 8632/17383 [32:01<30:44,  4.74it/s][A
+Processing files:  50%|████▉     | 8640/17383 [32:02<31:32,  4.62it/s][A
+Processing files:  50%|████▉     | 8648/17383 [32:04<31:06,  4.68it/s][A
+Processing files:  50%|████▉     | 8656/17383 [32:06<31:09,  4.67it/s][A
+Processing files:  50%|████▉     | 8664/17383 [32:08<33:30,  4.34it/s][A
+Processing files:  50%|████▉     | 8672/17383 [32:10<33:15,  4.37it/s][A
+Processing files:  50%|████▉     | 8680/17383 [32:11<32:06,  4.52it/s][A
+Processing files:  50%|████▉     | 8688/17383 [32:13<31:05,  4.66it/s][A
+Processing files:  50%|█████     | 8696/17383 [32:15<30:36,  4.73it/s][A
+Processing files:  50%|█████     | 8704/17383 [32:17<32:10,  4.50it/s][A
+Processing files:  50%|█████     | 8712/17383 [32:18<32:53,  4.39it/s][A
+Processing files:  50%|█████     | 8720/17383 [32:20<31:53,  4.53it/s][A
+Processing files:  50%|█████     | 8728/17383 [32:22<33:21,  4.32it/s][A
+Processing files:  50%|█████     | 8736/17383 [32:24<32:01,  4.50it/s][A
+Processing files:  50%|█████     | 8744/17383 [32:25<31:27,  4.58it/s][A
+Processing files:  50%|█████     | 8752/17383 [32:27<30:49,  4.67it/s][A
+Processing files:  50%|█████     | 8760/17383 [32:29<31:23,  4.58it/s][A
+Processing files:  50%|█████     | 8768/17383 [32:31<30:30,  4.71it/s][A
+Processing files:  50%|█████     | 8776/17383 [32:32<30:16,  4.74it/s][A
+Processing files:  51%|█████     | 8784/17383 [32:34<31:49,  4.50it/s][A
+Processing files:  51%|█████     | 8792/17383 [32:36<30:45,  4.66it/s][A
+Processing files:  51%|█████     | 8800/17383 [32:38<32:52,  4.35it/s][A
+Processing files:  51%|█████     | 8808/17383 [32:39<31:38,  4.52it/s][A
+Processing files:  51%|█████     | 8816/17383 [32:42<33:07,  4.31it/s][A
+Processing files:  51%|█████     | 8824/17383 [32:43<32:05,  4.44it/s][A
+Processing files:  51%|█████     | 8832/17383 [32:45<31:22,  4.54it/s][A
+Processing files:  51%|█████     | 8840/17383 [32:47<32:29,  4.38it/s][A
+Processing files:  51%|█████     | 8848/17383 [32:49<33:45,  4.21it/s][A
+Processing files:  51%|█████     | 8856/17383 [32:51<32:24,  4.38it/s][A
+Processing files:  51%|█████     | 8864/17383 [32:53<33:02,  4.30it/s][A
+Processing files:  51%|█████     | 8872/17383 [32:54<31:55,  4.44it/s][A
+Processing files:  51%|█████     | 8880/17383 [32:56<30:56,  4.58it/s][A
+Processing files:  51%|█████     | 8888/17383 [32:57<30:10,  4.69it/s][A
+Processing files:  51%|█████     | 8896/17383 [32:59<30:36,  4.62it/s][A
+Processing files:  51%|█████     | 8904/17383 [33:01<30:33,  4.63it/s][A
+Processing files:  51%|█████▏    | 8912/17383 [33:03<34:53,  4.05it/s][A
+Processing files:  51%|█████▏    | 8920/17383 [33:06<37:14,  3.79it/s][A
+Processing files:  51%|█████▏    | 8928/17383 [33:07<34:26,  4.09it/s][A
+Processing files:  51%|█████▏    | 8936/17383 [33:09<33:48,  4.17it/s][A
+Processing files:  51%|█████▏    | 8944/17383 [33:11<32:10,  4.37it/s][A
+Processing files:  51%|█████▏    | 8952/17383 [33:13<31:08,  4.51it/s][A
+Processing files:  52%|█████▏    | 8960/17383 [33:15<31:56,  4.40it/s][A
+Processing files:  52%|█████▏    | 8968/17383 [33:17<33:28,  4.19it/s][A
+Processing files:  52%|█████▏    | 8976/17383 [33:18<31:35,  4.43it/s][A
+Processing files:  52%|█████▏    | 8984/17383 [33:20<31:49,  4.40it/s][A
+Processing files:  52%|█████▏    | 8992/17383 [33:22<31:06,  4.50it/s][A
+Processing files:  52%|█████▏    | 9000/17383 [33:23<30:50,  4.53it/s][A
+Processing files:  52%|█████▏    | 9008/17383 [33:25<30:15,  4.61it/s][A
+Processing files:  52%|█████▏    | 9016/17383 [33:27<32:00,  4.36it/s][A
+Processing files:  52%|█████▏    | 9024/17383 [33:29<30:58,  4.50it/s][A
+Processing files:  52%|█████▏    | 9032/17383 [33:31<32:03,  4.34it/s][A
+Processing files:  52%|█████▏    | 9040/17383 [33:32<30:55,  4.50it/s][A
+Processing files:  52%|█████▏    | 9048/17383 [33:34<30:28,  4.56it/s][A
+Processing files:  52%|█████▏    | 9056/17383 [33:36<30:51,  4.50it/s][A
+Processing files:  52%|█████▏    | 9064/17383 [33:38<29:58,  4.62it/s][A
+Processing files:  52%|█████▏    | 9072/17383 [33:39<29:37,  4.68it/s][A
+Processing files:  52%|█████▏    | 9080/17383 [33:41<31:09,  4.44it/s][A
+Processing files:  52%|█████▏    | 9088/17383 [33:43<32:41,  4.23it/s][A
+Processing files:  52%|█████▏    | 9096/17383 [33:45<32:22,  4.27it/s][A
+Processing files:  52%|█████▏    | 9104/17383 [33:47<30:46,  4.48it/s][A
+Processing files:  52%|█████▏    | 9112/17383 [33:48<29:43,  4.64it/s][A
+Processing files:  52%|█████▏    | 9120/17383 [33:50<29:08,  4.73it/s][A
+Processing files:  53%|█████▎    | 9128/17383 [33:52<30:37,  4.49it/s][A
+Processing files:  53%|█████▎    | 9136/17383 [33:54<29:56,  4.59it/s][A
+Processing files:  53%|█████▎    | 9144/17383 [33:56<32:05,  4.28it/s][A
+Processing files:  53%|█████▎    | 9152/17383 [33:57<30:53,  4.44it/s][A
+Processing files:  53%|█████▎    | 9160/17383 [33:59<30:27,  4.50it/s][A
+Processing files:  53%|█████▎    | 9168/17383 [34:01<30:37,  4.47it/s][A
+Processing files:  53%|█████▎    | 9176/17383 [34:03<30:24,  4.50it/s][A
+Processing files:  53%|█████▎    | 9184/17383 [34:04<29:51,  4.58it/s][A
+Processing files:  53%|█████▎    | 9192/17383 [34:06<29:17,  4.66it/s][A
+Processing files:  53%|█████▎    | 9200/17383 [34:08<29:54,  4.56it/s][A
+Processing files:  53%|█████▎    | 9208/17383 [34:10<29:12,  4.66it/s][A
+Processing files:  53%|█████▎    | 9216/17383 [34:11<29:05,  4.68it/s][A
+Processing files:  53%|█████▎    | 9224/17383 [34:13<28:17,  4.81it/s][A
+Processing files:  53%|█████▎    | 9232/17383 [34:14<27:47,  4.89it/s][A
+Processing files:  53%|█████▎    | 9240/17383 [34:16<27:40,  4.90it/s][A
+Processing files:  53%|█████▎    | 9248/17383 [34:17<27:03,  5.01it/s][A
+Processing files:  53%|█████▎    | 9256/17383 [34:19<27:21,  4.95it/s][A
+Processing files:  53%|█████▎    | 9264/17383 [34:21<28:40,  4.72it/s][A
+Processing files:  53%|█████▎    | 9272/17383 [34:24<33:00,  4.10it/s][A
+Processing files:  53%|█████▎    | 9280/17383 [34:25<31:28,  4.29it/s][A
+Processing files:  53%|█████▎    | 9288/17383 [34:27<32:29,  4.15it/s][A
+Processing files:  53%|█████▎    | 9296/17383 [34:29<30:55,  4.36it/s][A
+Processing files:  54%|█████▎    | 9304/17383 [34:31<30:58,  4.35it/s][A
+Processing files:  54%|█████▎    | 9312/17383 [34:32<29:49,  4.51it/s][A
+Processing files:  54%|█████▎    | 9320/17383 [34:34<29:05,  4.62it/s][A
+Processing files:  54%|█████▎    | 9328/17383 [34:36<28:54,  4.64it/s][A
+Processing files:  54%|█████▎    | 9336/17383 [34:37<28:27,  4.71it/s][A
+Processing files:  54%|█████▍    | 9344/17383 [34:39<30:08,  4.45it/s][A
+Processing files:  54%|█████▍    | 9352/17383 [34:41<29:24,  4.55it/s][A
+Processing files:  54%|█████▍    | 9360/17383 [34:43<31:26,  4.25it/s][A
+Processing files:  54%|█████▍    | 9368/17383 [34:45<29:55,  4.46it/s][A
+Processing files:  54%|█████▍    | 9376/17383 [34:47<30:19,  4.40it/s][A
+Processing files:  54%|█████▍    | 9384/17383 [34:49<31:09,  4.28it/s][A
+Processing files:  54%|█████▍    | 9392/17383 [34:51<30:44,  4.33it/s][A
+Processing files:  54%|█████▍    | 9400/17383 [34:52<29:34,  4.50it/s][A
+Processing files:  54%|█████▍    | 9408/17383 [34:54<31:59,  4.15it/s][A
+Processing files:  54%|█████▍    | 9416/17383 [34:56<32:09,  4.13it/s][A
+Processing files:  54%|█████▍    | 9424/17383 [34:58<30:31,  4.35it/s][A
+Processing files:  54%|█████▍    | 9432/17383 [35:00<29:19,  4.52it/s][A
+Processing files:  54%|█████▍    | 9440/17383 [35:01<29:58,  4.42it/s][A
+Processing files:  54%|█████▍    | 9448/17383 [35:03<30:16,  4.37it/s][A
+Processing files:  54%|█████▍    | 9456/17383 [35:05<30:58,  4.26it/s][A
+Processing files:  54%|█████▍    | 9464/17383 [35:07<29:25,  4.48it/s][A
+Processing files:  54%|█████▍    | 9472/17383 [35:09<29:02,  4.54it/s][A
+Processing files:  55%|█████▍    | 9480/17383 [35:10<29:20,  4.49it/s][A
+Processing files:  55%|█████▍    | 9488/17383 [35:12<30:08,  4.37it/s][A
+Processing files:  55%|█████▍    | 9496/17383 [35:14<28:50,  4.56it/s][A
+Processing files:  55%|█████▍    | 9504/17383 [35:16<29:28,  4.46it/s][A
+Processing files:  55%|█████▍    | 9512/17383 [35:18<28:43,  4.57it/s][A
+Processing files:  55%|█████▍    | 9520/17383 [35:19<28:46,  4.55it/s][A
+Processing files:  55%|█████▍    | 9528/17383 [35:21<30:32,  4.29it/s][A
+Processing files:  55%|█████▍    | 9536/17383 [35:23<29:28,  4.44it/s][A
+Processing files:  55%|█████▍    | 9544/17383 [35:25<29:07,  4.49it/s][A
+Processing files:  55%|█████▍    | 9552/17383 [35:26<28:23,  4.60it/s][A
+Processing files:  55%|█████▍    | 9560/17383 [35:28<27:44,  4.70it/s][A
+Processing files:  55%|█████▌    | 9568/17383 [35:30<27:35,  4.72it/s][A
+Processing files:  55%|█████▌    | 9576/17383 [35:31<27:19,  4.76it/s][A
+Processing files:  55%|█████▌    | 9584/17383 [35:33<27:16,  4.77it/s][A
+Processing files:  55%|█████▌    | 9592/17383 [35:35<26:54,  4.83it/s][A
+Processing files:  55%|█████▌    | 9600/17383 [35:36<27:08,  4.78it/s][A
+Processing files:  55%|█████▌    | 9608/17383 [35:38<26:40,  4.86it/s][A
+Processing files:  55%|█████▌    | 9616/17383 [35:40<26:54,  4.81it/s][A
+Processing files:  55%|█████▌    | 9624/17383 [35:41<26:29,  4.88it/s][A
+Processing files:  55%|█████▌    | 9632/17383 [35:43<26:11,  4.93it/s][A
+Processing files:  55%|█████▌    | 9640/17383 [35:45<28:00,  4.61it/s][A
+Processing files:  56%|█████▌    | 9648/17383 [35:46<27:25,  4.70it/s][A
+Processing files:  56%|█████▌    | 9656/17383 [35:48<26:50,  4.80it/s][A
+Processing files:  56%|█████▌    | 9664/17383 [35:50<26:35,  4.84it/s][A
+Processing files:  56%|█████▌    | 9672/17383 [35:52<28:25,  4.52it/s][A
+Processing files:  56%|█████▌    | 9680/17383 [35:53<28:26,  4.51it/s][A
+Processing files:  56%|█████▌    | 9688/17383 [35:55<28:23,  4.52it/s][A
+Processing files:  56%|█████▌    | 9696/17383 [35:57<29:09,  4.39it/s][A
+Processing files:  56%|█████▌    | 9704/17383 [35:59<29:42,  4.31it/s][A
+Processing files:  56%|█████▌    | 9712/17383 [36:01<28:53,  4.43it/s][A
+Processing files:  56%|█████▌    | 9720/17383 [36:02<28:15,  4.52it/s][A
+Processing files:  56%|█████▌    | 9728/17383 [36:04<27:26,  4.65it/s][A
+Processing files:  56%|█████▌    | 9736/17383 [36:06<28:27,  4.48it/s][A
+Processing files:  56%|█████▌    | 9744/17383 [36:08<28:32,  4.46it/s][A
+Processing files:  56%|█████▌    | 9752/17383 [36:10<28:35,  4.45it/s][A
+Processing files:  56%|█████▌    | 9760/17383 [36:11<28:33,  4.45it/s][A
+Processing files:  56%|█████▌    | 9768/17383 [36:13<28:27,  4.46it/s][A
+Processing files:  56%|█████▌    | 9776/17383 [36:15<27:58,  4.53it/s][A
+Processing files:  56%|█████▋    | 9784/17383 [36:17<27:24,  4.62it/s][A
+Processing files:  56%|█████▋    | 9792/17383 [36:18<26:54,  4.70it/s][A
+Processing files:  56%|█████▋    | 9800/17383 [36:20<26:34,  4.76it/s][A
+Processing files:  56%|█████▋    | 9808/17383 [36:21<26:09,  4.83it/s][A
+Processing files:  56%|█████▋    | 9816/17383 [36:23<25:52,  4.87it/s][A
+Processing files:  57%|█████▋    | 9824/17383 [36:25<25:40,  4.91it/s][A
+Processing files:  57%|█████▋    | 9832/17383 [36:26<25:10,  5.00it/s][A
+Processing files:  57%|█████▋    | 9840/17383 [36:28<25:54,  4.85it/s][A
+Processing files:  57%|█████▋    | 9848/17383 [36:30<25:43,  4.88it/s][A
+Processing files:  57%|█████▋    | 9856/17383 [36:31<25:29,  4.92it/s][A
+Processing files:  57%|█████▋    | 9864/17383 [36:33<25:26,  4.92it/s][A
+Processing files:  57%|█████▋    | 9872/17383 [36:35<27:09,  4.61it/s][A
+Processing files:  57%|█████▋    | 9880/17383 [36:36<26:48,  4.66it/s][A
+Processing files:  57%|█████▋    | 9888/17383 [36:38<27:04,  4.61it/s][A
+Processing files:  57%|█████▋    | 9896/17383 [36:40<26:52,  4.64it/s][A
+Processing files:  57%|█████▋    | 9904/17383 [36:42<27:11,  4.58it/s][A
+Processing files:  57%|█████▋    | 9912/17383 [36:43<26:36,  4.68it/s][A
+Processing files:  57%|█████▋    | 9920/17383 [36:46<29:13,  4.26it/s][A
+Processing files:  57%|█████▋    | 9928/17383 [36:47<28:15,  4.40it/s][A
+Processing files:  57%|█████▋    | 9936/17383 [36:49<27:34,  4.50it/s][A
+Processing files:  57%|█████▋    | 9944/17383 [36:51<28:45,  4.31it/s][A
+Processing files:  57%|█████▋    | 9952/17383 [36:53<27:20,  4.53it/s][A
+Processing files:  57%|█████▋    | 9960/17383 [36:55<29:01,  4.26it/s][A
+Processing files:  57%|█████▋    | 9968/17383 [36:56<27:58,  4.42it/s][A
+Processing files:  57%|█████▋    | 9976/17383 [36:59<29:25,  4.19it/s][A
+Processing files:  57%|█████▋    | 9984/17383 [37:00<29:14,  4.22it/s][A
+Processing files:  57%|█████▋    | 9992/17383 [37:02<28:31,  4.32it/s][A
+Processing files:  58%|█████▊    | 10000/17383 [37:04<29:18,  4.20it/s][A
+Processing files:  58%|█████▊    | 10008/17383 [37:06<27:34,  4.46it/s][A
+Processing files:  58%|█████▊    | 10016/17383 [37:07<26:37,  4.61it/s][A
+Processing files:  58%|█████▊    | 10024/17383 [37:09<26:24,  4.64it/s][A
+Processing files:  58%|█████▊    | 10032/17383 [37:11<26:03,  4.70it/s][A
+Processing files:  58%|█████▊    | 10040/17383 [37:12<25:30,  4.80it/s][A
+Processing files:  58%|█████▊    | 10048/17383 [37:14<25:20,  4.82it/s][A
+Processing files:  58%|█████▊    | 10056/17383 [37:16<25:15,  4.84it/s][A
+Processing files:  58%|█████▊    | 10064/17383 [37:17<26:45,  4.56it/s][A
+Processing files:  58%|█████▊    | 10072/17383 [37:19<26:01,  4.68it/s][A
+Processing files:  58%|█████▊    | 10080/17383 [37:21<27:38,  4.40it/s][A
+Processing files:  58%|█████▊    | 10088/17383 [37:23<27:22,  4.44it/s][A
+Processing files:  58%|█████▊    | 10096/17383 [37:25<26:38,  4.56it/s][A
+Processing files:  58%|█████▊    | 10104/17383 [37:26<26:29,  4.58it/s][A
+Processing files:  58%|█████▊    | 10112/17383 [37:28<26:55,  4.50it/s][A
+Processing files:  58%|█████▊    | 10120/17383 [37:30<28:02,  4.32it/s][A
+Processing files:  58%|█████▊    | 10128/17383 [37:32<27:02,  4.47it/s][A
+Processing files:  58%|█████▊    | 10136/17383 [37:34<26:41,  4.53it/s][A
+Processing files:  58%|█████▊    | 10144/17383 [37:35<26:35,  4.54it/s][A
+Processing files:  58%|█████▊    | 10152/17383 [37:37<26:45,  4.50it/s][A
+Processing files:  58%|█████▊    | 10160/17383 [37:39<28:11,  4.27it/s][A
+Processing files:  58%|█████▊    | 10168/17383 [37:41<27:20,  4.40it/s][A
+Processing files:  59%|█████▊    | 10176/17383 [37:43<26:26,  4.54it/s][A
+Processing files:  59%|█████▊    | 10184/17383 [37:45<29:35,  4.05it/s][A
+Processing files:  59%|█████▊    | 10192/17383 [37:47<28:12,  4.25it/s][A
+Processing files:  59%|█████▊    | 10200/17383 [37:49<28:05,  4.26it/s][A
+Processing files:  59%|█████▊    | 10208/17383 [37:50<27:04,  4.42it/s][A
+Processing files:  59%|█████▉    | 10216/17383 [37:52<26:50,  4.45it/s][A
+Processing files:  59%|█████▉    | 10224/17383 [37:54<25:59,  4.59it/s][A
+Processing files:  59%|█████▉    | 10232/17383 [37:55<25:58,  4.59it/s][A
+Processing files:  59%|█████▉    | 10240/17383 [37:58<28:02,  4.24it/s][A
+Processing files:  59%|█████▉    | 10248/17383 [37:59<27:17,  4.36it/s][A
+Processing files:  59%|█████▉    | 10256/17383 [38:01<26:58,  4.40it/s][A
+Processing files:  59%|█████▉    | 10264/17383 [38:03<27:52,  4.26it/s][A
+Processing files:  59%|█████▉    | 10272/17383 [38:05<27:20,  4.33it/s][A
+Processing files:  59%|█████▉    | 10280/17383 [38:07<27:55,  4.24it/s][A
+Processing files:  59%|█████▉    | 10288/17383 [38:08<26:59,  4.38it/s][A
+Processing files:  59%|█████▉    | 10296/17383 [38:10<27:16,  4.33it/s][A
+Processing files:  59%|█████▉    | 10304/17383 [38:12<26:10,  4.51it/s][A
+Processing files:  59%|█████▉    | 10312/17383 [38:14<27:06,  4.35it/s][A
+Processing files:  59%|█████▉    | 10320/17383 [38:16<25:50,  4.56it/s][A
+Processing files:  59%|█████▉    | 10328/17383 [38:17<25:16,  4.65it/s][A
+Processing files:  59%|█████▉    | 10336/17383 [38:19<24:38,  4.77it/s][A
+Processing files:  60%|█████▉    | 10344/17383 [38:21<25:48,  4.55it/s][A
+Processing files:  60%|█████▉    | 10352/17383 [38:22<25:26,  4.61it/s][A
+Processing files:  60%|█████▉    | 10360/17383 [38:24<25:10,  4.65it/s][A
+Processing files:  60%|█████▉    | 10368/17383 [38:26<24:40,  4.74it/s][A
+Processing files:  60%|█████▉    | 10376/17383 [38:27<24:30,  4.77it/s][A
+Processing files:  60%|█████▉    | 10384/17383 [38:29<24:36,  4.74it/s][A
+Processing files:  60%|█████▉    | 10392/17383 [38:31<25:13,  4.62it/s][A
+Processing files:  60%|█████▉    | 10400/17383 [38:33<25:05,  4.64it/s][A
+Processing files:  60%|█████▉    | 10408/17383 [38:34<25:48,  4.50it/s][A
+Processing files:  60%|█████▉    | 10416/17383 [38:37<28:01,  4.14it/s][A
+Processing files:  60%|█████▉    | 10424/17383 [38:38<26:51,  4.32it/s][A
+Processing files:  60%|██████    | 10432/17383 [38:41<27:49,  4.16it/s][A
+Processing files:  60%|██████    | 10440/17383 [38:42<26:20,  4.39it/s][A
+Processing files:  60%|██████    | 10448/17383 [38:44<27:48,  4.16it/s][A
+Processing files:  60%|██████    | 10456/17383 [38:47<29:41,  3.89it/s][A
+Processing files:  60%|██████    | 10464/17383 [38:48<27:38,  4.17it/s][A
+Processing files:  60%|██████    | 10472/17383 [38:50<26:29,  4.35it/s][A
+Processing files:  60%|██████    | 10480/17383 [38:52<26:56,  4.27it/s][A
+Processing files:  60%|██████    | 10488/17383 [38:54<27:32,  4.17it/s][A
+Processing files:  60%|██████    | 10496/17383 [38:56<26:25,  4.34it/s][A
+Processing files:  60%|██████    | 10504/17383 [38:57<25:50,  4.44it/s][A
+Processing files:  60%|██████    | 10512/17383 [38:59<26:26,  4.33it/s][A
+Processing files:  61%|██████    | 10520/17383 [39:01<25:39,  4.46it/s][A
+Processing files:  61%|██████    | 10528/17383 [39:03<26:01,  4.39it/s][A
+Processing files:  61%|██████    | 10536/17383 [39:04<25:12,  4.53it/s][A
+Processing files:  61%|██████    | 10544/17383 [39:06<24:57,  4.57it/s][A
+Processing files:  61%|██████    | 10552/17383 [39:08<24:48,  4.59it/s][A
+Processing files:  61%|██████    | 10560/17383 [39:09<24:15,  4.69it/s][A
+Processing files:  61%|██████    | 10568/17383 [39:11<24:10,  4.70it/s][A
+Processing files:  61%|██████    | 10576/17383 [39:13<23:42,  4.79it/s][A
+Processing files:  61%|██████    | 10584/17383 [39:14<23:30,  4.82it/s][A
+Processing files:  61%|██████    | 10592/17383 [39:16<23:34,  4.80it/s][A
+Processing files:  61%|██████    | 10600/17383 [39:18<23:11,  4.88it/s][A
+Processing files:  61%|██████    | 10608/17383 [39:19<23:18,  4.85it/s][A
+Processing files:  61%|██████    | 10616/17383 [39:21<23:04,  4.89it/s][A
+Processing files:  61%|██████    | 10624/17383 [39:23<25:10,  4.48it/s][A
+Processing files:  61%|██████    | 10632/17383 [39:25<25:05,  4.48it/s][A
+Processing files:  61%|██████    | 10640/17383 [39:26<24:28,  4.59it/s][A
+Processing files:  61%|██████▏   | 10648/17383 [39:28<23:55,  4.69it/s][A
+Processing files:  61%|██████▏   | 10656/17383 [39:30<25:36,  4.38it/s][A
+Processing files:  61%|██████▏   | 10664/17383 [39:33<28:07,  3.98it/s][A
+Processing files:  61%|██████▏   | 10672/17383 [39:34<26:33,  4.21it/s][A
+Processing files:  61%|██████▏   | 10680/17383 [39:36<25:29,  4.38it/s][A
+Processing files:  61%|██████▏   | 10688/17383 [39:38<24:42,  4.52it/s][A
+Processing files:  62%|██████▏   | 10696/17383 [39:39<24:49,  4.49it/s][A
+Processing files:  62%|██████▏   | 10704/17383 [39:41<24:20,  4.57it/s][A
+Processing files:  62%|██████▏   | 10712/17383 [39:43<24:59,  4.45it/s][A
+Processing files:  62%|██████▏   | 10720/17383 [39:45<24:11,  4.59it/s][A
+Processing files:  62%|██████▏   | 10728/17383 [39:46<23:43,  4.67it/s][A
+Processing files:  62%|██████▏   | 10736/17383 [39:48<23:13,  4.77it/s][A
+Processing files:  62%|██████▏   | 10744/17383 [39:49<23:02,  4.80it/s][A
+Processing files:  62%|██████▏   | 10752/17383 [39:51<23:26,  4.71it/s][A
+Processing files:  62%|██████▏   | 10760/17383 [39:53<24:15,  4.55it/s][A
+Processing files:  62%|██████▏   | 10768/17383 [39:55<23:47,  4.63it/s][A
+Processing files:  62%|██████▏   | 10776/17383 [39:57<25:00,  4.40it/s][A
+Processing files:  62%|██████▏   | 10784/17383 [39:59<26:33,  4.14it/s][A
+Processing files:  62%|██████▏   | 10792/17383 [40:01<25:12,  4.36it/s][A
+Processing files:  62%|██████▏   | 10800/17383 [40:02<24:21,  4.50it/s][A
+Processing files:  62%|██████▏   | 10808/17383 [40:04<23:47,  4.61it/s][A
+Processing files:  62%|██████▏   | 10816/17383 [40:07<27:28,  3.98it/s][A
+Processing files:  62%|██████▏   | 10824/17383 [40:08<25:58,  4.21it/s][A
+Processing files:  62%|██████▏   | 10832/17383 [40:10<25:33,  4.27it/s][A
+Processing files:  62%|██████▏   | 10840/17383 [40:12<24:17,  4.49it/s][A
+Processing files:  62%|██████▏   | 10848/17383 [40:14<25:17,  4.31it/s][A
+Processing files:  62%|██████▏   | 10856/17383 [40:15<25:03,  4.34it/s][A
+Processing files:  62%|██████▏   | 10864/17383 [40:17<23:57,  4.53it/s][A
+Processing files:  63%|██████▎   | 10872/17383 [40:19<24:27,  4.44it/s][A
+Processing files:  63%|██████▎   | 10880/17383 [40:21<25:29,  4.25it/s][A
+Processing files:  63%|██████▎   | 10888/17383 [40:23<24:30,  4.42it/s][A
+Processing files:  63%|██████▎   | 10896/17383 [40:24<23:24,  4.62it/s][A
+Processing files:  63%|██████▎   | 10904/17383 [40:26<25:36,  4.22it/s][A
+Processing files:  63%|██████▎   | 10912/17383 [40:28<25:56,  4.16it/s][A
+Processing files:  63%|██████▎   | 10920/17383 [40:30<24:43,  4.36it/s][A
+Processing files:  63%|██████▎   | 10928/17383 [40:32<25:05,  4.29it/s][A
+Processing files:  63%|██████▎   | 10936/17383 [40:34<24:30,  4.38it/s][A
+Processing files:  63%|██████▎   | 10944/17383 [40:35<23:42,  4.53it/s][A
+Processing files:  63%|██████▎   | 10952/17383 [40:37<22:59,  4.66it/s][A
+Processing files:  63%|██████▎   | 10960/17383 [40:39<24:38,  4.34it/s][A
+Processing files:  63%|██████▎   | 10968/17383 [40:41<24:13,  4.41it/s][A
+Processing files:  63%|██████▎   | 10976/17383 [40:42<23:27,  4.55it/s][A
+Processing files:  63%|██████▎   | 10984/17383 [40:44<23:01,  4.63it/s][A
+Processing files:  63%|██████▎   | 10992/17383 [40:46<22:55,  4.65it/s][A
+Processing files:  63%|██████▎   | 11000/17383 [40:48<23:02,  4.62it/s][A
+Processing files:  63%|██████▎   | 11008/17383 [40:50<24:24,  4.35it/s][A
+Processing files:  63%|██████▎   | 11016/17383 [40:51<24:08,  4.40it/s][A
+Processing files:  63%|██████▎   | 11024/17383 [40:53<24:10,  4.38it/s][A
+Processing files:  63%|██████▎   | 11032/17383 [40:55<23:01,  4.60it/s][A
+Processing files:  64%|██████▎   | 11040/17383 [40:57<24:04,  4.39it/s][A
+Processing files:  64%|██████▎   | 11048/17383 [40:59<24:17,  4.35it/s][A
+Processing files:  64%|██████▎   | 11056/17383 [41:00<23:21,  4.51it/s][A
+Processing files:  64%|██████▎   | 11064/17383 [41:02<22:57,  4.59it/s][A
+Processing files:  64%|██████▎   | 11072/17383 [41:04<23:11,  4.53it/s][A
+Processing files:  64%|██████▎   | 11080/17383 [41:05<22:44,  4.62it/s][A
+Processing files:  64%|██████▍   | 11088/17383 [41:07<22:21,  4.69it/s][A
+Processing files:  64%|██████▍   | 11096/17383 [41:09<23:46,  4.41it/s][A
+Processing files:  64%|██████▍   | 11104/17383 [41:11<22:58,  4.55it/s][A
+Processing files:  64%|██████▍   | 11112/17383 [41:13<23:14,  4.50it/s][A
+Processing files:  64%|██████▍   | 11120/17383 [41:15<25:52,  4.03it/s][A
+Processing files:  64%|██████▍   | 11128/17383 [41:17<24:27,  4.26it/s][A
+Processing files:  64%|██████▍   | 11136/17383 [41:18<23:31,  4.43it/s][A
+Processing files:  64%|██████▍   | 11144/17383 [41:20<22:35,  4.60it/s][A
+Processing files:  64%|██████▍   | 11152/17383 [41:22<23:05,  4.50it/s][A
+Processing files:  64%|██████▍   | 11160/17383 [41:23<22:34,  4.59it/s][A
+Processing files:  64%|██████▍   | 11168/17383 [41:25<22:09,  4.68it/s][A
+Processing files:  64%|██████▍   | 11176/17383 [41:27<21:41,  4.77it/s][A
+Processing files:  64%|██████▍   | 11184/17383 [41:28<21:54,  4.72it/s][A
+Processing files:  64%|██████▍   | 11192/17383 [41:30<21:33,  4.79it/s][A
+Processing files:  64%|██████▍   | 11200/17383 [41:32<21:14,  4.85it/s][A
+Processing files:  64%|██████▍   | 11208/17383 [41:33<21:30,  4.78it/s][A
+Processing files:  65%|██████▍   | 11216/17383 [41:35<21:06,  4.87it/s][A
+Processing files:  65%|██████▍   | 11224/17383 [41:37<22:06,  4.64it/s][A
+Processing files:  65%|██████▍   | 11232/17383 [41:38<21:36,  4.74it/s][A
+Processing files:  65%|██████▍   | 11240/17383 [41:40<21:25,  4.78it/s][A
+Processing files:  65%|██████▍   | 11248/17383 [41:42<21:17,  4.80it/s][A
+Processing files:  65%|██████▍   | 11256/17383 [41:43<21:01,  4.86it/s][A
+Processing files:  65%|██████▍   | 11264/17383 [41:45<20:49,  4.90it/s][A
+Processing files:  65%|██████▍   | 11272/17383 [41:47<20:56,  4.86it/s][A
+Processing files:  65%|██████▍   | 11280/17383 [41:48<21:11,  4.80it/s][A
+Processing files:  65%|██████▍   | 11288/17383 [41:50<22:48,  4.45it/s][A
+Processing files:  65%|██████▍   | 11296/17383 [41:52<22:06,  4.59it/s][A
+Processing files:  65%|██████▌   | 11304/17383 [41:54<22:05,  4.59it/s][A
+Processing files:  65%|██████▌   | 11312/17383 [41:55<21:33,  4.69it/s][A
+Processing files:  65%|██████▌   | 11320/17383 [41:57<21:20,  4.74it/s][A
+Processing files:  65%|██████▌   | 11328/17383 [41:59<21:11,  4.76it/s][A
+Processing files:  65%|██████▌   | 11336/17383 [42:00<20:55,  4.82it/s][A
+Processing files:  65%|██████▌   | 11344/17383 [42:02<20:39,  4.87it/s][A
+Processing files:  65%|██████▌   | 11352/17383 [42:04<20:29,  4.90it/s][A
+Processing files:  65%|██████▌   | 11360/17383 [42:05<20:06,  4.99it/s][A
+Processing files:  65%|██████▌   | 11368/17383 [42:07<21:40,  4.63it/s][A
+Processing files:  65%|██████▌   | 11376/17383 [42:09<21:11,  4.72it/s][A
+Processing files:  65%|██████▌   | 11384/17383 [42:11<22:37,  4.42it/s][A
+Processing files:  66%|██████▌   | 11392/17383 [42:13<22:45,  4.39it/s][A
+Processing files:  66%|██████▌   | 11400/17383 [42:14<22:16,  4.48it/s][A
+Processing files:  66%|██████▌   | 11408/17383 [42:16<21:42,  4.59it/s][A
+Processing files:  66%|██████▌   | 11416/17383 [42:18<22:35,  4.40it/s][A
+Processing files:  66%|██████▌   | 11424/17383 [42:20<22:36,  4.39it/s][A
+Processing files:  66%|██████▌   | 11432/17383 [42:22<22:11,  4.47it/s][A
+Processing files:  66%|██████▌   | 11440/17383 [42:23<21:25,  4.62it/s][A
+Processing files:  66%|██████▌   | 11448/17383 [42:25<21:31,  4.60it/s][A
+Processing files:  66%|██████▌   | 11456/17383 [42:27<22:28,  4.39it/s][A
+Processing files:  66%|██████▌   | 11464/17383 [42:29<21:58,  4.49it/s][A
+Processing files:  66%|██████▌   | 11472/17383 [42:31<23:07,  4.26it/s][A
+Processing files:  66%|██████▌   | 11480/17383 [42:32<22:05,  4.45it/s][A
+Processing files:  66%|██████▌   | 11488/17383 [42:34<21:48,  4.50it/s][A
+Processing files:  66%|██████▌   | 11496/17383 [42:36<22:14,  4.41it/s][A
+Processing files:  66%|██████▌   | 11504/17383 [42:38<23:32,  4.16it/s][A
+Processing files:  66%|██████▌   | 11512/17383 [42:40<22:19,  4.38it/s][A
+Processing files:  66%|██████▋   | 11520/17383 [42:41<21:26,  4.56it/s][A
+Processing files:  66%|██████▋   | 11528/17383 [42:43<21:50,  4.47it/s][A
+Processing files:  66%|██████▋   | 11536/17383 [42:45<21:05,  4.62it/s][A
+Processing files:  66%|██████▋   | 11544/17383 [42:46<20:40,  4.71it/s][A
+Processing files:  66%|██████▋   | 11552/17383 [42:49<22:49,  4.26it/s][A
+Processing files:  67%|██████▋   | 11560/17383 [42:50<21:44,  4.46it/s][A
+Processing files:  67%|██████▋   | 11568/17383 [42:52<21:10,  4.58it/s][A
+Processing files:  67%|██████▋   | 11576/17383 [42:54<20:52,  4.64it/s][A
+Processing files:  67%|██████▋   | 11584/17383 [42:55<20:34,  4.70it/s][A
+Processing files:  67%|██████▋   | 11592/17383 [42:57<20:12,  4.78it/s][A
+Processing files:  67%|██████▋   | 11600/17383 [42:59<20:27,  4.71it/s][A
+Processing files:  67%|██████▋   | 11608/17383 [43:00<20:48,  4.62it/s][A
+Processing files:  67%|██████▋   | 11616/17383 [43:02<20:39,  4.65it/s][A
+Processing files:  67%|██████▋   | 11624/17383 [43:04<20:18,  4.72it/s][A
+Processing files:  67%|██████▋   | 11632/17383 [43:06<22:13,  4.31it/s][A
+Processing files:  67%|██████▋   | 11640/17383 [43:08<21:17,  4.50it/s][A
+Processing files:  67%|██████▋   | 11648/17383 [43:10<22:24,  4.26it/s][A
+Processing files:  67%|██████▋   | 11656/17383 [43:12<23:04,  4.14it/s][A
+Processing files:  67%|██████▋   | 11664/17383 [43:13<22:11,  4.29it/s][A
+Processing files:  67%|██████▋   | 11672/17383 [43:15<21:27,  4.44it/s][A
+Processing files:  67%|██████▋   | 11680/17383 [43:17<20:59,  4.53it/s][A
+Processing files:  67%|██████▋   | 11688/17383 [43:19<21:56,  4.33it/s][A
+Processing files:  67%|██████▋   | 11696/17383 [43:21<23:15,  4.08it/s][A
+Processing files:  67%|██████▋   | 11704/17383 [43:23<22:23,  4.23it/s][A
+Processing files:  67%|██████▋   | 11712/17383 [43:25<22:22,  4.23it/s][A
+Processing files:  67%|██████▋   | 11720/17383 [43:27<22:34,  4.18it/s][A
+Processing files:  67%|██████▋   | 11728/17383 [43:29<22:15,  4.23it/s][A
+Processing files:  68%|██████▊   | 11736/17383 [43:30<22:06,  4.26it/s][A
+Processing files:  68%|██████▊   | 11744/17383 [43:33<23:16,  4.04it/s][A
+Processing files:  68%|██████▊   | 11752/17383 [43:34<22:06,  4.24it/s][A
+Processing files:  68%|██████▊   | 11760/17383 [43:36<21:28,  4.36it/s][A
+Processing files:  68%|██████▊   | 11768/17383 [43:38<20:51,  4.49it/s][A
+Processing files:  68%|██████▊   | 11776/17383 [43:39<20:35,  4.54it/s][A
+Processing files:  68%|██████▊   | 11784/17383 [43:41<20:22,  4.58it/s][A
+Processing files:  68%|██████▊   | 11792/17383 [43:43<20:39,  4.51it/s][A
+Processing files:  68%|██████▊   | 11800/17383 [43:45<20:43,  4.49it/s][A
+Processing files:  68%|██████▊   | 11808/17383 [43:46<20:21,  4.56it/s][A
+Processing files:  68%|██████▊   | 11816/17383 [43:48<20:01,  4.63it/s][A
+Processing files:  68%|██████▊   | 11824/17383 [43:50<20:40,  4.48it/s][A
+Processing files:  68%|██████▊   | 11832/17383 [43:52<20:32,  4.50it/s][A
+Processing files:  68%|██████▊   | 11840/17383 [43:53<19:48,  4.66it/s][A
+Processing files:  68%|██████▊   | 11848/17383 [43:55<19:29,  4.73it/s][A
+Processing files:  68%|██████▊   | 11856/17383 [43:57<19:45,  4.66it/s][A
+Processing files:  68%|██████▊   | 11864/17383 [43:59<20:35,  4.47it/s][A
+Processing files:  68%|██████▊   | 11872/17383 [44:00<19:52,  4.62it/s][A
+Processing files:  68%|██████▊   | 11880/17383 [44:02<20:00,  4.59it/s][A
+Processing files:  68%|██████▊   | 11888/17383 [44:04<21:33,  4.25it/s][A
+Processing files:  68%|██████▊   | 11896/17383 [44:06<21:15,  4.30it/s][A
+Processing files:  68%|██████▊   | 11904/17383 [44:08<21:48,  4.19it/s][A
+Processing files:  69%|██████▊   | 11912/17383 [44:10<20:55,  4.36it/s][A
+Processing files:  69%|██████▊   | 11920/17383 [44:12<22:03,  4.13it/s][A
+Processing files:  69%|██████▊   | 11928/17383 [44:14<22:25,  4.05it/s][A
+Processing files:  69%|██████▊   | 11936/17383 [44:16<21:25,  4.24it/s][A
+Processing files:  69%|██████▊   | 11944/17383 [44:18<21:22,  4.24it/s][A
+Processing files:  69%|██████▉   | 11952/17383 [44:19<20:20,  4.45it/s][A
+Processing files:  69%|██████▉   | 11960/17383 [44:21<19:54,  4.54it/s][A
+Processing files:  69%|██████▉   | 11968/17383 [44:23<21:01,  4.29it/s][A
+Processing files:  69%|██████▉   | 11976/17383 [44:25<20:20,  4.43it/s][A
+Processing files:  69%|██████▉   | 11984/17383 [44:26<20:21,  4.42it/s][A
+Processing files:  69%|██████▉   | 11992/17383 [44:28<20:48,  4.32it/s][A
+Processing files:  69%|██████▉   | 12000/17383 [44:31<22:14,  4.03it/s][A
+Processing files:  69%|██████▉   | 12008/17383 [44:32<20:57,  4.28it/s][A
+Processing files:  69%|██████▉   | 12016/17383 [44:34<20:16,  4.41it/s][A
+Processing files:  69%|██████▉   | 12024/17383 [44:36<22:16,  4.01it/s][A
+Processing files:  69%|██████▉   | 12032/17383 [44:38<21:07,  4.22it/s][A
+Processing files:  69%|██████▉   | 12040/17383 [44:40<20:05,  4.43it/s][A
+Processing files:  69%|██████▉   | 12048/17383 [44:41<20:20,  4.37it/s][A
+Processing files:  69%|██████▉   | 12056/17383 [44:43<19:33,  4.54it/s][A
+Processing files:  69%|██████▉   | 12064/17383 [44:45<18:40,  4.75it/s][A
+Processing files:  69%|██████▉   | 12072/17383 [44:47<20:07,  4.40it/s][A
+Processing files:  69%|██████▉   | 12080/17383 [44:49<21:26,  4.12it/s][A
+Processing files:  70%|██████▉   | 12088/17383 [44:51<20:32,  4.30it/s][A
+Processing files:  70%|██████▉   | 12096/17383 [44:53<21:23,  4.12it/s][A
+Processing files:  70%|██████▉   | 12104/17383 [44:54<20:13,  4.35it/s][A
+Processing files:  70%|██████▉   | 12112/17383 [44:56<19:50,  4.43it/s][A
+Processing files:  70%|██████▉   | 12120/17383 [44:58<19:15,  4.56it/s][A
+Processing files:  70%|██████▉   | 12128/17383 [45:00<21:42,  4.03it/s][A
+Processing files:  70%|██████▉   | 12136/17383 [45:02<20:25,  4.28it/s][A
+Processing files:  70%|██████▉   | 12144/17383 [45:03<19:30,  4.48it/s][A
+Processing files:  70%|██████▉   | 12152/17383 [45:05<20:08,  4.33it/s][A
+Processing files:  70%|██████▉   | 12160/17383 [45:07<19:22,  4.49it/s][A
+Processing files:  70%|██████▉   | 12168/17383 [45:09<19:57,  4.36it/s][A
+Processing files:  70%|███████   | 12176/17383 [45:11<20:44,  4.19it/s][A
+Processing files:  70%|███████   | 12184/17383 [45:13<20:01,  4.33it/s][A
+Processing files:  70%|███████   | 12192/17383 [45:15<20:52,  4.14it/s][A
+Processing files:  70%|███████   | 12200/17383 [45:16<19:40,  4.39it/s][A
+Processing files:  70%|███████   | 12208/17383 [45:18<19:03,  4.53it/s][A
+Processing files:  70%|███████   | 12216/17383 [45:20<19:52,  4.33it/s][A
+Processing files:  70%|███████   | 12224/17383 [45:22<19:16,  4.46it/s][A
+Processing files:  70%|███████   | 12232/17383 [45:23<18:49,  4.56it/s][A
+Processing files:  70%|███████   | 12240/17383 [45:26<19:58,  4.29it/s][A
+Processing files:  70%|███████   | 12248/17383 [45:28<22:31,  3.80it/s][A
+Processing files:  71%|███████   | 12256/17383 [45:30<20:46,  4.11it/s][A
+Processing files:  71%|███████   | 12264/17383 [45:32<20:32,  4.15it/s][A
+Processing files:  71%|███████   | 12272/17383 [45:33<19:31,  4.36it/s][A
+Processing files:  71%|███████   | 12280/17383 [45:35<20:10,  4.21it/s][A
+Processing files:  71%|███████   | 12288/17383 [45:37<19:22,  4.38it/s][A
+Processing files:  71%|███████   | 12296/17383 [45:39<19:19,  4.39it/s][A
+Processing files:  71%|███████   | 12304/17383 [45:41<18:52,  4.49it/s][A
+Processing files:  71%|███████   | 12312/17383 [45:42<18:40,  4.53it/s][A
+Processing files:  71%|███████   | 12320/17383 [45:44<18:09,  4.65it/s][A
+Processing files:  71%|███████   | 12328/17383 [45:46<17:47,  4.74it/s][A
+Processing files:  71%|███████   | 12336/17383 [45:47<17:39,  4.76it/s][A
+Processing files:  71%|███████   | 12344/17383 [45:50<19:43,  4.26it/s][A
+Processing files:  71%|███████   | 12352/17383 [45:51<18:55,  4.43it/s][A
+Processing files:  71%|███████   | 12360/17383 [45:53<19:41,  4.25it/s][A
+Processing files:  71%|███████   | 12368/17383 [45:55<18:51,  4.43it/s][A
+Processing files:  71%|███████   | 12376/17383 [45:57<18:40,  4.47it/s][A
+Processing files:  71%|███████   | 12384/17383 [45:58<18:09,  4.59it/s][A
+Processing files:  71%|███████▏  | 12392/17383 [46:00<17:46,  4.68it/s][A
+Processing files:  71%|███████▏  | 12400/17383 [46:01<17:26,  4.76it/s][A
+Processing files:  71%|███████▏  | 12408/17383 [46:03<17:20,  4.78it/s][A
+Processing files:  71%|███████▏  | 12416/17383 [46:05<17:12,  4.81it/s][A
+Processing files:  71%|███████▏  | 12424/17383 [46:06<17:04,  4.84it/s][A
+Processing files:  72%|███████▏  | 12432/17383 [46:08<16:51,  4.90it/s][A
+Processing files:  72%|███████▏  | 12440/17383 [46:10<16:39,  4.94it/s][A
+Processing files:  72%|███████▏  | 12448/17383 [46:11<16:46,  4.90it/s][A
+Processing files:  72%|███████▏  | 12456/17383 [46:13<18:23,  4.46it/s][A
+Processing files:  72%|███████▏  | 12464/17383 [46:16<19:26,  4.22it/s][A
+Processing files:  72%|███████▏  | 12472/17383 [46:18<20:01,  4.09it/s][A
+Processing files:  72%|███████▏  | 12480/17383 [46:19<19:29,  4.19it/s][A
+Processing files:  72%|███████▏  | 12488/17383 [46:21<18:40,  4.37it/s][A
+Processing files:  72%|███████▏  | 12496/17383 [46:23<18:04,  4.50it/s][A
+Processing files:  72%|███████▏  | 12504/17383 [46:24<17:36,  4.62it/s][A
+Processing files:  72%|███████▏  | 12512/17383 [46:27<18:50,  4.31it/s][A
+Processing files:  72%|███████▏  | 12520/17383 [46:28<19:08,  4.23it/s][A
+Processing files:  72%|███████▏  | 12528/17383 [46:30<18:12,  4.44it/s][A
+Processing files:  72%|███████▏  | 12536/17383 [46:32<17:32,  4.61it/s][A
+Processing files:  72%|███████▏  | 12544/17383 [46:33<17:04,  4.72it/s][A
+Processing files:  72%|███████▏  | 12552/17383 [46:35<17:57,  4.48it/s][A
+Processing files:  72%|███████▏  | 12560/17383 [46:37<17:26,  4.61it/s][A
+Processing files:  72%|███████▏  | 12568/17383 [46:39<17:22,  4.62it/s][A
+Processing files:  72%|███████▏  | 12576/17383 [46:40<17:16,  4.64it/s][A
+Processing files:  72%|███████▏  | 12584/17383 [46:42<17:00,  4.70it/s][A
+Processing files:  72%|███████▏  | 12592/17383 [46:44<16:41,  4.78it/s][A
+Processing files:  72%|███████▏  | 12600/17383 [46:46<17:45,  4.49it/s][A
+Processing files:  73%|███████▎  | 12608/17383 [46:47<17:17,  4.60it/s][A
+Processing files:  73%|███████▎  | 12616/17383 [46:49<17:08,  4.63it/s][A
+Processing files:  73%|███████▎  | 12624/17383 [46:51<17:08,  4.63it/s][A
+Processing files:  73%|███████▎  | 12632/17383 [46:52<16:49,  4.71it/s][A
+Processing files:  73%|███████▎  | 12640/17383 [46:54<17:37,  4.49it/s][A
+Processing files:  73%|███████▎  | 12648/17383 [46:57<19:34,  4.03it/s][A
+Processing files:  73%|███████▎  | 12656/17383 [46:58<18:29,  4.26it/s][A
+Processing files:  73%|███████▎  | 12664/17383 [47:00<17:52,  4.40it/s][A
+Processing files:  73%|███████▎  | 12672/17383 [47:02<17:00,  4.62it/s][A
+Processing files:  73%|███████▎  | 12680/17383 [47:04<18:14,  4.30it/s][A
+Processing files:  73%|███████▎  | 12688/17383 [47:05<17:45,  4.41it/s][A
+Processing files:  73%|███████▎  | 12696/17383 [47:07<17:06,  4.57it/s][A
+Processing files:  73%|███████▎  | 12704/17383 [47:09<18:09,  4.30it/s][A
+Processing files:  73%|███████▎  | 12712/17383 [47:12<19:43,  3.95it/s][A
+Processing files:  73%|███████▎  | 12720/17383 [47:13<18:51,  4.12it/s][A
+Processing files:  73%|███████▎  | 12728/17383 [47:15<17:34,  4.42it/s][A
+Processing files:  73%|███████▎  | 12736/17383 [47:17<18:14,  4.24it/s][A
+Processing files:  73%|███████▎  | 12744/17383 [47:19<18:31,  4.17it/s][A
+Processing files:  73%|███████▎  | 12752/17383 [47:20<17:37,  4.38it/s][A
+Processing files:  73%|███████▎  | 12760/17383 [47:22<16:54,  4.56it/s][A
+Processing files:  73%|███████▎  | 12768/17383 [47:24<16:24,  4.69it/s][A
+Processing files:  73%|███████▎  | 12776/17383 [47:25<16:05,  4.77it/s][A
+Processing files:  74%|███████▎  | 12784/17383 [47:27<15:55,  4.81it/s][A
+Processing files:  74%|███████▎  | 12792/17383 [47:29<15:54,  4.81it/s][A
+Processing files:  74%|███████▎  | 12800/17383 [47:30<15:45,  4.85it/s][A
+Processing files:  74%|███████▎  | 12808/17383 [47:32<15:46,  4.84it/s][A
+Processing files:  74%|███████▎  | 12816/17383 [47:33<15:36,  4.88it/s][A
+Processing files:  74%|███████▍  | 12824/17383 [47:35<15:31,  4.90it/s][A
+Processing files:  74%|███████▍  | 12832/17383 [47:37<17:34,  4.32it/s][A
+Processing files:  74%|███████▍  | 12840/17383 [47:39<16:51,  4.49it/s][A
+Processing files:  74%|███████▍  | 12848/17383 [47:41<16:24,  4.60it/s][A
+Processing files:  74%|███████▍  | 12856/17383 [47:42<16:00,  4.72it/s][A
+Processing files:  74%|███████▍  | 12864/17383 [47:44<15:41,  4.80it/s][A
+Processing files:  74%|███████▍  | 12872/17383 [47:46<15:28,  4.86it/s][A
+Processing files:  74%|███████▍  | 12880/17383 [47:47<15:22,  4.88it/s][A
+Processing files:  74%|███████▍  | 12888/17383 [47:49<15:26,  4.85it/s][A
+Processing files:  74%|███████▍  | 12896/17383 [47:50<15:10,  4.93it/s][A
+Processing files:  74%|███████▍  | 12904/17383 [47:52<15:01,  4.97it/s][A
+Processing files:  74%|███████▍  | 12912/17383 [47:54<15:25,  4.83it/s][A
+Processing files:  74%|███████▍  | 12920/17383 [47:55<15:19,  4.85it/s][A
+Processing files:  74%|███████▍  | 12928/17383 [47:58<17:13,  4.31it/s][A
+Processing files:  74%|███████▍  | 12936/17383 [47:59<16:22,  4.53it/s][A
+Processing files:  74%|███████▍  | 12944/17383 [48:01<15:59,  4.62it/s][A
+Processing files:  75%|███████▍  | 12952/17383 [48:03<16:15,  4.54it/s][A
+Processing files:  75%|███████▍  | 12960/17383 [48:04<15:46,  4.67it/s][A
+Processing files:  75%|███████▍  | 12968/17383 [48:06<16:51,  4.37it/s][A
+Processing files:  75%|███████▍  | 12976/17383 [48:08<16:19,  4.50it/s][A
+Processing files:  75%|███████▍  | 12984/17383 [48:10<16:49,  4.36it/s][A
+Processing files:  75%|███████▍  | 12992/17383 [48:12<16:13,  4.51it/s][A
+Processing files:  75%|███████▍  | 13000/17383 [48:13<16:06,  4.54it/s][A
+Processing files:  75%|███████▍  | 13008/17383 [48:15<15:54,  4.58it/s][A
+Processing files:  75%|███████▍  | 13016/17383 [48:17<17:13,  4.22it/s][A
+Processing files:  75%|███████▍  | 13024/17383 [48:19<16:30,  4.40it/s][A
+Processing files:  75%|███████▍  | 13032/17383 [48:20<14:39,  4.95it/s][A
+Processing files:  75%|███████▌  | 13040/17383 [48:22<14:47,  4.89it/s][A
+Processing files:  75%|███████▌  | 13048/17383 [48:24<15:34,  4.64it/s][A
+Processing files:  75%|███████▌  | 13056/17383 [48:26<16:28,  4.38it/s][A
+Processing files:  75%|███████▌  | 13064/17383 [48:28<16:23,  4.39it/s][A
+Processing files:  75%|███████▌  | 13072/17383 [48:29<15:43,  4.57it/s][A
+Processing files:  75%|███████▌  | 13080/17383 [48:31<15:38,  4.59it/s][A
+Processing files:  75%|███████▌  | 13088/17383 [48:33<15:33,  4.60it/s][A
+Processing files:  75%|███████▌  | 13096/17383 [48:34<15:16,  4.68it/s][A
+Processing files:  75%|███████▌  | 13104/17383 [48:36<15:11,  4.70it/s][A
+Processing files:  75%|███████▌  | 13112/17383 [48:38<15:48,  4.50it/s][A
+Processing files:  75%|███████▌  | 13120/17383 [48:40<15:19,  4.64it/s][A
+Processing files:  76%|███████▌  | 13128/17383 [48:41<15:05,  4.70it/s][A
+Processing files:  76%|███████▌  | 13136/17383 [48:43<15:32,  4.55it/s][A
+Processing files:  76%|███████▌  | 13144/17383 [48:45<16:24,  4.31it/s][A
+Processing files:  76%|███████▌  | 13152/17383 [48:47<16:20,  4.31it/s][A
+Processing files:  76%|███████▌  | 13160/17383 [48:49<15:45,  4.47it/s][A
+Processing files:  76%|███████▌  | 13168/17383 [48:51<16:23,  4.29it/s][A
+Processing files:  76%|███████▌  | 13176/17383 [48:53<18:08,  3.86it/s][A
+Processing files:  76%|███████▌  | 13184/17383 [48:55<16:46,  4.17it/s][A
+Processing files:  76%|███████▌  | 13192/17383 [48:56<15:47,  4.42it/s][A
+Processing files:  76%|███████▌  | 13200/17383 [48:58<15:03,  4.63it/s][A
+Processing files:  76%|███████▌  | 13208/17383 [49:00<15:54,  4.37it/s][A
+Processing files:  76%|███████▌  | 13216/17383 [49:02<15:46,  4.40it/s][A
+Processing files:  76%|███████▌  | 13224/17383 [49:04<16:12,  4.28it/s][A
+Processing files:  76%|███████▌  | 13232/17383 [49:05<15:29,  4.47it/s][A
+Processing files:  76%|███████▌  | 13240/17383 [49:08<16:50,  4.10it/s][A
+Processing files:  76%|███████▌  | 13248/17383 [49:09<16:03,  4.29it/s][A
+Processing files:  76%|███████▋  | 13256/17383 [49:11<15:35,  4.41it/s][A
+Processing files:  76%|███████▋  | 13264/17383 [49:13<16:23,  4.19it/s][A
+Processing files:  76%|███████▋  | 13272/17383 [49:15<16:02,  4.27it/s][A
+Processing files:  76%|███████▋  | 13280/17383 [49:17<15:26,  4.43it/s][A
+Processing files:  76%|███████▋  | 13288/17383 [49:18<15:05,  4.52it/s][A
+Processing files:  76%|███████▋  | 13296/17383 [49:20<15:04,  4.52it/s][A
+Processing files:  77%|███████▋  | 13304/17383 [49:22<14:55,  4.55it/s][A
+Processing files:  77%|███████▋  | 13312/17383 [49:24<14:44,  4.60it/s][A
+Processing files:  77%|███████▋  | 13320/17383 [49:25<14:35,  4.64it/s][A
+Processing files:  77%|███████▋  | 13328/17383 [49:28<16:19,  4.14it/s][A
+Processing files:  77%|███████▋  | 13336/17383 [49:29<15:44,  4.29it/s][A
+Processing files:  77%|███████▋  | 13344/17383 [49:31<15:09,  4.44it/s][A
+Processing files:  77%|███████▋  | 13352/17383 [49:33<14:40,  4.58it/s][A
+Processing files:  77%|███████▋  | 13360/17383 [49:34<14:18,  4.69it/s][A
+Processing files:  77%|███████▋  | 13368/17383 [49:36<14:06,  4.74it/s][A
+Processing files:  77%|███████▋  | 13376/17383 [49:37<13:49,  4.83it/s][A
+Processing files:  77%|███████▋  | 13384/17383 [49:40<16:21,  4.07it/s][A
+Processing files:  77%|███████▋  | 13392/17383 [49:42<15:27,  4.30it/s][A
+Processing files:  77%|███████▋  | 13400/17383 [49:44<15:51,  4.18it/s][A
+Processing files:  77%|███████▋  | 13408/17383 [49:45<15:17,  4.33it/s][A
+Processing files:  77%|███████▋  | 13416/17383 [49:48<15:51,  4.17it/s][A
+Processing files:  77%|███████▋  | 13424/17383 [49:49<15:05,  4.37it/s][A
+Processing files:  77%|███████▋  | 13432/17383 [49:51<14:38,  4.50it/s][A
+Processing files:  77%|███████▋  | 13440/17383 [49:53<14:23,  4.56it/s][A
+Processing files:  77%|███████▋  | 13448/17383 [49:54<13:58,  4.69it/s][A
+Processing files:  77%|███████▋  | 13456/17383 [49:56<13:47,  4.74it/s][A
+Processing files:  77%|███████▋  | 13464/17383 [49:57<13:39,  4.78it/s][A
+Processing files:  78%|███████▊  | 13472/17383 [49:59<13:29,  4.83it/s][A
+Processing files:  78%|███████▊  | 13480/17383 [50:01<13:30,  4.81it/s][A
+Processing files:  78%|███████▊  | 13488/17383 [50:03<14:31,  4.47it/s][A
+Processing files:  78%|███████▊  | 13496/17383 [50:05<14:47,  4.38it/s][A
+Processing files:  78%|███████▊  | 13504/17383 [50:07<16:08,  4.01it/s][A
+Processing files:  78%|███████▊  | 13512/17383 [50:09<15:14,  4.23it/s][A
+Processing files:  78%|███████▊  | 13520/17383 [50:10<14:40,  4.39it/s][A
+Processing files:  78%|███████▊  | 13528/17383 [50:12<14:19,  4.48it/s][A
+Processing files:  78%|███████▊  | 13536/17383 [50:14<13:49,  4.64it/s][A
+Processing files:  78%|███████▊  | 13544/17383 [50:15<13:53,  4.60it/s][A
+Processing files:  78%|███████▊  | 13552/17383 [50:18<15:23,  4.15it/s][A
+Processing files:  78%|███████▊  | 13560/17383 [50:19<14:38,  4.35it/s][A
+Processing files:  78%|███████▊  | 13568/17383 [50:21<14:39,  4.34it/s][A
+Processing files:  78%|███████▊  | 13576/17383 [50:23<14:02,  4.52it/s][A
+Processing files:  78%|███████▊  | 13584/17383 [50:25<15:13,  4.16it/s][A
+Processing files:  78%|███████▊  | 13592/17383 [50:27<14:26,  4.37it/s][A
+Processing files:  78%|███████▊  | 13600/17383 [50:29<14:28,  4.36it/s][A
+Processing files:  78%|███████▊  | 13608/17383 [50:31<15:13,  4.13it/s][A
+Processing files:  78%|███████▊  | 13616/17383 [50:32<14:16,  4.40it/s][A
+Processing files:  78%|███████▊  | 13624/17383 [50:34<13:55,  4.50it/s][A
+Processing files:  78%|███████▊  | 13632/17383 [50:36<14:12,  4.40it/s][A
+Processing files:  78%|███████▊  | 13640/17383 [50:38<13:45,  4.53it/s][A
+Processing files:  79%|███████▊  | 13648/17383 [50:39<13:29,  4.62it/s][A
+Processing files:  79%|███████▊  | 13656/17383 [50:41<13:32,  4.58it/s][A
+Processing files:  79%|███████▊  | 13664/17383 [50:43<14:14,  4.35it/s][A
+Processing files:  79%|███████▊  | 13672/17383 [50:45<13:54,  4.44it/s][A
+Processing files:  79%|███████▊  | 13680/17383 [50:47<14:15,  4.33it/s][A
+Processing files:  79%|███████▊  | 13688/17383 [50:48<13:51,  4.44it/s][A
+Processing files:  79%|███████▉  | 13696/17383 [50:50<13:51,  4.44it/s][A
+Processing files:  79%|███████▉  | 13704/17383 [50:52<13:29,  4.54it/s][A
+Processing files:  79%|███████▉  | 13712/17383 [50:54<14:16,  4.28it/s][A
+Processing files:  79%|███████▉  | 13720/17383 [50:56<13:37,  4.48it/s][A
+Processing files:  79%|███████▉  | 13728/17383 [50:57<13:17,  4.59it/s][A
+Processing files:  79%|███████▉  | 13736/17383 [50:59<13:47,  4.40it/s][A
+Processing files:  79%|███████▉  | 13744/17383 [51:01<13:24,  4.52it/s][A
+Processing files:  79%|███████▉  | 13752/17383 [51:03<14:54,  4.06it/s][A
+Processing files:  79%|███████▉  | 13760/17383 [51:05<14:05,  4.29it/s][A
+Processing files:  79%|███████▉  | 13768/17383 [51:07<13:33,  4.44it/s][A
+Processing files:  79%|███████▉  | 13776/17383 [51:08<13:09,  4.57it/s][A
+Processing files:  79%|███████▉  | 13784/17383 [51:10<12:53,  4.65it/s][A
+Processing files:  79%|███████▉  | 13792/17383 [51:11<12:36,  4.75it/s][A
+Processing files:  79%|███████▉  | 13800/17383 [51:13<12:46,  4.68it/s][A
+Processing files:  79%|███████▉  | 13808/17383 [51:15<12:45,  4.67it/s][A
+Processing files:  79%|███████▉  | 13816/17383 [51:17<12:28,  4.76it/s][A
+Processing files:  80%|███████▉  | 13824/17383 [51:19<13:08,  4.52it/s][A
+Processing files:  80%|███████▉  | 13832/17383 [51:20<13:17,  4.45it/s][A
+Processing files:  80%|███████▉  | 13840/17383 [51:22<13:27,  4.39it/s][A
+Processing files:  80%|███████▉  | 13848/17383 [51:24<12:59,  4.53it/s][A
+Processing files:  80%|███████▉  | 13856/17383 [51:26<12:46,  4.60it/s][A
+Processing files:  80%|███████▉  | 13864/17383 [51:27<12:30,  4.69it/s][A
+Processing files:  80%|███████▉  | 13872/17383 [51:30<14:03,  4.16it/s][A
+Processing files:  80%|███████▉  | 13880/17383 [51:31<13:21,  4.37it/s][A
+Processing files:  80%|███████▉  | 13888/17383 [51:33<13:02,  4.46it/s][A
+Processing files:  80%|███████▉  | 13896/17383 [51:35<12:45,  4.56it/s][A
+Processing files:  80%|███████▉  | 13904/17383 [51:36<12:29,  4.64it/s][A
+Processing files:  80%|████████  | 13912/17383 [51:38<12:10,  4.75it/s][A
+Processing files:  80%|████████  | 13920/17383 [51:39<11:55,  4.84it/s][A
+Processing files:  80%|████████  | 13928/17383 [51:41<11:49,  4.87it/s][A
+Processing files:  80%|████████  | 13936/17383 [51:43<11:46,  4.88it/s][A
+Processing files:  80%|████████  | 13944/17383 [51:44<11:47,  4.86it/s][A
+Processing files:  80%|████████  | 13952/17383 [51:46<11:33,  4.95it/s][A
+Processing files:  80%|████████  | 13960/17383 [51:48<12:29,  4.57it/s][A
+Processing files:  80%|████████  | 13968/17383 [51:50<12:50,  4.43it/s][A
+Processing files:  80%|████████  | 13976/17383 [51:52<12:34,  4.52it/s][A
+Processing files:  80%|████████  | 13984/17383 [51:53<12:06,  4.68it/s][A
+Processing files:  80%|████████  | 13992/17383 [51:55<12:19,  4.59it/s][A
+Processing files:  81%|████████  | 14000/17383 [51:57<12:07,  4.65it/s][A
+Processing files:  81%|████████  | 14008/17383 [51:58<11:54,  4.72it/s][A
+Processing files:  81%|████████  | 14016/17383 [52:00<12:16,  4.57it/s][A
+Processing files:  81%|████████  | 14024/17383 [52:02<12:07,  4.62it/s][A
+Processing files:  81%|████████  | 14032/17383 [52:04<12:42,  4.40it/s][A
+Processing files:  81%|████████  | 14040/17383 [52:06<12:35,  4.42it/s][A
+Processing files:  81%|████████  | 14048/17383 [52:08<13:57,  3.98it/s][A
+Processing files:  81%|████████  | 14056/17383 [52:10<13:11,  4.20it/s][A
+Processing files:  81%|████████  | 14064/17383 [52:11<12:32,  4.41it/s][A
+Processing files:  81%|████████  | 14072/17383 [52:13<12:41,  4.35it/s][A
+Processing files:  81%|████████  | 14080/17383 [52:15<12:11,  4.51it/s][A
+Processing files:  81%|████████  | 14088/17383 [52:18<14:04,  3.90it/s][A
+Processing files:  81%|████████  | 14096/17383 [52:19<13:10,  4.16it/s][A
+Processing files:  81%|████████  | 14104/17383 [52:21<12:21,  4.42it/s][A
+Processing files:  81%|████████  | 14112/17383 [52:22<11:58,  4.55it/s][A
+Processing files:  81%|████████  | 14120/17383 [52:24<11:34,  4.70it/s][A
+Processing files:  81%|████████▏ | 14128/17383 [52:26<11:41,  4.64it/s][A
+Processing files:  81%|████████▏ | 14136/17383 [52:27<11:22,  4.75it/s][A
+Processing files:  81%|████████▏ | 14144/17383 [52:29<11:15,  4.79it/s][A
+Processing files:  81%|████████▏ | 14152/17383 [52:31<11:11,  4.81it/s][A
+Processing files:  81%|████████▏ | 14160/17383 [52:32<11:20,  4.74it/s][A
+Processing files:  82%|████████▏ | 14168/17383 [52:34<11:40,  4.59it/s][A
+Processing files:  82%|████████▏ | 14176/17383 [52:36<11:57,  4.47it/s][A
+Processing files:  82%|████████▏ | 14184/17383 [52:38<12:15,  4.35it/s][A
+Processing files:  82%|████████▏ | 14192/17383 [52:40<11:52,  4.48it/s][A
+Processing files:  82%|████████▏ | 14200/17383 [52:41<11:30,  4.61it/s][A
+Processing files:  82%|████████▏ | 14208/17383 [52:43<11:30,  4.60it/s][A
+Processing files:  82%|████████▏ | 14216/17383 [52:45<11:13,  4.70it/s][A
+Processing files:  82%|████████▏ | 14224/17383 [52:47<11:46,  4.47it/s][A
+Processing files:  82%|████████▏ | 14232/17383 [52:48<11:34,  4.53it/s][A
+Processing files:  82%|████████▏ | 14240/17383 [52:51<12:07,  4.32it/s][A
+Processing files:  82%|████████▏ | 14248/17383 [52:52<11:42,  4.46it/s][A
+Processing files:  82%|████████▏ | 14256/17383 [52:54<11:22,  4.58it/s][A
+Processing files:  82%|████████▏ | 14264/17383 [52:56<11:17,  4.60it/s][A
+Processing files:  82%|████████▏ | 14272/17383 [52:57<10:59,  4.72it/s][A
+Processing files:  82%|████████▏ | 14280/17383 [52:59<12:06,  4.27it/s][A
+Processing files:  82%|████████▏ | 14288/17383 [53:01<11:39,  4.43it/s][A
+Processing files:  82%|████████▏ | 14296/17383 [53:03<11:15,  4.57it/s][A
+Processing files:  82%|████████▏ | 14304/17383 [53:05<11:25,  4.49it/s][A
+Processing files:  82%|████████▏ | 14312/17383 [53:06<11:11,  4.57it/s][A
+Processing files:  82%|████████▏ | 14320/17383 [53:08<11:28,  4.45it/s][A
+Processing files:  82%|████████▏ | 14328/17383 [53:10<11:17,  4.51it/s][A
+Processing files:  82%|████████▏ | 14336/17383 [53:11<10:54,  4.66it/s][A
+Processing files:  83%|████████▎ | 14344/17383 [53:13<10:54,  4.65it/s][A
+Processing files:  83%|████████▎ | 14352/17383 [53:15<10:43,  4.71it/s][A
+Processing files:  83%|████████▎ | 14360/17383 [53:16<10:29,  4.80it/s][A
+Processing files:  83%|████████▎ | 14368/17383 [53:18<10:57,  4.59it/s][A
+Processing files:  83%|████████▎ | 14376/17383 [53:20<10:46,  4.65it/s][A
+Processing files:  83%|████████▎ | 14384/17383 [53:22<10:34,  4.73it/s][A
+Processing files:  83%|████████▎ | 14392/17383 [53:23<10:23,  4.80it/s][A
+Processing files:  83%|████████▎ | 14400/17383 [53:25<10:28,  4.74it/s][A
+Processing files:  83%|████████▎ | 14408/17383 [53:27<10:28,  4.74it/s][A
+Processing files:  83%|████████▎ | 14416/17383 [53:29<11:16,  4.39it/s][A
+Processing files:  83%|████████▎ | 14424/17383 [53:30<10:52,  4.54it/s][A
+Processing files:  83%|████████▎ | 14432/17383 [53:32<10:49,  4.54it/s][A
+Processing files:  83%|████████▎ | 14440/17383 [53:34<10:43,  4.57it/s][A
+Processing files:  83%|████████▎ | 14448/17383 [53:36<10:56,  4.47it/s][A
+Processing files:  83%|████████▎ | 14456/17383 [53:37<10:32,  4.63it/s][A
+Processing files:  83%|████████▎ | 14464/17383 [53:39<10:17,  4.73it/s][A
+Processing files:  83%|████████▎ | 14472/17383 [53:41<10:09,  4.78it/s][A
+Processing files:  83%|████████▎ | 14480/17383 [53:42<10:03,  4.81it/s][A
+Processing files:  83%|████████▎ | 14488/17383 [53:44<09:56,  4.85it/s][A
+Processing files:  83%|████████▎ | 14496/17383 [53:45<09:50,  4.89it/s][A
+Processing files:  83%|████████▎ | 14504/17383 [53:47<09:46,  4.91it/s][A
+Processing files:  83%|████████▎ | 14512/17383 [53:49<10:28,  4.57it/s][A
+Processing files:  84%|████████▎ | 14520/17383 [53:51<10:10,  4.69it/s][A
+Processing files:  84%|████████▎ | 14528/17383 [53:53<11:32,  4.12it/s][A
+Processing files:  84%|████████▎ | 14536/17383 [53:55<10:55,  4.34it/s][A
+Processing files:  84%|████████▎ | 14544/17383 [53:57<11:23,  4.15it/s][A
+Processing files:  84%|████████▎ | 14552/17383 [53:59<10:48,  4.37it/s][A
+Processing files:  84%|████████▍ | 14560/17383 [54:00<10:19,  4.56it/s][A
+Processing files:  84%|████████▍ | 14568/17383 [54:02<10:36,  4.42it/s][A
+Processing files:  84%|████████▍ | 14576/17383 [54:04<11:14,  4.16it/s][A
+Processing files:  84%|████████▍ | 14584/17383 [54:06<10:38,  4.38it/s][A
+Processing files:  84%|████████▍ | 14592/17383 [54:08<10:52,  4.28it/s][A
+Processing files:  84%|████████▍ | 14600/17383 [54:10<10:29,  4.42it/s][A
+Processing files:  84%|████████▍ | 14608/17383 [54:11<10:39,  4.34it/s][A
+Processing files:  84%|████████▍ | 14616/17383 [54:13<10:19,  4.47it/s][A
+Processing files:  84%|████████▍ | 14624/17383 [54:15<10:37,  4.33it/s][A
+Processing files:  84%|████████▍ | 14632/17383 [54:17<10:14,  4.48it/s][A
+Processing files:  84%|████████▍ | 14640/17383 [54:18<10:05,  4.53it/s][A
+Processing files:  84%|████████▍ | 14648/17383 [54:20<10:14,  4.45it/s][A
+Processing files:  84%|████████▍ | 14656/17383 [54:22<09:57,  4.56it/s][A
+Processing files:  84%|████████▍ | 14664/17383 [54:24<10:25,  4.35it/s][A
+Processing files:  84%|████████▍ | 14672/17383 [54:26<10:03,  4.49it/s][A
+Processing files:  84%|████████▍ | 14680/17383 [54:28<10:38,  4.23it/s][A
+Processing files:  84%|████████▍ | 14688/17383 [54:29<10:10,  4.41it/s][A
+Processing files:  85%|████████▍ | 14696/17383 [54:32<10:45,  4.16it/s][A
+Processing files:  85%|████████▍ | 14704/17383 [54:33<10:17,  4.34it/s][A
+Processing files:  85%|████████▍ | 14712/17383 [54:35<09:54,  4.49it/s][A
+Processing files:  85%|████████▍ | 14720/17383 [54:37<09:55,  4.47it/s][A
+Processing files:  85%|████████▍ | 14728/17383 [54:38<09:35,  4.61it/s][A
+Processing files:  85%|████████▍ | 14736/17383 [54:40<09:22,  4.70it/s][A
+Processing files:  85%|████████▍ | 14744/17383 [54:42<09:17,  4.74it/s][A
+Processing files:  85%|████████▍ | 14752/17383 [54:43<09:17,  4.72it/s][A
+Processing files:  85%|████████▍ | 14760/17383 [54:45<09:09,  4.77it/s][A
+Processing files:  85%|████████▍ | 14768/17383 [54:47<08:59,  4.85it/s][A
+Processing files:  85%|████████▌ | 14776/17383 [54:48<08:57,  4.85it/s][A
+Processing files:  85%|████████▌ | 14784/17383 [54:50<08:51,  4.89it/s][A
+Processing files:  85%|████████▌ | 14792/17383 [54:52<09:39,  4.47it/s][A
+Processing files:  85%|████████▌ | 14800/17383 [54:54<09:17,  4.64it/s][A
+Processing files:  85%|████████▌ | 14808/17383 [54:55<09:19,  4.60it/s][A
+Processing files:  85%|████████▌ | 14816/17383 [54:57<09:35,  4.46it/s][A
+Processing files:  85%|████████▌ | 14824/17383 [54:59<09:28,  4.50it/s][A
+Processing files:  85%|████████▌ | 14832/17383 [55:01<09:23,  4.53it/s][A
+Processing files:  85%|████████▌ | 14840/17383 [55:03<09:40,  4.38it/s][A
+Processing files:  85%|████████▌ | 14848/17383 [55:04<09:22,  4.51it/s][A
+Processing files:  85%|████████▌ | 14856/17383 [55:06<09:18,  4.53it/s][A
+Processing files:  86%|████████▌ | 14864/17383 [55:08<09:17,  4.52it/s][A
+Processing files:  86%|████████▌ | 14872/17383 [55:09<08:57,  4.67it/s][A
+Processing files:  86%|████████▌ | 14880/17383 [55:11<09:14,  4.51it/s][A
+Processing files:  86%|████████▌ | 14888/17383 [55:13<09:13,  4.51it/s][A
+Processing files:  86%|████████▌ | 14896/17383 [55:15<09:42,  4.27it/s][A
+Processing files:  86%|████████▌ | 14904/17383 [55:17<09:20,  4.42it/s][A
+Processing files:  86%|████████▌ | 14912/17383 [55:18<08:57,  4.60it/s][A
+Processing files:  86%|████████▌ | 14920/17383 [55:21<09:47,  4.20it/s][A
+Processing files:  86%|████████▌ | 14928/17383 [55:22<09:30,  4.30it/s][A
+Processing files:  86%|████████▌ | 14936/17383 [55:24<09:18,  4.38it/s][A
+Processing files:  86%|████████▌ | 14944/17383 [55:26<08:55,  4.55it/s][A
+Processing files:  86%|████████▌ | 14952/17383 [55:28<09:38,  4.20it/s][A
+Processing files:  86%|████████▌ | 14960/17383 [55:30<10:04,  4.01it/s][A
+Processing files:  86%|████████▌ | 14968/17383 [55:32<09:31,  4.22it/s][A
+Processing files:  86%|████████▌ | 14976/17383 [55:34<09:29,  4.23it/s][A
+Processing files:  86%|████████▌ | 14984/17383 [55:35<08:59,  4.45it/s][A
+Processing files:  86%|████████▌ | 14992/17383 [55:37<08:46,  4.54it/s][A
+Processing files:  86%|████████▋ | 15000/17383 [55:39<09:25,  4.21it/s][A
+Processing files:  86%|████████▋ | 15008/17383 [55:41<08:31,  4.64it/s][A
+Processing files:  86%|████████▋ | 15016/17383 [55:43<08:51,  4.46it/s][A
+Processing files:  86%|████████▋ | 15024/17383 [55:44<08:34,  4.58it/s][A
+Processing files:  86%|████████▋ | 15032/17383 [55:46<08:18,  4.72it/s][A
+Processing files:  87%|████████▋ | 15040/17383 [55:48<09:04,  4.31it/s][A
+Processing files:  87%|████████▋ | 15048/17383 [55:50<08:47,  4.43it/s][A
+Processing files:  87%|████████▋ | 15056/17383 [55:51<08:26,  4.59it/s][A
+Processing files:  87%|████████▋ | 15064/17383 [55:53<08:46,  4.41it/s][A
+Processing files:  87%|████████▋ | 15072/17383 [55:55<08:29,  4.54it/s][A
+Processing files:  87%|████████▋ | 15080/17383 [55:57<09:05,  4.22it/s][A
+Processing files:  87%|████████▋ | 15088/17383 [56:00<09:56,  3.85it/s][A
+Processing files:  87%|████████▋ | 15096/17383 [56:01<09:18,  4.09it/s][A
+Processing files:  87%|████████▋ | 15104/17383 [56:03<09:08,  4.16it/s][A
+Processing files:  87%|████████▋ | 15112/17383 [56:05<08:42,  4.35it/s][A
+Processing files:  87%|████████▋ | 15120/17383 [56:07<09:09,  4.12it/s][A
+Processing files:  87%|████████▋ | 15128/17383 [56:09<08:45,  4.30it/s][A
+Processing files:  87%|████████▋ | 15136/17383 [56:10<08:24,  4.45it/s][A
+Processing files:  87%|████████▋ | 15144/17383 [56:12<08:13,  4.53it/s][A
+Processing files:  87%|████████▋ | 15152/17383 [56:14<08:05,  4.59it/s][A
+Processing files:  87%|████████▋ | 15160/17383 [56:16<08:21,  4.43it/s][A
+Processing files:  87%|████████▋ | 15168/17383 [56:17<08:06,  4.55it/s][A
+Processing files:  87%|████████▋ | 15176/17383 [56:19<08:33,  4.30it/s][A
+Processing files:  87%|████████▋ | 15184/17383 [56:21<08:11,  4.47it/s][A
+Processing files:  87%|████████▋ | 15192/17383 [56:23<08:18,  4.39it/s][A
+Processing files:  87%|████████▋ | 15200/17383 [56:25<08:56,  4.07it/s][A
+Processing files:  87%|████████▋ | 15208/17383 [56:27<08:42,  4.16it/s][A
+Processing files:  88%|████████▊ | 15216/17383 [56:29<08:19,  4.34it/s][A
+Processing files:  88%|████████▊ | 15224/17383 [56:30<07:57,  4.52it/s][A
+Processing files:  88%|████████▊ | 15232/17383 [56:32<08:29,  4.22it/s][A
+Processing files:  88%|████████▊ | 15240/17383 [56:34<08:12,  4.35it/s][A
+Processing files:  88%|████████▊ | 15248/17383 [56:36<07:49,  4.54it/s][A
+Processing files:  88%|████████▊ | 15256/17383 [56:37<07:45,  4.57it/s][A
+Processing files:  88%|████████▊ | 15264/17383 [56:40<08:12,  4.31it/s][A
+Processing files:  88%|████████▊ | 15272/17383 [56:41<07:51,  4.48it/s][A
+Processing files:  88%|████████▊ | 15280/17383 [56:43<07:44,  4.53it/s][A
+Processing files:  88%|████████▊ | 15288/17383 [56:45<07:55,  4.40it/s][A
+Processing files:  88%|████████▊ | 15296/17383 [56:46<07:38,  4.56it/s][A
+Processing files:  88%|████████▊ | 15304/17383 [56:48<07:25,  4.67it/s][A
+Processing files:  88%|████████▊ | 15312/17383 [56:50<07:40,  4.50it/s][A
+Processing files:  88%|████████▊ | 15320/17383 [56:52<07:28,  4.60it/s][A
+Processing files:  88%|████████▊ | 15328/17383 [56:54<07:48,  4.38it/s][A
+Processing files:  88%|████████▊ | 15336/17383 [56:55<07:44,  4.40it/s][A
+Processing files:  88%|████████▊ | 15344/17383 [56:57<07:31,  4.52it/s][A
+Processing files:  88%|████████▊ | 15352/17383 [56:59<07:13,  4.68it/s][A
+Processing files:  88%|████████▊ | 15360/17383 [57:00<07:03,  4.77it/s][A
+Processing files:  88%|████████▊ | 15368/17383 [57:02<07:02,  4.76it/s][A
+Processing files:  88%|████████▊ | 15376/17383 [57:04<07:19,  4.57it/s][A
+Processing files:  89%|████████▊ | 15384/17383 [57:06<07:07,  4.68it/s][A
+Processing files:  89%|████████▊ | 15392/17383 [57:08<07:29,  4.43it/s][A
+Processing files:  89%|████████▊ | 15400/17383 [57:09<07:14,  4.56it/s][A
+Processing files:  89%|████████▊ | 15408/17383 [57:11<07:04,  4.66it/s][A
+Processing files:  89%|████████▊ | 15416/17383 [57:13<07:02,  4.65it/s][A
+Processing files:  89%|████████▊ | 15424/17383 [57:15<07:31,  4.34it/s][A
+Processing files:  89%|████████▉ | 15432/17383 [57:17<07:59,  4.07it/s][A
+Processing files:  89%|████████▉ | 15440/17383 [57:19<07:35,  4.27it/s][A
+Processing files:  89%|████████▉ | 15448/17383 [57:20<07:15,  4.44it/s][A
+Processing files:  89%|████████▉ | 15456/17383 [57:22<06:56,  4.62it/s][A
+Processing files:  89%|████████▉ | 15464/17383 [57:24<07:46,  4.11it/s][A
+Processing files:  89%|████████▉ | 15472/17383 [57:26<07:15,  4.38it/s][A
+Processing files:  89%|████████▉ | 15480/17383 [57:28<07:16,  4.35it/s][A
+Processing files:  89%|████████▉ | 15488/17383 [57:29<06:57,  4.54it/s][A
+Processing files:  89%|████████▉ | 15496/17383 [57:31<07:12,  4.36it/s][A
+Processing files:  89%|████████▉ | 15504/17383 [57:34<07:41,  4.07it/s][A
+Processing files:  89%|████████▉ | 15512/17383 [57:35<07:12,  4.33it/s][A
+Processing files:  89%|████████▉ | 15520/17383 [57:37<07:41,  4.04it/s][A
+Processing files:  89%|████████▉ | 15528/17383 [57:39<07:39,  4.04it/s][A
+Processing files:  89%|████████▉ | 15536/17383 [57:41<07:15,  4.24it/s][A
+Processing files:  89%|████████▉ | 15544/17383 [57:43<07:17,  4.21it/s][A
+Processing files:  89%|████████▉ | 15552/17383 [57:45<06:54,  4.41it/s][A
+Processing files:  90%|████████▉ | 15560/17383 [57:46<06:52,  4.41it/s][A
+Processing files:  90%|████████▉ | 15568/17383 [57:48<06:35,  4.59it/s][A
+Processing files:  90%|████████▉ | 15576/17383 [57:50<06:19,  4.76it/s][A
+Processing files:  90%|████████▉ | 15584/17383 [57:51<06:16,  4.77it/s][A
+Processing files:  90%|████████▉ | 15592/17383 [57:53<06:17,  4.75it/s][A
+Processing files:  90%|████████▉ | 15600/17383 [57:54<06:09,  4.83it/s][A
+Processing files:  90%|████████▉ | 15608/17383 [57:56<06:31,  4.54it/s][A
+Processing files:  90%|████████▉ | 15616/17383 [57:58<06:21,  4.63it/s][A
+Processing files:  90%|████████▉ | 15624/17383 [58:00<06:23,  4.59it/s][A
+Processing files:  90%|████████▉ | 15632/17383 [58:02<06:37,  4.40it/s][A
+Processing files:  90%|████████▉ | 15640/17383 [58:04<06:50,  4.24it/s][A
+Processing files:  90%|█████████ | 15648/17383 [58:06<06:30,  4.44it/s][A
+Processing files:  90%|█████████ | 15656/17383 [58:08<06:43,  4.28it/s][A
+Processing files:  90%|█████████ | 15664/17383 [58:09<06:24,  4.47it/s][A
+Processing files:  90%|█████████ | 15672/17383 [58:12<07:08,  3.99it/s][A
+Processing files:  90%|█████████ | 15680/17383 [58:13<06:45,  4.20it/s][A
+Processing files:  90%|█████████ | 15688/17383 [58:15<06:35,  4.29it/s][A
+Processing files:  90%|█████████ | 15696/17383 [58:17<06:23,  4.40it/s][A
+Processing files:  90%|█████████ | 15704/17383 [58:19<06:12,  4.50it/s][A
+Processing files:  90%|█████████ | 15712/17383 [58:20<06:23,  4.36it/s][A
+Processing files:  90%|█████████ | 15720/17383 [58:22<06:07,  4.53it/s][A
+Processing files:  90%|█████████ | 15728/17383 [58:25<06:49,  4.04it/s][A
+Processing files:  91%|█████████ | 15736/17383 [58:27<06:49,  4.02it/s][A
+Processing files:  91%|█████████ | 15744/17383 [58:28<06:19,  4.31it/s][A
+Processing files:  91%|█████████ | 15752/17383 [58:30<06:38,  4.10it/s][A
+Processing files:  91%|█████████ | 15760/17383 [58:32<06:16,  4.31it/s][A
+Processing files:  91%|█████████ | 15768/17383 [58:34<05:59,  4.49it/s][A
+Processing files:  91%|█████████ | 15776/17383 [58:35<05:27,  4.91it/s][A
+Processing files:  91%|█████████ | 15784/17383 [58:36<05:27,  4.88it/s][A
+Processing files:  91%|█████████ | 15792/17383 [58:38<05:26,  4.87it/s][A
+Processing files:  91%|█████████ | 15800/17383 [58:40<05:33,  4.75it/s][A
+Processing files:  91%|█████████ | 15808/17383 [58:42<05:26,  4.82it/s][A
+Processing files:  91%|█████████ | 15816/17383 [58:43<05:23,  4.85it/s][A
+Processing files:  91%|█████████ | 15824/17383 [58:45<05:16,  4.93it/s][A
+Processing files:  91%|█████████ | 15832/17383 [58:46<05:22,  4.81it/s][A
+Processing files:  91%|█████████ | 15840/17383 [58:48<05:30,  4.67it/s][A
+Processing files:  91%|█████████ | 15848/17383 [58:50<05:25,  4.72it/s][A
+Processing files:  91%|█████████ | 15856/17383 [58:52<06:02,  4.22it/s][A
+Processing files:  91%|█████████▏| 15864/17383 [58:54<05:48,  4.36it/s][A
+Processing files:  91%|█████████▏| 15872/17383 [58:56<05:46,  4.36it/s][A
+Processing files:  91%|█████████▏| 15880/17383 [58:58<05:47,  4.32it/s][A
+Processing files:  91%|█████████▏| 15888/17383 [58:59<05:33,  4.49it/s][A
+Processing files:  91%|█████████▏| 15896/17383 [59:01<05:22,  4.62it/s][A
+Processing files:  91%|█████████▏| 15904/17383 [59:03<05:14,  4.71it/s][A
+Processing files:  92%|█████████▏| 15912/17383 [59:04<05:08,  4.76it/s][A
+Processing files:  92%|█████████▏| 15920/17383 [59:06<05:03,  4.83it/s][A
+Processing files:  92%|█████████▏| 15928/17383 [59:07<05:00,  4.85it/s][A
+Processing files:  92%|█████████▏| 15936/17383 [59:09<04:49,  4.99it/s][A
+Processing files:  92%|█████████▏| 15944/17383 [59:11<04:50,  4.96it/s][A
+Processing files:  92%|█████████▏| 15952/17383 [59:12<04:50,  4.93it/s][A
+Processing files:  92%|█████████▏| 15960/17383 [59:14<04:46,  4.96it/s][A
+Processing files:  92%|█████████▏| 15968/17383 [59:15<04:48,  4.90it/s][A
+Processing files:  92%|█████████▏| 15976/17383 [59:17<04:47,  4.90it/s][A
+Processing files:  92%|█████████▏| 15984/17383 [59:19<04:47,  4.87it/s][A
+Processing files:  92%|█████████▏| 15992/17383 [59:20<04:45,  4.88it/s][A
+Processing files:  92%|█████████▏| 16000/17383 [59:22<04:43,  4.87it/s][A
+Processing files:  92%|█████████▏| 16008/17383 [59:24<04:42,  4.86it/s][A
+Processing files:  92%|█████████▏| 16016/17383 [59:25<04:38,  4.91it/s][A
+Processing files:  92%|█████████▏| 16024/17383 [59:27<04:40,  4.84it/s][A
+Processing files:  92%|█████████▏| 16032/17383 [59:29<05:14,  4.29it/s][A
+Processing files:  92%|█████████▏| 16040/17383 [59:31<04:56,  4.53it/s][A
+Processing files:  92%|█████████▏| 16048/17383 [59:33<04:46,  4.66it/s][A
+Processing files:  92%|█████████▏| 16056/17383 [59:35<04:58,  4.45it/s][A
+Processing files:  92%|█████████▏| 16064/17383 [59:37<05:10,  4.25it/s][A
+Processing files:  92%|█████████▏| 16072/17383 [59:38<04:53,  4.46it/s][A
+Processing files:  93%|█████████▎| 16080/17383 [59:40<05:02,  4.31it/s][A
+Processing files:  93%|█████████▎| 16088/17383 [59:42<04:52,  4.43it/s][A
+Processing files:  93%|█████████▎| 16096/17383 [59:44<04:52,  4.40it/s][A
+Processing files:  93%|█████████▎| 16104/17383 [59:46<05:23,  3.96it/s][A
+Processing files:  93%|█████████▎| 16112/17383 [59:48<05:05,  4.16it/s][A
+Processing files:  93%|█████████▎| 16120/17383 [59:50<05:10,  4.07it/s][A
+Processing files:  93%|█████████▎| 16128/17383 [59:52<05:33,  3.77it/s][A
+Processing files:  93%|█████████▎| 16136/17383 [59:54<05:11,  4.01it/s][A
+Processing files:  93%|█████████▎| 16144/17383 [59:56<04:52,  4.24it/s][A
+Processing files:  93%|█████████▎| 16152/17383 [59:57<04:40,  4.39it/s][A
+Processing files:  93%|█████████▎| 16160/17383 [59:59<04:30,  4.52it/s][A
+Processing files:  93%|█████████▎| 16168/17383 [1:00:01<04:38,  4.36it/s][A
+Processing files:  93%|█████████▎| 16176/17383 [1:00:03<04:59,  4.03it/s][A
+Processing files:  93%|█████████▎| 16184/17383 [1:00:05<04:36,  4.34it/s][A
+Processing files:  93%|█████████▎| 16192/17383 [1:00:07<04:32,  4.37it/s][A
+Processing files:  93%|█████████▎| 16200/17383 [1:00:09<04:33,  4.32it/s][A
+Processing files:  93%|█████████▎| 16208/17383 [1:00:10<04:22,  4.48it/s][A
+Processing files:  93%|█████████▎| 16216/17383 [1:00:12<04:11,  4.64it/s][A
+Processing files:  93%|█████████▎| 16224/17383 [1:00:14<04:07,  4.67it/s][A
+Processing files:  93%|█████████▎| 16232/17383 [1:00:15<04:05,  4.69it/s][A
+Processing files:  93%|█████████▎| 16240/17383 [1:00:17<03:59,  4.77it/s][A
+Processing files:  93%|█████████▎| 16248/17383 [1:00:18<03:56,  4.81it/s][A
+Processing files:  94%|█████████▎| 16256/17383 [1:00:20<03:53,  4.84it/s][A
+Processing files:  94%|█████████▎| 16264/17383 [1:00:22<03:49,  4.87it/s][A
+Processing files:  94%|█████████▎| 16272/17383 [1:00:23<03:47,  4.88it/s][A
+Processing files:  94%|█████████▎| 16280/17383 [1:00:25<03:45,  4.90it/s][A
+Processing files:  94%|█████████▎| 16288/17383 [1:00:27<04:00,  4.56it/s][A
+Processing files:  94%|█████████▎| 16296/17383 [1:00:29<03:54,  4.64it/s][A
+Processing files:  94%|█████████▍| 16304/17383 [1:00:30<03:47,  4.74it/s][A
+Processing files:  94%|█████████▍| 16312/17383 [1:00:32<03:56,  4.53it/s][A
+Processing files:  94%|█████████▍| 16320/17383 [1:00:34<04:00,  4.42it/s][A
+Processing files:  94%|█████████▍| 16328/17383 [1:00:36<04:07,  4.26it/s][A
+Processing files:  94%|█████████▍| 16336/17383 [1:00:38<03:57,  4.42it/s][A
+Processing files:  94%|█████████▍| 16344/17383 [1:00:39<03:48,  4.56it/s][A
+Processing files:  94%|█████████▍| 16352/17383 [1:00:42<04:02,  4.25it/s][A
+Processing files:  94%|█████████▍| 16360/17383 [1:00:43<03:55,  4.34it/s][A
+Processing files:  94%|█████████▍| 16368/17383 [1:00:45<03:49,  4.43it/s][A
+Processing files:  94%|█████████▍| 16376/17383 [1:00:47<03:50,  4.37it/s][A
+Processing files:  94%|█████████▍| 16384/17383 [1:00:49<03:45,  4.44it/s][A
+Processing files:  94%|█████████▍| 16392/17383 [1:00:50<03:40,  4.50it/s][A
+Processing files:  94%|█████████▍| 16400/17383 [1:00:52<03:42,  4.41it/s][A
+Processing files:  94%|█████████▍| 16408/17383 [1:00:54<03:34,  4.55it/s][A
+Processing files:  94%|█████████▍| 16416/17383 [1:00:56<03:30,  4.60it/s][A
+Processing files:  94%|█████████▍| 16424/17383 [1:00:58<03:38,  4.38it/s][A
+Processing files:  95%|█████████▍| 16432/17383 [1:00:59<03:30,  4.51it/s][A
+Processing files:  95%|█████████▍| 16440/17383 [1:01:01<03:26,  4.57it/s][A
+Processing files:  95%|█████████▍| 16448/17383 [1:01:03<03:20,  4.67it/s][A
+Processing files:  95%|█████████▍| 16456/17383 [1:01:04<03:18,  4.68it/s][A
+Processing files:  95%|█████████▍| 16464/17383 [1:01:07<03:43,  4.11it/s][A
+Processing files:  95%|█████████▍| 16472/17383 [1:01:09<03:33,  4.27it/s][A
+Processing files:  95%|█████████▍| 16480/17383 [1:01:10<03:23,  4.43it/s][A
+Processing files:  95%|█████████▍| 16488/17383 [1:01:12<03:34,  4.17it/s][A
+Processing files:  95%|█████████▍| 16496/17383 [1:01:14<03:27,  4.28it/s][A
+Processing files:  95%|█████████▍| 16504/17383 [1:01:16<03:17,  4.46it/s][A
+Processing files:  95%|█████████▍| 16512/17383 [1:01:17<03:11,  4.55it/s][A
+Processing files:  95%|█████████▌| 16520/17383 [1:01:19<03:05,  4.66it/s][A
+Processing files:  95%|█████████▌| 16528/17383 [1:01:21<03:00,  4.74it/s][A
+Processing files:  95%|█████████▌| 16536/17383 [1:01:22<02:56,  4.79it/s][A
+Processing files:  95%|█████████▌| 16544/17383 [1:01:24<02:55,  4.77it/s][A
+Processing files:  95%|█████████▌| 16552/17383 [1:01:26<02:52,  4.83it/s][A
+Processing files:  95%|█████████▌| 16560/17383 [1:01:28<02:58,  4.62it/s][A
+Processing files:  95%|█████████▌| 16568/17383 [1:01:29<02:52,  4.72it/s][A
+Processing files:  95%|█████████▌| 16576/17383 [1:01:31<03:01,  4.46it/s][A
+Processing files:  95%|█████████▌| 16584/17383 [1:01:33<02:55,  4.55it/s][A
+Processing files:  95%|█████████▌| 16592/17383 [1:01:34<02:49,  4.66it/s][A
+Processing files:  95%|█████████▌| 16600/17383 [1:01:36<02:47,  4.67it/s][A
+Processing files:  96%|█████████▌| 16608/17383 [1:01:38<02:45,  4.67it/s][A
+Processing files:  96%|█████████▌| 16616/17383 [1:01:39<02:41,  4.75it/s][A
+Processing files:  96%|█████████▌| 16624/17383 [1:01:41<02:38,  4.80it/s][A
+Processing files:  96%|█████████▌| 16632/17383 [1:01:43<02:34,  4.86it/s][A
+Processing files:  96%|█████████▌| 16640/17383 [1:01:44<02:33,  4.85it/s][A
+Processing files:  96%|█████████▌| 16648/17383 [1:01:46<02:31,  4.85it/s][A
+Processing files:  96%|█████████▌| 16656/17383 [1:01:48<02:29,  4.85it/s][A
+Processing files:  96%|█████████▌| 16664/17383 [1:01:50<02:44,  4.36it/s][A
+Processing files:  96%|█████████▌| 16672/17383 [1:01:52<02:39,  4.45it/s][A
+Processing files:  96%|█████████▌| 16680/17383 [1:01:53<02:39,  4.40it/s][A
+Processing files:  96%|█████████▌| 16688/17383 [1:01:55<02:33,  4.52it/s][A
+Processing files:  96%|█████████▌| 16696/17383 [1:01:57<02:28,  4.63it/s][A
+Processing files:  96%|█████████▌| 16704/17383 [1:01:58<02:24,  4.71it/s][A
+Processing files:  96%|█████████▌| 16712/17383 [1:02:00<02:19,  4.80it/s][A
+Processing files:  96%|█████████▌| 16720/17383 [1:02:02<02:16,  4.85it/s][A
+Processing files:  96%|█████████▌| 16728/17383 [1:02:03<02:15,  4.84it/s][A
+Processing files:  96%|█████████▋| 16736/17383 [1:02:05<02:10,  4.98it/s][A
+Processing files:  96%|█████████▋| 16744/17383 [1:02:06<02:08,  4.97it/s][A
+Processing files:  96%|█████████▋| 16752/17383 [1:02:08<02:06,  5.00it/s][A
+Processing files:  96%|█████████▋| 16760/17383 [1:02:10<02:10,  4.76it/s][A
+Processing files:  96%|█████████▋| 16768/17383 [1:02:12<02:12,  4.65it/s][A
+Processing files:  97%|█████████▋| 16776/17383 [1:02:13<02:07,  4.78it/s][A
+Processing files:  97%|█████████▋| 16784/17383 [1:02:15<02:11,  4.56it/s][A
+Processing files:  97%|█████████▋| 16792/17383 [1:02:17<02:05,  4.69it/s][A
+Processing files:  97%|█████████▋| 16800/17383 [1:02:18<02:01,  4.78it/s][A
+Processing files:  97%|█████████▋| 16808/17383 [1:02:20<02:10,  4.42it/s][A
+Processing files:  97%|█████████▋| 16816/17383 [1:02:22<02:03,  4.59it/s][A
+Processing files:  97%|█████████▋| 16824/17383 [1:02:24<02:07,  4.38it/s][A
+Processing files:  97%|█████████▋| 16832/17383 [1:02:26<02:05,  4.39it/s][A
+Processing files:  97%|█████████▋| 16840/17383 [1:02:28<02:01,  4.48it/s][A
+Processing files:  97%|█████████▋| 16848/17383 [1:02:29<01:55,  4.63it/s][A
+Processing files:  97%|█████████▋| 16856/17383 [1:02:31<01:49,  4.80it/s][A
+Processing files:  97%|█████████▋| 16864/17383 [1:02:32<01:47,  4.82it/s][A
+Processing files:  97%|█████████▋| 16872/17383 [1:02:35<01:55,  4.43it/s][A
+Processing files:  97%|█████████▋| 16880/17383 [1:02:36<01:49,  4.61it/s][A
+Processing files:  97%|█████████▋| 16888/17383 [1:02:38<01:52,  4.42it/s][A
+Processing files:  97%|█████████▋| 16896/17383 [1:02:40<02:01,  4.02it/s][A
+Processing files:  97%|█████████▋| 16904/17383 [1:02:42<01:52,  4.27it/s][A
+Processing files:  97%|█████████▋| 16912/17383 [1:02:44<01:53,  4.15it/s][A
+Processing files:  97%|█████████▋| 16920/17383 [1:02:46<01:45,  4.37it/s][A
+Processing files:  97%|█████████▋| 16928/17383 [1:02:47<01:41,  4.48it/s][A
+Processing files:  97%|█████████▋| 16936/17383 [1:02:50<01:49,  4.09it/s][A
+Processing files:  97%|█████████▋| 16944/17383 [1:02:51<01:42,  4.27it/s][A
+Processing files:  98%|█████████▊| 16952/17383 [1:02:53<01:37,  4.44it/s][A
+Processing files:  98%|█████████▊| 16960/17383 [1:02:55<01:31,  4.62it/s][A
+Processing files:  98%|█████████▊| 16968/17383 [1:02:56<01:27,  4.75it/s][A
+Processing files:  98%|█████████▊| 16976/17383 [1:02:58<01:24,  4.79it/s][A
+Processing files:  98%|█████████▊| 16984/17383 [1:02:59<01:22,  4.86it/s][A
+Processing files:  98%|█████████▊| 16992/17383 [1:03:01<01:19,  4.93it/s][A
+Processing files:  98%|█████████▊| 17000/17383 [1:03:03<01:23,  4.57it/s][A
+Processing files:  98%|█████████▊| 17008/17383 [1:03:05<01:19,  4.69it/s][A
+Processing files:  98%|█████████▊| 17016/17383 [1:03:07<01:20,  4.55it/s][A
+Processing files:  98%|█████████▊| 17024/17383 [1:03:08<01:17,  4.62it/s][A
+Processing files:  98%|█████████▊| 17032/17383 [1:03:10<01:14,  4.71it/s][A
+Processing files:  98%|█████████▊| 17040/17383 [1:03:11<01:11,  4.81it/s][A
+Processing files:  98%|█████████▊| 17048/17383 [1:03:14<01:15,  4.41it/s][A
+Processing files:  98%|█████████▊| 17056/17383 [1:03:15<01:14,  4.39it/s][A
+Processing files:  98%|█████████▊| 17064/17383 [1:03:18<01:16,  4.18it/s][A
+Processing files:  98%|█████████▊| 17072/17383 [1:03:19<01:10,  4.42it/s][A
+Processing files:  98%|█████████▊| 17080/17383 [1:03:21<01:06,  4.56it/s][A
+Processing files:  98%|█████████▊| 17088/17383 [1:03:22<01:02,  4.71it/s][A
+Processing files:  98%|█████████▊| 17096/17383 [1:03:24<01:00,  4.75it/s][A
+Processing files:  98%|█████████▊| 17104/17383 [1:03:26<00:59,  4.68it/s][A
+Processing files:  98%|█████████▊| 17112/17383 [1:03:27<00:56,  4.79it/s][A
+Processing files:  98%|█████████▊| 17120/17383 [1:03:29<00:54,  4.83it/s][A
+Processing files:  99%|█████████▊| 17128/17383 [1:03:31<00:52,  4.84it/s][A
+Processing files:  99%|█████████▊| 17136/17383 [1:03:33<00:57,  4.32it/s][A
+Processing files:  99%|█████████▊| 17144/17383 [1:03:35<00:53,  4.45it/s][A
+Processing files:  99%|█████████▊| 17152/17383 [1:03:36<00:50,  4.56it/s][A
+Processing files:  99%|█████████▊| 17160/17383 [1:03:38<00:51,  4.33it/s][A
+Processing files:  99%|█████████▉| 17168/17383 [1:03:40<00:47,  4.50it/s][A
+Processing files:  99%|█████████▉| 17176/17383 [1:03:42<00:46,  4.42it/s][A
+Processing files:  99%|█████████▉| 17184/17383 [1:03:43<00:43,  4.59it/s][A
+Processing files:  99%|█████████▉| 17192/17383 [1:03:45<00:42,  4.52it/s][A
+Processing files:  99%|█████████▉| 17200/17383 [1:03:47<00:39,  4.66it/s][A
+Processing files:  99%|█████████▉| 17208/17383 [1:03:48<00:37,  4.72it/s][A
+Processing files:  99%|█████████▉| 17216/17383 [1:03:50<00:35,  4.75it/s][A
+Processing files:  99%|█████████▉| 17224/17383 [1:03:52<00:33,  4.77it/s][A
+Processing files:  99%|█████████▉| 17232/17383 [1:03:53<00:31,  4.82it/s][A
+Processing files:  99%|█████████▉| 17240/17383 [1:03:55<00:29,  4.85it/s][A
+Processing files:  99%|█████████▉| 17248/17383 [1:03:57<00:27,  4.92it/s][A
+Processing files:  99%|█████████▉| 17256/17383 [1:03:58<00:25,  4.91it/s][A
+Processing files:  99%|█████████▉| 17264/17383 [1:04:00<00:26,  4.45it/s][A
+Processing files:  99%|█████████▉| 17272/17383 [1:04:03<00:26,  4.17it/s][A
+Processing files:  99%|█████████▉| 17280/17383 [1:04:04<00:23,  4.38it/s][A
+Processing files:  99%|█████████▉| 17288/17383 [1:04:07<00:24,  3.90it/s][A
+Processing files:  99%|█████████▉| 17296/17383 [1:04:08<00:20,  4.19it/s][A
+Processing files: 100%|█████████▉| 17304/17383 [1:04:10<00:18,  4.38it/s][A
+Processing files: 100%|█████████▉| 17312/17383 [1:04:12<00:16,  4.43it/s][A
+Processing files: 100%|█████████▉| 17320/17383 [1:04:13<00:13,  4.51it/s][A
+Processing files: 100%|█████████▉| 17328/17383 [1:04:15<00:11,  4.60it/s][A
+Processing files: 100%|█████████▉| 17336/17383 [1:04:17<00:09,  4.70it/s][A
+Processing files: 100%|█████████▉| 17344/17383 [1:04:18<00:08,  4.77it/s][A
+Processing files: 100%|█████████▉| 17352/17383 [1:04:20<00:06,  4.57it/s][A
+Processing files: 100%|█████████▉| 17360/17383 [1:04:22<00:05,  4.50it/s][A
+Processing files: 100%|█████████▉| 17368/17383 [1:04:24<00:03,  4.36it/s][A
+Processing files: 100%|█████████▉| 17376/17383 [1:04:26<00:01,  4.52it/s][AProcessing files: 100%|██████████| 17383/17383 [1:04:26<00:00,  4.50it/s]
+  0%|           | 1/17383 [1:04:31<18691:59:14, 3871.31s/it]100%|███████████████| 17383/17383 [1:04:31<00:00,  4.49it/s]
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/111716130.nii.gz: Compressed file ended before the end-of-stream marker was reached
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/111514111.nii.gz: Compressed file ended before the end-of-stream marker was reached
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/__init__.py:67: FutureWarning: Python 3.7 support is deprecated and will be removed in release 0.12 of Nilearn. Consider switching to Python 3.9 or 3.10.
+  _python_deprecation_warnings()
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/input_data/__init__.py:23: FutureWarning: The import path 'nilearn.input_data' is deprecated in version 0.9. Importing from 'nilearn.input_data' will be possible at least until release 0.13.0. Please import from 'nilearn.maskers' instead.
+  warnings.warn(message, FutureWarning)
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/103111141.nii.gz: Compressed file ended before the end-of-stream marker was reached
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/104012021.nii.gz: Compressed file ended before the end-of-stream marker was reached
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/__init__.py:67: FutureWarning: Python 3.7 support is deprecated and will be removed in release 0.12 of Nilearn. Consider switching to Python 3.9 or 3.10.
+  _python_deprecation_warnings()
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/input_data/__init__.py:23: FutureWarning: The import path 'nilearn.input_data' is deprecated in version 0.9. Importing from 'nilearn.input_data' will be possible at least until release 0.13.0. Please import from 'nilearn.maskers' instead.
+  warnings.warn(message, FutureWarning)
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/103010041.nii.gz: Compressed file ended before the end-of-stream marker was reached
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/112112010.nii.gz: Compressed file ended before the end-of-stream marker was reached
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/111312021.nii.gz: Compressed file ended before the end-of-stream marker was reached
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/__init__.py:67: FutureWarning: Python 3.7 support is deprecated and will be removed in release 0.12 of Nilearn. Consider switching to Python 3.9 or 3.10.
+  _python_deprecation_warnings()
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/input_data/__init__.py:23: FutureWarning: The import path 'nilearn.input_data' is deprecated in version 0.9. Importing from 'nilearn.input_data' will be possible at least until release 0.13.0. Please import from 'nilearn.maskers' instead.
+  warnings.warn(message, FutureWarning)
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/111514031.nii.gz: Compressed file ended before the end-of-stream marker was reached
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/103111031.nii.gz: Compressed file ended before the end-of-stream marker was reached
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/__init__.py:67: FutureWarning: Python 3.7 support is deprecated and will be removed in release 0.12 of Nilearn. Consider switching to Python 3.9 or 3.10.
+  _python_deprecation_warnings()
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/input_data/__init__.py:23: FutureWarning: The import path 'nilearn.input_data' is deprecated in version 0.9. Importing from 'nilearn.input_data' will be possible at least until release 0.13.0. Please import from 'nilearn.maskers' instead.
+  warnings.warn(message, FutureWarning)
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/112112110.nii.gz: Compressed file ended before the end-of-stream marker was reached
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/112516010.nii.gz: Empty file: '/scratch/alpine/alar6830/WM_nback_labels/112516010.nii.gz'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/103818031.nii.gz: Compressed file ended before the end-of-stream marker was reached
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/__init__.py:67: FutureWarning: Python 3.7 support is deprecated and will be removed in release 0.12 of Nilearn. Consider switching to Python 3.9 or 3.10.
+  _python_deprecation_warnings()
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/input_data/__init__.py:23: FutureWarning: The import path 'nilearn.input_data' is deprecated in version 0.9. Importing from 'nilearn.input_data' will be possible at least until release 0.13.0. Please import from 'nilearn.maskers' instead.
+  warnings.warn(message, FutureWarning)
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/104416111.nii.gz: Compressed file ended before the end-of-stream marker was reached
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/103515021.nii.gz: Compressed file ended before the end-of-stream marker was reached
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/__init__.py:67: FutureWarning: Python 3.7 support is deprecated and will be removed in release 0.12 of Nilearn. Consider switching to Python 3.9 or 3.10.
+  _python_deprecation_warnings()
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/input_data/__init__.py:23: FutureWarning: The import path 'nilearn.input_data' is deprecated in version 0.9. Importing from 'nilearn.input_data' will be possible at least until release 0.13.0. Please import from 'nilearn.maskers' instead.
+  warnings.warn(message, FutureWarning)
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/104416011.nii.gz: Compressed file ended before the end-of-stream marker was reached
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/103818131.nii.gz: Compressed file ended before the end-of-stream marker was reached
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/__init__.py:67: FutureWarning: Python 3.7 support is deprecated and will be removed in release 0.12 of Nilearn. Consider switching to Python 3.9 or 3.10.
+  _python_deprecation_warnings()
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/input_data/__init__.py:23: FutureWarning: The import path 'nilearn.input_data' is deprecated in version 0.9. Importing from 'nilearn.input_data' will be possible at least until release 0.13.0. Please import from 'nilearn.maskers' instead.
+  warnings.warn(message, FutureWarning)
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/104820010.nii.gz: Compressed file ended before the end-of-stream marker was reached
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/112314010.nii.gz: Empty file: '/scratch/alpine/alar6830/WM_nback_labels/112314010.nii.gz'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/103515131.nii.gz: Compressed file ended before the end-of-stream marker was reached
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/103414131.nii.gz: Compressed file ended before the end-of-stream marker was reached
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/111716021.nii.gz: Empty file: '/scratch/alpine/alar6830/WM_nback_labels/111716021.nii.gz'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/103414031.nii.gz: Compressed file ended before the end-of-stream marker was reached
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/104012111.nii.gz: Compressed file ended before the end-of-stream marker was reached
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/__init__.py:67: FutureWarning: Python 3.7 support is deprecated and will be removed in release 0.12 of Nilearn. Consider switching to Python 3.9 or 3.10.
+  _python_deprecation_warnings()
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/input_data/__init__.py:23: FutureWarning: The import path 'nilearn.input_data' is deprecated in version 0.9. Importing from 'nilearn.input_data' will be possible at least until release 0.13.0. Please import from 'nilearn.maskers' instead.
+  warnings.warn(message, FutureWarning)
+done prepping
