@@ -1,8 +1,10 @@
 
-import os 
-import nilearn as nil
-import nilearn.datasets
-
+import os
+import numpy as np
+from nilearn import datasets, image, plotting
+from nilearn.regions import connected_regions
+from scipy.ndimage import center_of_mass
+from random import sample
 
 datadir = "./Dataset/Data"
 
@@ -11,7 +13,30 @@ datadir = "./Dataset/Data"
 import os
 import numpy as np
 from nilearn import datasets, image
+def calc_COM(atlas_img):
+    """
+    Calculate the center of mass (COM) for each region in the given atlas image.
 
+    Parameters:
+    - atlas_img (Nifti1Image): The atlas image.
+
+    Returns:
+    - mni_coords (list of tuple): List of MNI coordinates for the center of mass of each region.
+    """
+    atlas_data = atlas_img.get_fdata()
+    mni_coords = []
+    print(atlas_data.max())
+    for i in range(1, int(atlas_data.max()) + 1):  # Iterate over all region indices
+        region_mask = atlas_data == i  # Create a binary mask for the current region
+        if np.any(region_mask):  # Skip empty regions
+            com_voxel = center_of_mass(region_mask)
+            com_mni = image.coord_transform(
+                com_voxel[0], com_voxel[1], com_voxel[2], atlas_img.affine
+            )
+            mni_coords.append(com_mni)
+
+    return mni_coords
+    
 def prep_atlas(atlas, datadir, mni_coords=None):
     """
     Load or download the specified atlas and optionally filter ROIs based on MNI coordinates.
@@ -46,8 +71,9 @@ def prep_atlas(atlas, datadir, mni_coords=None):
 
     if mni_coords is None:
         # No filtering, return the full atlas
-        return atlas_img
-
+        # return atlas_img
+        mni_coords = sample(calc_COM(atlas_img),5)
+    
     # Convert MNI coordinates to voxel space and filter ROIs
     atlas_data = atlas_img.get_fdata()
     roi_indices = []

@@ -79,7 +79,7 @@ def prep_abide(atlas, fnirs = False):
     torch.save(dataset, f"{datadir}/dataset_abide_{atlas}.save")
 
 
-def prep_hcp(atlas, fnirs = False):
+def prep_hcp(atlas, name, fnirs = False):
     # Define directory for HCP data
     bulkDataDir = "/scratch/alpine/alar6830/WM_nback_labels/"
 
@@ -88,7 +88,7 @@ def prep_hcp(atlas, fnirs = False):
         data, digitization, timings = load_fnirs(fnirs_folder)
         MNI_coords = calc_MNI_average(digitization)
     else:
-        MNI_coords = [[0, 0, 0],[100,100,100]]
+        MNI_coords = None
 
 
     # Prepare the atlas image
@@ -112,8 +112,9 @@ def prep_hcp(atlas, fnirs = False):
                 dataset.append(result)
             pbar.update(1)  # Update the progress bar
     #append fnirs data to dataset
-    fnirs_data = process_fnirs(data, timings)
-    for f in fnirs_data:
-        dataset.append(f)
+    if(fnirs):
+        fnirs_data = process_fnirs(data, timings)
+        for f in fnirs_data:
+            dataset.append(f)
     # Save dataset
-    torch.save(dataset, f"{datadir}/dataset_hcp_{atlas}.save")
+    torch.save(dataset, f"{datadir}/dataset_hcp_{atlas}_{name}.save")
