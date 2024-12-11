@@ -6,12 +6,12 @@ from nilearn.datasets import fetch_atlas_aal
 
 def get_parcel_label(mni_coord, atlas_data, affine):
     # Convert MNI coordinate to voxel indices
-    voxel_indices = np.linalg.inv(affine).dot(np.append(mni_coord, 1))[:3]
-    print(voxel_indices)
-    voxel_indices = np.round(voxel_indices).astype(int)
+  
+    voxel_indices = np.round(mni_coord).astype(int)
     
     # Extract the label at the voxel indices
     label = atlas_data[tuple(voxel_indices)]
+    print(f"The MNI coordinate {mni_coord} falls into parcel label {int(label)}.")
     return label
 
 if __name__ == "__main__":
