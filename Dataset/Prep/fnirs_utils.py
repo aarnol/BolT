@@ -15,6 +15,7 @@ def load_fnirs(target_folder):
     for subject in data:
         blocks = subject[0]
         blocks = [block[0] for block in blocks]
+        print(blocks)
         i = 1
         for block in blocks:
             f_data = {

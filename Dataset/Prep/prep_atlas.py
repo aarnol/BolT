@@ -80,18 +80,8 @@ def prep_atlas(atlas, datadir, mni_coords=None):
     roi_indices = []
 
     for coord in mni_coords:
-        # Convert MNI to voxel coordinates
-        voxel_coord = np.linalg.inv(atlas_img.affine).dot(np.append(coord, 1))[:3]
-        voxel_coord = np.round(voxel_coord).astype(int)
-
-        # Get the ROI index at the voxel
-        try:
-            roi_index = atlas_data[tuple(voxel_coord)]
-            if roi_index > 0:  # Exclude background
-                roi_indices.append(int(roi_index))
-        except IndexError:
-            print(f"Warning: Coordinate {coord} is out of bounds for the atlas.")
-            continue
+        label = get_parcel_label(coord, atlas_data, atlas_img.affine)
+        roi_indices.append(label)
 
     # Unique ROI indices
     roi_indices = np.unique(roi_indices)
