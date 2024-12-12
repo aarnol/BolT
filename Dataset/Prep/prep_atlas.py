@@ -5,7 +5,7 @@ from nilearn import datasets, image, plotting
 from nilearn.regions import connected_regions
 from scipy.ndimage import center_of_mass
 from random import sample
-
+import matplotlib.pyplot as plt
 datadir = "./Dataset/Data"
 
 
@@ -13,7 +13,7 @@ datadir = "./Dataset/Data"
 import os
 import numpy as np
 from nilearn import datasets, image
-from .fnirs_utils import get_parcel_label
+from .fnirs_utils import get_parcel_label, save_atlas_plot_with_coord
 def calc_COM(atlas_img):
     """
     Calculate the center of mass (COM) for each region in the given atlas image.
