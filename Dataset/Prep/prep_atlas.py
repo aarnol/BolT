@@ -26,7 +26,7 @@ def calc_COM(atlas_img):
     """
     atlas_data = atlas_img.get_fdata()
     mni_coords = []
-    print(atlas_data.max())
+    
     for i in range(1, int(atlas_data.max()) + 1):  # Iterate over all region indices
         region_mask = atlas_data == i  # Create a binary mask for the current region
         if np.any(region_mask):  # Skip empty regions
@@ -81,15 +81,16 @@ def prep_atlas(atlas, datadir, mni_coords=None):
 
     for coord in mni_coords:
         label = get_parcel_label(coord, atlas_data, atlas_img.affine)
+        
         roi_indices.append(label)
 
     # Unique ROI indices
     roi_indices = np.unique(roi_indices)
-
+ 
     # Create a filtered atlas
     filtered_atlas_data = np.isin(atlas_data, roi_indices) * atlas_data
     filtered_atlas_img = image.new_img_like(atlas_img, filtered_atlas_data)
-
+    print(filtered_atlas_img.get_fdata(), flush = True)
     return filtered_atlas_img
 
 

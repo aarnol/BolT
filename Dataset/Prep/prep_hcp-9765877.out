@@ -1,0 +1,531 @@
+[2102. 2112. 2202. 2212. 2312. 2322.]
+The most common parcel label within a 30mm radius of [59.66666667 63.33333333 -3.66666667] is 2202.0.
+[2102. 2112. 2202. 2212. 2312. 2322. 2602. 4002.]
+The most common parcel label within a 30mm radius of [47.33333333 74.          1.33333333] is 2202.0.
+[2102. 2112. 2202. 2212. 2312. 2322.]
+The most common parcel label within a 30mm radius of [55.33333333 66.          5.66666667] is 2202.0.
+[2102. 2112. 2202. 2212. 2601. 2602. 2611. 2612. 2701. 2702.]
+The most common parcel label within a 30mm radius of [25.33333333 85.66666667  1.        ] is 2102.0.
+[2101. 2102. 2111. 2112. 2202. 2211. 2212. 2601. 2602. 2611. 2612. 2701.
+ 2702.]
+The most common parcel label within a 30mm radius of [ 7.33333333 88.          1.33333333] is 2601.0.
+[2101. 2102. 2111. 2112. 2202. 2211. 2212. 2601. 2602. 2611. 2612. 2701.
+ 2702.]
+The most common parcel label within a 30mm radius of [11.         87.         14.33333333] is 2601.0.
+[2101. 2102. 2111. 2112. 2201. 2211. 2212. 2601. 2602. 2611. 2612. 2701.
+ 2702.]
+The most common parcel label within a 30mm radius of [-9.33333333 88.         -7.33333333] is 2601.0.
+[2101. 2102. 2111. 2112. 2201. 2211. 2601. 2602. 2611. 2612. 2701. 2702.]
+The most common parcel label within a 30mm radius of [-18.66666667  86.           4.        ] is 2601.0.
+[2101. 2102. 2111. 2112. 2201. 2202. 2211. 2212. 2601. 2602. 2611. 2612.
+ 2701. 2702.]
+The most common parcel label within a 30mm radius of [-2.66666667 88.          9.33333333] is 2601.0.
+[2101. 2102. 2111. 2112. 2201. 2202. 2211. 2601. 2602. 2611. 2612. 4001.
+ 4002.]
+The most common parcel label within a 30mm radius of [-10.66666667  84.66666667  21.        ] is 2601.0.
+[2101. 2102. 2111. 2112. 2201. 2202. 2211. 2212. 2601. 2602. 2611. 2612.]
+The most common parcel label within a 30mm radius of [ 2. 86. 22.] is 2601.0.
+[2101. 2102. 2201. 2202. 2601. 2602. 4001. 4002.]
+The most common parcel label within a 30mm radius of [ 0.33333333 81.33333333 32.66666667] is 2601.0.
+[2102. 2112. 2202. 2212. 2312. 2322. 2602. 2612. 4002.]
+The most common parcel label within a 30mm radius of [45.33333333 74.          9.33333333] is 2202.0.
+[2102. 2112. 2202. 2212. 2312. 2322. 2602.]
+The most common parcel label within a 30mm radius of [50.66666667 67.66666667 16.66666667] is 2202.0.
+[2102. 2112. 2202. 2212. 2312. 2322. 2602. 2612. 4002.]
+The most common parcel label within a 30mm radius of [42.66666667 73.66666667 20.66666667] is 2202.0.
+[2102. 2202. 2212. 2302. 2312. 2322. 3002. 8122. 8212.]
+The most common parcel label within a 30mm radius of [67.33333333 50.33333333  0.33333333] is 2312.0.
+[2102. 2112. 2202. 2212. 2312. 2322. 3002.]
+The most common parcel label within a 30mm radius of [60.33333333 59.33333333  7.66666667] is 2202.0.
+[2002. 2202. 2212. 2302. 2312. 2322. 2332. 3002. 8122. 8212.]
+The most common parcel label within a 30mm radius of [71.33333333 41.         10.33333333] is 2312.0.
+[2102. 2202. 2212. 2302. 2312. 2322. 3002. 8122.]
+The most common parcel label within a 30mm radius of [67. 46. 18.] is 2202.0.
+[2002. 2302. 2332. 6002. 6212. 6222. 8102. 8112. 8122. 8202. 8212. 8302.]
+The most common parcel label within a 30mm radius of [ 87.         -20.33333333   4.        ] is 8202.0.
+[2002. 2332. 5202. 5302. 6002. 6202. 6212. 6222. 8102. 8112. 8202. 8302.]
+The most common parcel label within a 30mm radius of [ 86.         -37.33333333  12.        ] is 8202.0.
+[2332. 5202. 5302. 6002. 6212. 6222. 8102. 8112. 8202. 8302. 9002.]
+The most common parcel label within a 30mm radius of [ 86.         -40.66666667   3.66666667] is 8202.0.
+[2002. 2202. 2212. 2302. 2312. 2322. 2332. 3002. 6002. 8102. 8112. 8122.
+ 8202. 8212.]
+The most common parcel label within a 30mm radius of [75.         31.66666667 10.        ] is 2312.0.
+[2002. 2202. 2302. 2312. 2322. 2332. 6002. 6212. 8102. 8112. 8122. 8202.
+ 8212. 8302.]
+The most common parcel label within a 30mm radius of [82.  7.  7.] is 8112.0.
+[2002. 2202. 2302. 2312. 2322. 2332. 3002. 6002. 6212. 8102. 8112. 8122.
+ 8202.]
+The most common parcel label within a 30mm radius of [79. 15. 21.] is 2312.0.
+[2002. 2202. 2302. 2312. 2332. 6002. 6212. 8102. 8112. 8122. 8202. 8212.
+ 8302.]
+The most common parcel label within a 30mm radius of [ 86.         -15.           9.66666667] is 8112.0.
+[2002. 2202. 2302. 2312. 2332. 6002. 6102. 6202. 6212. 8102. 8112. 8122.
+ 8202.]
+The most common parcel label within a 30mm radius of [83. -9. 28.] is 8112.0.
+[2002. 2332. 6002. 6202. 6212. 6222. 8102. 8112. 8202. 8302.]
+The most common parcel label within a 30mm radius of [ 86.         -30.33333333  18.66666667] is 8112.0.
+[2002. 2202. 2302. 2312. 2332. 6002. 6102. 6202. 6212. 8102. 8112. 8122.
+ 8202.]
+The most common parcel label within a 30mm radius of [83. -9. 28.] is 8112.0.
+[2002. 2202. 2332. 5202. 6002. 6102. 6202. 6212. 6222. 8102. 8112. 8202.]
+The most common parcel label within a 30mm radius of [ 84.33333333 -37.          29.33333333] is 8112.0.
+[2002. 2202. 2302. 2312. 2332. 6002. 6102. 6202. 6212. 8102. 8112. 8202.]
+The most common parcel label within a 30mm radius of [ 82.66666667 -15.          35.33333333] is 6212.0.
+[2002. 2202. 2332. 5202. 6002. 6102. 6202. 6212. 6222. 8112. 8202.]
+The most common parcel label within a 30mm radius of [ 82.         -34.66666667  43.33333333] is 6212.0.
+[2002. 2202. 2212. 2302. 2312. 2322. 2332. 3002. 6002. 8102. 8112. 8122.]
+The most common parcel label within a 30mm radius of [74. 32. 20.] is 2312.0.
+[2002. 2202. 2302. 2312. 2332. 3002. 6002. 8102. 8112. 8122.]
+The most common parcel label within a 30mm radius of [75. 21. 32.] is 2312.0.
+[2002. 2202. 2302. 2312. 2332. 3002. 6002. 8102. 8112. 8122.]
+The most common parcel label within a 30mm radius of [75. 21. 32.] is 2312.0.
+[2002. 2202. 2212. 2302. 2312. 2322. 2332. 3002. 8102. 8112. 8122.]
+The most common parcel label within a 30mm radius of [72. 34. 25.] is 2312.0.
+[2001. 2201. 2301. 2311. 2321. 2331. 6001. 6211. 8101. 8111. 8121. 8201.
+ 8211. 8301.]
+The most common parcel label within a 30mm radius of [-80.   4.  -2.] is 8201.0.
+[2331. 5201. 5301. 6001. 6201. 6211. 6221. 8101. 8111. 8201. 8301.]
+The most common parcel label within a 30mm radius of [-82.         -46.66666667  11.66666667] is 8201.0.
+[5201. 5301. 5401. 6211. 6221. 8111. 8201. 8301. 9001.]
+The most common parcel label within a 30mm radius of [-77. -64.  -4.] is 8201.0.
+[2331. 5201. 5301. 6001. 6211. 8111. 8201. 8301. 9001. 9011.]
+The most common parcel label within a 30mm radius of [-81.         -50.66666667 -11.        ] is 8201.0.
+[2101. 2111. 2201. 2211. 2311. 2321. 2601. 2611. 2612. 4001.]
+The most common parcel label within a 30mm radius of [-30.66666667  79.          16.33333333] is 2601.0.
+[2101. 2111. 2201. 2211. 2301. 2311. 2321. 3001. 8121.]
+The most common parcel label within a 30mm radius of [-64.          49.66666667   6.        ] is 2311.0.
+[2101. 2111. 2201. 2211. 2311. 2321. 3001.]
+The most common parcel label within a 30mm radius of [-53.33333333  60.66666667  17.        ] is 2201.0.
+[2001. 2201. 2211. 2301. 2311. 2321. 2331. 3001. 6001. 8101. 8111. 8121.
+ 8201.]
+The most common parcel label within a 30mm radius of [-75.66666667  19.           7.        ] is 2311.0.
+[2001. 2101. 2201. 2211. 2301. 2311. 2321. 2331. 3001. 6001. 8111. 8121.]
+The most common parcel label within a 30mm radius of [-67.  34.  28.] is 2311.0.
+[2001. 2201. 2301. 2311. 2331. 6001. 6201. 6211. 8101. 8111. 8121. 8201.]
+The most common parcel label within a 30mm radius of [-81. -14.  27.] is 6001.0.
+[2001. 2101. 2201. 2301. 2311. 2331. 3001. 6001.]
+The most common parcel label within a 30mm radius of [-61.33333333  27.66666667  46.66666667] is 2201.0.
+[2331. 5201. 6001. 6201. 6211. 6221. 8101. 8111. 8201.]
+The most common parcel label within a 30mm radius of [-79.33333333 -41.          40.        ] is 6211.0.
+[2001. 2101. 2201. 2301. 6001. 6211.]
+The most common parcel label within a 30mm radius of [-56.66666667  12.          64.33333333] is 2201.0.
+[2001. 2101. 2201. 2401. 6001. 6101. 6201. 6401.]
+The most common parcel label within a 30mm radius of [-48.66666667 -23.33333333  84.        ] is 2001.0.
+[2101. 2201. 2311. 2601. 2602. 4001. 4002.]
+The most common parcel label within a 30mm radius of [-19.66666667  77.66666667  33.        ] is 2601.0.
+[2101. 2201. 2311. 2601. 4001.]
+The most common parcel label within a 30mm radius of [-37.66666667  64.          40.33333333] is 2201.0.
+[2101. 2201. 2301. 2311. 2401. 2601. 4001. 4011.]
+The most common parcel label within a 30mm radius of [-33.66666667  55.66666667  53.66666667] is 2201.0.
+[2101. 2102. 2201. 2202. 2601. 2602. 4001. 4002. 4012.]
+The most common parcel label within a 30mm radius of [-5.33333333 74.33333333 44.33333333] is 2601.0.
+[2001. 2101. 2201. 2401. 6001.]
+The most common parcel label within a 30mm radius of [-44.33333333  27.          67.        ] is 2201.0.
+[2001. 2002. 2101. 2102. 2201. 2401. 2402. 2601. 2602. 6401. 6402.]
+The most common parcel label within a 30mm radius of [-11.66666667  10.          93.        ] is 2402.0.
+[2001. 2101. 2201. 2401. 4011. 6001. 6201. 6301. 6401.]
+The most common parcel label within a 30mm radius of [-44.          -7.          82.33333333] is 2001.0.
+[2002. 2102. 2202. 2402. 2602. 6002. 6402.]
+The most common parcel label within a 30mm radius of [33.         -0.66666667 89.33333333] is 2402.0.
+[2002. 2102. 2202. 6002. 6102. 6202. 6212.]
+The most common parcel label within a 30mm radius of [60.         -8.66666667 73.66666667] is 2002.0.
+[2002. 2102. 2202. 2402. 6002. 6102. 6202.]
+The most common parcel label within a 30mm radius of [ 45.66666667 -26.          88.33333333] is 6002.0.
+[2002. 2102. 2202. 2402. 2602. 6002. 6402.]
+The most common parcel label within a 30mm radius of [37.33333333  6.         84.33333333] is 2102.0.
+[2002. 2102. 2202. 6002. 6212.]
+The most common parcel label within a 30mm radius of [54.          4.33333333 74.        ] is 2002.0.
+[2002. 2202. 2302. 2312. 2332. 6002. 6102. 6202. 6212. 8102. 8112.]
+The most common parcel label within a 30mm radius of [80.         -6.33333333 39.66666667] is 6002.0.
+[2002. 2202. 2302. 6002. 6102. 6202. 6212.]
+The most common parcel label within a 30mm radius of [ 74.         -13.33333333  58.33333333] is 6002.0.
+[2002. 2202. 2332. 6002. 6102. 6202. 6212. 6222. 8112. 8202.]
+The most common parcel label within a 30mm radius of [ 81. -27.  47.] is 6212.0.
+[2002. 2102. 2202. 6002. 6102. 6202. 6212. 6222.]
+The most common parcel label within a 30mm radius of [ 68.33333333 -31.          70.66666667] is 6002.0.
+[2002. 5202. 6002. 6102. 6202. 6212. 6222.]
+The most common parcel label within a 30mm radius of [ 74.         -43.66666667  61.33333333] is 6212.0.
+[2002. 6002. 6102. 6202. 6212. 6222.]
+The most common parcel label within a 30mm radius of [ 58.         -45.66666667  80.        ] is 6002.0.
+[2001. 2002. 2101. 2102. 2401. 2402. 6001. 6002. 6101. 6102. 6301. 6302.
+ 6401. 6402.]
+The most common parcel label within a 30mm radius of [ 11.33333333 -22.66666667 101.        ] is 6401.0.
+[2002. 2102. 2402. 6002. 6102. 6301. 6302. 6401. 6402.]
+The most common parcel label within a 30mm radius of [ 30. -48.  96.] is 6002.0.
+[2001. 2002. 2402. 6001. 6002. 6101. 6102. 6301. 6302. 6401. 6402.]
+The most common parcel label within a 30mm radius of [ -9. -48. 100.] is 6401.0.
+[2102. 2112. 2202. 2212. 2601. 2602. 2611. 2612. 2701. 2702. 4001. 4002.]
+The most common parcel label within a 30mm radius of [30.33333333 82.33333333 10.        ] is 2102.0.
+[2101. 2102. 2111. 2112. 2202. 2212. 2601. 2602. 2611. 2612. 4001. 4002.]
+The most common parcel label within a 30mm radius of [19.         84.66666667 19.33333333] is 2601.0.
+[2102. 2112. 2202. 2212. 2312. 2322. 2601. 2602. 2612. 4001. 4002.]
+The most common parcel label within a 30mm radius of [31.33333333 79.33333333 21.66666667] is 2102.0.
+[2101. 2102. 2202. 2601. 2602. 4001. 4002.]
+The most common parcel label within a 30mm radius of [16.33333333 80.33333333 32.        ] is 2601.0.
+[2102. 2202. 2312. 2601. 2602. 4001. 4002. 4012.]
+The most common parcel label within a 30mm radius of [32. 74. 35.] is 2202.0.
+[2102. 2202. 2312. 2601. 2602. 4001. 4002. 4012.]
+The most common parcel label within a 30mm radius of [30.33333333 68.66666667 45.33333333] is 2202.0.
+[2102. 2112. 2202. 2212. 2312. 2322. 3002.]
+The most common parcel label within a 30mm radius of [52.33333333 62.33333333 25.66666667] is 2202.0.
+[2102. 2202. 2312. 2602. 4002. 4012.]
+The most common parcel label within a 30mm radius of [42.33333333 68.         34.        ] is 2202.0.
+[2102. 2202. 2312. 2602. 4002.]
+The most common parcel label within a 30mm radius of [44. 62. 42.] is 2202.0.
+[2101. 2102. 2201. 2202. 2601. 2602. 4001. 4002. 4012.]
+The most common parcel label within a 30mm radius of [10. 71. 52.] is 2601.0.
+[2102. 2202. 2312. 2601. 2602. 4001. 4002. 4012.]
+The most common parcel label within a 30mm radius of [28.33333333 64.33333333 52.66666667] is 2202.0.
+[2101. 2102. 2202. 2401. 2402. 2601. 2602. 4012.]
+The most common parcel label within a 30mm radius of [14.33333333 53.66666667 70.33333333] is 2601.0.
+[2002. 2102. 2202. 2302. 2312. 2332. 3002.]
+The most common parcel label within a 30mm radius of [62.33333333 42.66666667 36.33333333] is 2202.0.
+[2102. 2202. 2312. 2602. 4002. 4012.]
+The most common parcel label within a 30mm radius of [47. 56. 46.] is 2202.0.
+[2002. 2102. 2202. 2302. 2312.]
+The most common parcel label within a 30mm radius of [49. 38. 60.] is 2202.0.
+[2001. 2101. 2201. 2401. 2601. 4011.]
+The most common parcel label within a 30mm radius of [-30.          34.33333333  72.33333333] is 2201.0.
+[2001. 2002. 2101. 2102. 2201. 2202. 2401. 2402. 2601. 2602. 6401.]
+The most common parcel label within a 30mm radius of [ 2.         18.66666667 90.66666667] is 2401.0.
+[2001. 2101. 2102. 2202. 2401. 2402. 2601. 2602.]
+The most common parcel label within a 30mm radius of [11.66666667 27.         85.33333333] is 2401.0.
+[2101. 2102. 2201. 2202. 2401. 2402. 2601. 2602.]
+The most common parcel label within a 30mm radius of [ 1. 36. 82.] is 2102.0.
+[2002. 2202. 2302. 2312. 2332. 6002. 6212. 8112.]
+The most common parcel label within a 30mm radius of [74.          8.33333333 46.33333333] is 2002.0.
+[2002. 2202. 2302. 2312. 6002. 6102. 6202. 6212.]
+The most common parcel label within a 30mm radius of [70.66666667 -4.66666667 59.33333333] is 2002.0.
+[2002. 2102. 2202. 2302. 6002. 6212.]
+The most common parcel label within a 30mm radius of [64.33333333  7.66666667 61.66666667] is 2002.0.
+[2002. 2102. 2202. 2302. 6002.]
+The most common parcel label within a 30mm radius of [57.33333333 19.66666667 63.33333333] is 2202.0.
+[2102. 2202. 2302. 2312. 2402. 2602. 4002. 4012.]
+The most common parcel label within a 30mm radius of [40.33333333 50.66666667 57.66666667] is 2202.0.
+[2002. 2102. 2202. 2402. 2602.]
+The most common parcel label within a 30mm radius of [35.66666667 27.         76.        ] is 2102.0.
+[2002. 2102. 2202. 2402. 6002.]
+The most common parcel label within a 30mm radius of [48.66666667 21.66666667 70.66666667] is 2202.0.
+[2002. 2102. 2202. 2401. 2402. 2601. 2602. 4012.]
+The most common parcel label within a 30mm radius of [29. 38. 74.] is 2102.0.
+[2002. 2102. 2202. 2402. 2602. 4012.]
+The most common parcel label within a 30mm radius of [37.         33.         72.33333333] is 2102.0.
+[5201. 6101. 6201. 6211. 6221. 8111. 8201.]
+The most common parcel label within a 30mm radius of [-67.         -78.33333333  38.        ] is 6221.0.
+[5101. 6001. 6101. 6201. 6221. 6301.]
+The most common parcel label within a 30mm radius of [-44. -76.  77.] is 6101.0.
+[5001. 5011. 5021. 5101. 5201. 5301. 6101. 6201. 6221. 8201.]
+The most common parcel label within a 30mm radius of [ -48.         -101.66666667   27.        ] is 5201.0.
+[2332. 5202. 5302. 6002. 6102. 6202. 6212. 6222. 8112. 8202.]
+The most common parcel label within a 30mm radius of [ 82. -50.  27.] is 6212.0.
+[2332. 5202. 6002. 6102. 6202. 6212. 6222. 8112. 8202.]
+The most common parcel label within a 30mm radius of [ 79.33333333 -49.          42.66666667] is 6212.0.
+[2332. 5202. 5302. 6002. 6202. 6212. 6222. 8112. 8202. 8302.]
+The most common parcel label within a 30mm radius of [ 81.33333333 -54.66666667  20.33333333] is 8202.0.
+[2002. 2202. 2212. 2302. 2312. 2322. 2332. 3002. 8122. 8212.]
+The most common parcel label within a 30mm radius of [72. 42. -7.] is 2312.0.
+[2002. 2202. 2212. 2302. 2312. 2322. 2332. 3002. 8122. 8202. 8212.]
+The most common parcel label within a 30mm radius of [74.         36.66666667 -0.66666667] is 2312.0.
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/__init__.py:67: FutureWarning: Python 3.7 support is deprecated and will be removed in release 0.12 of Nilearn. Consider switching to Python 3.9 or 3.10.
+  _python_deprecation_warnings()
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/input_data/__init__.py:23: FutureWarning: The import path 'nilearn.input_data' is deprecated in version 0.9. Importing from 'nilearn.input_data' will be possible at least until release 0.13.0. Please import from 'nilearn.maskers' instead.
+  warnings.warn(message, FutureWarning)
+
+
+Extracting ROIs...
+
+
+  0%|                             | 0/17383 [00:00<?, ?it/s]
+Processing files:   0%|          | 0/17383 [00:00<?, ?it/s][A
+Processing files:   0%|          | 16/17383 [00:07<2:19:10,  2.08it/s][A
+Processing files:   0%|          | 24/17383 [00:09<1:54:38,  2.52it/s][A
+Processing files:   0%|          | 32/17383 [00:12<1:41:56,  2.84it/s][A
+Processing files:   0%|          | 40/17383 [00:14<1:33:55,  3.08it/s][A
+Processing files:   0%|          | 48/17383 [00:16<1:28:27,  3.27it/s][A
+Processing files:   0%|          | 56/17383 [00:18<1:24:42,  3.41it/s][A
+Processing files:   0%|          | 64/17383 [00:20<1:24:59,  3.40it/s][A
+Processing files:   0%|          | 72/17383 [00:23<1:23:18,  3.46it/s][A
+Processing files:   0%|          | 80/17383 [00:25<1:23:23,  3.46it/s][A
+Processing files:   1%|          | 88/17383 [00:27<1:24:51,  3.40it/s][A
+Processing files:   1%|          | 96/17383 [00:30<1:23:26,  3.45it/s][A
+Processing files:   1%|          | 104/17383 [00:32<1:28:31,  3.25it/s][A
+Processing files:   1%|          | 112/17383 [00:35<1:24:59,  3.39it/s][A
+Processing files:   1%|          | 120/17383 [00:37<1:24:26,  3.41it/s][A
+Processing files:   1%|          | 128/17383 [00:39<1:24:25,  3.41it/s][A
+Processing files:   1%|          | 136/17383 [00:42<1:23:17,  3.45it/s][A
+Processing files:   1%|          | 144/17383 [00:44<1:24:44,  3.39it/s][A
+Processing files:   1%|          | 152/17383 [00:47<1:27:50,  3.27it/s][A
+Processing files:   1%|          | 160/17383 [00:49<1:27:46,  3.27it/s][A
+Processing files:   1%|          | 168/17383 [00:51<1:24:08,  3.41it/s][A
+Processing files:   1%|          | 176/17383 [00:54<1:24:39,  3.39it/s][A
+Processing files:   1%|          | 184/17383 [00:56<1:26:44,  3.30it/s][A
+Processing files:   1%|          | 192/17383 [00:58<1:25:40,  3.34it/s][A
+Processing files:   1%|          | 200/17383 [01:01<1:24:22,  3.39it/s][A
+Processing files:   1%|          | 208/17383 [01:03<1:26:59,  3.29it/s][A
+Processing files:   1%|          | 216/17383 [01:06<1:26:53,  3.29it/s][A
+Processing files:   1%|▏         | 224/17383 [01:08<1:25:22,  3.35it/s][A
+Processing files:   1%|▏         | 232/17383 [01:11<1:30:38,  3.15it/s][A
+Processing files:   1%|▏         | 240/17383 [01:13<1:29:04,  3.21it/s][A
+Processing files:   1%|▏         | 248/17383 [01:16<1:28:08,  3.24it/s][A
+Processing files:   1%|▏         | 256/17383 [01:18<1:27:10,  3.27it/s][A
+Processing files:   2%|▏         | 264/17383 [01:20<1:24:27,  3.38it/s][A
+Processing files:   2%|▏         | 272/17383 [01:23<1:24:25,  3.38it/s][A
+Processing files:   2%|▏         | 280/17383 [01:25<1:26:34,  3.29it/s][A
+Processing files:   2%|▏         | 288/17383 [01:28<1:26:40,  3.29it/s][A
+Processing files:   2%|▏         | 296/17383 [01:30<1:25:57,  3.31it/s][A
+Processing files:   2%|▏         | 304/17383 [01:32<1:23:51,  3.39it/s][A
+Processing files:   2%|▏         | 312/17383 [01:35<1:26:19,  3.30it/s][A
+Processing files:   2%|▏         | 320/17383 [01:37<1:22:40,  3.44it/s][A
+Processing files:   2%|▏         | 328/17383 [01:40<1:27:03,  3.26it/s][A
+Processing files:   2%|▏         | 336/17383 [01:43<1:34:08,  3.02it/s][A
+Processing files:   2%|▏         | 344/17383 [01:45<1:28:40,  3.20it/s][A
+Processing files:   2%|▏         | 352/17383 [01:48<1:29:43,  3.16it/s][A
+Processing files:   2%|▏         | 360/17383 [01:51<1:33:39,  3.03it/s][A
+Processing files:   2%|▏         | 368/17383 [01:53<1:33:04,  3.05it/s][A
+Processing files:   2%|▏         | 376/17383 [01:56<1:31:07,  3.11it/s][A
+Processing files:   2%|▏         | 384/17383 [01:58<1:28:47,  3.19it/s][A
+Processing files:   2%|▏         | 392/17383 [02:00<1:26:11,  3.29it/s][A
+Processing files:   2%|▏         | 400/17383 [02:03<1:27:12,  3.25it/s][A
+Processing files:   2%|▏         | 408/17383 [02:05<1:29:06,  3.18it/s][A
+Processing files:   2%|▏         | 416/17383 [02:08<1:27:46,  3.22it/s][A
+Processing files:   2%|▏         | 424/17383 [02:10<1:26:50,  3.25it/s][A
+Processing files:   2%|▏         | 432/17383 [02:13<1:27:18,  3.24it/s][A
+Processing files:   3%|▎         | 440/17383 [02:15<1:30:39,  3.11it/s][A
+Processing files:   3%|▎         | 448/17383 [02:18<1:29:10,  3.17it/s][A
+Processing files:   3%|▎         | 456/17383 [02:20<1:28:42,  3.18it/s][A
+Processing files:   3%|▎         | 464/17383 [02:23<1:27:51,  3.21it/s][A
+Processing files:   3%|▎         | 472/17383 [02:25<1:26:34,  3.26it/s][A
+Processing files:   3%|▎         | 480/17383 [02:28<1:27:09,  3.23it/s][A
+Processing files:   3%|▎         | 488/17383 [02:31<1:30:41,  3.11it/s][A
+Processing files:   3%|▎         | 496/17383 [02:33<1:32:48,  3.03it/s][A
+Processing files:   3%|▎         | 504/17383 [02:36<1:29:45,  3.13it/s][A
+Processing files:   3%|▎         | 512/17383 [02:38<1:29:01,  3.16it/s][A
+Processing files:   3%|▎         | 520/17383 [02:40<1:24:21,  3.33it/s][A
+Processing files:   3%|▎         | 528/17383 [02:43<1:28:36,  3.17it/s][A
+Processing files:   3%|▎         | 536/17383 [02:46<1:34:20,  2.98it/s][A
+Processing files:   3%|▎         | 544/17383 [02:49<1:40:06,  2.80it/s][A
+Processing files:   3%|▎         | 552/17383 [02:52<1:33:54,  2.99it/s][A
+Processing files:   3%|▎         | 560/17383 [02:54<1:33:59,  2.98it/s][A
+Processing files:   3%|▎         | 568/17383 [02:56<1:28:39,  3.16it/s][A
+Processing files:   3%|▎         | 576/17383 [03:00<1:34:28,  2.96it/s][A
+Processing files:   3%|▎         | 584/17383 [03:02<1:33:57,  2.98it/s][A
+Processing files:   3%|▎         | 592/17383 [03:05<1:33:18,  3.00it/s][A
+Processing files:   3%|▎         | 600/17383 [03:07<1:30:46,  3.08it/s][A
+Processing files:   3%|▎         | 608/17383 [03:10<1:28:46,  3.15it/s][A
+Processing files:   4%|▎         | 616/17383 [03:12<1:27:41,  3.19it/s][A
+Processing files:   4%|▎         | 624/17383 [03:15<1:36:07,  2.91it/s][A
+Processing files:   4%|▎         | 632/17383 [03:18<1:32:58,  3.00it/s][A
+Processing files:   4%|▎         | 640/17383 [03:20<1:27:35,  3.19it/s][A
+Processing files:   4%|▎         | 648/17383 [03:22<1:24:40,  3.29it/s][A
+Processing files:   4%|▍         | 656/17383 [03:25<1:26:43,  3.21it/s][A
+Processing files:   4%|▍         | 664/17383 [03:28<1:29:05,  3.13it/s][A
+Processing files:   4%|▍         | 672/17383 [03:30<1:29:53,  3.10it/s][A
+Processing files:   4%|▍         | 680/17383 [03:33<1:29:55,  3.10it/s][A
+Processing files:   4%|▍         | 688/17383 [03:35<1:26:26,  3.22it/s][A
+Processing files:   4%|▍         | 696/17383 [03:38<1:27:03,  3.19it/s][A
+Processing files:   4%|▍         | 704/17383 [03:40<1:25:20,  3.26it/s][A
+Processing files:   4%|▍         | 712/17383 [03:43<1:31:46,  3.03it/s][A
+Processing files:   4%|▍         | 720/17383 [03:45<1:28:26,  3.14it/s][A
+Processing files:   4%|▍         | 728/17383 [03:48<1:27:46,  3.16it/s][A
+Processing files:   4%|▍         | 736/17383 [03:50<1:27:13,  3.18it/s][A
+Processing files:   4%|▍         | 744/17383 [03:54<1:38:15,  2.82it/s][A
+Processing files:   4%|▍         | 752/17383 [03:56<1:30:00,  3.08it/s][A
+Processing files:   4%|▍         | 760/17383 [03:58<1:27:25,  3.17it/s][A
+Processing files:   4%|▍         | 768/17383 [04:00<1:23:16,  3.33it/s][A
+Processing files:   4%|▍         | 776/17383 [04:03<1:28:45,  3.12it/s][A
+Processing files:   5%|▍         | 784/17383 [04:06<1:30:55,  3.04it/s][A
+Processing files:   5%|▍         | 792/17383 [04:09<1:33:55,  2.94it/s][A
+Processing files:   5%|▍         | 800/17383 [04:12<1:33:11,  2.97it/s][A
+Processing files:   5%|▍         | 808/17383 [04:14<1:30:37,  3.05it/s][A
+Processing files:   5%|▍         | 816/17383 [04:17<1:28:08,  3.13it/s][A
+Processing files:   5%|▍         | 824/17383 [04:20<1:31:52,  3.00it/s][A
+Processing files:   5%|▍         | 832/17383 [04:22<1:33:29,  2.95it/s][A
+Processing files:   5%|▍         | 840/17383 [04:25<1:33:56,  2.93it/s][A
+Processing files:   5%|▍         | 848/17383 [04:27<1:27:42,  3.14it/s][A
+Processing files:   5%|▍         | 856/17383 [04:30<1:25:54,  3.21it/s][A
+Processing files:   5%|▍         | 864/17383 [04:33<1:32:35,  2.97it/s][A
+Processing files:   5%|▌         | 872/17383 [04:36<1:34:01,  2.93it/s][A
+Processing files:   5%|▌         | 880/17383 [04:38<1:31:32,  3.00it/s][A
+Processing files:   5%|▌         | 888/17383 [04:40<1:27:15,  3.15it/s][A
+Processing files:   5%|▌         | 896/17383 [04:43<1:25:17,  3.22it/s][A
+Processing files:   5%|▌         | 904/17383 [04:45<1:22:21,  3.34it/s][A
+Processing files:   5%|▌         | 912/17383 [04:48<1:25:34,  3.21it/s][A
+Processing files:   5%|▌         | 920/17383 [04:50<1:25:38,  3.20it/s][A
+Processing files:   5%|▌         | 928/17383 [04:54<1:36:03,  2.86it/s][A
+Processing files:   5%|▌         | 936/17383 [04:56<1:29:29,  3.06it/s][A
+Processing files:   5%|▌         | 944/17383 [04:58<1:25:55,  3.19it/s][A
+Processing files:   5%|▌         | 952/17383 [05:01<1:26:30,  3.17it/s][A
+Processing files:   6%|▌         | 960/17383 [05:04<1:32:47,  2.95it/s][A
+Processing files:   6%|▌         | 968/17383 [05:07<1:33:41,  2.92it/s][A
+Processing files:   6%|▌         | 976/17383 [05:10<1:35:29,  2.86it/s][A
+Processing files:   6%|▌         | 984/17383 [05:12<1:29:23,  3.06it/s][A
+Processing files:   6%|▌         | 992/17383 [05:14<1:28:46,  3.08it/s][A
+Processing files:   6%|▌         | 1000/17383 [05:17<1:34:00,  2.90it/s][A
+Processing files:   6%|▌         | 1008/17383 [05:21<1:43:07,  2.65it/s][A
+Processing files:   6%|▌         | 1016/17383 [05:24<1:44:31,  2.61it/s][A
+Processing files:   6%|▌         | 1024/17383 [05:26<1:36:02,  2.84it/s][A
+Processing files:   6%|▌         | 1032/17383 [05:29<1:37:24,  2.80it/s][A
+Processing files:   6%|▌         | 1040/17383 [05:32<1:35:17,  2.86it/s][A
+Processing files:   6%|▌         | 1048/17383 [05:35<1:32:00,  2.96it/s][A
+Processing files:   6%|▌         | 1056/17383 [05:38<1:36:06,  2.83it/s][A
+Processing files:   6%|▌         | 1064/17383 [05:40<1:30:23,  3.01it/s][A
+Processing files:   6%|▌         | 1072/17383 [05:42<1:28:59,  3.05it/s][A
+Processing files:   6%|▌         | 1080/17383 [05:46<1:34:24,  2.88it/s][A
+Processing files:   6%|▋         | 1088/17383 [05:49<1:39:30,  2.73it/s][A
+Processing files:   6%|▋         | 1096/17383 [05:52<1:42:57,  2.64it/s][A
+Processing files:   6%|▋         | 1104/17383 [05:55<1:41:23,  2.68it/s][A
+Processing files:   6%|▋         | 1112/17383 [05:58<1:43:51,  2.61it/s][A
+Processing files:   6%|▋         | 1120/17383 [06:02<1:45:39,  2.57it/s][A
+Processing files:   6%|▋         | 1128/17383 [06:05<1:51:21,  2.43it/s][A
+Processing files:   7%|▋         | 1136/17383 [06:08<1:43:55,  2.61it/s][A
+Processing files:   7%|▋         | 1144/17383 [06:10<1:39:27,  2.72it/s][A
+Processing files:   7%|▋         | 1152/17383 [06:14<1:45:56,  2.55it/s][A
+Processing files:   7%|▋         | 1160/17383 [06:17<1:44:10,  2.60it/s][A
+Processing files:   7%|▋         | 1168/17383 [06:19<1:36:57,  2.79it/s][A
+Processing files:   7%|▋         | 1176/17383 [06:22<1:33:49,  2.88it/s][A
+Processing files:   7%|▋         | 1184/17383 [06:24<1:29:48,  3.01it/s][A
+Processing files:   7%|▋         | 1192/17383 [06:27<1:34:23,  2.86it/s][A
+Processing files:   7%|▋         | 1200/17383 [06:30<1:31:34,  2.95it/s][A
+Processing files:   7%|▋         | 1208/17383 [06:32<1:29:16,  3.02it/s][A
+Processing files:   7%|▋         | 1216/17383 [06:35<1:30:08,  2.99it/s][A
+Processing files:   7%|▋         | 1224/17383 [06:38<1:30:14,  2.98it/s][A
+Processing files:   7%|▋         | 1232/17383 [06:41<1:32:01,  2.93it/s][A
+Processing files:   7%|▋         | 1240/17383 [06:43<1:29:41,  3.00it/s][A
+Processing files:   7%|▋         | 1248/17383 [06:46<1:28:45,  3.03it/s][A
+Processing files:   7%|▋         | 1256/17383 [06:48<1:25:32,  3.14it/s][A
+Processing files:   7%|▋         | 1264/17383 [06:51<1:25:21,  3.15it/s][A
+Processing files:   7%|▋         | 1272/17383 [06:54<1:30:59,  2.95it/s][A
+Processing files:   7%|▋         | 1280/17383 [06:57<1:35:35,  2.81it/s][A
+Processing files:   7%|▋         | 1288/17383 [06:59<1:31:23,  2.93it/s][A
+Processing files:   7%|▋         | 1296/17383 [07:02<1:27:11,  3.07it/s][A
+Processing files:   8%|▊         | 1304/17383 [07:04<1:27:28,  3.06it/s][A
+Processing files:   8%|▊         | 1312/17383 [07:07<1:29:21,  3.00it/s][A
+Processing files:   8%|▊         | 1320/17383 [07:10<1:30:18,  2.96it/s][A
+Processing files:   8%|▊         | 1328/17383 [07:13<1:29:44,  2.98it/s][A
+Processing files:   8%|▊         | 1336/17383 [07:16<1:34:14,  2.84it/s][A
+Processing files:   8%|▊         | 1344/17383 [07:18<1:30:31,  2.95it/s][A
+Processing files:   8%|▊         | 1352/17383 [07:21<1:29:35,  2.98it/s][A
+Processing files:   8%|▊         | 1360/17383 [07:24<1:33:54,  2.84it/s][A
+Processing files:   8%|▊         | 1368/17383 [07:27<1:39:08,  2.69it/s][A
+Processing files:   8%|▊         | 1376/17383 [07:30<1:40:41,  2.65it/s][A
+Processing files:   8%|▊         | 1384/17383 [07:34<1:44:27,  2.55it/s][A
+Processing files:   8%|▊         | 1392/17383 [07:36<1:40:28,  2.65it/s][A
+Processing files:   8%|▊         | 1400/17383 [07:39<1:39:31,  2.68it/s][A
+Processing files:   8%|▊         | 1408/17383 [07:42<1:36:43,  2.75it/s][A
+Processing files:   8%|▊         | 1416/17383 [07:45<1:33:51,  2.84it/s][A
+Processing files:   8%|▊         | 1424/17383 [07:47<1:32:08,  2.89it/s][A
+Processing files:   8%|▊         | 1432/17383 [07:50<1:29:48,  2.96it/s][A
+Processing files:   8%|▊         | 1440/17383 [07:52<1:26:25,  3.07it/s][A
+Processing files:   8%|▊         | 1448/17383 [07:55<1:29:35,  2.96it/s][A
+Processing files:   8%|▊         | 1456/17383 [07:58<1:29:15,  2.97it/s][A
+Processing files:   8%|▊         | 1464/17383 [08:01<1:30:27,  2.93it/s][A
+Processing files:   8%|▊         | 1472/17383 [08:04<1:32:45,  2.86it/s][A
+Processing files:   9%|▊         | 1480/17383 [08:06<1:29:55,  2.95it/s][A
+Processing files:   9%|▊         | 1488/17383 [08:09<1:26:24,  3.07it/s][A
+Processing files:   9%|▊         | 1496/17383 [08:11<1:24:17,  3.14it/s][A
+Processing files:   9%|▊         | 1504/17383 [08:14<1:26:01,  3.08it/s][A
+Processing files:   9%|▊         | 1512/17383 [08:16<1:27:48,  3.01it/s][A
+Processing files:   9%|▊         | 1520/17383 [08:19<1:25:13,  3.10it/s][A
+Processing files:   9%|▉         | 1528/17383 [08:21<1:25:13,  3.10it/s][A
+Processing files:   9%|▉         | 1536/17383 [08:24<1:25:23,  3.09it/s][A
+Processing files:   9%|▉         | 1544/17383 [08:26<1:22:30,  3.20it/s][A
+Processing files:   9%|▉         | 1552/17383 [08:29<1:21:15,  3.25it/s][A
+Processing files:   9%|▉         | 1560/17383 [08:32<1:30:34,  2.91it/s][A
+Processing files:   9%|▉         | 1568/17383 [08:35<1:32:21,  2.85it/s][A
+Processing files:   9%|▉         | 1576/17383 [08:38<1:28:44,  2.97it/s][A
+Processing files:   9%|▉         | 1584/17383 [08:40<1:28:27,  2.98it/s][A
+Processing files:   9%|▉         | 1592/17383 [08:43<1:27:27,  3.01it/s][A
+Processing files:   9%|▉         | 1600/17383 [08:46<1:29:22,  2.94it/s][A
+Processing files:   9%|▉         | 1608/17383 [08:48<1:27:15,  3.01it/s][A
+Processing files:   9%|▉         | 1616/17383 [08:51<1:27:47,  2.99it/s][A
+Processing files:   9%|▉         | 1624/17383 [08:53<1:23:56,  3.13it/s][A
+Processing files:   9%|▉         | 1632/17383 [08:57<1:34:04,  2.79it/s][A
+Processing files:   9%|▉         | 1640/17383 [09:00<1:33:40,  2.80it/s][A
+Processing files:   9%|▉         | 1648/17383 [09:02<1:33:35,  2.80it/s][A
+Processing files:  10%|▉         | 1656/17383 [09:05<1:32:27,  2.83it/s][A
+Processing files:  10%|▉         | 1664/17383 [09:08<1:30:18,  2.90it/s][A
+Processing files:  10%|▉         | 1672/17383 [09:11<1:30:26,  2.90it/s][A
+Processing files:  10%|▉         | 1680/17383 [09:13<1:30:14,  2.90it/s][A
+Processing files:  10%|▉         | 1688/17383 [09:16<1:30:36,  2.89it/s][A
+Processing files:  10%|▉         | 1696/17383 [09:19<1:28:48,  2.94it/s][A
+Processing files:  10%|▉         | 1704/17383 [09:21<1:27:28,  2.99it/s][A
+Processing files:  10%|▉         | 1712/17383 [09:24<1:32:26,  2.83it/s][A
+Processing files:  10%|▉         | 1720/17383 [09:27<1:28:59,  2.93it/s][A
+Processing files:  10%|▉         | 1728/17383 [09:29<1:24:44,  3.08it/s][A
+Processing files:  10%|▉         | 1736/17383 [09:32<1:25:29,  3.05it/s][A
+Processing files:  10%|█         | 1744/17383 [09:35<1:25:05,  3.06it/s][A
+Processing files:  10%|█         | 1752/17383 [09:37<1:25:53,  3.03it/s][A
+Processing files:  10%|█         | 1760/17383 [09:40<1:29:16,  2.92it/s][A
+Processing files:  10%|█         | 1768/17383 [09:43<1:25:35,  3.04it/s][A
+Processing files:  10%|█         | 1776/17383 [09:45<1:21:11,  3.20it/s][A
+Processing files:  10%|█         | 1784/17383 [09:48<1:30:50,  2.86it/s][A
+Processing files:  10%|█         | 1792/17383 [09:51<1:31:49,  2.83it/s][A
+Processing files:  10%|█         | 1800/17383 [09:54<1:28:44,  2.93it/s][A
+Processing files:  10%|█         | 1808/17383 [09:56<1:24:55,  3.06it/s][A
+Processing files:  10%|█         | 1816/17383 [09:59<1:24:32,  3.07it/s][A
+Processing files:  10%|█         | 1824/17383 [10:01<1:24:38,  3.06it/s][A
+Processing files:  11%|█         | 1832/17383 [10:04<1:25:34,  3.03it/s][A
+Processing files:  11%|█         | 1840/17383 [10:06<1:23:15,  3.11it/s][A
+Processing files:  11%|█         | 1848/17383 [10:09<1:20:40,  3.21it/s][A
+Processing files:  11%|█         | 1856/17383 [10:12<1:24:24,  3.07it/s][A
+Processing files:  11%|█         | 1864/17383 [10:15<1:33:36,  2.76it/s][A
+Processing files:  11%|█         | 1872/17383 [10:18<1:33:59,  2.75it/s][A
+Processing files:  11%|█         | 1880/17383 [10:21<1:31:32,  2.82it/s][A
+Processing files:  11%|█         | 1888/17383 [10:23<1:26:14,  2.99it/s][A
+Processing files:  11%|█         | 1896/17383 [10:26<1:32:17,  2.80it/s][A
+Processing files:  11%|█         | 1904/17383 [10:29<1:33:07,  2.77it/s][A
+Processing files:  11%|█         | 1912/17383 [10:32<1:31:49,  2.81it/s][A
+Processing files:  11%|█         | 1920/17383 [10:35<1:28:30,  2.91it/s][A
+Processing files:  11%|█         | 1928/17383 [10:37<1:27:44,  2.94it/s][A
+Processing files:  11%|█         | 1936/17383 [10:40<1:24:43,  3.04it/s][A
+Processing files:  11%|█         | 1944/17383 [10:42<1:26:53,  2.96it/s][A
+Processing files:  11%|█         | 1952/17383 [10:45<1:26:35,  2.97it/s][A
+Processing files:  11%|█▏        | 1960/17383 [10:48<1:23:54,  3.06it/s][A
+Processing files:  11%|█▏        | 1968/17383 [10:50<1:22:36,  3.11it/s][A
+Processing files:  11%|█▏        | 1976/17383 [10:53<1:27:11,  2.94it/s][A
+Processing files:  11%|█▏        | 1984/17383 [10:56<1:29:33,  2.87it/s][A
+Processing files:  11%|█▏        | 1992/17383 [10:59<1:30:00,  2.85it/s][A
+Processing files:  12%|█▏        | 2000/17383 [11:01<1:27:03,  2.94it/s][A
+Processing files:  12%|█▏        | 2008/17383 [11:04<1:24:51,  3.02it/s][A
+Processing files:  12%|█▏        | 2016/17383 [11:07<1:29:47,  2.85it/s][A
+Processing files:  12%|█▏        | 2024/17383 [11:10<1:26:36,  2.96it/s][A
+Processing files:  12%|█▏        | 2032/17383 [11:12<1:26:35,  2.95it/s][A
+Processing files:  12%|█▏        | 2040/17383 [11:15<1:23:29,  3.06it/s][A
+Processing files:  12%|█▏        | 2048/17383 [11:18<1:26:23,  2.96it/s][A
+Processing files:  12%|█▏        | 2056/17383 [11:20<1:22:47,  3.09it/s][A
+Processing files:  12%|█▏        | 2064/17383 [11:23<1:26:27,  2.95it/s][A
+Processing files:  12%|█▏        | 2072/17383 [11:26<1:28:22,  2.89it/s][A
+Processing files:  12%|█▏        | 2080/17383 [11:29<1:28:30,  2.88it/s][A
+Processing files:  12%|█▏        | 2088/17383 [11:31<1:25:45,  2.97it/s][A
+Processing files:  12%|█▏        | 2096/17383 [11:34<1:25:21,  2.98it/s][A
+Processing files:  12%|█▏        | 2104/17383 [11:37<1:28:56,  2.86it/s][A
+Processing files:  12%|█▏        | 2112/17383 [11:39<1:26:23,  2.95it/s][A
+Processing files:  12%|█▏        | 2120/17383 [11:42<1:26:50,  2.93it/s][A
+Processing files:  12%|█▏        | 2128/17383 [11:45<1:25:01,  2.99it/s][A
+Processing files:  12%|█▏        | 2136/17383 [11:47<1:23:56,  3.03it/s][A
+Processing files:  12%|█▏        | 2144/17383 [11:50<1:21:22,  3.12it/s][A
+Processing files:  12%|█▏        | 2152/17383 [11:52<1:18:58,  3.21it/s][A
+Processing files:  12%|█▏        | 2160/17383 [11:54<1:17:55,  3.26it/s][A
+Processing files:  12%|█▏        | 2168/17383 [11:56<1:14:35,  3.40it/s][A
+Processing files:  13%|█▎        | 2176/17383 [11:59<1:15:33,  3.35it/s][A
+Processing files:  13%|█▎        | 2184/17383 [12:01<1:15:36,  3.35it/s][A
+Processing files:  13%|█▎        | 2192/17383 [12:04<1:19:21,  3.19it/s][A
+Processing files:  13%|█▎        | 2200/17383 [12:07<1:22:27,  3.07it/s][A
+Processing files:  13%|█▎        | 2208/17383 [12:09<1:20:57,  3.12it/s][A
+Processing files:  13%|█▎        | 2216/17383 [12:12<1:23:24,  3.03it/s][A
+Processing files:  13%|█▎        | 2224/17383 [12:15<1:29:03,  2.84it/s][A
+Processing files:  13%|█▎        | 2232/17383 [12:18<1:24:25,  2.99it/s][A
+Processing files:  13%|█▎        | 2240/17383 [12:20<1:19:55,  3.16it/s][A
+Processing files:  13%|█▎        | 2248/17383 [12:22<1:16:38,  3.29it/s][A
+Processing files:  13%|█▎        | 2256/17383 [12:25<1:19:28,  3.17it/s][A
+Processing files:  13%|█▎        | 2264/17383 [12:27<1:17:45,  3.24it/s][A
+Processing files:  13%|█▎        | 2272/17383 [12:29<1:15:06,  3.35it/s][A
+Processing files:  13%|█▎        | 2280/17383 [12:32<1:17:07,  3.26it/s][A
+Processing files:  13%|█▎        | 2288/17383 [12:35<1:19:27,  3.17it/s][A
+Processing files:  13%|█▎        | 2296/17383 [12:37<1:18:54,  3.19it/s][A
+Processing files:  13%|█▎        | 2304/17383 [12:40<1:21:44,  3.07it/s][A
+Processing files:  13%|█▎        | 2312/17383 [12:43<1:21:12,  3.09it/s][A
+Processing files:  13%|█▎        | 2320/17383 [12:45<1:24:12,  2.98it/s][A
+Processing files:  13%|█▎        | 2328/17383 [12:48<1:19:40,  3.15it/s][A
+Processing files:  13%|█▎        | 2336/17383 [12:50<1:17:25,  3.24it/s][A
+Processing files:  13%|█▎        | 2344/17383 [12:52<1:15:53,  3.30it/s][Aslurmstepd: error: *** JOB 9765877 ON c3mem-a9-u7-2 CANCELLED AT 2024-12-12T11:46:13 ***

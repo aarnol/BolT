@@ -9,7 +9,7 @@ from tqdm import tqdm
 from joblib import Parallel, delayed
 from nilearn.input_data import NiftiLabelsMasker
 from .prep_atlas import prep_atlas
-from .fnirs_utils import load_fnirs
+from .fnirs_utils import load_fnirs, calculate_average_bold
 import numpy as np
 
 datadir = "/scratch/alpine/alar6830/BoltROIs/"
@@ -25,7 +25,7 @@ def process_scan(scanImage_fileName, atlasImage):
         subjectId = base_name[:6]  # Adjust based on HCP filename structure
         enc = base_name[6]
         nback = base_name[8]
-
+        print(roiTimeseries, flush=True)
         # Return the processed data
         return {
             "roiTimeseries": roiTimeseries,

@@ -1,0 +1,21 @@
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/__init__.py:67: FutureWarning: Python 3.7 support is deprecated and will be removed in release 0.12 of Nilearn. Consider switching to Python 3.9 or 3.10.
+  _python_deprecation_warnings()
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/input_data/__init__.py:23: FutureWarning: The import path 'nilearn.input_data' is deprecated in version 0.9. Importing from 'nilearn.input_data' will be possible at least until release 0.13.0. Please import from 'nilearn.maskers' instead.
+  warnings.warn(message, FutureWarning)
+ ...done. (2 seconds, 0 min)
+Extracting data from /home/alar6830/nilearn_data/aal_SPM12/e2ab16a3db262dc4f9f7c3870f71cb7e/aal_for_SPM12.tar.gz..... done.
+
+Dataset created in /home/alar6830/nilearn_data/aal_SPM12
+
+Downloading data from https://www.gin.cnrs.fr/AAL_files/aal_for_SPM12.tar.gz ...
+Traceback (most recent call last):
+  File "prep.py", line 24, in <module>
+    prep(argv.atlas, argv.name, argv.fnirs )
+  File "/projects/alar6830/BolT/Dataset/Prep/prep_abide.py", line 95, in prep_hcp
+    atlasImage = prep_atlas(atlas, datadir, MNI_coords)
+  File "/projects/alar6830/BolT/Dataset/Prep/prep_atlas.py", line 84, in prep_atlas
+    label = get_parcel_label_with_aal(coord)
+  File "/projects/alar6830/BolT/Dataset/Prep/fnirs_utils.py", line 70, in get_parcel_label_with_aal
+    atlas_data = atlas_img.get_fdata()
+AttributeError: 'str' object has no attribute 'get_fdata'
+done prepping

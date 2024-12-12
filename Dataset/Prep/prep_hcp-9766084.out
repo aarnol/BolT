@@ -1,0 +1,13 @@
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/__init__.py:67: FutureWarning: Python 3.7 support is deprecated and will be removed in release 0.12 of Nilearn. Consider switching to Python 3.9 or 3.10.
+  _python_deprecation_warnings()
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/input_data/__init__.py:23: FutureWarning: The import path 'nilearn.input_data' is deprecated in version 0.9. Importing from 'nilearn.input_data' will be possible at least until release 0.13.0. Please import from 'nilearn.maskers' instead.
+  warnings.warn(message, FutureWarning)
+Traceback (most recent call last):
+  File "prep.py", line 15, in <module>
+    from Dataset.Prep.prep_abide import prep_abide, prep_hcp
+  File "/projects/alar6830/BolT/Dataset/Prep/prep_abide.py", line 11, in <module>
+    from .prep_atlas import prep_atlas
+  File "/projects/alar6830/BolT/Dataset/Prep/prep_atlas.py", line 16, in <module>
+    from .fnirs_utils import get_parcel_label, save_atlas_plot_with_coord
+ImportError: cannot import name 'get_parcel_label' from 'Dataset.Prep.fnirs_utils' (/projects/alar6830/BolT/Dataset/Prep/fnirs_utils.py)
+done prepping
