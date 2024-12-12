@@ -42,7 +42,9 @@ def calc_MNI_average(digitization):
 
 
 
-def get_parcel_label(mni_coord, atlas_data, affine):
+import numpy as np
+
+def get_parcel_label(mni_coord, atlas_data, affine, radius_mm=30):
     """
     Get the parcel label corresponding to an MNI coordinate.
 
@@ -53,26 +55,48 @@ def get_parcel_label(mni_coord, atlas_data, affine):
         The atlas volume data where each voxel value represents a label.
     - affine: ndarray, shape (4, 4)
         The affine transformation matrix of the atlas.
+    - radius_mm: float, optional (default=30)
+        The search radius in millimeters for finding the label.
 
     Returns:
-    - label: int
-        The parcel label at the given MNI coordinate.
+    - label: int or None
+        The most common parcel label within the radius, or None if no labels are found.
     """
-    # Convert MNI coordinate to voxel indices using the affine matrix
-    mni_coord_homogeneous = np.append(mni_coord, 1)  # Make it homogeneous by adding a 1
-    voxel_coord = np.linalg.inv(affine).dot(mni_coord_homogeneous)[:3]
-    voxel_indices = np.round(voxel_coord).astype(int)
-
-    # Extract the label at the voxel indices
     try:
-        label = atlas_data[tuple(voxel_indices)]
-        print(f"The MNI coordinate {mni_coord} falls into parcel label {int(label)}.", flush=True)
-        if(label == 0):
-            save_atlas_plot_with_coord(atlas_data, affine, mni_coord, "mni.png")
-    except IndexError:
-        raise ValueError(f"The MNI coordinate {mni_coord} is outside the bounds of the atlas data.")
+        # Convert MNI coordinate to voxel indices using the affine matrix
+        mni_coord_homogeneous = np.append(mni_coord, 1)
+        voxel_coord = np.linalg.inv(affine).dot(mni_coord_homogeneous)[:3]
+        voxel_indices = np.round(voxel_coord).astype(int)
 
-    return label
+        # Calculate radius in voxels
+        voxel_sizes = np.sqrt(np.sum(affine[:3, :3] ** 2, axis=0))
+        radius_voxels = np.ceil(radius_mm / voxel_sizes).astype(int)
+
+        # Create a spherical mask
+        ranges = [np.arange(-r, r + 1) for r in radius_voxels]
+        grid = np.stack(np.meshgrid(*ranges, indexing='ij'), axis=-1)
+        distances = np.sqrt(np.sum((grid / voxel_sizes) ** 2, axis=-1))
+        mask = distances <= radius_mm
+
+        # Apply mask to calculate sphere coordinates
+        sphere_coords = grid[mask] + voxel_indices
+
+        # Filter out-of-bound coordinates
+        valid_coords = [
+            coord for coord in sphere_coords
+            if np.all(coord >= 0) and np.all(coord < atlas_data.shape) and atlas_data[tuple(coord)] != 0
+        ]
+
+        if not valid_coords:
+            return None
+
+        # Count occurrences of each label within the sphere
+        labels, counts = np.unique([atlas_data[tuple(coord)] for coord in valid_coords], return_counts=True)
+        return labels[np.argmax(counts)]
+    except Exception as e:
+        print(f"Error: {e}")
+        return None
+
 
 def save_atlas_plot_with_coord(atlas_data, affine, mni_coord, output_path):
     """
@@ -91,15 +115,29 @@ def save_atlas_plot_with_coord(atlas_data, affine, mni_coord, output_path):
     # Convert MNI coordinate to voxel indices
     mni_coord_homogeneous = np.append(mni_coord, 1)
     voxel_coord = np.linalg.inv(affine).dot(mni_coord_homogeneous)[:3]
+    
     voxel_indices = np.round(voxel_coord).astype(int)
+    radius_voxels = int(30 / np.abs(affine[0, 0]))  # Assuming isotropic voxels
+
+    # Create a spherical mask
+    x, y, z = np.ogrid[-radius_voxels:radius_voxels+1, -radius_voxels:radius_voxels+1, -radius_voxels:radius_voxels+1]
+    mask = x**2 + y**2 + z**2 <= radius_voxels**2
+
+    # Get the coordinates within the sphere
+    sphere_coords = np.array(np.where(mask)).T + voxel_indices - radius_voxels
+
+    # Filter out coordinates that are out of bounds and where the atlas value is 0
+    valid_coords = [coord for coord in sphere_coords if np.all(coord >= 0) and np.all(coord < atlas_data.shape) and atlas_data[tuple(coord)] != 0]
+
+    # Count the occurrences of each label within the sphere
+    labels, counts = np.unique([atlas_data[tuple(coord)] for coord in valid_coords], return_counts=True)
+
+    # Find the label with the most points
+    most_common_label = labels[np.argmax(counts)]
+
+    print(f"The most common parcel label within a 30mm radius of {mni_coord} is {most_common_label}.", flush=True)
 
     # Plot a slice of the atlas and overlay the coordinate
     slice_index = voxel_indices[2]  # Assuming axial slice
-    plt.figure(figsize=(8, 8))
-    plt.imshow(atlas_data[:, :, slice_index], cmap="gray", origin="lower")
-    plt.scatter(voxel_indices[0], voxel_indices[1], color="red", label="MNI Coordinate")
-    plt.title(f"Atlas Slice with MNI Coordinate {mni_coord}")
-    plt.legend()
-    plt.savefig(output_path)
-    plt.close()
+   
     print(f"Plot saved to {output_path}")
