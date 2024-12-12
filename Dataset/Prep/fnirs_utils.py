@@ -15,7 +15,6 @@ def load_fnirs(target_folder):
     for subject in data:
         blocks = subject[0]
         blocks = [block[0] for block in blocks]
-        print(blocks)
         i = 1
         for block in blocks:
             f_data = {
@@ -92,6 +91,7 @@ def get_parcel_label(mni_coord, atlas_data, affine, radius_mm=30):
 
         # Count occurrences of each label within the sphere
         labels, counts = np.unique([atlas_data[tuple(coord)] for coord in valid_coords], return_counts=True)
+        print(f"The most common parcel label within a 30mm radius of {mni_coord} is {labels[np.argmax(counts)]}.", flush=True)
         return labels[np.argmax(counts)]
     except Exception as e:
         print(f"Error: {e}")
@@ -141,3 +141,56 @@ def save_atlas_plot_with_coord(atlas_data, affine, mni_coord, output_path):
     slice_index = voxel_indices[2]  # Assuming axial slice
    
     print(f"Plot saved to {output_path}")
+
+    import numpy as np
+
+def calculate_average_bold(mni_coord, fmri_data, affine, radius_mm=30):
+    """
+    Calculate the average BOLD signal within a given radius around an MNI coordinate.
+
+    Parameters:
+    - mni_coord: array-like, shape (3,)
+        The MNI coordinate in millimeters.
+    - fmri_data: ndarray
+        The fMRI 4D image data where the last dimension is time and earlier dimensions are spatial.
+    - affine: ndarray, shape (4, 4)
+        The affine transformation matrix of the fMRI image.
+    - radius_mm: float, optional (default=30)
+        The radius in millimeters for averaging.
+
+    Returns:
+    - average_bold: ndarray, shape (n_timepoints,)
+        The average BOLD signal within the radius across all timepoints.
+    """
+    # Step 1: Convert MNI coordinate to voxel indices
+    mni_coord_homogeneous = np.append(mni_coord, 1)  # Add homogeneous coordinate
+    voxel_coord = np.linalg.inv(affine).dot(mni_coord_homogeneous)[:3]
+    voxel_indices = np.round(voxel_coord).astype(int)
+
+    # Step 2: Calculate the radius in voxel units
+    voxel_sizes = np.sqrt(np.sum(affine[:3, :3] ** 2, axis=0))  # Voxel dimensions
+    radius_voxels = np.ceil(radius_mm / voxel_sizes).astype(int)
+
+    # Step 3: Generate a spherical mask
+    ranges = [np.arange(-r, r + 1) for r in radius_voxels]
+    grid = np.stack(np.meshgrid(*ranges, indexing='ij'), axis=-1)  # Create a grid of offsets
+    distances = np.sqrt(np.sum((grid * voxel_sizes) ** 2, axis=-1))  # Calculate distances in mm
+    mask = distances <= radius_mm
+
+    # Step 4: Extract voxel coordinates within the sphere
+    sphere_coords = grid[mask] + voxel_indices  # Add sphere offsets to the center voxel
+    valid_coords = [
+        coord for coord in sphere_coords
+        if np.all(coord >= 0) and np.all(coord < fmri_data.shape[:3])  # Bounds checking
+    ]
+
+    if not valid_coords:
+        raise ValueError("No valid voxels found within the specified radius.")
+
+    # Step 5: Extract signal values at valid voxel coordinates
+    bold_signals = np.array([fmri_data[tuple(coord)] for coord in valid_coords])
+
+    # Step 6: Compute the average BOLD signal across valid voxels
+    average_bold = np.mean(bold_signals, axis=0)
+
+    return average_bold
