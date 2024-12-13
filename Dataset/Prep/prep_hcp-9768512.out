@@ -1,0 +1,31 @@
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/__init__.py:67: FutureWarning: Python 3.7 support is deprecated and will be removed in release 0.12 of Nilearn. Consider switching to Python 3.9 or 3.10.
+  _python_deprecation_warnings()
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/input_data/__init__.py:23: FutureWarning: The import path 'nilearn.input_data' is deprecated in version 0.9. Importing from 'nilearn.input_data' will be possible at least until release 0.13.0. Please import from 'nilearn.maskers' instead.
+  warnings.warn(message, FutureWarning)
+
+
+Extracting ROIs...
+
+
+  0%|                             | 0/17383 [00:00<?, ?it/s]
+Processing files:   0%|          | 0/17383 [00:00<?, ?it/s][A
+Processing files:   0%|          | 16/17383 [00:19<5:43:55,  1.19s/it][A
+Processing files:   0%|          | 24/17383 [00:35<7:27:38,  1.55s/it][A
+Processing files:   0%|          | 32/17383 [00:51<8:20:29,  1.73s/it][A
+Processing files:   0%|          | 40/17383 [01:08<8:50:55,  1.84s/it][A
+Processing files:   0%|          | 48/17383 [01:24<9:06:39,  1.89s/it][A
+Processing files:   0%|          | 56/17383 [01:40<9:18:55,  1.94s/it][A
+Processing files:   0%|          | 64/17383 [01:56<9:25:03,  1.96s/it][A
+Processing files:   0%|          | 72/17383 [02:13<9:37:49,  2.00s/it][A
+Processing files:   0%|          | 80/17383 [02:28<9:33:22,  1.99s/it][A
+Processing files:   1%|          | 88/17383 [02:45<9:40:53,  2.02s/it][A
+Processing files:   1%|          | 96/17383 [03:01<9:45:47,  2.03s/it][A
+Processing files:   1%|          | 104/17383 [03:19<10:01:09,  2.09s/it][A
+Processing files:   1%|          | 112/17383 [03:36<9:58:10,  2.08s/it] [A
+Processing files:   1%|          | 120/17383 [03:51<9:48:20,  2.04s/it][A
+Processing files:   1%|          | 128/17383 [04:07<9:41:51,  2.02s/it][A
+Processing files:   1%|          | 136/17383 [04:23<9:37:20,  2.01s/it][A
+Processing files:   1%|          | 144/17383 [04:40<9:46:06,  2.04s/it][A
+Processing files:   1%|          | 152/17383 [04:56<9:46:38,  2.04s/it][A
+Processing files:   1%|          | 160/17383 [05:13<9:48:01,  2.05s/it][A
+Processing files:   1%|          | 168/17383 [05:29<9:42:22,  2.03s/it][Aslurmstepd: error: *** JOB 9768512 ON c3mem-a4-u36-3 CANCELLED AT 2024-12-12T13:37:55 ***

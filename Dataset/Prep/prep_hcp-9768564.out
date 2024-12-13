@@ -1,0 +1,100 @@
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/__init__.py:67: FutureWarning: Python 3.7 support is deprecated and will be removed in release 0.12 of Nilearn. Consider switching to Python 3.9 or 3.10.
+  _python_deprecation_warnings()
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/input_data/__init__.py:23: FutureWarning: The import path 'nilearn.input_data' is deprecated in version 0.9. Importing from 'nilearn.input_data' will be possible at least until release 0.13.0. Please import from 'nilearn.maskers' instead.
+  warnings.warn(message, FutureWarning)
+
+
+Extracting ROIs...
+
+
+  0%|                                | 0/50 [00:00<?, ?it/s]
+Processing files:   0%|          | 0/50 [00:00<?, ?it/s][A
+Processing files:  32%|███▏      | 16/50 [00:19<00:41,  1.23s/it][A
+Processing files:  48%|████▊     | 24/50 [00:36<00:41,  1.59s/it][A
+Processing files:  64%|██████▍   | 32/50 [00:53<00:32,  1.78s/it][A
+Processing files:  80%|████████  | 40/50 [01:09<00:18,  1.89s/it][A
+Processing files:  96%|█████████▌| 48/50 [01:27<00:03,  1.98s/it][AProcessing files: 100%|██████████| 50/50 [01:27<00:00,  1.74s/it]
+  2%|▍                    | 1/50 [02:01<1:38:55, 121.13s/it]100%|███████████████████████| 50/50 [02:01<00:00,  2.42s/it]
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/257542040.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/114318131.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/198249031.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/459453021.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/126325131.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/256540131.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/__init__.py:67: FutureWarning: Python 3.7 support is deprecated and will be removed in release 0.12 of Nilearn. Consider switching to Python 3.9 or 3.10.
+  _python_deprecation_warnings()
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/input_data/__init__.py:23: FutureWarning: The import path 'nilearn.input_data' is deprecated in version 0.9. Importing from 'nilearn.input_data' will be possible at least until release 0.13.0. Please import from 'nilearn.maskers' instead.
+  warnings.warn(message, FutureWarning)
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/143830120.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/126426130.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/177342021.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/127933111.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/769064041.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/959574020.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/__init__.py:67: FutureWarning: Python 3.7 support is deprecated and will be removed in release 0.12 of Nilearn. Consider switching to Python 3.9 or 3.10.
+  _python_deprecation_warnings()
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/input_data/__init__.py:23: FutureWarning: The import path 'nilearn.input_data' is deprecated in version 0.9. Importing from 'nilearn.input_data' will be possible at least until release 0.13.0. Please import from 'nilearn.maskers' instead.
+  warnings.warn(message, FutureWarning)
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/239136110.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/248238130.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/190031041.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/206222111.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/833249011.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/557857141.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/__init__.py:67: FutureWarning: Python 3.7 support is deprecated and will be removed in release 0.12 of Nilearn. Consider switching to Python 3.9 or 3.10.
+  _python_deprecation_warnings()
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/input_data/__init__.py:23: FutureWarning: The import path 'nilearn.input_data' is deprecated in version 0.9. Importing from 'nilearn.input_data' will be possible at least until release 0.13.0. Please import from 'nilearn.maskers' instead.
+  warnings.warn(message, FutureWarning)
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/156233110.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/115724030.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/638049110.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/115724040.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/429040011.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/186949131.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/__init__.py:67: FutureWarning: Python 3.7 support is deprecated and will be removed in release 0.12 of Nilearn. Consider switching to Python 3.9 or 3.10.
+  _python_deprecation_warnings()
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/input_data/__init__.py:23: FutureWarning: The import path 'nilearn.input_data' is deprecated in version 0.9. Importing from 'nilearn.input_data' will be possible at least until release 0.13.0. Please import from 'nilearn.maskers' instead.
+  warnings.warn(message, FutureWarning)
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/121416010.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/214726110.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/124422141.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/973770120.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/992673021.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/173738130.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/__init__.py:67: FutureWarning: Python 3.7 support is deprecated and will be removed in release 0.12 of Nilearn. Consider switching to Python 3.9 or 3.10.
+  _python_deprecation_warnings()
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/input_data/__init__.py:23: FutureWarning: The import path 'nilearn.input_data' is deprecated in version 0.9. Importing from 'nilearn.input_data' will be possible at least until release 0.13.0. Please import from 'nilearn.maskers' instead.
+  warnings.warn(message, FutureWarning)
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/519950130.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/158035130.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/917255110.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/173435141.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/792766111.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/177342141.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/__init__.py:67: FutureWarning: Python 3.7 support is deprecated and will be removed in release 0.12 of Nilearn. Consider switching to Python 3.9 or 3.10.
+  _python_deprecation_warnings()
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/input_data/__init__.py:23: FutureWarning: The import path 'nilearn.input_data' is deprecated in version 0.9. Importing from 'nilearn.input_data' will be possible at least until release 0.13.0. Please import from 'nilearn.maskers' instead.
+  warnings.warn(message, FutureWarning)
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/561242040.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/614439010.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/181636121.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/618952121.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/871964110.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/142828010.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/760551131.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/__init__.py:67: FutureWarning: Python 3.7 support is deprecated and will be removed in release 0.12 of Nilearn. Consider switching to Python 3.9 or 3.10.
+  _python_deprecation_warnings()
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/input_data/__init__.py:23: FutureWarning: The import path 'nilearn.input_data' is deprecated in version 0.9. Importing from 'nilearn.input_data' will be possible at least until release 0.13.0. Please import from 'nilearn.maskers' instead.
+  warnings.warn(message, FutureWarning)
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/108121111.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/104416020.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/120111010.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/656657141.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/707749141.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/186141140.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+Error processing file /scratch/alpine/alar6830/WM_nback_labels/320826030.nii.gz: 'numpy.ndarray' object has no attribute 'to_list'
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/__init__.py:67: FutureWarning: Python 3.7 support is deprecated and will be removed in release 0.12 of Nilearn. Consider switching to Python 3.9 or 3.10.
+  _python_deprecation_warnings()
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/input_data/__init__.py:23: FutureWarning: The import path 'nilearn.input_data' is deprecated in version 0.9. Importing from 'nilearn.input_data' will be possible at least until release 0.13.0. Please import from 'nilearn.maskers' instead.
+  warnings.warn(message, FutureWarning)
+done prepping
