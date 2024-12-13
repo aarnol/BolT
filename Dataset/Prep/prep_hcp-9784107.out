@@ -1,0 +1,22 @@
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/__init__.py:67: FutureWarning: Python 3.7 support is deprecated and will be removed in release 0.12 of Nilearn. Consider switching to Python 3.9 or 3.10.
+  _python_deprecation_warnings()
+/projects/alar6830/software/anaconda/envs/BolT/lib/python3.7/site-packages/nilearn/input_data/__init__.py:23: FutureWarning: The import path 'nilearn.input_data' is deprecated in version 0.9. Importing from 'nilearn.input_data' will be possible at least until release 0.13.0. Please import from 'nilearn.maskers' instead.
+  warnings.warn(message, FutureWarning)
+
+
+Extracting ROIs...
+
+
+  0%|                             | 0/17383 [00:00<?, ?it/s]
+Processing files:   0%|          | 0/17383 [00:00<?, ?it/s][A
+Processing files:   0%|          | 16/17383 [00:00<02:46, 104.01it/s][A
+Processing files:   0%|          | 16/17383 [00:19<02:46, 104.01it/s][A
+Processing files:   0%|          | 32/17383 [00:20<3:37:28,  1.33it/s][A
+Processing files:   0%|          | 48/17383 [00:38<4:24:41,  1.09it/s][A
+Processing files:   0%|          | 64/17383 [00:56<4:47:22,  1.00it/s][A
+Processing files:   0%|          | 80/17383 [01:13<4:53:01,  1.02s/it][A
+Processing files:   1%|          | 96/17383 [01:30<5:03:05,  1.05s/it][A
+Processing files:   1%|          | 112/17383 [01:49<5:10:45,  1.08s/it][A
+Processing files:   1%|          | 128/17383 [02:05<5:08:04,  1.07s/it][A
+Processing files:   1%|          | 144/17383 [02:24<5:12:54,  1.09s/it][A
+Processing files:   1%|          | 160/17383 [02:42<5:16:04,  1.10s/it][A
