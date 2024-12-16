@@ -29,14 +29,14 @@ def hcpWorkingMemLoader(atlas, targetTask):
     subjectIds = []
     
     for data in dataset:
-        if(data["pheno"]["modality"] == "fNIRS"):
-            print("Skipping fNIRS data")
-            continue
+        
         label = int(data["pheno"]["nback"])
-        if(healthCheckOnRoiSignal(data["roiTimeseries"].T) or 1):
+        if(healthCheckOnRoiSignal(data["roiTimeseries"].T)):
 
             x.append(data["roiTimeseries"].T)
             y.append(label)
             subjectIds.append(int(data["pheno"]["subjectId"]))
+        else:
+            print("Skipping subject: ", data["pheno"]["subjectId"])
 
     return x, y, subjectIds
