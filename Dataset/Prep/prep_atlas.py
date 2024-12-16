@@ -91,7 +91,10 @@ def prep_atlas(atlas, datadir, mni_coords=None):
     # Create a filtered atlas
     filtered_atlas_data = np.isin(atlas_data, roi_indices) * atlas_data
     filtered_atlas_img = image.new_img_like(atlas_img, filtered_atlas_data)
-    
+    # Save a visualization of the filtered atlas
+    display = plotting.plot_roi(filtered_atlas_img, title=f"Filtered {atlas} Atlas")
+    display.savefig(os.path.join(atlas_path, f"filtered_{atlas}_atlas.png"))
+    display.close()
     return filtered_atlas_img
 
 
