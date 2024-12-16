@@ -73,6 +73,8 @@ class SupervisedDataset(Dataset):
         self.k = None
 
         self.data, self.labels, self.subjectIds = loader(datasetDetails.atlas, datasetDetails.targetTask)
+        self.fnirs = datasetDetails.fNIRS 
+        
 
         # Filter out samples where the last axis is smaller than dynamicLength
         valid_data_indices = [idx for idx, subject in enumerate(self.data) if subject.shape[-1] >= self.dynamicLength]

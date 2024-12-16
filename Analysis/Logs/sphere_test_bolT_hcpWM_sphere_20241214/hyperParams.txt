@@ -1,0 +1,20 @@
+
+dict : {'weightDecay': 0, 'lr': 0.0002, 'minLr': 2e-05, 'maxLr': 0.0004, 'nOfLayers': 4, 'dim': 107, 'numHeads': 36, 'headDim': 20, 'windowSize': 10, 'shiftCoeff': 0.4, 'fringeCoeff': 2, 'focalRule': 'expand', 'mlpRatio': 1.0, 'attentionBias': True, 'drop': 0.1, 'attnDrop': 0.1, 'lambdaCons': 1, 'pooling': 'cls'}
+weightDecay : 0
+lr : 0.0002
+minLr : 2e-05
+maxLr : 0.0004
+nOfLayers : 4
+dim : 107
+numHeads : 36
+headDim : 20
+windowSize : 10
+shiftCoeff : 0.4
+fringeCoeff : 2
+focalRule : expand
+mlpRatio : 1.0
+attentionBias : True
+drop : 0.1
+attnDrop : 0.1
+lambdaCons : 1
+pooling : cls

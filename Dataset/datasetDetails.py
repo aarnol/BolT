@@ -43,7 +43,8 @@ datasetDetailsDict = {
         "atlas" : "schaefer7_400",
         "nOfEpochs" : 10,
         "batchSize" : 32,
-        "normalize" : True      
+        "normalize" : True,
+        "fNIRS": False,    
     },
     "hcpWM_AAL" : {
         "datasetName" : "hcpWM",
@@ -53,8 +54,24 @@ datasetDetailsDict = {
         "foldCount" : 5,
         "atlas" : "AAL",
         "nOfEpochs" : 10,
-        "batchSize" : 32        
+        "batchSize" : 32,
+        "normalize" : True,
+        "fNIRS": False        
+    },
+    "hcpWM_sphere" : {
+        "datasetName" : "hcpWM",
+        "targetTask" : "nback",
+        "nOfClasses" : 2,        
+        "dynamicLength" : 15,
+        "foldCount" : 5,
+        "atlas" : "sphere",
+        "nOfEpochs" : 5,
+        "batchSize" : 32,
+        "normalize" : True,
+        "fNIRS": True,
+
     }
+
 
  }
 

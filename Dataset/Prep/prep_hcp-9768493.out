@@ -1,8 +1,0 @@
-Traceback (most recent call last):
-  File "prep.py", line 15, in <module>
-    from Dataset.Prep.prep_abide import prep_abide, prep_hcp
-  File "/projects/alar6830/BolT/Dataset/Prep/prep_abide.py", line 21
-    roiTimeseries = []
-                ^
-SyntaxError: invalid syntax
-done prepping
