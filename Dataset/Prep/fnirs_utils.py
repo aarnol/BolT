@@ -6,32 +6,37 @@ def load_fnirs(target_folder):
     """
     Load the fNIRS data from the target folder.
     """
-    fnirs = {}
+    
     MNI_path = os.path.join(target_folder, 'HCP_MNI.mat')
     digitization =scipy.io.loadmat(MNI_path)['MNI']
     data = os.path.join(target_folder, 'HCP_fNIRS_NBack.mat')
     data = scipy.io.loadmat(data)['Data_fNIRS']
     formatted_data = []
+    # from the hcp protocol order
+    labels = [1,0,1,0,0,1,0,1,1,0,1,0,1,1,0,0]
+    i = 0
+    sub = 0
     for subject in data:
         blocks = subject[0]
         blocks = [block[0] for block in blocks]
-        i = 1
+       
+        label = labels[i%16]
         for block in blocks:
             f_data = {
                 'roiTimeseries': block,
                 'pheno': {
-                    'subjectId': f'S{i}',
+                    'subjectId': f'S{sub}',
                     'encoding': None,
-                    'nback': i,
+                    'nback': label,
                     'modality': 'fNIRS'
                 }
             }
             formatted_data.append(f_data)
-            if i == 1:
-                i = 0
-            else:
-                i = 1
+            i+=1
+        sub+=1
     return formatted_data, digitization
+
+
 
 def calc_MNI_average(digitization):
     """
@@ -146,7 +151,8 @@ def save_atlas_plot_with_coord(atlas_data, affine, mni_coord, output_path):
 
 def calculate_average_bold(mni_coord, fmri_data, affine, radius_mm=30):
     """
-    Calculate the average BOLD signal within a given radius around an MNI coordinate.
+    Calculate the average BOLD signal within a given radius around an MNI coordinate,
+    excluding voxels with all zero values.
 
     Parameters:
     - mni_coord: array-like, shape (3,)
@@ -162,6 +168,8 @@ def calculate_average_bold(mni_coord, fmri_data, affine, radius_mm=30):
     - average_bold: ndarray, shape (n_timepoints,)
         The average BOLD signal within the radius across all timepoints.
     """
+ 
+
     # Step 1: Convert MNI coordinate to voxel indices
     mni_coord_homogeneous = np.append(mni_coord, 1)  # Add homogeneous coordinate
     voxel_coord = np.linalg.inv(affine).dot(mni_coord_homogeneous)[:3]
@@ -179,18 +187,25 @@ def calculate_average_bold(mni_coord, fmri_data, affine, radius_mm=30):
 
     # Step 4: Extract voxel coordinates within the sphere
     sphere_coords = grid[mask] + voxel_indices  # Add sphere offsets to the center voxel
-    valid_coords = [
-        coord for coord in sphere_coords
-        if np.all(coord >= 0) and np.all(coord < fmri_data.shape[:3])  # Bounds checking
-    ]
+    sphere_coords = sphere_coords[
+        (sphere_coords >= 0).all(axis=1) & (sphere_coords < fmri_data.shape[:3]).all(axis=1)
+    ]  # Bounds checking
 
-    if not valid_coords:
-        raise ValueError("No valid voxels found within the specified radius.")
+    if len(sphere_coords) == 0:
+        raise ValueError("No valid voxels found within the specified radius. Check the inputs.")
 
     # Step 5: Extract signal values at valid voxel coordinates
-    bold_signals = np.array([fmri_data[tuple(coord)] for coord in valid_coords])
+    bold_signals = fmri_data[sphere_coords[:, 0], sphere_coords[:, 1], sphere_coords[:, 2], :]
 
-    # Step 6: Compute the average BOLD signal across valid voxels
-    average_bold = np.mean(bold_signals, axis=0)
+    # Step 6: Exclude voxels with all zero values across time
+    non_zero_mask = np.any(bold_signals != 0, axis=1)
+    valid_bold_signals = bold_signals[non_zero_mask]
+
+    if valid_bold_signals.size == 0:
+        raise ValueError("All voxels within the specified radius have zero values.")
+
+    # Step 7: Compute the average BOLD signal across valid voxels
+    average_bold = np.mean(valid_bold_signals, axis=0)
 
     return average_bold
+

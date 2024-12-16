@@ -14,19 +14,27 @@ import numpy as np
 
 datadir = "/scratch/alpine/alar6830/BoltROIs/"
 
-def process_scan(scanImage_fileName, atlasImage):
+def process_scan(scanImage_fileName, MNI_coords, atlasImage =None, radius = 30):
     try:
         # Load the scan image and extract ROI time series
         scanImage = nil.image.load_img(scanImage_fileName)
-        roiTimeseries = NiftiLabelsMasker(atlasImage).fit_transform(scanImage)
+        roiTimeseries = []
+        if(atlasImage == None):
+            for coord in MNI_coords:
+                MNI_values = calculate_average_bold(coord, scanImage.get_fdata(), scanImage.affine)
+                roiTimeseries.append(MNI_values)
+            roiTimeseries = np.array(roiTimeseries).T
+        else:
+            roiTimeseries = NiftiLabelsMasker(atlasImage).fit_transform(scanImage)
         
         # Extract subject ID, encoding, and n-back information based on file naming convention
         base_name = os.path.basename(scanImage_fileName)
         subjectId = base_name[:6]  # Adjust based on HCP filename structure
         enc = base_name[6]
         nback = base_name[8]
-        print(roiTimeseries, flush=True)
+        
         # Return the processed data
+        
         return {
             "roiTimeseries": roiTimeseries,
             "pheno": {
@@ -85,11 +93,11 @@ def prep_hcp(atlas, name, fnirs = False):
 
     if(fnirs):
         fnirs_folder = os.path.join(os.path.dirname(__file__), '..', 'Data','fNIRS')
-        fnirs_data, MNI_coords = load_fnirs(fnirs_folder)
+        _, MNI_coords = load_fnirs(fnirs_folder)
         
     else:
         MNI_coords = None
-
+    
 
     # Prepare the atlas image
     atlasImage = prep_atlas(atlas, datadir, MNI_coords)
@@ -105,13 +113,12 @@ def prep_hcp(atlas, name, fnirs = False):
     # Process files in parallel with a progress bar
     with tqdm(total=len(scan_files), ncols=60) as pbar:
         dataset = []
-        for result in Parallel(n_jobs=8)(
-            delayed(process_scan)(file, atlasImage) for file in tqdm(scan_files, desc="Processing files")
+        for result in Parallel(n_jobs=16)(
+            delayed(process_scan)(file, MNI_coords, atlasImage) for file in tqdm(scan_files, desc="Processing files")
         ):
             if result is not None:  # Only add successful results
                 dataset.append(result)
             pbar.update(1)  # Update the progress bar
-    #append fnirs data to dataset
-    dataset+= fnirs_data
+    
     # Save dataset
     torch.save(dataset, f"{datadir}/dataset_hcp_{atlas}_{name}.save")
