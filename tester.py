@@ -15,6 +15,7 @@ parser.add_argument("-m", "--model", type=str, default="bolT")
 parser.add_argument("-a", "--analysis", type=bool, default=False)
 parser.add_argument("--device", type=int, default=0)
 parser.add_argument("--name", type=str, default="noname")
+parser.add_argument("--test_only", type=bool, default=False)
 
 
 

@@ -150,8 +150,7 @@ class SupervisedDataset(Dataset):
         
         timeseries = (timeseries - np.mean(timeseries, axis=1, keepdims=True)) / np.std(timeseries, axis=1, keepdims=True)
         timeseries = np.nan_to_num(timeseries, 0)
-        noise = np.random.normal(0, 100, timeseries.shape)
-        timeseries += noise 
+        
         # dynamic sampling if train
         if(self.train and not isinstance(self.dynamicLength, type(None))):
             #added noise to make sure nothing weird is happening
