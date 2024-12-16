@@ -105,6 +105,8 @@ def test(model, dataset, fold):
         probs.append(test_probs)
         groundTruths.append(yTest)
         losses.append(test_loss)
+    
+
 
     preds = torch.cat(preds, dim=0).numpy()
     probs = torch.cat(probs, dim=0).numpy()

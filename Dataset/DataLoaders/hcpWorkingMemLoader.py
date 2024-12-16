@@ -27,13 +27,13 @@ def hcpWorkingMemLoader(atlas, targetTask):
     x = []
     y = []
     subjectIds = []
-
+    
     for data in dataset:
-        
-        
+        if(data["pheno"]["modality"] == "fNIRS"):
+            print("Skipping fNIRS data")
+            continue
         label = int(data["pheno"]["nback"])
-
-        if(healthCheckOnRoiSignal(data["roiTimeseries"].T)):
+        if(healthCheckOnRoiSignal(data["roiTimeseries"].T) or 1):
 
             x.append(data["roiTimeseries"].T)
             y.append(label)

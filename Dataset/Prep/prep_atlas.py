@@ -50,6 +50,8 @@ def prep_atlas(atlas, datadir, mni_coords=None):
     Returns:
     - filtered_atlas_img (Nifti1Image): Filtered atlas image containing only ROIs covering the MNI coordinates.
     """
+    if(atlas == "sphere"):
+        return None
     atlas_path = os.path.join(datadir, "Atlasses", atlas)
     os.makedirs(atlas_path, exist_ok=True)  # Ensure the directory exists
 
@@ -81,7 +83,6 @@ def prep_atlas(atlas, datadir, mni_coords=None):
 
     for coord in mni_coords:
         label = get_parcel_label(coord, atlas_data, atlas_img.affine)
-        
         roi_indices.append(label)
 
     # Unique ROI indices
@@ -90,7 +91,7 @@ def prep_atlas(atlas, datadir, mni_coords=None):
     # Create a filtered atlas
     filtered_atlas_data = np.isin(atlas_data, roi_indices) * atlas_data
     filtered_atlas_img = image.new_img_like(atlas_img, filtered_atlas_data)
-    print(filtered_atlas_img.get_fdata(), flush = True)
+    
     return filtered_atlas_img
 
 
