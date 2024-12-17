@@ -11,7 +11,7 @@ from Dataset.dataset import getDataset
 parser = argparse.ArgumentParser()
 
 parser.add_argument("-d", "--dataset", type=str, default="hcpWM_fNIRS")
-parser.add_argument("-m", "--model_path", type=str, default=os.path.join(os.getcwd(), "Analysis", "TargetSavedModels", "hcpWM", "seed_0", "model_0.save"))
+parser.add_argument("-m", "--model_path", type=str, default=os.path.join(os.getcwd(), "Analysis", "TargetSavedModels", "hcpWM", "MNI_final","seed_0", "model_0.save"))
 parser.add_argument("--device", type=int, default=0)
 parser.add_argument("--name", type=str, default="noname")
 
@@ -34,6 +34,6 @@ seed = 0
 model_path = argv.model_path
 device = argv.device
 model = torch.load(model_path)
-dataset = getDataset(datasetDetails)
-results = test(model, datasetDetails, 0)
+dataset = getDataset(Option({**datasetDetails,"datasetSeed":seed}))
+results = test(model, dataset, None)
 print(results)

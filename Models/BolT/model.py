@@ -56,7 +56,7 @@ class Model():
 
         preds = yHat.argmax(1)
         probs = yHat.softmax(1)
-
+       
         if(train):
 
             self.optimizer.zero_grad()

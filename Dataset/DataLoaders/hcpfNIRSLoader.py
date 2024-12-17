@@ -34,6 +34,7 @@ def hcpfNIRSLoader(atlas, targetTask):
     for data in dataset:
         
         label = int(data["pheno"]["nback"])
+        print("Subject: ", data["pheno"]["subjectId"], "Label: ", label)
         if(healthCheckOnRoiSignal(data["roiTimeseries"].T)):
 
             x.append(data["roiTimeseries"].T)

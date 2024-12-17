@@ -72,30 +72,7 @@ def prep_atlas(atlas, datadir, mni_coords=None):
     else:
         raise ValueError(f"Atlas '{atlas}' is not recognized. Choose 'schaefer7_400' or 'AAL'.")
 
-    if mni_coords is None:
-        # No filtering, return the full atlas
-        # return atlas_img
-        return atlas_img
-    
-    # Convert MNI coordinates to voxel space and filter ROIs
-    atlas_data = atlas_img.get_fdata()
-    roi_indices = []
-
-    for coord in mni_coords:
-        label = get_parcel_label(coord, atlas_data, atlas_img.affine)
-        roi_indices.append(label)
-
-    # Unique ROI indices
-    roi_indices = np.unique(roi_indices)
- 
-    # Create a filtered atlas
-    filtered_atlas_data = np.isin(atlas_data, roi_indices) * atlas_data
-    filtered_atlas_img = image.new_img_like(atlas_img, filtered_atlas_data)
-    # Save a visualization of the filtered atlas
-    display = plotting.plot_roi(filtered_atlas_img, title=f"Filtered {atlas} Atlas")
-    display.savefig(os.path.join(atlas_path, f"filtered_{atlas}_atlas.png"))
-    display.close()
-    return filtered_atlas_img
+    return atlas_img
 
 
 

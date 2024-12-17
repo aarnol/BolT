@@ -112,8 +112,17 @@ class SupervisedDataset(Dataset):
         self.k = fold
         self.train = train
 
-        if(self.foldCount == None):  # if this is the case, train must be True
-            trainIdx = list(range(len(self.data)))
+        if(self.foldCount == None):  # if this is the case, TEST must be True (different behavior) than original BolT
+            testIdx = list(range(len(self.data)))
+            self.targetData = [self.data[idx] for idx in testIdx]
+            self.targetLabels =  [self.labels[idx] for idx in testIdx]
+            self.targetSubjIds =  [self.subjectIds[idx] for idx in testIdx]
+            return
+
+
+
+
+
         else:
             trainIdx, testIdx = list(self.kFold.split(self.data, self.labels,self.groups))[fold]      
 

@@ -7,21 +7,23 @@ def load_fnirs(target_folder):
     Load the fNIRS data from the target folder.
     """
     
-    MNI_path = os.path.join(target_folder, 'HCP_MNI.mat')
+    MNI_path = os.path.join(target_folder, 'HCP_MNI_final.mat')
     digitization =scipy.io.loadmat(MNI_path)['MNI']
     data = os.path.join(target_folder, 'HCP_fNIRS_NBack.mat')
     data = scipy.io.loadmat(data)['Data_fNIRS']
     formatted_data = []
     # from the hcp protocol order
     labels = [1,0,1,0,0,1,0,1,1,0,1,0,1,1,0,0]
-    i = 0
+    
     sub = 0
     for subject in data:
+        i = 0
         blocks = subject[0]
         blocks = [block[0] for block in blocks]
        
-        label = labels[i%16]
+        
         for block in blocks:
+            label = labels[i]
             f_data = {
                 'roiTimeseries': block,
                 'pheno': {
@@ -31,6 +33,7 @@ def load_fnirs(target_folder):
                     'modality': 'fNIRS'
                 }
             }
+            
             formatted_data.append(f_data)
             i+=1
         sub+=1

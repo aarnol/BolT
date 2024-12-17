@@ -9,12 +9,12 @@ from tqdm import tqdm
 from joblib import Parallel, delayed
 from nilearn.input_data import NiftiLabelsMasker
 from .prep_atlas import prep_atlas
-from .fnirs_utils import load_fnirs, calculate_average_bold
+from .fnirs_utils import load_fnirs, calculate_average_bold, get_parcel_label
 import numpy as np
 
 datadir = "/scratch/alpine/alar6830/BoltROIs/"
 
-def process_scan(scanImage_fileName, MNI_coords, atlasImage =None, radius = 30):
+def process_scan(scanImage_fileName, MNI_coords, atlasImage =None,parcels = None, radius = 30):
     try:
         # Load the scan image and extract ROI time series
         scanImage = nil.image.load_img(scanImage_fileName)
@@ -24,6 +24,13 @@ def process_scan(scanImage_fileName, MNI_coords, atlasImage =None, radius = 30):
                 MNI_values = calculate_average_bold(coord, scanImage.get_fdata(), scanImage.affine)
                 roiTimeseries.append(MNI_values)
             roiTimeseries = np.array(roiTimeseries).T
+        elif parcels != None:
+            masker = NiftiLabelsMasker(labels_img=atlasImage)
+            for parcel in parcels:
+                masker.labels = [parcel]
+                parcel_timeseries = masker.fit_transform(scanImage)
+                roiTimeseries.append(parcel_timeseries)
+            roiTimeseries = np.hstack(roiTimeseries)
         else:
             roiTimeseries = NiftiLabelsMasker(atlasImage).fit_transform(scanImage)
         
@@ -102,6 +109,14 @@ def prep_hcp(atlas, name, fnirs = False):
     # Prepare the atlas image
     atlasImage = prep_atlas(atlas, datadir, MNI_coords)
 
+    if(atlas!= "sphere" and fnirs):
+        parcels = []
+        for coord in MNI_coords:
+            parcels.append(get_parcel_label(coord, atlasImage, atlasImage.affine))
+    else:
+        parcels = None
+
+
     if not os.path.exists(bulkDataDir):
         raise Exception("Data does not exist")
 
@@ -113,8 +128,8 @@ def prep_hcp(atlas, name, fnirs = False):
     # Process files in parallel with a progress bar
     with tqdm(total=len(scan_files), ncols=60) as pbar:
         dataset = []
-        for result in Parallel(n_jobs=16)(
-            delayed(process_scan)(file, MNI_coords, atlasImage) for file in tqdm(scan_files, desc="Processing files")
+        for result in Parallel(n_jobs=256)(
+            delayed(process_scan)(file, MNI_coords, atlasImage, parcels, radius = 30) for file in tqdm(scan_files, desc="Processing files")
         ):
             if result is not None:  # Only add successful results
                 dataset.append(result)

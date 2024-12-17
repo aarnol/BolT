@@ -98,7 +98,6 @@ def test(model, dataset, fold):
         # NOTE: xTrain and yTrain are still on "cpu" at this point
 
         test_loss, test_preds, test_probs, yTest = model.step(xTest, yTest, train=False)
-        
         torch.cuda.empty_cache()
 
         preds.append(test_preds)
@@ -120,7 +119,7 @@ def test(model, dataset, fold):
     
 
 
-def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False):
+def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False, name = "noname"):
 
 
     # extract datasetDetails
@@ -174,9 +173,9 @@ def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False):
 
 
         if(analysis):
-            targetSaveDir = "./Analysis/TargetSavedModels/{}/seed_{}/".format(datasetDetails.datasetName, datasetSeed)
+            targetSaveDir = "./Analysis/TargetSavedModels/{}/{}/seed_{}/".format(datasetDetails.datasetName, name, datasetSeed)
             os.makedirs(targetSaveDir, exist_ok=True)
-            torch.save(model, targetSaveDir + "/model_{}.pth".format(fold))
+            torch.save(model, targetSaveDir + "/model_{}.save".format(fold))
         
 
 

@@ -76,7 +76,7 @@ for i, seed in enumerate(seeds):
 
     print("Running the model with seed : {}".format(seed))
     if(argv.model == "bolT"):
-        results = runModel(hyperParams, Option({**datasetDetails,"datasetSeed":seed}), device="cuda:{}".format(argv.device), analysis=argv.analysis)
+        results = runModel(hyperParams, Option({**datasetDetails,"datasetSeed":seed}), device="cuda:{}".format(argv.device), analysis=argv.analysis, name = argv.name)
     else:
         results = runModel(hyperParams, Option({**datasetDetails,"datasetSeed":seed}), device="cuda:{}".format(argv.device))
 
