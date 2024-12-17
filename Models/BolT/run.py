@@ -20,7 +20,7 @@ from torch.nn.utils.rnn import pad_sequence
 
 
 def train(model, dataset, fold, nOfEpochs):
-
+   
     dataLoader = dataset.getFold(fold, train=True)
     test_metrics = []
     test_results = []
@@ -89,7 +89,7 @@ def test(model, dataset, fold):
     probs = []
     groundTruths = []
     losses = []        
-
+    
     for i, data in enumerate(tqdm(dataLoader, ncols=60, desc=f'Testing fold:{fold}')):
 
         xTest = data["timeseries"]
@@ -176,7 +176,7 @@ def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False):
         if(analysis):
             targetSaveDir = "./Analysis/TargetSavedModels/{}/seed_{}/".format(datasetDetails.datasetName, datasetSeed)
             os.makedirs(targetSaveDir, exist_ok=True)
-            torch.save(model, targetSaveDir + "/model_{}.save".format(fold))
+            torch.save(model, targetSaveDir + "/model_{}.pth".format(fold))
         
 
 

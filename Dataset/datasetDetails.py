@@ -70,7 +70,20 @@ datasetDetailsDict = {
         "normalize" : True,
         "fNIRS": True,
 
-    }
+    },
+
+    "hcpWM_fNIRS": {
+        "datasetName" : "hcpfNIRS",
+        "targetTask" : "nback",
+        "nOfClasses" : 2,        
+        "dynamicLength" : 33,
+        "foldCount" : None,
+        "atlas" : None,
+        "nOfEpochs" : 0,
+        "batchSize" : 32,
+        "normalize" : True,
+        "fNIRS": True,
+    },
 
 
  }
