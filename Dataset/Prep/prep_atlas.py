@@ -71,7 +71,7 @@ def prep_atlas(atlas, datadir, mni_coords=None):
 
     else:
         raise ValueError(f"Atlas '{atlas}' is not recognized. Choose 'schaefer7_400' or 'AAL'.")
-
+    
     return atlas_img
 
 

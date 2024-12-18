@@ -25,12 +25,12 @@ def process_scan(scanImage_fileName, MNI_coords, atlasImage =None,parcels = None
                 roiTimeseries.append(MNI_values)
             roiTimeseries = np.array(roiTimeseries).T
         elif parcels != None:
-            masker = NiftiLabelsMasker(labels_img=atlasImage)
-            for parcel in parcels:
-                masker.labels = [parcel]
-                parcel_timeseries = masker.fit_transform(scanImage)
-                roiTimeseries.append(parcel_timeseries)
-            roiTimeseries = np.hstack(roiTimeseries)
+            pass
+            # for parcel in parcels:
+            #     masker = NiftiLabelsMasker(labels_img=atlasImage, labels=[parcel])
+            #     parcel_timeseries = masker.fit_transform(scanImage)
+            #     roiTimeseries.append(parcel_timeseries)
+            # roiTimeseries = np.hstack(roiTimeseries)
         else:
             roiTimeseries = NiftiLabelsMasker(atlasImage).fit_transform(scanImage)
         
