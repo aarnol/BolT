@@ -14,7 +14,7 @@ import numpy as np
 
 datadir = "/scratch/alpine/alar6830/BoltROIs/"
 
-def process_scan(scanImage_fileName, MNI_coords, atlasImage =None,parcels = None, radius = 30):
+def process_scan(scanImage_fileName, MNI_coords, atlasImage =None,parcels = None, atlas = 'sphere', radius = 30):
     try:
         # Load the scan image and extract ROI time series
         scanImage = nil.image.load_img(scanImage_fileName)
@@ -25,12 +25,35 @@ def process_scan(scanImage_fileName, MNI_coords, atlasImage =None,parcels = None
                 roiTimeseries.append(MNI_values)
             roiTimeseries = np.array(roiTimeseries).T
         elif parcels != None:
-            pass
-            # for parcel in parcels:
-            #     masker = NiftiLabelsMasker(labels_img=atlasImage, labels=[parcel])
-            #     parcel_timeseries = masker.fit_transform(scanImage)
-            #     roiTimeseries.append(parcel_timeseries)
-            # roiTimeseries = np.hstack(roiTimeseries)
+            if(atlas == "AAL"):
+                parcel_labels = [2001, 2002, 2101, 2102, 2111, 2112, 2201, 2202, 2211, 2212, 
+                                2301, 2302, 2311, 2312, 2321, 2322, 2331, 2332, 2401, 2402, 
+                                2501, 2502, 2601, 2602, 2611, 2612, 2701, 2702, 3001, 3002, 
+                                4001, 4002, 4011, 4012, 4021, 4022, 4101, 4102, 4111, 4112, 
+                                4201, 4202, 5001, 5002, 5011, 5012, 5021, 5022, 5101, 5102, 
+                                5201, 5202, 5301, 5302, 5401, 5402, 6001, 6002, 6101, 6102, 
+                                6201, 6202, 6211, 6212, 6221, 6222, 6301, 6302, 6401, 6402, 
+                                7001, 7002, 7011, 7012, 7021, 7022, 7101, 7102, 8101, 8102, 
+                                8111, 8112, 8121, 8122, 8201, 8202, 8211, 8212, 8301, 8302, 
+                                9001, 9002, 9011, 9012, 9021, 9022, 9031, 9032, 9041, 9042, 
+                                9051, 9052, 9061, 9062, 9071, 9072, 9081, 9082, 9100, 9110, 
+                                9120, 9130, 9140, 9150, 9160, 9170]
+
+                parcel_labels_dict = {label: index for index, label in enumerate(parcel_labels)}
+            else:
+                raise NotImplementedError("Only AAL supported") 
+
+
+            masker = NiftiLabelsMasker(labels_img=atlasImage)
+            parcel_signals = masker.fit_transform(scanImage).T
+            
+            for parcel in parcels:
+                roiTimeseries.append(parcel_signals[parcel_labels_dict[int(parcel)]])
+            roiTimeseries = np.array(roiTimeseries).T
+            
+
+                
+            
         else:
             roiTimeseries = NiftiLabelsMasker(atlasImage).fit_transform(scanImage)
         
@@ -112,7 +135,7 @@ def prep_hcp(atlas, name, fnirs = False):
     if(atlas!= "sphere" and fnirs):
         parcels = []
         for coord in MNI_coords:
-            parcels.append(get_parcel_label(coord, atlasImage, atlasImage.affine))
+            parcels.append(get_parcel_label(coord, atlasImage.get_fdata(), atlasImage.affine))
     else:
         parcels = None
 
@@ -125,11 +148,11 @@ def prep_hcp(atlas, name, fnirs = False):
     # Loop through HCP data files and process them in parallel
     scan_files = glob(bulkDataDir + "/*.nii.gz")
 
-    # Process files in parallel with a progress bar
+    # Process files in parallel
     with tqdm(total=len(scan_files), ncols=60) as pbar:
         dataset = []
         for result in Parallel(n_jobs=256)(
-            delayed(process_scan)(file, MNI_coords, atlasImage, parcels, radius = 30) for file in tqdm(scan_files, desc="Processing files")
+            delayed(process_scan)(file, MNI_coords, atlasImage, parcels, atlas, radius = 30) for file in tqdm(scan_files, desc="Processing files")
         ):
             if result is not None:  # Only add successful results
                 dataset.append(result)

@@ -2,11 +2,12 @@
 
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --time=12:00:00
-#SBATCH --partition=amem
-#SBATCH --qos=mem 
+#SBATCH --time=00:10:00
+#SBATCH --partition=amilan
+
 #SBATCH -c 16
 #SBATCH --output=prep_hcp-%j.out
+#SBATCH --account=ucb474_asc1
 
 module purge
 
@@ -15,6 +16,6 @@ conda activate BolT
 
 cd /projects/alar6830/BolT
 
-python prep.py --dataset hcpWM --atlas AAL --name fNIRS_sphere --fnirs True
+python prep.py --dataset hcpWM --atlas AAL --name fNIRS --fnirs True
 
 echo "done prepping"

@@ -99,7 +99,7 @@ def get_parcel_label(mni_coord, atlas_data, affine, radius_mm=30):
 
         # Count occurrences of each label within the sphere
         labels, counts = np.unique([atlas_data[tuple(coord)] for coord in valid_coords], return_counts=True)
-        print(f"The most common parcel label within a 30mm radius of {mni_coord} is {labels[np.argmax(counts)]}.", flush=True)
+        
         return labels[np.argmax(counts)]
     except Exception as e:
         print(f"Error: {e}")
