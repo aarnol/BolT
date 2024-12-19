@@ -2,8 +2,9 @@
 
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --time=00:10:00
-#SBATCH --partition=amilan
+#SBATCH --time=04:00:00
+#SBATCH --partition=amem
+#SBATCH --qos=mem
 
 #SBATCH -c 16
 #SBATCH --output=prep_hcp-%j.out
