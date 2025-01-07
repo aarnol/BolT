@@ -40,13 +40,16 @@ def process_scan(scanImage_fileName, MNI_coords, atlasImage =None,parcels = None
                                 9120, 9130, 9140, 9150, 9160, 9170]
 
                 parcel_labels_dict = {label: index for index, label in enumerate(parcel_labels)}
+            elif(atlas == "brodmann"):
+                parcel_labels = my_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 32, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48]
+                parcel_labels_dict = {label:index for index, label in enumerate(parcel_labels)}
             else:
-                raise NotImplementedError("Only AAL supported") 
+                raise NotImplementedError(f"{atlas} not supported") 
 
 
             masker = NiftiLabelsMasker(labels_img=atlasImage)
             parcel_signals = masker.fit_transform(scanImage).T
-            
+            print(parcel_signals.shape, flush = True)
             for parcel in parcels:
                 roiTimeseries.append(parcel_signals[parcel_labels_dict[int(parcel)]])
             roiTimeseries = np.array(roiTimeseries).T
@@ -61,7 +64,6 @@ def process_scan(scanImage_fileName, MNI_coords, atlasImage =None,parcels = None
         base_name = os.path.basename(scanImage_fileName)
         subjectId = base_name[:6]  # Adjust based on HCP filename structure
         enc = base_name[6]
-        condition = base_name[7]
         nback = base_name[8]
         
         # Return the processed data
@@ -72,8 +74,7 @@ def process_scan(scanImage_fileName, MNI_coords, atlasImage =None,parcels = None
                 "subjectId": subjectId,
                 "encoding": enc,
                 "nback": nback,
-                "modality": "fMRI",
-                "condition": condition
+                "modality": "fMRI"
             }
         }
     except Exception as e:
@@ -148,7 +149,7 @@ def prep_hcp(atlas, name, fnirs = False):
     print("\n\nExtracting ROIs...\n\n")
 
     # Loop through HCP data files and process them in parallel
-    scan_files = glob(bulkDataDir + "/*.nii.gz")
+    scan_files = glob(bulkDataDir + "/*.nii.gz")[:5]
 
     # Process files in parallel
     with tqdm(total=len(scan_files), ncols=60) as pbar:

@@ -6,6 +6,7 @@ from nilearn.regions import connected_regions
 from scipy.ndimage import center_of_mass
 from random import sample
 import matplotlib.pyplot as plt
+import nibabel as nib
 datadir = "./Dataset/Data"
 
 
@@ -68,7 +69,8 @@ def prep_atlas(atlas, datadir, mni_coords=None):
     elif atlas == "AAL":
         atlasInfo = datasets.fetch_atlas_aal(data_dir=datadir + "/Atlasses")
         atlas_img = image.load_img(atlasInfo["maps"])
-
+    elif atlas == "brodmann":
+        atlas_img =  nib.load(os.path.join("Dataset", "Data", "Atlasses", "brodmann.nii.gz"))
     else:
         raise ValueError(f"Atlas '{atlas}' is not recognized. Choose 'schaefer7_400' or 'AAL'.")
     
