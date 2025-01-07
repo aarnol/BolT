@@ -11,7 +11,7 @@ from Dataset.dataset import getDataset
 parser = argparse.ArgumentParser()
 
 parser.add_argument("-d", "--dataset", type=str, default="hcpWM_fNIRS")
-parser.add_argument("-m", "--model_path", type=str, default=os.path.join(os.getcwd(), "Analysis", "TargetSavedModels", "hcpWM", "AAL_fnirs","seed_0", "model_0.save"))
+parser.add_argument("-m", "--model_path", type=str, default=os.path.join(os.getcwd(), "Analysis", "TargetSavedModels", "hcpWM", "brodmann_fnirs","seed_0", "model_0.save"))
 parser.add_argument("--device", type=int, default=0)
 parser.add_argument("--name", type=str, default="noname")
 

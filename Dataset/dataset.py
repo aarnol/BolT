@@ -83,6 +83,7 @@ class SupervisedDataset(Dataset):
         self.data = [self.data[idx] for idx in valid_data_indices]
         self.labels = [self.labels[idx] for idx in valid_data_indices]
         self.subjectIds = [self.subjectIds[idx] for idx in valid_data_indices]
+        
         self.groups = list([int(str(subject)) for subject in self.subjectIds])
         
         random.Random(self.seed).shuffle(self.data)

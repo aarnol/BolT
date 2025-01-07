@@ -84,6 +84,18 @@ datasetDetailsDict = {
         "normalize" : True,
         "fNIRS": True,
     },
+    "hcpWM_fNIRS_brodmann": {
+        "datasetName" : "hcpWM",
+        "targetTask" : "nback",
+        "nOfClasses" : 2,        
+        "dynamicLength" : 15,
+        "foldCount" : 5,
+        "atlas" : "brodmann",
+        "nOfEpochs" : 5,
+        "batchSize" : 32,
+        "normalize" : True,
+        "fNIRS": True,
+    }
 
 
  }
