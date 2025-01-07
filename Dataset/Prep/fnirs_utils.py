@@ -13,7 +13,8 @@ def load_fnirs(target_folder):
     data = scipy.io.loadmat(data)['Data_fNIRS']
     formatted_data = []
     # from the hcp protocol order
-    labels = [1,0,1,0,0,1,0,1,1,0,1,0,1,1,0,0]
+    labels =     [1,0,1,0,0,1,0,1,1,0,1,0,1,1,0,0]
+    conditions = [4,1,2,4,1,3,2,3,4,1,2,4,1,3,2,3]
     
     sub = 0
     for subject in data:
@@ -30,12 +31,14 @@ def load_fnirs(target_folder):
                     'subjectId': f'S{sub}',
                     'encoding': None,
                     'nback': label,
+                    "condition": conditions[i],
                     'modality': 'fNIRS'
                 }
             }
             
             formatted_data.append(f_data)
             i+=1
+        print(f"Subject {sub} loaded")
         sub+=1
     return formatted_data, digitization
 

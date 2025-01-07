@@ -61,6 +61,7 @@ def process_scan(scanImage_fileName, MNI_coords, atlasImage =None,parcels = None
         base_name = os.path.basename(scanImage_fileName)
         subjectId = base_name[:6]  # Adjust based on HCP filename structure
         enc = base_name[6]
+        condition = base_name[7]
         nback = base_name[8]
         
         # Return the processed data
@@ -71,7 +72,8 @@ def process_scan(scanImage_fileName, MNI_coords, atlasImage =None,parcels = None
                 "subjectId": subjectId,
                 "encoding": enc,
                 "nback": nback,
-                "modality": "fMRI"
+                "modality": "fMRI",
+                "condition": condition
             }
         }
     except Exception as e:
