@@ -14,10 +14,13 @@ import numpy as np
 
 datadir = "/scratch/alpine/alar6830/BoltROIs/"
 
-def process_scan(scanImage_fileName, MNI_coords, atlasImage =None,parcels = None, atlas = 'sphere', radius = 30):
+def process_scan(scanImage_fileName, MNI_coords, atlasImage =None,parcels = None, atlas = 'sphere', radius = 30, smooth_fwhm = None):
     try:
         # Load the scan image and extract ROI time series
         scanImage = nil.image.load_img(scanImage_fileName)
+        # Apply smoothing
+        if smooth_fwhm is not None:
+            scanImage = nilearn.image.smooth_image(scanImage, fwhm = smooth_fwhm)
         roiTimeseries = []
         if(atlasImage == None):
             for coord in MNI_coords:
@@ -49,7 +52,7 @@ def process_scan(scanImage_fileName, MNI_coords, atlasImage =None,parcels = None
 
             masker = NiftiLabelsMasker(labels_img=atlasImage)
             parcel_signals = masker.fit_transform(scanImage).T
-            print(parcel_signals.shape, flush = True)
+            
             for parcel in parcels:
                 roiTimeseries.append(parcel_signals[parcel_labels_dict[int(parcel)]])
             roiTimeseries = np.array(roiTimeseries).T
@@ -64,6 +67,7 @@ def process_scan(scanImage_fileName, MNI_coords, atlasImage =None,parcels = None
         base_name = os.path.basename(scanImage_fileName)
         subjectId = base_name[:6]  # Adjust based on HCP filename structure
         enc = base_name[6]
+        condition = base_name[7]
         nback = base_name[8]
         
         # Return the processed data
@@ -74,6 +78,7 @@ def process_scan(scanImage_fileName, MNI_coords, atlasImage =None,parcels = None
                 "subjectId": subjectId,
                 "encoding": enc,
                 "nback": nback,
+                "condition" : condition,
                 "modality": "fMRI"
             }
         }
@@ -120,7 +125,7 @@ def prep_abide(atlas, fnirs = False):
     torch.save(dataset, f"{datadir}/dataset_abide_{atlas}.save")
 
 
-def prep_hcp(atlas, name, fnirs = False):
+def prep_hcp(atlas, name, fnirs = False, radius= 30, smooth_fwhm = None):
     # Define directory for HCP data
     bulkDataDir = "/scratch/alpine/alar6830/WM_nback_labels/"
 
@@ -149,13 +154,13 @@ def prep_hcp(atlas, name, fnirs = False):
     print("\n\nExtracting ROIs...\n\n")
 
     # Loop through HCP data files and process them in parallel
-    scan_files = glob(bulkDataDir + "/*.nii.gz")[:5]
+    scan_files = glob(bulkDataDir + "/*.nii.gz")
 
     # Process files in parallel
     with tqdm(total=len(scan_files), ncols=60) as pbar:
         dataset = []
         for result in Parallel(n_jobs=256)(
-            delayed(process_scan)(file, MNI_coords, atlasImage, parcels, atlas, radius = 30) for file in tqdm(scan_files, desc="Processing files")
+            delayed(process_scan)(file, MNI_coords, atlasImage, parcels, atlas, radius = 30, smooth_fwhm = smooth_fwhm) for file in tqdm(scan_files, desc="Processing files")
         ):
             if result is not None:  # Only add successful results
                 dataset.append(result)

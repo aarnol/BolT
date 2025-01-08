@@ -17,6 +17,6 @@ conda activate BolT
 
 cd /projects/alar6830/BolT
 
-python prep.py --dataset hcpWM --atlas AAL --name fNIRS --fnirs True
+python prep.py --dataset hcpWM --atlas brodmann --name fNIRS --fnirs True
 
 echo "done prepping"
