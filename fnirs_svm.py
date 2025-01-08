@@ -81,4 +81,4 @@ from neurora.rsa_plot import plot_rdm, plot_corrs_by_time, plot_nps_hotmap, plot
 
 # Choose a metric: 'correlation', 'euclidean', etc.
 rdm = eegRDM(x_reshaped)
-plot_rdm(rdm, percentile=True, title="fNIRS RDM")
+plot_rdm(rdm, percentile=True, title="fNIRS RDM") 
