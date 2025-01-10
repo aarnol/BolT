@@ -125,7 +125,7 @@ def prep_abide(atlas, fnirs = False):
     torch.save(dataset, f"{datadir}/dataset_abide_{atlas}.save")
 
 
-def prep_hcp(atlas, name, fnirs = False, radius= 30, smooth_fwhm = None):
+def prep_hcp(atlas, name, fnirs = False, radius= 30, smooth_fwhm = None, unique_parcels = False):
     # Define directory for HCP data
     bulkDataDir = "/scratch/alpine/alar6830/WM_nback_labels/"
 
@@ -144,6 +144,14 @@ def prep_hcp(atlas, name, fnirs = False, radius= 30, smooth_fwhm = None):
         parcels = []
         for coord in MNI_coords:
             parcels.append(get_parcel_label(coord, atlasImage.get_fdata(), atlasImage.affine))
+        if unique_parcels:
+            unique_parcels = list(set(parcels))
+            unique_parcel_indices = [parcels.index(parcel) for parcel in unique_parcels]
+            print("Unique parcels:", unique_parcels)
+            print("Indices of unique parcels:", unique_parcel_indices)
+            parcels = np.array(parcels)[unique_parcel_indices].tolist()
+            np.save(f"{datadir}/{atlas}_indices.txt", unique_parcel_indices)
+
     else:
         parcels = None
 
