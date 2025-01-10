@@ -3,3 +3,6 @@
 *.pyc
 *.out
 *.slurm
+Dataset/Prep/unrestricted_hcp_freesurfer.csv
+*.nii
+*.nii.gz
