@@ -14,10 +14,11 @@ import numpy as np
 
 datadir = "/scratch/alpine/alar6830/BoltROIs/"
 
-def process_scan(scanImage_fileName, MNI_coords, atlasImage =None,parcels = None, atlas = 'sphere', radius = 30, smooth_fwhm = None):
+def process_scan(scanImage_fileName, MNI_coords, dataset, atlasImage =None,parcels = None, atlas = 'sphere', radius = 30, smooth_fwhm = None):
     try:
         # Load the scan image and extract ROI time series
         scanImage = nil.image.load_img(scanImage_fileName)
+        print("image size", )
         # Apply smoothing
         if smooth_fwhm is not None:
             scanImage = nilearn.image.smooth_image(scanImage, fwhm = smooth_fwhm)
@@ -67,17 +68,21 @@ def process_scan(scanImage_fileName, MNI_coords, atlasImage =None,parcels = None
         base_name = os.path.basename(scanImage_fileName)
         subjectId = base_name[:6]  # Adjust based on HCP filename structure
         enc = base_name[6]
-        condition = base_name[7]
-        nback = base_name[8]
-        
+        if(dataset == "hcpWM"):
+            condition = base_name[7]
+            label = base_name[8]
+        else:
+            label = base_name[7]
+            condition = None
+        print(roiTimeseries.shape, flush = True)
         # Return the processed data
-        
+       
         return {
             "roiTimeseries": roiTimeseries,
             "pheno": {
                 "subjectId": subjectId,
                 "encoding": enc,
-                "nback": nback,
+                "label": label,
                 "condition" : condition,
                 "modality": "fMRI"
             }
@@ -125,9 +130,12 @@ def prep_abide(atlas, fnirs = False):
     torch.save(dataset, f"{datadir}/dataset_abide_{atlas}.save")
 
 
-def prep_hcp(atlas, name, fnirs = False, radius= 30, smooth_fwhm = None, unique_parcels = False):
+def prep_hcp(atlas, name, dataset, fnirs = False, radius= 30, smooth_fwhm = None, unique = False):
     # Define directory for HCP data
-    bulkDataDir = "/scratch/alpine/alar6830/WM_nback_labels/"
+    if dataset == "hcpWM":
+        bulkDataDir = "/scratch/alpine/alar6830/WM_nback_labels/"
+    else:
+        bulkDataDir = "/scratch/alpine/alar6830/motor_labeled/"
 
     if(fnirs):
         fnirs_folder = os.path.join(os.path.dirname(__file__), '..', 'Data','fNIRS')
@@ -144,11 +152,11 @@ def prep_hcp(atlas, name, fnirs = False, radius= 30, smooth_fwhm = None, unique_
         parcels = []
         for coord in MNI_coords:
             parcels.append(get_parcel_label(coord, atlasImage.get_fdata(), atlasImage.affine))
-        if unique_parcels:
+        if False:
+            print("shouldn't be here", flush = True)
             unique_parcels = list(set(parcels))
             unique_parcel_indices = [parcels.index(parcel) for parcel in unique_parcels]
-            print("Unique parcels:", unique_parcels)
-            print("Indices of unique parcels:", unique_parcel_indices)
+           
             parcels = np.array(parcels)[unique_parcel_indices].tolist()
             np.save(f"{datadir}/{atlas}_indices.txt", unique_parcel_indices)
 
@@ -168,11 +176,11 @@ def prep_hcp(atlas, name, fnirs = False, radius= 30, smooth_fwhm = None, unique_
     with tqdm(total=len(scan_files), ncols=60) as pbar:
         dataset = []
         for result in Parallel(n_jobs=256)(
-            delayed(process_scan)(file, MNI_coords, atlasImage, parcels, atlas, radius = 30, smooth_fwhm = smooth_fwhm) for file in tqdm(scan_files, desc="Processing files")
+            delayed(process_scan)(file, MNI_coords, dataset, atlasImage, parcels, atlas, radius = 30, smooth_fwhm = smooth_fwhm) for file in tqdm(scan_files, desc="Processing files")
         ):
             if result is not None:  # Only add successful results
                 dataset.append(result)
             pbar.update(1)  # Update the progress bar
     
     # Save dataset
-    torch.save(dataset, f"{datadir}/dataset_hcp_{atlas}_{name}.save")
+    torch.save(dataset, f"{datadir}/motor_dataset.save")
