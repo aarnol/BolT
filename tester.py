@@ -83,7 +83,7 @@ for i, seed in enumerate(seeds):
     resultss.append(results)
     
 
-
+import os 
 # metricss = calculateMetrics(resultss) 
 # meanMetrics_seeds, stdMetrics_seeds, meanMetric_all, stdMetric_all = metricSummer(metricss, "test")
 
@@ -95,30 +95,33 @@ for i, seed in enumerate(seeds):
 # print(resultss)
 fold_0_results = resultss[0][0]
 step_metrics = fold_0_results["train"]["step_metrics"]
-
+results_folder = os.path.join("Analysis","Logs", f"{argv.dataset}_{argv.name}")
+os.makedirs(results_folder, exist_ok=True)
 # Save step metrics to a file
-with open('step_metrics.pkl', 'wb') as f:
+with open(os.path.join(results_folder, 'step_metrics.pkl'), 'wb') as f:
     pickle.dump(step_metrics, f)
 
-print("Step metrics saved to step_metrics.pkl")
+print("Step metrics saved to {}/step_metrics.pkl".format(results_folder))
 
-#save epoch metrics to a file
+# Save epoch metrics to a file
 epoch_metrics = fold_0_results["train"]["epoch_metrics"]
-with open('epoch_metrics.pkl', 'wb') as f:
+with open(os.path.join(results_folder, 'epoch_metrics.pkl'), 'wb') as f:
     pickle.dump(epoch_metrics, f)
 
-print("Epoch metrics saved to epoch_metrics.pkl")
+print("Epoch metrics saved to {}/epoch_metrics.pkl".format(results_folder))
 
-#save test metrics to a file
+# Save test metrics to a file
 test_metrics = fold_0_results["test"]["metrics"]
-with open('test_metrics.pkl', 'wb') as f:
+with open(os.path.join(results_folder, 'test_metrics.pkl'), 'wb') as f:
     pickle.dump(test_metrics, f)
 
-print("Test metrics saved to test_metrics.pkl")
+print("Test metrics saved to {}/test_metrics.pkl".format(results_folder))
 
-#save test results to a file
+# Save test results to a file
 test_results = fold_0_results["test"]["results"]
-with open('test_results.pkl', 'wb') as f:
+with open(os.path.join(results_folder, 'test_results.pkl'), 'wb') as f:
     pickle.dump(test_results, f)
+
+print("Test results saved to {}/test_results.pkl".format(results_folder))
 
 

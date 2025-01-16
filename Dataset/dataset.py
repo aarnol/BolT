@@ -11,13 +11,15 @@ from torch.nn.utils.rnn import pad_sequence
 #from .DataLoaders.abide1Loader importabide1Loader
 from .DataLoaders.hcpWorkingMemLoader import hcpWorkingMemLoader
 from .DataLoaders.hcpfNIRSLoader import hcpfNIRSLoader
+from .DataLoaders.hcpMotorLoader import hcpMotorLoader
 
 loaderMapper = {
     #"hcpRest" : hcpRestLoader,
     #"hcpTask" : hcpTaskLoader,
     #"abide1" : abide1Loader,
     "hcpWM": hcpWorkingMemLoader,
-    "hcpfNIRS" : hcpfNIRSLoader
+    "hcpfNIRS" : hcpfNIRSLoader,
+    "hcpMotor" : hcpMotorLoader
 }
 def custom_collate_fn(batch):
     """

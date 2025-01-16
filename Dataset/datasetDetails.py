@@ -95,6 +95,18 @@ datasetDetailsDict = {
         "batchSize" : 32,
         "normalize" : True,
         "fNIRS": True,
+    },
+    "hcp_motor_brodmann": {
+        "datasetName" : "hcpMotor",
+        "targetTask" : "nback",
+        "nOfClasses" : 5,        
+        "dynamicLength" : 15,
+        "foldCount" : 5,
+        "atlas" : "brodmann",
+        "nOfEpochs" : 20,
+        "batchSize" : 32,
+        "normalize" : True,
+        "fNIRS": True,
     }
 
 
