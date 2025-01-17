@@ -104,7 +104,13 @@ def get_parcel_label(mni_coord, atlas_data, affine, radius_mm=30):
         labels, counts = np.unique([atlas_data[tuple(coord)] for coord in valid_coords], return_counts=True)
         # print(labels, counts)
         # print(f"The most common parcel for the coordinate {mni_coord} is {int(labels[np.argmax(counts)])}")
-        return labels[np.argmax(counts)]
+
+        # 0 = left, 1 = right
+        if(mni[0] > 0):
+            hemisphere = "right"
+        else:
+            hemisphere = "left"
+        return labels[np.argmax(counts)], hemisphere
     except Exception as e:
         print(f"Error: {e}")
         return None

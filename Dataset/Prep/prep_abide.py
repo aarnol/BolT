@@ -50,13 +50,26 @@ def process_scan(scanImage_fileName, MNI_coords, dataset, atlasImage =None,parce
             else:
                 raise NotImplementedError(f"{atlas} not supported") 
 
-
             masker = NiftiLabelsMasker(labels_img=atlasImage)
-            parcel_signals = masker.fit_transform(scanImage).T
-            
-            for parcel in parcels:
-                roiTimeseries.append(parcel_signals[parcel_labels_dict[int(parcel)]])
-            roiTimeseries = np.array(roiTimeseries).T
+            if atlas != "brodmann":
+                
+                parcel_signals = masker.fit_transform(scanImage).T
+                
+                for parcel,_ in parcels:
+                    roiTimeseries.append(parcel_signals[parcel_labels_dict[int(parcel)]])
+                roiTimeseries = np.array(roiTimeseries).T
+            else:
+                #get the left and right hemispheres
+                left = nilearn.image.math_image("img1 * img2", img1 = scanImage, img2 =get_hemisphere_mask(scanImage, "left"))
+                right = nilearn.image.math_image("img1 * img2", img1 = scanImage, img2 =get_hemisphere_mask(scanImage, "riight"))
+                left_signals = masker.fit_transform(left).T
+                right_signals = masker.fit_transform(right).T
+                
+                for parcel, hemisphere in parcels:
+                    if hemisphere == "left":
+                        roiTimeseries.append(left_signals(parcel_labels_dict[int(parcel)]))
+                    else:
+                        roiTimeseries.append(right_signals(parcel_labels_dict[int(parcel)]))
             
 
                 
@@ -73,7 +86,7 @@ def process_scan(scanImage_fileName, MNI_coords, dataset, atlasImage =None,parce
             label = base_name[8]
         else:
             label = base_name[7]
-            condition = None
+            condition = base_name[8]
         print(roiTimeseries.shape, flush = True)
         # Return the processed data
        
@@ -90,6 +103,46 @@ def process_scan(scanImage_fileName, MNI_coords, dataset, atlasImage =None,parce
     except Exception as e:
         print(f"Error processing file {scanImage_fileName}: {e}")
         return None  # Return None if there's an error
+
+
+def get_hemisphere_mask(input_mask_img, hemisphere='left'):
+    """
+    Generates a hemisphere-specific mask from an input Nifti image.
+    
+    Parameters:
+    - input_mask_img: Nifti1Image
+        A Nifti image containing the input mask.
+    - hemisphere: str
+        Specifies which hemisphere to retain. Options are 'left' or 'right'.
+    
+    Returns:
+    - hemisphere_mask_img: Nifti1Image
+        A Nifti image containing the mask for the specified hemisphere.
+    """
+    # Load mask data and extract affine and shape
+    mask_data = input_mask_img.get_fdata()
+    affine = input_mask_img.affine
+    shape = mask_data.shape
+
+    # Create a boolean mask for the selected hemisphere
+    hemisphere_mask = np.zeros_like(mask_data, dtype=bool)
+    
+    for x_idx in range(shape[0]):
+        # Transform voxel index to MNI coordinates
+        x_mni, _, _ = coord_transform(x_idx, 0, 0, affine)
+        
+        if hemisphere == 'left' and x_mni < 0:
+            hemisphere_mask[x_idx, :, :] = mask_data[x_idx, :, :]
+        elif hemisphere == 'right' and x_mni > 0:
+            hemisphere_mask[x_idx, :, :] = mask_data[x_idx, :, :]
+    
+    # Create a new Nifti image for the hemisphere mask
+    hemisphere_mask_img = new_img_like(input_mask_img, hemisphere_mask.astype(np.int8))
+    
+    return hemisphere_mask_img
+
+
+
 
 
 def prep_abide(atlas, fnirs = False):
@@ -151,7 +204,8 @@ def prep_hcp(atlas, name, dataset, fnirs = False, radius= 30, smooth_fwhm = None
     if(atlas!= "sphere" and fnirs):
         parcels = []
         for coord in MNI_coords:
-            parcels.append(get_parcel_label(coord, atlasImage.get_fdata(), atlasImage.affine))
+            parcel, hemisphere = get_parcel_label(coord, atlasImage.get_fdata(), atlasImage.affine)
+            parcels.append((parcel,hemisphere))
         if False:
             print("shouldn't be here", flush = True)
             unique_parcels = list(set(parcels))

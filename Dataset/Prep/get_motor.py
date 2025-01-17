@@ -45,7 +45,7 @@ def process_subject(subject, enc):
         for value in data:
             try:
                 for j in range(2):
-                    print(value, flush = True)
+                    
                     onset = seconds_to_frame(value[j][0])  
                     offset = seconds_to_frame(value[j][1] + value[j][0])
 
@@ -57,7 +57,7 @@ def process_subject(subject, enc):
                     enc_num = 0 if enc == "LR" else 1
 
                     # Save the cropped image
-                    nib.save(img, os.path.join(root_dir, f"{subject}{enc_num}{i}.nii.gz"))
+                    nib.save(img, os.path.join(root_dir, f"{subject}{enc_num}{i}{j}.nii.gz"))
                 i+=1
             except Exception as e:
                 print(f"Onsets {value} not properly formatted for {subject}: {e}")
