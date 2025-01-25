@@ -40,7 +40,7 @@ def process_subject(subject, enc):
         lf = np.loadtxt(onset_paths + "lf.txt")
 
         data = [tongue,rh,rf,lh,lf]
-        print(data, flush = True)
+        
         i = 0
         for value in data:
             try:
@@ -57,7 +57,8 @@ def process_subject(subject, enc):
                     enc_num = 0 if enc == "LR" else 1
 
                     # Save the cropped image
-                    nib.save(img, os.path.join(root_dir, f"{subject}{enc_num}{i}{j}.nii.gz"))
+                    # subject (6) enc (1) trial (1) label (1)
+                    nib.save(img, os.path.join(root_dir, f"{subject}{enc_num}{j}{i}.nii.gz"))
                 i+=1
             except Exception as e:
                 print(f"Onsets {value} not properly formatted for {subject}: {e}")

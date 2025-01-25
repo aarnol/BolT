@@ -72,6 +72,7 @@ def get_parcel_label(mni_coord, atlas_data, affine, radius_mm=30):
     - label: int or None
         The most common parcel label within the radius, or None if no labels are found.
     """
+   
     try:
         # Convert MNI coordinate to voxel indices using the affine matrix
         mni_coord_homogeneous = np.append(mni_coord, 1)
@@ -106,7 +107,7 @@ def get_parcel_label(mni_coord, atlas_data, affine, radius_mm=30):
         # print(f"The most common parcel for the coordinate {mni_coord} is {int(labels[np.argmax(counts)])}")
 
         # 0 = left, 1 = right
-        if(mni[0] > 0):
+        if(mni_coord[0] > 0):
             hemisphere = "right"
         else:
             hemisphere = "left"

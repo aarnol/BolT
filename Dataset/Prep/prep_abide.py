@@ -11,6 +11,9 @@ from nilearn.input_data import NiftiLabelsMasker
 from .prep_atlas import prep_atlas
 from .fnirs_utils import load_fnirs, calculate_average_bold, get_parcel_label
 import numpy as np
+from nilearn.image.resampling import coord_transform
+from nilearn.image import new_img_like
+
 
 datadir = "/scratch/alpine/alar6830/BoltROIs/"
 
@@ -18,7 +21,7 @@ def process_scan(scanImage_fileName, MNI_coords, dataset, atlasImage =None,parce
     try:
         # Load the scan image and extract ROI time series
         scanImage = nil.image.load_img(scanImage_fileName)
-        print("image size", )
+        
         # Apply smoothing
         if smooth_fwhm is not None:
             scanImage = nilearn.image.smooth_image(scanImage, fwhm = smooth_fwhm)
@@ -60,17 +63,19 @@ def process_scan(scanImage_fileName, MNI_coords, dataset, atlasImage =None,parce
                 roiTimeseries = np.array(roiTimeseries).T
             else:
                 #get the left and right hemispheres
-                left = nilearn.image.math_image("img1 * img2", img1 = scanImage, img2 =get_hemisphere_mask(scanImage, "left"))
-                right = nilearn.image.math_image("img1 * img2", img1 = scanImage, img2 =get_hemisphere_mask(scanImage, "riight"))
+                left = nilearn.image.math_img("img1 * img2", img1 = scanImage, img2 =get_hemisphere_mask(scanImage, "left"))
+                right = nilearn.image.math_img("img1 * img2", img1 = scanImage, img2 =get_hemisphere_mask(scanImage, "riight"))
                 left_signals = masker.fit_transform(left).T
                 right_signals = masker.fit_transform(right).T
-                
-                for parcel, hemisphere in parcels:
-                    if hemisphere == "left":
-                        roiTimeseries.append(left_signals(parcel_labels_dict[int(parcel)]))
-                    else:
-                        roiTimeseries.append(right_signals(parcel_labels_dict[int(parcel)]))
+              
             
+                for parcel, hemisphere in parcels:
+                    
+                    if hemisphere == "left":
+                        roiTimeseries.append(left_signals[parcel_labels_dict[int(parcel)]])
+                    else:
+                        roiTimeseries.append(right_signals[parcel_labels_dict[int(parcel)]])
+                roiTimeseries = np.array(roiTimeseries).T
 
                 
             
@@ -86,8 +91,8 @@ def process_scan(scanImage_fileName, MNI_coords, dataset, atlasImage =None,parce
             label = base_name[8]
         else:
             label = base_name[7]
-            condition = base_name[8]
-        print(roiTimeseries.shape, flush = True)
+            condition = base_name[9]
+       
         # Return the processed data
        
         return {
@@ -204,6 +209,7 @@ def prep_hcp(atlas, name, dataset, fnirs = False, radius= 30, smooth_fwhm = None
     if(atlas!= "sphere" and fnirs):
         parcels = []
         for coord in MNI_coords:
+            
             parcel, hemisphere = get_parcel_label(coord, atlasImage.get_fdata(), atlasImage.affine)
             parcels.append((parcel,hemisphere))
         if False:
