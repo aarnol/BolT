@@ -57,7 +57,7 @@ def process_subject(subject, enc):
                     enc_num = 0 if enc == "LR" else 1
 
                     # Save the cropped image
-                    # subject (6) enc (1) trial (1) label (1)
+                    # subject (0-5) enc (6) trial (7) label (8)
                     nib.save(img, os.path.join(root_dir, f"{subject}{enc_num}{j}{i}.nii.gz"))
                 i+=1
             except Exception as e:

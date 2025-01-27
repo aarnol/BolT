@@ -90,8 +90,8 @@ def process_scan(scanImage_fileName, MNI_coords, dataset, atlasImage =None,parce
             condition = base_name[7]
             label = base_name[8]
         else:
-            label = base_name[7]
-            condition = base_name[9]
+            label = base_name[8]
+            condition = None 
        
         # Return the processed data
        
@@ -243,4 +243,4 @@ def prep_hcp(atlas, name, dataset, fnirs = False, radius= 30, smooth_fwhm = None
             pbar.update(1)  # Update the progress bar
     
     # Save dataset
-    torch.save(dataset, f"{datadir}/motor_dataset.save")
+    torch.save(dataset, f"{datadir}/motor_sphere.save")
