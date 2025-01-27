@@ -6,3 +6,6 @@
 Dataset/Prep/unrestricted_hcp_freesurfer.csv
 *.nii
 *.nii.gz
+/Dataset/Data/motor
+*.zip
+*.csv

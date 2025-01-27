@@ -8,8 +8,8 @@ import torch
 from tqdm import tqdm
 from joblib import Parallel, delayed
 from nilearn.input_data import NiftiLabelsMasker
-from .prep_atlas import prep_atlas
-from .fnirs_utils import load_fnirs, calculate_average_bold, get_parcel_label
+from prep_atlas import prep_atlas
+from fnirs_utils import load_fnirs, calculate_average_bold, get_parcel_label
 import numpy as np
 from nilearn.image.resampling import coord_transform
 from nilearn.image import new_img_like
