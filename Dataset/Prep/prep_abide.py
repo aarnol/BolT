@@ -8,8 +8,8 @@ import torch
 from tqdm import tqdm
 from joblib import Parallel, delayed
 from nilearn.input_data import NiftiLabelsMasker
-from prep_atlas import prep_atlas
-from fnirs_utils import load_fnirs, calculate_average_bold, get_parcel_label
+from .prep_atlas import prep_atlas
+from .fnirs_utils import load_fnirs, calculate_average_bold, get_parcel_label
 import numpy as np
 from nilearn.image.resampling import coord_transform
 from nilearn.image import new_img_like
@@ -211,6 +211,7 @@ def prep_hcp(atlas, name, dataset, fnirs = False, radius= 30, smooth_fwhm = None
         for coord in MNI_coords:
             
             parcel, hemisphere = get_parcel_label(coord, atlasImage.get_fdata(), atlasImage.affine)
+            
             parcels.append((parcel,hemisphere))
         if False:
             print("shouldn't be here", flush = True)
@@ -223,7 +224,7 @@ def prep_hcp(atlas, name, dataset, fnirs = False, radius= 30, smooth_fwhm = None
     else:
         parcels = None
 
-
+    exit()
     if not os.path.exists(bulkDataDir):
         raise Exception("Data does not exist")
 

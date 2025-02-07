@@ -119,7 +119,7 @@ if contrasts:
         z_map = second_level_model.compute_contrast(output_type="z_score")
 
         # Threshold and save the second-level result
-        p_val = 0.001
+        p_val = 0.0001
         p001_unc = norm.isf(p_val)
         z_map_path = os.path.join(root, "second_level.png")
         plot_glass_brain(z_map, threshold=p001_unc, display_mode="ortho", 

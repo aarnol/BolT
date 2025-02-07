@@ -26,7 +26,7 @@ contrasts = []
 # Process each folder in the directory
 for folder in os.listdir(root):
     folder_path = os.path.join(root, folder, "RL")
-    image_path = os.path.join(folder_path, "tfMRI_MOTOR_RL.nii.gz")  # Adjusted for Motor task
+    image_path = os.path.join(folder_path, "tfMRI_MOTOR_RL.nii.gz")  # Adjusted for motor task
 
     if not os.path.exists(image_path):
         print(f"Functional image not found in {folder_path}. Skipping...")
@@ -42,34 +42,33 @@ for folder in os.listdir(root):
         # Initialize lists to store onsets and durations
         all_onsets = []
         all_durations = []
-        all_labels = []  # To track condition labels
+        all_labels = []
 
-        # Define Motor task conditions
-        # "other conditions 'rf', 'lh', 'rh', 't"
-        motor_conditions = ['rh', 'cue']
+        stimulus_types = ['lh','rh']
+        conditions = ['left', 'right']
 
-        # Process conditions
-        for condition in motor_conditions:
-            file_path = os.path.join(folder_path, "metadata", f"{condition}.txt")
+        # Process stimuli and conditions
+        for stimulus in stimulus_types:
+          
+            path = os.path.join(folder_path, "metadata", f"{stimulus}.txt")
 
-            if not os.path.exists(file_path):
-                print(f"Missing file for {condition} in {folder_path}. Skipping...")
+            if not os.path.exists(path):
+                print(f"Missing files for {stimulus} in {folder_path}. Skipping...")
                 continue
 
-            try:
-                data = np.loadtxt(file_path)
-                if(condition == 'cue'):
-                    all_onsets.append(0.0)
-                    all_durations.append(data[0][0] + data[0][1])
-                    all_labels.append("rest")
+            for i in range(2):
+                
+                try:
+                    data = np.loadtxt(path)
+                    
+                    all_onsets.append(float(data[i][0]))  # Append onsets
+                    all_durations.append(float(data[i][1]))  # Append durations
+                    all_labels.append("left" if stimulus == "lh" else "right")
+
+                except Exception as e:
+                    print(f"Error loading data from {path}: {e}")
                     continue
-                print(data, flush=True)
-                all_onsets.append(data[0][0])  # Append onsets
-                all_durations.append(data[0][1])  # Append durations
-                all_labels.append(condition)  # Append condition label
-            except Exception as e:
-                print(f"Error loading data from {file_path}: {e}")
-                continue
+                
 
         # Create events dataframe
         events = pd.DataFrame({
@@ -78,6 +77,8 @@ for folder in os.listdir(root):
             "duration": all_durations
         })
         print(events)
+        
+
 
         # Define frame times
         n_scans = image.shape[-1]
@@ -87,19 +88,39 @@ for folder in os.listdir(root):
         design_matrix = make_first_level_design_matrix(
             frame_times, events, drift_model='polynomial', drift_order=3
         )
+        print("Design matrix (left and right columns):")
+        print(design_matrix[['left', 'right']].head(20))
+
+
         print("Design matrix created")
+        print("Design matrix columns:", design_matrix.columns)
+
+        print(f"Number of scans: {n_scans}")
+        print(f"Design matrix shape: {design_matrix.shape}")
+        print(f"Image shape: {image.shape}")
+
+        if design_matrix.isnull().values.any():
+            print("Warning: NaNs detected in the design matrix. Replacing with zeros.")
+            design_matrix = design_matrix.fillna(0)
+        
 
         # Fit the first-level GLM
         glm = FirstLevelModel(t_r=t_r)
+        print("glm created")
         glm = glm.fit(image, design_matrices=design_matrix)
         print("GLM fitted")
+        
 
-        # Define and compute contrasts
-        contrast = glm.compute_contrast('rh - rest', output_type='z_score')  # Example contrast
+      
+
+        contrast = glm.compute_contrast("left-right", output_type='z_score')
+
+        # Define and compute contrast
+        # contrast = glm.compute_contrast('left - right', output_type='z_score')
         print("Contrast computed")
 
         # Save the contrast image
-        contrast_image_path = os.path.join(folder_path, "contrast_left_vs_rest.nii.gz")
+        contrast_image_path = os.path.join(folder_path, "contrast_left_vs_right.nii.gz")
         contrast.to_filename(contrast_image_path)
         print(f"Contrast image saved to {contrast_image_path}")
 
@@ -107,6 +128,7 @@ for folder in os.listdir(root):
 
     except Exception as e:
         print(f"Error processing {folder_path}: {e}")
+    
 
 # Perform second-level analysis
 if contrasts:
@@ -118,9 +140,9 @@ if contrasts:
         z_map = second_level_model.compute_contrast(output_type="z_score")
 
         # Threshold and save the second-level result
-        p_val = 0.001
+        p_val = 0.0001
         p001_unc = norm.isf(p_val)
-        z_map_path = os.path.join(root, "second_level.png")
+        z_map_path = os.path.join(root, "second_level_motor.png")
         plot_glass_brain(z_map, threshold=p001_unc, display_mode="ortho", 
                          colorbar=True, output_file=z_map_path, plot_abs=False)
         print(f"Second-level result saved to {z_map_path}")

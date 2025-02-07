@@ -103,14 +103,15 @@ def get_parcel_label(mni_coord, atlas_data, affine, radius_mm=30):
 
         # Count occurrences of each label within the sphere
         labels, counts = np.unique([atlas_data[tuple(coord)] for coord in valid_coords], return_counts=True)
-        print(labels, counts)
-        print(f"The most common parcel for the coordinate {mni_coord} is {int(labels[np.argmax(counts)])}")
+        
 
         # 0 = left, 1 = right
         if(mni_coord[0] > 0):
             hemisphere = "right"
         else:
             hemisphere = "left"
+        print(mni_coord)
+        print(brodmann_to_name(labels[np.argmax(counts)]), hemisphere)
         return labels[np.argmax(counts)], hemisphere
     except Exception as e:
         print(f"Error: {e}")
@@ -259,6 +260,59 @@ def parcel_num_to_name(num):
     }
     return code_to_region[num]
 
-
+def brodmann_to_name(num):
+    brodmann_areas = {
+    1: "Primary somatosensory cortex",
+    2: "Primary somatosensory cortex",
+    3: "Primary somatosensory cortex",
+    4: "Primary motor cortex",
+    5: "Somatosensory association cortex",
+    6: "Premotor cortex and supplementary motor cortex",
+    7: "Somatosensory association cortex",
+    8: "Includes frontal eye fields",
+    9: "Dorsolateral prefrontal cortex",
+    10: "Anterior prefrontal cortex",
+    11: "Orbitofrontal area",
+    12: "Orbitofrontal area",
+    13: "Insular cortex",
+    14: "Insular cortex",
+    15: "Anterior temporal lobe",
+    16: "Insular cortex",
+    17: "Primary visual cortex",
+    18: "Secondary visual cortex",
+    19: "Associative visual cortex",
+    20: "Inferior temporal gyrus",
+    21: "Middle temporal gyrus",
+    22: "Superior temporal gyrus",
+    23: "Ventral posterior cingulate cortex",
+    24: "Ventral anterior cingulate cortex",
+    25: "Subgenual area",
+    26: "Ectosplenial portion of the retrosplenial region of the cerebral cortex",
+    27: "Piriform cortex",
+    28: "Ventral entorhinal cortex",
+    29: "Retrosplenial cingulate cortex",
+    30: "Part of cingulate cortex",
+    31: "Dorsal posterior cingulate cortex",
+    32: "Dorsal anterior cingulate cortex",
+    33: "Part of anterior cingulate cortex",
+    34: "Dorsal entorhinal cortex",
+    35: "Perirhinal cortex",
+    36: "Ectorhinal area",
+    37: "Fusiform gyrus",
+    38: "Temporopolar area",
+    39: "Angular gyrus",
+    40: "Supramarginal gyrus",
+    41: "Auditory cortex",
+    42: "Auditory cortex",
+    43: "Primary gustatory cortex",
+    44: "Pars opercularis",
+    45: "Pars triangularis",
+    46: "Dorsolateral prefrontal cortex",
+    47: "Pars orbitalis, part of the inferior frontal gyrus",
+    48: "Retrosubicular area",
+    49: "Parasubicular area (in rodents)",
+    52: "Parainsular area"
+    }
+    return brodmann_areas[num]
 
 
