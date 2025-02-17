@@ -86,10 +86,13 @@ def process_scan(scanImage_fileName, MNI_coords, dataset, atlasImage =None,parce
         base_name = os.path.basename(scanImage_fileName)
         subjectId = base_name[:6]  # Adjust based on HCP filename structure
         enc = base_name[6]
+        print(dataset)
         if(dataset == "hcpWM"):
             condition = base_name[7]
             label = base_name[8]
+            print(condition, flush = True)
         else:
+            print("why am i here", flush = True)
             label = base_name[8]
             condition = None 
        
@@ -190,8 +193,9 @@ def prep_abide(atlas, fnirs = False):
 
 def prep_hcp(atlas, name, dataset, fnirs = False, radius= 30, smooth_fwhm = None, unique = False):
     # Define directory for HCP data
+    print(dataset)
     if dataset == "hcpWM":
-        bulkDataDir = "/scratch/alpine/alar6830/WM_nback_labels/"
+        bulkDataDir = "/scratch/alpine/alar6830/WM_All/"
     else:
         bulkDataDir = "/scratch/alpine/alar6830/motor_labeled/"
 
@@ -224,7 +228,7 @@ def prep_hcp(atlas, name, dataset, fnirs = False, radius= 30, smooth_fwhm = None
     else:
         parcels = None
 
-    exit()
+    
     if not os.path.exists(bulkDataDir):
         raise Exception("Data does not exist")
 
@@ -232,16 +236,16 @@ def prep_hcp(atlas, name, dataset, fnirs = False, radius= 30, smooth_fwhm = None
 
     # Loop through HCP data files and process them in parallel
     scan_files = glob(bulkDataDir + "/*.nii.gz")
-
+    print(scan_files)
     # Process files in parallel
     with tqdm(total=len(scan_files), ncols=60) as pbar:
-        dataset = []
+        full_dataset = []
         for result in Parallel(n_jobs=256)(
             delayed(process_scan)(file, MNI_coords, dataset, atlasImage, parcels, atlas, radius = 30, smooth_fwhm = smooth_fwhm) for file in tqdm(scan_files, desc="Processing files")
         ):
             if result is not None:  # Only add successful results
-                dataset.append(result)
+                full_dataset.append(result)
             pbar.update(1)  # Update the progress bar
     
     # Save dataset
-    torch.save(dataset, f"{datadir}/motor_sphere.save")
+    torch.save(full_dataset, f"{datadir}/hcpwm_sphere15.save")

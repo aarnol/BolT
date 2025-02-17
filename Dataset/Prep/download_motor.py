@@ -58,7 +58,7 @@ for subject in subject_values:
         if check_s3_path_exists(bucket_name, s3_path):
             print("starting 1")
             path = f"s3://{bucket_name}/{s3_path}"
-
+            exit()
             aws_command = f"aws s3 cp {path} {file}"
             os.system(aws_command)
             count+=1

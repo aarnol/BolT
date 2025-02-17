@@ -23,7 +23,7 @@ if(argv.dataset == "abide1"):
 elif(argv.dataset == "hcpWM" or argv.dataset == "hcpMotor"):
     prep = prep_hcp
 
-
+print(argv.dataset)
 prep(argv.atlas, argv.name, argv.dataset, argv.fnirs, argv.radius, argv.smoothing, argv.unique_parcels)
 
 
