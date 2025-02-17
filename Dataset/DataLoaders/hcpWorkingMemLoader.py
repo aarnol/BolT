@@ -22,7 +22,7 @@ def hcpWorkingMemLoader(atlas, targetTask):
         x : (#subjects, N)
     """
 
-    dataset = torch.load(datadir + "/dataset_hcpWM_{}.save".format(atlas))
+    dataset = torch.load(datadir + "/dataset_hcpWM_{}15.save".format(atlas))
 
     x = []
     y = []
@@ -30,7 +30,7 @@ def hcpWorkingMemLoader(atlas, targetTask):
     
     for data in dataset:
         
-        label = int(data["pheno"]["nback"])
+        label = int(data["pheno"]["label"])
         if(healthCheckOnRoiSignal(data["roiTimeseries"].T)):
 
             x.append(data["roiTimeseries"].T)

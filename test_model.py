@@ -11,7 +11,7 @@ from Dataset.dataset import getDataset
 parser = argparse.ArgumentParser()
 
 parser.add_argument("-d", "--dataset", type=str, default="hcpWM_fNIRS")
-parser.add_argument("-m", "--model_path", type=str, default=os.path.join(os.getcwd(), "Analysis", "TargetSavedModels", "hcpWM", "brodmann_fnirs","seed_0", "model_0.save"))
+parser.add_argument("-m", "--model_path", type=str, default=os.path.join(os.getcwd(), "Analysis", "TargetSavedModels", "hcpWM", "sphere15mm","seed_0", "model_0.save"))
 parser.add_argument("--device", type=int, default=0)
 parser.add_argument("--name", type=str, default="noname")
 
@@ -36,4 +36,25 @@ device = argv.device
 model = torch.load(model_path)
 dataset = getDataset(Option({**datasetDetails,"datasetSeed":seed}))
 results = test(model, dataset, None)
-print(results)
+
+#generate confusion matrix
+preds = results[0]
+labels = results[2]
+
+from sklearn.metrics import confusion_matrix
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+conf_matrix = confusion_matrix(labels, preds)
+classes = ["0back", "2back"]    
+# Create the heatmap
+plt.figure(figsize=(5, 4))
+sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues', xticklabels=classes, yticklabels=classes)
+
+# Labels and title
+plt.xlabel('Predicted Label')
+plt.ylabel('Actual Label')
+plt.title('15mm Sphere fNIRS Confusion Matrix')
+
+plt.show()

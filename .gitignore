@@ -9,3 +9,4 @@ Dataset/Prep/unrestricted_hcp_freesurfer.csv
 /Dataset/Data/motor
 *.zip
 *.csv
+/Dataset/Data/10Examples

@@ -3,7 +3,7 @@ import numpy as np
 
 datadir = "./Dataset/Data"
 
-
+only_fingers = True
 def healthCheckOnRoiSignal(roiSignal):
     """
         roiSignal : (N, T)
@@ -22,7 +22,7 @@ def hcpMotorLoader(atlas, targetTask):
         x : (#subjects, N)
     """
 
-    dataset = torch.load(datadir + "/hcp_motor_{}.save".format(atlas))
+    dataset = torch.load(datadir + "/hcp_motor_{}_15.save".format(atlas))
 
     x = []
     y = []
@@ -31,6 +31,12 @@ def hcpMotorLoader(atlas, targetTask):
     for data in dataset:
         
         label = int(data["pheno"]["label"])
+        if only_fingers and label == 3:
+            label = 0
+        elif only_fingers and label!=1:
+            continue
+            
+
         if(healthCheckOnRoiSignal(data["roiTimeseries"].T)):
 
             x.append(data["roiTimeseries"].T)

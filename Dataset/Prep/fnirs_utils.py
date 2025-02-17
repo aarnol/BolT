@@ -2,6 +2,8 @@ import numpy as np
 import os
 import scipy.io
 import matplotlib.pyplot as plt
+from scipy.spatial.distance import cdist
+from nilearn import datasets, surface
 def load_fnirs(target_folder):
     """
     Load the fNIRS data from the target folder.
@@ -42,6 +44,56 @@ def load_fnirs(target_folder):
         sub+=1
     return formatted_data, digitization
 
+def load_fnirs_subject_mni(subject_id):
+    """
+    Load the fNIRS data from the target folder.
+    """
+    target_folder = f"Dataset/Data/fNIRS"
+    MNI_path = os.path.join(target_folder, 'fNIRS_HCP_SubjSpecific.mat')
+    digitization =scipy.io.loadmat(MNI_path)['Data_fNIRS'][subject_id][1]
+   
+    return digitization
+
+def load_fnirs_subject(subject_id, condition = 'nback', type = 'HbR'):
+
+    
+    type_dict = {
+        'HbO': 0,
+        'HbR': 1,
+        'HbT': 2}
+    
+    target_folder = f"Dataset/Data/fNIRS"
+    data = os.path.join(target_folder, 'fNIRS_HCP_SubjSpecific.mat')
+    data = scipy.io.loadmat(data)['Data_fNIRS'][subject_id][0]
+    if(condition == 'nback'):
+        data = data[:][:4]
+    else:
+        data = data[:][4:]
+    data = data[type_dict[type]]
+    formatted_data = []
+    # from the hcp protocol order
+    labels =     [1,0,1,0,1,1,0,0,1,0,1,0,1,1,0,0]
+    conditions = [4,1,2,4,1,3,2,3,4,1,2,4,1,3,2,3]
+    
+    i = 0
+    blocks = data
+    blocks = [block[0] for block in blocks]
+    for block in blocks:
+        label = labels[i]
+        f_data = {
+            'roiTimeseries': block,
+            'pheno': {
+                'subjectId': f'S{subject_id}',
+                'encoding': None,
+                'nback': label,
+                "condition": conditions[i],
+                'modality': 'fNIRS'
+            }
+        }
+
+        formatted_data.append(f_data)
+        i+=1
+    return formatted_data
 
 
 def calc_MNI_average(digitization):
@@ -52,7 +104,7 @@ def calc_MNI_average(digitization):
 
 
 
-import numpy as np
+
 
 def get_parcel_label(mni_coord, atlas_data, affine, radius_mm=30):
     """
@@ -116,6 +168,77 @@ def get_parcel_label(mni_coord, atlas_data, affine, radius_mm=30):
     except Exception as e:
         print(f"Error: {e}")
         return None
+
+def mni_to_voxel(mni_coords, affine):
+    mni_coords = np.array(mni_coords)  # Ensure it's a NumPy array
+    voxel_coords = np.linalg.inv(affine).dot(np.append(mni_coords, 1))[:3]
+    return np.round(voxel_coords).astype(int)
+
+
+import nibabel as nib
+from scipy.ndimage import distance_transform_edt
+import numpy as np
+import mne
+import nibabel as nib
+from scipy.spatial.distance import cdist
+
+mne.datasets.fetch_fsaverage(subjects_dir=None)  # Downloads fsaverage
+
+
+# Set up the subjects directory (adjust this path for Windows)
+import os
+os.environ["SUBJECTS_DIR"] = "C:\\Users\\Alex\\\mne_data"
+
+
+def project_mni_to_surface_com(mni_coord, brain_mask_path):
+    """
+    Projects an MNI coordinate onto the nearest brain surface voxel 
+    along a vector pointing to the brain's center of mass.
+
+    Parameters:
+        mni_coord (array): The input MNI coordinate [x, y, z].
+        brain_mask_path (str): Path to the brain mask NIfTI file.
+
+    Returns:
+        projected_coord (array): The new MNI coordinate projected onto the cortical surface.
+    """
+    # Load brain mask NIfTI
+    brain_img = nib.load(brain_mask_path)
+    
+    brain_data = brain_img.get_fdata()[:,:,:,0]
+    affine = brain_img.affine  # MNI ↔ voxel transformations
+
+    # Compute center of mass of the brain
+    indices = np.argwhere(brain_data > 0)  # Get all nonzero voxels
+    center_of_mass = indices.mean(axis=0)  # Compute voxel CoM
+    center_of_mass_mni = nib.affines.apply_affine(affine, center_of_mass)  # Convert to MNI
+
+    # Compute direction vector (MNI → CoM)
+    direction_vector = center_of_mass_mni - np.array(mni_coord)
+    direction_vector /= np.linalg.norm(direction_vector)  # Normalize
+
+    # Load fsaverage brain surface
+    subjects_dir = os.getenv("SUBJECTS_DIR")
+    src = mne.read_source_spaces(f"{subjects_dir}/fsaverage/bem/fsaverage-ico-5-src.fif")
+    cortex_vertices = src[0]['rr'] * 1000  # Convert to MNI space
+
+    # Walk along the vector until hitting the cortical surface
+    num_steps = 50  # Number of steps along the vector
+    step_size = 1  # Step length in mm
+    print(mni_coord)
+    projected_coord = np.array(mni_coord)  # Start from input coordinate
+    print(projected_coord)
+    for _ in range(num_steps):
+        projected_coord += step_size * direction_vector
+        distances = cdist([projected_coord], cortex_vertices)  # Compute distances
+        if np.min(distances) < 2:  # Stop when close to surface (2mm threshold)
+            break
+
+    return projected_coord
+
+
+    
+
 
 
 def save_atlas_plot_with_coord(atlas_data, affine, mni_coord, output_path):
