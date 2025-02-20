@@ -19,13 +19,13 @@ def getHyper_bolT():
             # Schaefer 400 = 400
             # AAL = 116
             # MNI = 107
-            "dim" : 107,        
+            "dim" : 66,        
 
             "numHeads" : 36,
             "headDim" : 20,
 
         
-            "windowSize" : 10, #changed for shorter sequences
+            "windowSize" : 30, #changed for shorter sequences
             "shiftCoeff" : 2.0/5.0,            
             "fringeCoeff" : 2, # fringeSize = fringeCoeff * (windowSize) * 2 * (1-shiftCoeff)
             "focalRule" : "expand",

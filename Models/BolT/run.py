@@ -80,9 +80,18 @@ def train(model, dataset, fold, nOfEpochs):
 
 
 
+import shap
+import shap
+import torch
+import numpy as np
+from tqdm import tqdm
+
+import shap
+import torch
+import numpy as np
+from tqdm import tqdm
 
 def test(model, dataset, fold):
-
     dataLoader = dataset.getFold(fold, train=False)
 
     preds = []
@@ -90,12 +99,10 @@ def test(model, dataset, fold):
     groundTruths = []
     losses = []        
     
+    test_samples = []
     for i, data in enumerate(tqdm(dataLoader, ncols=60, desc=f'Testing fold:{fold}')):
-
         xTest = data["timeseries"]
         yTest = data["label"]
-
-        # NOTE: xTrain and yTrain are still on "cpu" at this point
 
         test_loss, test_preds, test_probs, yTest = model.step(xTest, yTest, train=False)
         torch.cuda.empty_cache()
@@ -104,19 +111,22 @@ def test(model, dataset, fold):
         probs.append(test_probs)
         groundTruths.append(yTest)
         losses.append(test_loss)
-    
 
+        test_samples.append(xTest)  # Collect test samples for SHAP
 
+    # Convert lists to tensors or numpy arrays
     preds = torch.cat(preds, dim=0).numpy()
     probs = torch.cat(probs, dim=0).numpy()
     groundTruths = torch.cat(groundTruths, dim=0).numpy()
-    loss = torch.tensor(losses).numpy().mean()          
-
-    metrics = calculateMetric({"predictions":preds, "probs":probs, "labels":groundTruths})
+    loss = torch.tensor(losses).numpy().mean()
+    
+    # Calculate metrics
+    metrics = calculateMetric({"predictions": preds, "probs": probs, "labels": groundTruths})
     print("\n \n Test metrics : {}".format(metrics))                
-    
+
     return preds, probs, groundTruths, loss, metrics
-    
+
+
 
 
 def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False, name = "noname"):
@@ -176,7 +186,7 @@ def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False, name 
             targetSaveDir = "./Analysis/TargetSavedModels/{}/{}/seed_{}/".format(datasetDetails.datasetName, name, datasetSeed)
             os.makedirs(targetSaveDir, exist_ok=True)
             torch.save(model, targetSaveDir + "/model_{}.save".format(fold))
-        
+        break
 
 
     return results

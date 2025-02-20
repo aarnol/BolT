@@ -11,7 +11,7 @@ from Dataset.dataset import getDataset
 parser = argparse.ArgumentParser()
 
 parser.add_argument("-d", "--dataset", type=str, default="hcpWM_fNIRS")
-parser.add_argument("-m", "--model_path", type=str, default=os.path.join(os.getcwd(), "Analysis", "TargetSavedModels", "hcpWM", "sphere15mm","seed_0", "model_0.save"))
+parser.add_argument("-m", "--model_path", type=str)
 parser.add_argument("--device", type=int, default=0)
 parser.add_argument("--name", type=str, default="noname")
 
@@ -31,7 +31,7 @@ hyperParams = getHyper_bolT()
 datasetDetails = datasetDetailsDict[argv.dataset]
 
 seed = 0
-model_path = argv.model_path
+model_path = os.path.join(os.getcwd(), "Analysis", "TargetSavedModels", "hcpWM", argv.model_path,"seed_0", "model_0.save")
 device = argv.device
 model = torch.load(model_path)
 dataset = getDataset(Option({**datasetDetails,"datasetSeed":seed}))
@@ -49,12 +49,12 @@ import seaborn as sns
 conf_matrix = confusion_matrix(labels, preds)
 classes = ["0back", "2back"]    
 # Create the heatmap
-plt.figure(figsize=(5, 4))
-sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues', xticklabels=classes, yticklabels=classes)
+# plt.figure(figsize=(5, 4))
+# sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues', xticklabels=classes, yticklabels=classes)
 
 # Labels and title
-plt.xlabel('Predicted Label')
-plt.ylabel('Actual Label')
-plt.title('15mm Sphere fNIRS Confusion Matrix')
+# plt.xlabel('Predicted Label')
+# plt.ylabel('Actual Label')
+# plt.title('15mm Sphere fNIRS Confusion Matrix')
 
-plt.show()
+# plt.show()

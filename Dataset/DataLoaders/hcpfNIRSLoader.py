@@ -24,19 +24,24 @@ def hcpfNIRSLoader(atlas, targetTask):
     """
         x : (#subjects, N)
     """
-
-    dataset, _ = fnirs_utils.load_fnirs(datadir)
+    signal = 'HbT'
+    invert = True
+    dataset = fnirs_utils.load_fnirs_subject(1, 'nback', signal)
 
     x = []
     y = []
     subjectIds = []
-    
+   
     for data in dataset:
         
-        label = int(data["pheno"]["nback"])
-        print("Subject: ", data["pheno"]["subjectId"], "Label: ", label)
-        if(healthCheckOnRoiSignal(data["roiTimeseries"].T)):
+        label = int(data["pheno"]["label"])
+        
+        
 
+        if(healthCheckOnRoiSignal(data["roiTimeseries"].T)):
+            if invert:
+                data["roiTimeseries"] =  -1 * data["roiTimeseries"]
+           
             x.append(data["roiTimeseries"].T)
             y.append(label)
             subjectIds.append(int(data["pheno"]["subjectId"][1]))
