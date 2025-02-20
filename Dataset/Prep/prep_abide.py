@@ -9,7 +9,7 @@ from tqdm import tqdm
 from joblib import Parallel, delayed
 from nilearn.input_data import NiftiLabelsMasker
 from .prep_atlas import prep_atlas
-from .fnirs_utils import load_fnirs, calculate_average_bold, get_parcel_label
+from .fnirs_utils import load_fnirs, calculate_average_bold, get_parcel_label, load_fnirs_subject_mni
 import numpy as np
 from nilearn.image.resampling import coord_transform
 from nilearn.image import new_img_like
@@ -17,7 +17,7 @@ from nilearn.image import new_img_like
 
 datadir = "/scratch/alpine/alar6830/BoltROIs/"
 
-def process_scan(scanImage_fileName, MNI_coords, dataset, atlasImage =None,parcels = None, atlas = 'sphere', radius = 30, smooth_fwhm = None):
+def process_scan(scanImage_fileName, MNI_coords, dataset, atlasImage =None,parcels = None, atlas = 'sphere', radius = 15, smooth_fwhm = None):
     try:
         # Load the scan image and extract ROI time series
         scanImage = nil.image.load_img(scanImage_fileName)
@@ -86,11 +86,11 @@ def process_scan(scanImage_fileName, MNI_coords, dataset, atlasImage =None,parce
         base_name = os.path.basename(scanImage_fileName)
         subjectId = base_name[:6]  # Adjust based on HCP filename structure
         enc = base_name[6]
-        print(dataset)
+        
         if(dataset == "hcpWM"):
             condition = base_name[7]
             label = base_name[8]
-            print(condition, flush = True)
+            
         else:
             print("why am i here", flush = True)
             label = base_name[8]
@@ -191,7 +191,7 @@ def prep_abide(atlas, fnirs = False):
     torch.save(dataset, f"{datadir}/dataset_abide_{atlas}.save")
 
 
-def prep_hcp(atlas, name, dataset, fnirs = False, radius= 30, smooth_fwhm = None, unique = False):
+def prep_hcp(atlas, name, dataset, fnirs = False, radius= 15, smooth_fwhm = None, unique = False):
     # Define directory for HCP data
     print(dataset)
     if dataset == "hcpWM":
@@ -201,8 +201,8 @@ def prep_hcp(atlas, name, dataset, fnirs = False, radius= 30, smooth_fwhm = None
 
     if(fnirs):
         fnirs_folder = os.path.join(os.path.dirname(__file__), '..', 'Data','fNIRS')
-        _, MNI_coords = load_fnirs(fnirs_folder)
-        
+        MNI_coords = load_fnirs_subject_mni(1)
+        print(MNI_coords)
     else:
         MNI_coords = None
     
@@ -236,16 +236,16 @@ def prep_hcp(atlas, name, dataset, fnirs = False, radius= 30, smooth_fwhm = None
 
     # Loop through HCP data files and process them in parallel
     scan_files = glob(bulkDataDir + "/*.nii.gz")
-    print(scan_files)
+    
     # Process files in parallel
     with tqdm(total=len(scan_files), ncols=60) as pbar:
         full_dataset = []
         for result in Parallel(n_jobs=256)(
-            delayed(process_scan)(file, MNI_coords, dataset, atlasImage, parcels, atlas, radius = 30, smooth_fwhm = smooth_fwhm) for file in tqdm(scan_files, desc="Processing files")
+            delayed(process_scan)(file, MNI_coords, dataset, atlasImage, parcels, atlas, radius = radius, smooth_fwhm = smooth_fwhm) for file in tqdm(scan_files, desc="Processing files")
         ):
             if result is not None:  # Only add successful results
                 full_dataset.append(result)
             pbar.update(1)  # Update the progress bar
     
     # Save dataset
-    torch.save(full_dataset, f"{datadir}/hcpwm_sphere15.save")
+    torch.save(full_dataset, f"{datadir}/{dataset}_{atlas}_{name}.save")
