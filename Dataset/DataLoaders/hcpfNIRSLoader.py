@@ -19,14 +19,13 @@ def healthCheckOnRoiSignal(roiSignal):
 
     return True    
 
-def hcpfNIRSLoader(atlas, targetTask):
+def hcpfNIRSLoader(atlas, targetTask, signal, subject):
 
     """
         x : (#subjects, N)
     """
-    signal = 'HbT'
-    invert = True
-    dataset = fnirs_utils.load_fnirs_subject(1, 'nback', signal)
+    
+    dataset = fnirs_utils.load_fnirs_subject(subject, 'nback', signal)
 
     x = []
     y = []
@@ -39,8 +38,7 @@ def hcpfNIRSLoader(atlas, targetTask):
         
 
         if(healthCheckOnRoiSignal(data["roiTimeseries"].T)):
-            if invert:
-                data["roiTimeseries"] =  -1 * data["roiTimeseries"]
+            
            
             x.append(data["roiTimeseries"].T)
             y.append(label)

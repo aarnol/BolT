@@ -38,7 +38,7 @@ datasetDetailsDict = {
         "datasetName" : "hcpWM",
         "targetTask" : "nback",
         "nOfClasses" : 2,        
-        "dynamicLength" : 15,
+        "dynamicLength" : 30,
         "foldCount" : 5,
         "atlas" : "schaefer7_400",
         "nOfEpochs" : 10,
@@ -68,49 +68,41 @@ datasetDetailsDict = {
         "nOfEpochs" : 10,
         "batchSize" : 32,
         "normalize" : True,
-        "fNIRS": True,
+        "fNIRS": False,
 
-    },
-
-    "hcpWM_fNIRS": {
-        "datasetName" : "hcpfNIRS",
-        "targetTask" : "nback",
-        "nOfClasses" : 2,        
-        "dynamicLength" : 30,
-        "foldCount" : None,
-        "atlas" : None,
-        "nOfEpochs" : 0,
-        "batchSize" : 32,
-        "normalize" : True,
-        "fNIRS": True,
-    },
-    "hcpWM_fNIRS_brodmann": {
-        "datasetName" : "hcpWM",
-        "targetTask" : "nback",
-        "nOfClasses" : 2,        
-        "dynamicLength" : 15,
-        "foldCount" : 5,
-        "atlas" : "brodmann",
-        "nOfEpochs" : 5,
-        "batchSize" : 32,
-        "normalize" : True,
-        "fNIRS": True,
-    },
-    "hcp_motor_brodmann": {
-        "datasetName" : "hcpMotor",
-        "targetTask" : "nback",
-        "nOfClasses" : 5,        
-        "dynamicLength" : 30,
-        "foldCount" : 5,
-        "atlas" : "brodmann",
-        "nOfEpochs" : 20,
-        "batchSize" : 32,
-        "normalize" : True,
-        "fNIRS": True,
     }
-
-
  }
+configurations = []
+
+signals = ["HbT", "HbR", "HbO"]
+subjects = range(1, 7)  # Subjects 1 to 6
+dynamic_lengths = [30, 15]  # Variations with dynamic lengths
+
+for subject in subjects:
+    for signal in signals:
+        for dynamic_length in dynamic_lengths:
+            config = {
+                "datasetName": "hcpfNIRS",
+                "targetTask": "nback",
+                "nOfClasses": 2,
+                "dynamicLength": dynamic_length,
+                "foldCount": None,
+                "atlas": None,
+                "nOfEpochs": 0,
+                "batchSize": 32,
+                "normalize": True,
+                "fNIRS": True,
+                "subject": subject,
+                "signal": signal
+            }
+            configurations.append(config)
+
+# add configurations to datasetDetailsDict
+
+for config in configurations:
+    datasetDetailsDict[f"hcpfNIRS_{config['subject']}_{config['signal']}_{config['dynamicLength']}"] = config
+
+
 
 
 

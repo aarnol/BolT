@@ -75,9 +75,17 @@ class SupervisedDataset(Dataset):
 
         self.kFold = GroupKFold(datasetDetails.foldCount) if datasetDetails.foldCount is not None else None
         self.k = None
+        
+        self.fnirs = datasetDetails.fNIRS
+        print(self.fnirs) 
+        if(self.fnirs):
+            self.signal = datasetDetails.signal
+            self.subject = datasetDetails.subject
 
-        self.data, self.labels, self.subjectIds = loader(datasetDetails.atlas, datasetDetails.targetTask)
-        self.fnirs = datasetDetails.fNIRS 
+        if self.fnirs:
+            self.data, self.labels, self.subjectIds = loader(datasetDetails.atlas, datasetDetails.targetTask, datasetDetails.signal, datasetDetails.subject)
+        else:
+            self.data, self.labels, self.subjectIds = loader(datasetDetails.atlas, datasetDetails.targetTask)
         
 
         # Filter out samples where the last axis is smaller than dynamicLength
@@ -146,10 +154,12 @@ class SupervisedDataset(Dataset):
 
     def getFold(self, fold, train=True):
         self.setFold(fold, train)
+        
 
         if(train):
             return DataLoader(self, batch_size=self.batchSize, shuffle=False, collate_fn = custom_collate_fn)
         else:
+           
             return DataLoader(self, batch_size=1, shuffle=False)            
 
     def __getitem__(self, idx):

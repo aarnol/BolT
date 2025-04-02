@@ -91,7 +91,7 @@ import torch
 import numpy as np
 from tqdm import tqdm
 
-def test(model, dataset, fold):
+def test(model, dataset, fold, invert = False):
     dataLoader = dataset.getFold(fold, train=False)
 
     preds = []
@@ -103,7 +103,12 @@ def test(model, dataset, fold):
     for i, data in enumerate(tqdm(dataLoader, ncols=60, desc=f'Testing fold:{fold}')):
         xTest = data["timeseries"]
         yTest = data["label"]
-
+        if invert:
+            xTest = -1 * xTest
+        if(i == 0):
+            print(xTest[0,0])
+            
+        
         test_loss, test_preds, test_probs, yTest = model.step(xTest, yTest, train=False)
         torch.cuda.empty_cache()
 
