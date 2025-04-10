@@ -14,7 +14,7 @@ def getHyper_bolT():
             "maxLr" : 4e-4,
 
             # FOR BOLT
-            "nOfLayers" : 4,
+            "nOfLayers" : 3,
             #change this based on the atlas!
             # Schaefer 400 = 400
             # AAL = 116
@@ -25,7 +25,7 @@ def getHyper_bolT():
             "headDim" : 20,
 
         
-            "windowSize" : 30, #changed for shorter sequences
+            "windowSize" : 5, #changed for shorter sequences
             "shiftCoeff" : 2.0/5.0,            
             "fringeCoeff" : 2, # fringeSize = fringeCoeff * (windowSize) * 2 * (1-shiftCoeff)
             "focalRule" : "expand",

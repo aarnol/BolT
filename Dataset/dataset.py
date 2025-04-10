@@ -163,7 +163,6 @@ class SupervisedDataset(Dataset):
             return DataLoader(self, batch_size=1, shuffle=False)            
 
     def __getitem__(self, idx):
-        
         subject = self.targetData[idx]
         label = self.targetLabels[idx]
         subjId = self.targetSubjIds[idx]
@@ -171,13 +170,18 @@ class SupervisedDataset(Dataset):
         # normalize timeseries
         timeseries = subject  # (numberOfRois, time)
         
-        timeseries = (timeseries - np.mean(timeseries, axis=1, keepdims=True)) / np.std(timeseries, axis=1, keepdims=True)
+        # #z score
+        # timeseries = (timeseries - np.mean(timeseries, axis=1, keepdims=True)) / np.std(timeseries, axis=1, keepdims=True)
+
+        #normalize to between 0 and 1
+        timeseries = (timeseries - np.min(timeseries, axis=1, keepdims=True)) / (np.max(timeseries, axis=1, keepdims=True) - np.min(timeseries, axis=1, keepdims=True))
         timeseries = np.nan_to_num(timeseries, 0)
+        #check if timeseries is zscored properly
+        
         
         # dynamic sampling if train
         if(self.train and not isinstance(self.dynamicLength, type(None))):
-           
-            
+
             samplingInit = self.randomRanges[idx].pop()
 
             timeseries = timeseries[:, samplingInit : samplingInit + self.dynamicLength]

@@ -4,6 +4,22 @@ import scipy.io
 import matplotlib.pyplot as plt
 from scipy.spatial.distance import cdist
 from nilearn import datasets, surface
+from scipy.interpolate import interp1d
+def downsample_to_fmri(fnirs_data, target_shape=(34, 68)):
+    """
+    Downsample fNIRS data to the specified target shape.
+    """
+    original_len, n_features = fnirs_data.shape
+    target_len, target_features = target_shape
+
+    if n_features != target_features:
+        raise ValueError(f"Target number of features ({target_features}) must match the original ({n_features}).")
+
+    x_old = np.linspace(0, 1, original_len)
+    x_new = np.linspace(0, 1, target_len)
+
+    interpolated = interp1d(x_old, fnirs_data, axis=0, kind='linear')
+    return interpolated(x_new)
 def load_fnirs(target_folder):
     """
     Load the fNIRS data from the target folder.
@@ -84,7 +100,8 @@ def load_fnirs_subject(subject_id, condition = 'nback', type = 'HbR'):
     blocks = [block for block in blocks]
     
     for block in blocks:
-
+        # downsample to 34 time points
+        block = downsample_to_fmri(block)
         label = labels[i]
         f_data = {
             'roiTimeseries': block,
