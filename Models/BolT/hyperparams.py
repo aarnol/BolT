@@ -19,7 +19,7 @@ def getHyper_bolT():
             # Schaefer 400 = 400
             # AAL = 116
             # MNI = 107
-            "dim" : 68,        
+            "dim" : 107,        
 
             "numHeads" : 36,
             "headDim" : 20,

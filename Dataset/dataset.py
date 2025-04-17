@@ -80,13 +80,13 @@ class SupervisedDataset(Dataset):
         print(self.fnirs) 
         if(self.fnirs):
             self.signal = datasetDetails.signal
-            self.subject = datasetDetails.subject
+            #self.subject = datasetDetails.subject
 
         if self.fnirs:
             self.data, self.labels, self.subjectIds = loader(datasetDetails.atlas, datasetDetails.targetTask, datasetDetails.signal, datasetDetails.subject)
         else:
             self.data, self.labels, self.subjectIds = loader(datasetDetails.atlas, datasetDetails.targetTask)
-        
+        print(self.subjectIds)
 
         # Filter out samples where the last axis is smaller than dynamicLength
         valid_data_indices = [idx for idx, subject in enumerate(self.data) if subject.shape[-1] >= self.dynamicLength]
@@ -171,10 +171,10 @@ class SupervisedDataset(Dataset):
         timeseries = subject  # (numberOfRois, time)
         
         # #z score
-        # timeseries = (timeseries - np.mean(timeseries, axis=1, keepdims=True)) / np.std(timeseries, axis=1, keepdims=True)
+        timeseries = (timeseries - np.mean(timeseries, axis=1, keepdims=True)) / np.std(timeseries, axis=1, keepdims=True)
 
         #normalize to between 0 and 1
-        timeseries = (timeseries - np.min(timeseries, axis=1, keepdims=True)) / (np.max(timeseries, axis=1, keepdims=True) - np.min(timeseries, axis=1, keepdims=True))
+        # timeseries = (timeseries - np.min(timeseries, axis=1, keepdims=True)) / (np.max(timeseries, axis=1, keepdims=True) - np.min(timeseries, axis=1, keepdims=True))
         timeseries = np.nan_to_num(timeseries, 0)
         #check if timeseries is zscored properly
         
@@ -188,7 +188,6 @@ class SupervisedDataset(Dataset):
         
         
         return {"timeseries" : timeseries.astype(np.float32), "label" : label, "subjId" : subjId}
-
 
 
 

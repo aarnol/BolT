@@ -4,7 +4,7 @@ import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'Prep'))
 import fnirs_utils
-datadir = "./Dataset/Data/fNIRS"
+datadir = "./Dataset/Data/fNIRS/Preprocessed/"
 
 
 def healthCheckOnRoiSignal(roiSignal):
@@ -19,13 +19,13 @@ def healthCheckOnRoiSignal(roiSignal):
 
     return True    
 
-def hcpfNIRSLoader(atlas, targetTask, signal, subject):
+def hcpfNIRSLoader(atlas, targetTask, signal, subject= None):
 
     """
         x : (#subjects, N)
     """
     
-    dataset = fnirs_utils.load_fnirs_subject(subject, 'nback', signal)
+    dataset = fnirs_utils.load(datadir, type = signal)
 
     x = []
     y = []
@@ -42,7 +42,7 @@ def hcpfNIRSLoader(atlas, targetTask, signal, subject):
            
             x.append(data["roiTimeseries"].T)
             y.append(label)
-            subjectIds.append(int(data["pheno"]["subjectId"][1]))
+            subjectIds.append(int(data["pheno"]["subjectId"]))
         else:
             print("Skipping subject: ", data["pheno"]["subjectId"])
 

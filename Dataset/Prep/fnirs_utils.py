@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from scipy.spatial.distance import cdist
 from nilearn import datasets, surface
 from scipy.interpolate import interp1d
+import pandas as pd
 def downsample_to_fmri(fnirs_data, target_shape=(34, 68)):
     """
     Downsample fNIRS data to the specified target shape.
@@ -70,6 +71,75 @@ def load_fnirs_subject_mni(subject_id):
     digitization =scipy.io.loadmat(MNI_path)['Data_fNIRS'][subject_id][1]
    
     return digitization
+
+
+import os
+import pandas as pd
+import numpy as np
+
+def load(root, type='HbR'):
+    fnirs_data = []
+    bad_path = os.path.join(root, 'bad_channels.csv')
+    bad_channels = pd.read_csv(bad_path)
+    #get the bad channels where count > 9
+    bad_channels = bad_channels[bad_channels['Count'] > 9]['Channel'].tolist()
+
+    for root_dir, dirs, files in os.walk(root):
+        for file in files:
+            if file.endswith('.csv') and 'block' in file:
+                file_path = os.path.join(root_dir, file)
+                data = pd.read_csv(file_path)
+
+                # Filter out short-separation channels (e.g., D32 or higher)
+                data = data.loc[:, ~data.columns.str.contains(r'D(?:[3-9][2-9]|[4-9][0-9])', regex=True)]
+                # Filter out channels containing text from bad channels
+                pattern = "|".join(bad_channels)
+                data = data.loc[:, ~data.columns.str.contains(pattern, case=False, na=False)]
+                
+
+
+
+                # Extract based on type
+                if type.lower() == 'hbr':
+                    signal = data.loc[:, data.columns.str.contains('hbr', case=False)].values
+                elif type.lower() == 'hbo':
+                    signal = data.loc[:, data.columns.str.contains('hbo', case=False)].values
+                elif type.lower() == 'hbt':
+                    hbo = data.loc[:, data.columns.str.contains('hbo', case=False)].values
+                    hbr = data.loc[:, data.columns.str.contains('hbr', case=False)].values
+                    signal = hbo + hbr
+                else:
+                    raise ValueError("Invalid type. Choose from 'HbR', 'HbO', or 'HbT'.")
+                #conver to numpy array
+                signal = np.array(signal)
+                # Downsample to 34 time points
+                #signal = downsample_to_fmri(signal, target_shape=(34, signal.shape[1]))
+                print(signal.shape)
+                # Get the subject ID and label from the file name or directory structure
+                dir_name = os.path.basename(root_dir)
+                
+                label = file[-5]  # Assuming the label is the last character before the extension
+                if(label!= '0' and label != '1'):
+                    print(file)
+                    print(f"Label: {label}")
+                    print(signal.shape)
+                    print(dir_name)
+                f_data = {
+                    'roiTimeseries': signal,
+                    'pheno': {
+                        'subjectId': dir_name,
+                        'encoding': None,
+                        'label': int(label),
+                        'condition': None,
+                        'modality': 'fNIRS'
+                    }
+                }
+                fnirs_data.append(f_data)
+
+
+    return fnirs_data
+
+
 
 def load_fnirs_subject(subject_id, condition = 'nback', type = 'HbR'):
 
@@ -409,3 +479,23 @@ def brodmann_to_name(num):
     return brodmann_areas[num]
 
 
+if __name__ == '__main__':
+    #test load
+    data_dir = "Dataset/Data/fNIRS/Preprocessed/"
+    data = load(data_dir, type='HbR')
+
+    groups = [x['pheno']['subjectId'] for x in data]
+    arrs = [x['roiTimeseries'] for x in data]
+    #print the unque groups
+    def arrays_are_unique(arr_list):
+        for i in range(len(arr_list)):
+            for j in range(i + 1, len(arr_list)):
+                if np.array_equal(arr_list[i], arr_list[j]):
+                    return False
+        return True
+
+    # Example
+    
+    print(arrays_are_unique(arrs))  
+    
+    

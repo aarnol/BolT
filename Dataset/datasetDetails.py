@@ -70,8 +70,42 @@ datasetDetailsDict = {
         "normalize" : True,
         "fNIRS": False,
 
+    },
+    "hcpWM_fNIRS_HbR" : {
+        "datasetName" : "hcpfNIRS",
+        "targetTask" : "nback",
+        "nOfClasses" : 2,        
+        "dynamicLength" : 30,
+        "foldCount" : 2,
+        "atlas" : None,
+        "nOfEpochs" : 10,
+        "batchSize" : 16,
+        "normalize" : True,
+        "fNIRS": True,
+        "signal": "HbR",
+        "subject": None,
+
+    },
+    "hcpWM_fNIRS_HbO" : {
+        "datasetName" : "hcpfNIRS",
+        "targetTask" : "nback",
+        "nOfClasses" : 2,        
+        "dynamicLength" : 30,
+        "foldCount" : 2,
+        "atlas" : None,
+        "nOfEpochs" : 10,
+        "batchSize" : 16,
+        "normalize" : True,
+        "fNIRS": True,
+        "signal": "HbO",
+        "subject": None,
+
     }
  }
+
+
+
+
 configurations = []
 
 signals = ["HbT", "HbR", "HbO"]
