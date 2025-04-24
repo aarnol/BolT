@@ -127,7 +127,7 @@ def test(model, dataset, fold, invert = False):
     
     # Calculate metrics
     metrics = calculateMetric({"predictions": preds, "probs": probs, "labels": groundTruths})
-    print("\n \n Test metrics : {}".format(metrics))                
+    # print("\n \n Test metrics : {}".format(metrics))                
 
     return preds, probs, groundTruths, loss, metrics
 
@@ -191,7 +191,7 @@ def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False, name 
             targetSaveDir = "./Analysis/TargetSavedModels/{}/{}/seed_{}/".format(datasetDetails.datasetName, name, datasetSeed)
             os.makedirs(targetSaveDir, exist_ok=True)
             torch.save(model, targetSaveDir + "/model_{}.save".format(fold))
+        
         break
-
 
     return results

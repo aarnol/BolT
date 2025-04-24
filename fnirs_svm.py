@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 
 #load the fnirs data
-fnirs_data = fnirs_utils.load_fnirs("./Dataset/Data/fNIRS")
+fnirs_data = fnirs_utils.load("./Dataset/Data/fNIRS/Preprocessed/", "HbR")
 
 #initialize the lists to store the data
 x = []
@@ -11,74 +11,81 @@ y = []
 subjectIds = []
 
 #iterate over the data
-for data in fnirs_data[0]:
+for data in fnirs_data:
    
     # get the label
-    label = int(data["pheno"]["nback"])
+    label = int(data["pheno"]["label"])
    
-  
-    x.append(data["roiTimeseries"].T)
+    
+    #create the feature vector
+    data["roiTimeseries"] = data['roiTimeseries'].T
+    
+    # roiTimeseries is a 2D array with shape (n_channels, n_timepoints)
+    #extract mean, std, range, kurtosis, skewness, and entropy for each channel
+    #mean
+    mean = np.mean(data["roiTimeseries"], axis=1)
+    #std
+    std = np.std(data["roiTimeseries"], axis=1)
+    #range
+    range_ = np.max(data["roiTimeseries"], axis=1) - np.min(data["roiTimeseries"], axis=1)
+    # kurtosis
+    kurtosis = np.apply_along_axis(lambda x: np.mean((x - np.mean(x))**4) / (np.std(x)**4), axis=1, arr=data["roiTimeseries"])
+    # skewness
+    skewness = np.apply_along_axis(lambda x: np.mean((x - np.mean(x))**3) / (np.std(x)**3), axis=1, arr=data["roiTimeseries"])
+    # entropy
+    # entropy = np.apply_along_axis(lambda x: -np.sum((x / np.sum(x)) * np.log2(x / np.sum(x) + 1e-9)), axis=1, arr=data["roiTimeseries"])
+    #check if any have nan values and say which one
+    if np.isnan(mean).any():
+        print("Mean has nan values")
+    if np.isnan(std).any():
+        print("Std has nan values")
+    if np.isnan(range_).any():
+        print("Range has nan values")
+    if np.isnan(kurtosis).any():
+        print("Kurtosis has nan values")
+    if np.isnan(skewness).any():
+        print("Skewness has nan values")
+    
+    # concatenate the features into a single array
+    features = np.concatenate((mean, std, range_, kurtosis, skewness), axis=0)
+    
+    # append the features to the list
+    x.append(features)
     y.append(label)
     subjectIds.append(int(data["pheno"]["subjectId"][1]))
 
 
-# make the data the proper shape [conditions, subjects, trials, channels, timepoints]
+
+#convert the lists to numpy arrays
 x = np.array(x)
 y = np.array(y)
-subjectIds = np.array(subjectIds)
-# Define the number of conditions, subjects, trials, channels, and timepoints
-n_conditions = len(np.unique(y))  # Number of unique conditions (e.g., 2 for binary)
-n_subjects = len(np.unique(subjectIds))  # Number of subjects
-n_trials = x.shape[0] // (n_conditions * n_subjects)  # Trials per condition per subject
-n_channels = x.shape[1]  # Number of fNIRS channels
-n_timepoints = x.shape[2]  # Number of time points
-
-# Reshape x into the desired format: [conditions, subjects, trials, channels, timepoints]
-x_reshaped = x.reshape((n_conditions, n_subjects, n_trials, n_channels, n_timepoints))
-
-# Verify alignment of labels y
-# Ensure y is shaped: [conditions, subjects, trials]
-y_reshaped = y.reshape((n_conditions, n_subjects, n_trials))
-
-# Subject IDs should match: [subjects]
-subjectIds_reshaped = subjectIds[:n_subjects]
-
-print("Reshaped x shape:", x_reshaped.shape)
-print("Reshaped y shape:", y_reshaped.shape)
-print("Reshaped subjectIds shape:", subjectIds_reshaped.shape)
 
 
-# #reshape the data
-# print("Before reshaping: ", x.shape)
+
+#reshape the data
+print("Before reshaping: ", x.shape)
 # x = x.reshape(x.shape[0], x.shape[1]*x.shape[2])
 # print("After reshaping: ", x.shape)
 
 
 
-# #split the data into training and testing sets
-# x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=42)
+#split the data into training and testing sets
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=42)
 
-# #initialize the SVM model
-# from sklearn.svm import SVC
-# model = SVC(kernel='linear')
+#initialize the SVM model
+from sklearn.svm import SVC
+model = SVC(kernel='poly', degree=3, C=1.0, gamma='scale', class_weight='balanced')
 
-# #train the model
-# model.fit(x_train, y_train)
+#train the model
+model.fit(x_train, y_train)
 
-# #test the model
-# y_pred = model.predict(x_test)
+#test the model
+y_pred = model.predict(x_test)
 
-# #calculate the accuracy
-# from sklearn.metrics import accuracy_score
-# from scipy.spatial.distance import pdist, squareform
+#calculate the accuracy
+from sklearn.metrics import accuracy_score
+from scipy.spatial.distance import pdist, squareform
 
-# accuracy = accuracy_score(y_test, y_pred)
-# print("Accuracy: ", accuracy)
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy: ", accuracy)
 
-from neurora.rdm_cal import eegRDM
-from neurora.rsa_plot import plot_rdm, plot_corrs_by_time, plot_nps_hotmap, plot_corrs_hotmap
-# Append the label as the first dimension of x
-
-# Choose a metric: 'correlation', 'euclidean', etc.
-rdm = eegRDM(x_reshaped)
-plot_rdm(rdm, percentile=True, title="fNIRS RDM") 

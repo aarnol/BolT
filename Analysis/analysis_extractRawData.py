@@ -90,6 +90,34 @@ for seed in targetSeeds:
                 "datasetName" : datasetName
 
             }))
+    elif(datasetName == "hcpWM"):
+        dataset = getDataset(Option({
+
+                "batchSize" : None,
+                "dynamicLength" : None,
+                "foldCount" : foldCount,
+                "datasetSeed" : seed,
+                "fNIRS" : False,
+                "targetTask" : "nback",
+                "atlas" : "sphere30",
+                "datasetName" : datasetNahcp
+
+            }))
+    elif(datasetName =="hcpWM_fNIRS_HbR"):
+        dataset = getDataset(Option({
+
+                "batchSize" : None,
+                "dynamicLength" : None,
+                "foldCount" : foldCount,
+                "datasetSeed" : seed,
+                "fNIRS" : True,
+                "targetTask" : "nback",
+                "signal" : "HbR",
+                "subject" : 1,
+                "atlas" : None,
+                "datasetName" : "hcpfNIRS"
+
+            }))
 
 
 
@@ -98,12 +126,16 @@ for seed in targetSeeds:
         "hcpRest" : "./Analysis/TargetSavedModels/hcpRest/seed_{}/".format(seed),
         "hcpTask" : "./Analysis/TargetSavedModels/hcpTask/seed_{}/".format(seed),
         "abide1" : "./Analysis/TargetSavedModels/abide1/seed_{}/".format(seed),
+        "hcpWM" : "./Analysis/TargetSavedModels/hcpWM/hcp85_sphere30/seed_{}/".format(seed),
+        "hcpWM_fNIRS_HbR" : "./Analysis/TargetSavedModels/hcpfNIRS/hcpfNIRS_20/seed_{}/".format(seed),
     }
 
     datasetNameToFolder = {
         "hcpRest" : "./Analysis/Data/hcpRest/seed_{}/".format(seed),
         "hcpTask" : "./Analysis/Data/hcpTask/seed_{}/".format(seed),
         "abide1" : "./Analysis/Data/abide1/seed_{}/".format(seed),
+        "hcpWM" : "./Analysis/Data/hcpWM/hcpWM_sphere/hcp85_sphere30/seed_{}/".format(seed),
+        "hcpWM_fNIRS_HbR" : "./Analysis/Data/hcpfNIRS/hcpfNIRS_20/seed_{}/".format(seed),
     }
 
     device = "cuda:{}".format(argv.device)    
@@ -115,6 +147,9 @@ for seed in targetSeeds:
         targetFolds = [argv.fold]
 
     for fold in targetFolds:
+        print(fold)
+        if fold> 0: 
+            break
 
         print("\n extracting for seed {}, fold {}\n".format(seed, fold))
 

@@ -61,6 +61,22 @@ def custom_collate_fn(batch):
 def getDataset(options):
     return SupervisedDataset(options)
 
+def guassianNoise(data, mean=0, std=0.1):
+    """
+    Add Gaussian noise to the data.
+    
+    Args:
+        data (numpy.ndarray): Input data.
+        mean (float): Mean of the Gaussian noise.
+        std (float): Standard deviation of the Gaussian noise.
+    
+    Returns:
+        numpy.ndarray: Data with added Gaussian noise.
+    """
+    noise = np.random.normal(mean, std, data.shape)
+    return data + noise
+
+
 class SupervisedDataset(Dataset):
     
     def __init__(self, datasetDetails):
@@ -77,7 +93,7 @@ class SupervisedDataset(Dataset):
         self.k = None
         
         self.fnirs = datasetDetails.fNIRS
-        print(self.fnirs) 
+        
         if(self.fnirs):
             self.signal = datasetDetails.signal
             #self.subject = datasetDetails.subject
@@ -86,19 +102,17 @@ class SupervisedDataset(Dataset):
             self.data, self.labels, self.subjectIds = loader(datasetDetails.atlas, datasetDetails.targetTask, datasetDetails.signal, datasetDetails.subject)
         else:
             self.data, self.labels, self.subjectIds = loader(datasetDetails.atlas, datasetDetails.targetTask)
-        print(self.subjectIds)
+        
 
         # Filter out samples where the last axis is smaller than dynamicLength
-        valid_data_indices = [idx for idx, subject in enumerate(self.data) if subject.shape[-1] >= self.dynamicLength]
-        self.data = [self.data[idx] for idx in valid_data_indices]
-        self.labels = [self.labels[idx] for idx in valid_data_indices]
-        self.subjectIds = [self.subjectIds[idx] for idx in valid_data_indices]
+        # valid_data_indices = [idx for idx, subject in enumerate(self.data) if subject.shape[-1] >= self.dynamicLength]
+        # self.data = [self.data[idx] for idx in valid_data_indices]
+        # self.labels = [self.labels[idx] for idx in valid_data_indices]
+        # self.subjectIds = [self.subjectIds[idx] for idx in valid_data_indices]
         
         self.groups = list([int(str(subject)) for subject in self.subjectIds])
         
-        random.Random(self.seed).shuffle(self.data)
-        random.Random(self.seed).shuffle(self.labels)
-        random.Random(self.seed).shuffle(self.subjectIds)
+        
 
         self.targetData = None
         self.targetLabel = None
@@ -135,7 +149,19 @@ class SupervisedDataset(Dataset):
 
 
         else:
-            trainIdx, testIdx = list(self.kFold.split(self.data, self.labels,self.groups))[fold]      
+            splits = list(self.kFold.split(self.data, self.labels, self.groups))
+            trainIdx, testIdx = splits[fold]
+
+            # Ensure groups are not shared between train and test
+            
+            train_groups = set([self.groups[idx] for idx in trainIdx])
+            test_groups = set([self.groups[idx] for idx in testIdx])
+            intersect = train_groups.intersection(test_groups)
+            if intersect:
+                raise ValueError(f"Group(s) {intersect} found in both train and test splits for fold {fold}!")
+            else:
+                print(f"Fold {fold} is valid.")
+      
 
         self.trainIdx = trainIdx
         self.testIdx = testIdx
@@ -145,7 +171,39 @@ class SupervisedDataset(Dataset):
         self.targetData = [self.data[idx] for idx in trainIdx] if train else [self.data[idx] for idx in testIdx]
         self.targetLabels = [self.labels[idx] for idx in trainIdx] if train else [self.labels[idx] for idx in testIdx]
         self.targetSubjIds = [self.subjectIds[idx] for idx in trainIdx] if train else [self.subjectIds[idx] for idx in testIdx]
-        
+        train_groups = set([self.groups[idx] for idx in trainIdx])
+        test_groups = set([self.groups[idx] for idx in testIdx])
+        intersect = train_groups.intersection(test_groups)
+        if(train):
+            train_subjects = set(self.targetSubjIds)
+            val_subjects = set(self.subjectIds[idx] for idx in self.testIdx)
+            if train_subjects & val_subjects:
+                print(train_subjects & val_subjects)
+                raise ValueError("Train and test subjects are leaking!")
+            
+            else:
+                print("Train and test subjects are properly separated.")
+        if(not train):
+            train_subjects = set(self.subjectIds[idx] for idx in self.trainIdx)
+            val_subjects = set(self.subjectIds[idx] for idx in self.testIdx)
+            if train_subjects & val_subjects:
+                print(train_subjects & val_subjects)
+                raise ValueError("Train and test subjects are leaking!")
+            
+            else:
+                print("Train and test subjects are properly separated.")
+
+
+        # if train:
+        #     print(train)
+        #     random.Random(self.seed).shuffle(self.targetLabels)  # only shuffle the labels, not the data
+            
+        if intersect:
+            print(f"Groups leaking between train and test: {intersect}")
+            exit()
+        else:
+            print("No leakage between train and test groups.")
+
         if(train and not isinstance(self.dynamicLength, type(None))):
             np.random.seed(self.seed+1)
             
@@ -153,6 +211,7 @@ class SupervisedDataset(Dataset):
             self.randomRanges = [[np.random.randint(0, self.data[idx].shape[-1] - self.dynamicLength) for k in range(9999)] for idx in trainIdx]
 
     def getFold(self, fold, train=True):
+
         self.setFold(fold, train)
         
 
@@ -171,10 +230,13 @@ class SupervisedDataset(Dataset):
         timeseries = subject  # (numberOfRois, time)
         
         # #z score
-        timeseries = (timeseries - np.mean(timeseries, axis=1, keepdims=True)) / np.std(timeseries, axis=1, keepdims=True)
+        #timeseries = (timeseries - np.mean(timeseries, axis=1, keepdims=True)) / np.std(timeseries, axis=1, keepdims=True)
 
         #normalize to between 0 and 1
-        # timeseries = (timeseries - np.min(timeseries, axis=1, keepdims=True)) / (np.max(timeseries, axis=1, keepdims=True) - np.min(timeseries, axis=1, keepdims=True))
+        #timeseries = (timeseries - np.min(timeseries, axis=1, keepdims=True)) / (np.max(timeseries, axis=1, keepdims=True) - np.min(timeseries, axis=1, keepdims=True))
+
+
+
         timeseries = np.nan_to_num(timeseries, 0)
         #check if timeseries is zscored properly
         
@@ -185,6 +247,9 @@ class SupervisedDataset(Dataset):
             samplingInit = self.randomRanges[idx].pop()
 
             timeseries = timeseries[:, samplingInit : samplingInit + self.dynamicLength]
+            
+            # # add noise
+            # timeseries = guassianNoise(timeseries, mean=0, std=0.1)
         
         
         return {"timeseries" : timeseries.astype(np.float32), "label" : label, "subjId" : subjId}

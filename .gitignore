@@ -11,3 +11,4 @@ Dataset/Prep/unrestricted_hcp_freesurfer.csv
 *.csv
 /Dataset/Data/10Examples
 Analysis/Plotting/borgPlot.ipynb
+Analysis/Data

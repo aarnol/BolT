@@ -9,7 +9,7 @@ from einops import rearrange
 # import transformers
 
 from Models.BolT.bolTransformerBlock import BolTransformerBlock
-
+from .channelDropout import ChannelDropout
 
 class BolT(nn.Module):
     def __init__(self, hyperParams, details):
@@ -30,7 +30,7 @@ class BolT(nn.Module):
         shiftSize = int(hyperParams.windowSize * hyperParams.shiftCoeff)
         self.shiftSize = shiftSize
         self.receptiveSizes = []
-
+        
         for i, layer in enumerate(range(hyperParams.nOfLayers)):
             
             if(hyperParams.focalRule == "expand"):
@@ -67,6 +67,7 @@ class BolT(nn.Module):
         # for analysis only
         self.tokens = []
 
+        self.channel_dropout = ChannelDropout(drop_prob=0)  # adjust prob as needed
 
         self.initializeWeights()
 
@@ -133,7 +134,10 @@ class BolT(nn.Module):
 
         
         roiSignals = roiSignals.permute((0,2,1))
-
+        #channel dropout
+        roiSignals = self.channel_dropout(roiSignals)
+        #print how many channels are all 0s
+        num_zero_channels = torch.sum(torch.all(roiSignals == 0, dim=1)).item()
         batchSize = roiSignals.shape[0]
         T = roiSignals.shape[1] # dynamicLength
 

@@ -2,7 +2,7 @@ import torch
 import numpy as np
 
 datadir = "./Dataset/Data"
-
+bad_channels = np.loadtxt('./bad_channel_indices.txt', dtype=int)
 
 def healthCheckOnRoiSignal(roiSignal):
     """
@@ -31,6 +31,11 @@ def hcpWorkingMemLoader(atlas, targetTask):
     for data in dataset:
         
         label = int(data["pheno"]["label"])
+        #assign a random label isntead of the one in the dataset
+        label = np.random.randint(0, 2)
+        #filter out bad channels
+        data["roiTimeseries"] = np.delete(data["roiTimeseries"], bad_channels, axis=1)
+        print("Shape of roiTimeseries: ", data["roiTimeseries"].shape)
         if(healthCheckOnRoiSignal(data["roiTimeseries"].T)):
             
             x.append(data["roiTimeseries"].T)

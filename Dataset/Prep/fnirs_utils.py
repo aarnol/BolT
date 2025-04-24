@@ -6,21 +6,34 @@ from scipy.spatial.distance import cdist
 from nilearn import datasets, surface
 from scipy.interpolate import interp1d
 import pandas as pd
-def downsample_to_fmri(fnirs_data, target_shape=(34, 68)):
+import numpy as np
+from scipy.signal import resample
+
+def downsample(fnirs_data, original, new):
     """
-    Downsample fNIRS data to the specified target shape.
+    Downsample fNIRS data from one sampling rate to another.
+
+    Args:
+        fnirs_data (np.ndarray): The original fNIRS data of shape (time, channels) or (time,).
+        original (float): Original sampling rate (Hz).
+        new (float): New sampling rate (Hz), typically lower than original.
+
+    Returns:
+        np.ndarray: Downsampled fNIRS data.
     """
-    original_len, n_features = fnirs_data.shape
-    target_len, target_features = target_shape
+    if new > original:
+        raise ValueError("New sampling rate must be lower than original sampling rate.")
 
-    if n_features != target_features:
-        raise ValueError(f"Target number of features ({target_features}) must match the original ({n_features}).")
+    # Calculate number of samples after downsampling
+    duration = fnirs_data.shape[0] / original  # total time in seconds
+    new_num_samples = int(np.round(duration * new))
 
-    x_old = np.linspace(0, 1, original_len)
-    x_new = np.linspace(0, 1, target_len)
+    # Use scipy's resample for Fourier method-based resampling
+    downsampled = resample(fnirs_data, new_num_samples, axis=0)
 
-    interpolated = interp1d(x_old, fnirs_data, axis=0, kind='linear')
-    return interpolated(x_new)
+    return downsampled
+
+
 def load_fnirs(target_folder):
     """
     Load the fNIRS data from the target folder.
@@ -83,7 +96,7 @@ def load(root, type='HbR'):
     bad_channels = pd.read_csv(bad_path)
     #get the bad channels where count > 9
     bad_channels = bad_channels[bad_channels['Count'] > 9]['Channel'].tolist()
-
+    
     for root_dir, dirs, files in os.walk(root):
         for file in files:
             if file.endswith('.csv') and 'block' in file:
@@ -92,51 +105,95 @@ def load(root, type='HbR'):
 
                 # Filter out short-separation channels (e.g., D32 or higher)
                 data = data.loc[:, ~data.columns.str.contains(r'D(?:[3-9][2-9]|[4-9][0-9])', regex=True)]
-                # Filter out channels containing text from bad channels
-                pattern = "|".join(bad_channels)
-                data = data.loc[:, ~data.columns.str.contains(pattern, case=False, na=False)]
+                
+
+                
+                
+
+                
                 
 
 
 
                 # Extract based on type
                 if type.lower() == 'hbr':
-                    signal = data.loc[:, data.columns.str.contains('hbr', case=False)].values
+                    signal = data.loc[:, data.columns.str.contains('hbr', case=False)]
                 elif type.lower() == 'hbo':
-                    signal = data.loc[:, data.columns.str.contains('hbo', case=False)].values
+                    signal = data.loc[:, data.columns.str.contains('hbo', case=False)]
                 elif type.lower() == 'hbt':
                     hbo = data.loc[:, data.columns.str.contains('hbo', case=False)].values
                     hbr = data.loc[:, data.columns.str.contains('hbr', case=False)].values
                     signal = hbo + hbr
                 else:
                     raise ValueError("Invalid type. Choose from 'HbR', 'HbO', or 'HbT'.")
+                
+                drop_bad = True
+                if drop_bad:
+                    # Make a copy of original column list for consistent indexing
+                    original_columns = list(signal.columns)
+                    bad_indices = []
+                    dropped_column_names = []
+
+                    for channel in bad_channels:
+                        pattern = channel[:7].lower()
+                        
+                        # Find matching columns in the *original* column list
+                        matches = [i for i, col in enumerate(original_columns) if pattern in col.lower()]
+                        bad_indices.extend(matches)
+                        dropped_column_names.extend([original_columns[i] for i in matches])
+                        
+                        # Now drop from the *current* signal DataFrame
+                        signal = signal.loc[:, ~signal.columns.str.contains(pattern, case=False, na=False)]
+
+                # # Remove duplicates and sort for consistency
+                # bad_indices = sorted(set(bad_indices))
+
+                # # Final checks
+                # print(f"Total bad indices: {len(bad_indices)}")
+                # print("Bad indices:", bad_indices)
+
+                # # Save to file
+                # with open("bad_channel_indices.txt", "w") as f:
+                #     for idx in bad_indices:
+                #         f.write(f"{idx}\n")
+
+                
+
+
                 #conver to numpy array
-                signal = np.array(signal)
-                # Downsample to 34 time points
-                #signal = downsample_to_fmri(signal, target_shape=(34, signal.shape[1]))
-                print(signal.shape)
+                signal = signal.values
+                # Downsample
+                fnirs_hz = 3.8153376573826785
+                fmri_hz = 1.39
+                signal = downsample(signal, fnirs_hz, fmri_hz)  
+                
                 # Get the subject ID and label from the file name or directory structure
                 dir_name = os.path.basename(root_dir)
                 
                 label = file[-5]  # Assuming the label is the last character before the extension
+                conditions = [4,1,2,4,1,3,2,3,4,1,2,4,1,3,2,3]
+                # Get the condition from the file name or directory structure
+                condition = conditions[int(file.split('_')[1])]  
                 if(label!= '0' and label != '1'):
-                    print(file)
-                    print(f"Label: {label}")
-                    print(signal.shape)
-                    print(dir_name)
+                    print(file, label)
                 f_data = {
                     'roiTimeseries': signal,
                     'pheno': {
                         'subjectId': dir_name,
                         'encoding': None,
                         'label': int(label),
-                        'condition': None,
+                        'condition': condition,
                         'modality': 'fNIRS'
                     }
                 }
                 fnirs_data.append(f_data)
 
-
+    
+    #print distribition of labels
+    labels = [data['pheno']['label'] for data in fnirs_data]
+    unique, counts = np.unique(labels, return_counts=True)
+    label_counts = dict(zip(unique, counts))
+    print("Label distribution:", label_counts)
     return fnirs_data
 
 
@@ -497,5 +554,19 @@ if __name__ == '__main__':
     # Example
     
     print(arrays_are_unique(arrs))  
+    
+#test load 
+if __name__ == '__main__':
+    #test load
+    data_dir = "Dataset/Data/fNIRS/Preprocessed/"
+    data = load(data_dir, type='HbR')
+
+    groups = [x['pheno']['subjectId'] for x in data]
+    arrs = [x['roiTimeseries'] for x in data]
+    #print the unque groups
+   
+
+    #check the shape of x[0]
+    print(arrs[0].shape)
     
     
