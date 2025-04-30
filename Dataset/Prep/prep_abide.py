@@ -9,7 +9,7 @@ from tqdm import tqdm
 from joblib import Parallel, delayed
 from nilearn.input_data import NiftiLabelsMasker
 from .prep_atlas import prep_atlas
-from .fnirs_utils import load_fnirs, calculate_average_bold, get_parcel_label, load_fnirs_subject_mni
+from .fnirs_utils import load_fnirs, calculate_average_bold, get_parcel_label, load_fnirs_subject_mni, load_mni
 import numpy as np
 from nilearn.image.resampling import coord_transform
 from nilearn.image import new_img_like
@@ -201,7 +201,8 @@ def prep_hcp(atlas, name, dataset, fnirs = False, radius= 15, smooth_fwhm = None
 
     if(fnirs):
         fnirs_folder = os.path.join(os.path.dirname(__file__), '..', 'Data','fNIRS')
-        MNI_coords = load_fnirs_subject_mni(1)
+        # MNI_coords = load_fnirs_subject_mni(1)
+        MNI_coords = load_mni(fnirs_folder)
         print(MNI_coords)
     else:
         MNI_coords = None
