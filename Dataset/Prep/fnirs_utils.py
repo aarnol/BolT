@@ -26,6 +26,7 @@ def downsample(fnirs_data, original, new):
 
     # Calculate number of samples after downsampling
     duration = fnirs_data.shape[0] / original  # total time in seconds
+    
     new_num_samples = int(np.round(duration * new))
 
     # Use scipy's resample for Fourier method-based resampling
@@ -196,56 +197,102 @@ def load(root, type='HbR'):
     print("Label distribution:", label_counts)
     return fnirs_data
 
+def load28(root, type = 'HbR'):
+    fnirs_data = []
+    file = os.path.join(root, f'fNIRS28{type}.mat')    
+    data = scipy.io.loadmat(file)['simpleData'][0]
+    
+    for subject in range(len(data)):
+      
+        time = data[subject][0]
+        full_timeseries = data[subject][1]
+        #find columns of all 0s
+        if subject == 0:
+            all_zeros = np.where(np.all(full_timeseries == 0, axis=0))[0]
+            print("All zeros: ", all_zeros)
+        #remove all 0s
+        full_timeseries = np.delete(full_timeseries, all_zeros, axis=1)
+        sampling_rate = data[subject][3][0][0]
+        zback_stims = data[subject][4][0][0]
+        tback_stims = data[subject][4][0][1]
+        rest_stims = data[subject][4][0][-1]
+        
+        for num, stims in enumerate([rest_stims,tback_stims]):
+            for i in range(len(stims[1][0])):
+                
+                
+                start = stims[1][0][i]
+                end = start + stims[2][i]
+                end = end[0]
+                #convert to samples
+                # print(sampling_rate, start, end)
+                start = int(start * sampling_rate)
+                end = int(end * sampling_rate)
 
+                #get the timeseries for the start and end
+                timeseries = full_timeseries[start:end]
+                if timeseries.shape[0] == 0 or timeseries.shape[0] < 19:
+                    # print("Empty timeseries")
+                    continue
+                
+                #downsample the timeseries to 1.39Hz
+                
+                #timeseries = downsample(timeseries, sampling_rate, 1.39)
+                #remove bad channels
+                # # Channels to remove (1-based to 0-based)
+                # short_separation_channels = [22, 26, 36, 55, 65, 83, 102, 108]
+                # bad_quality_channels = [32, 42, 55, 84, 85, 86, 90, 91, 92, 94, 95, 96, 114, 115]
 
-def load_fnirs_subject(subject_id, condition = 'nback', type = 'HbR'):
+                # # Merge and deduplicate
+                # channels_to_remove = sorted(set(short_separation_channels + bad_quality_channels))
+                # channels_to_remove = [i - 1 for i in channels_to_remove]  # convert to 0-based indexing
+
+                # Remove the specified channels
+                # timeseries = np.delete(timeseries, channels_to_remove, axis=1)
+                
+                #get the subject ID and label from the file name or directory structure
+                subject_id = subject
+                label = 0 if num == 0 else 1
+                condition = 0 #CHANGE FOR RSA
+                f_data = {
+                        'roiTimeseries': timeseries,
+                        'pheno': {
+                            'subjectId': subject_id,
+                            'encoding': None,
+                            'label':label,
+                            'condition': condition,
+                            'modality': 'fNIRS'
+                        }}
+                fnirs_data.append(f_data)
+            
+        
+        
+
+    return fnirs_data
+
+def getBadChannels(root):
+    """
+    get the bad channels from the fnirs HBR data
+    subject and type do not matter so HBC and subject 0 are used
+    """
+    
+    file = os.path.join(root, f'fNIRS28HBC.mat')    
+    data = scipy.io.loadmat(file)['simpleData'][0]
+    
+    subject = 0
+      
+    time = data[subject][0]
+    full_timeseries = data[subject][1]
+    #find columns of all 0s
+    if subject == 0:
+        all_zeros = np.where(np.all(full_timeseries == 0, axis=0))[0]
+        print("All zeros: ", all_zeros)
+    return all_zeros
+    
 
     
-    type_dict = {
-        'HbO': 0,
-        'HbR': 1,
-        'HbT': 2}
-    
-    target_folder = f"Dataset/Data/fNIRS"
-    data = os.path.join(target_folder, 'fNIRS_HCP_SubjSpecific 1.mat')
-    data = scipy.io.loadmat(data)['Data_fNIRS'][subject_id-1][0]
-    
-    if(condition == 'nback'):
-        data = data[:,:3]
-    else:
-        data = data[:,4:]
-    
-    data = data[:,type_dict[type]]
-    
-    formatted_data = []
-    # from the hcp protocol order
-    labels =     [1,0,1,0,1,1,0,0,1,0,1,0,1,1,0,0]
-    conditions = [4,1,2,4,1,3,2,3,4,1,2,4,1,3,2,3]
-    
-    i = 0
-    blocks = data
-    blocks = [block for block in blocks]
-    
-    for block in blocks:
-        # downsample to 34 time points
-        block = downsample_to_fmri(block)
-        label = labels[i]
-        f_data = {
-            'roiTimeseries': block,
-            'pheno': {
-                'subjectId': f'S{subject_id}',
-                'encoding': None,
-                'label': label,
-                "condition": conditions[i],
-                'modality': 'fNIRS'
-            }
-        }
 
-        formatted_data.append(f_data)
-        i+=1
-    return formatted_data
-
-
+ 
 def calc_MNI_average(digitization):
     """
     Calculate the average of the data in MNI space.
@@ -536,37 +583,21 @@ def brodmann_to_name(num):
     return brodmann_areas[num]
 
 
-if __name__ == '__main__':
-    #test load
-    data_dir = "Dataset/Data/fNIRS/Preprocessed/"
-    data = load(data_dir, type='HbR')
 
-    groups = [x['pheno']['subjectId'] for x in data]
-    arrs = [x['roiTimeseries'] for x in data]
-    #print the unque groups
-    def arrays_are_unique(arr_list):
-        for i in range(len(arr_list)):
-            for j in range(i + 1, len(arr_list)):
-                if np.array_equal(arr_list[i], arr_list[j]):
-                    return False
-        return True
-
-    # Example
-    
-    print(arrays_are_unique(arrs))  
-    
 #test load 
 if __name__ == '__main__':
-    #test load
-    data_dir = "Dataset/Data/fNIRS/Preprocessed/"
-    data = load(data_dir, type='HbR')
+    # #test load
+    # data_dir = "Dataset/Data/fNIRS/Preprocessed/"
+    # data = load(data_dir, type='HbR')
 
-    groups = [x['pheno']['subjectId'] for x in data]
-    arrs = [x['roiTimeseries'] for x in data]
-    #print the unque groups
+    # groups = [x['pheno']['subjectId'] for x in data]
+    # arrs = [x['roiTimeseries'] for x in data]
+    # #print the unque groups
    
 
-    #check the shape of x[0]
-    print(arrs[0].shape)
-    
+    # #check the shape of x[0]
+    # print(arrs[0].shape)
+    data_dir = "./Dataset/Data/fNIRS/fNIRS28-1.38/"
+    data = load28(data_dir, type='HbR')
+    print(len(data))
     

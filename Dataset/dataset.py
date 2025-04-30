@@ -195,8 +195,10 @@ class SupervisedDataset(Dataset):
 
 
         # if train:
-        #     print(train)
-        #     random.Random(self.seed).shuffle(self.targetLabels)  # only shuffle the labels, not the data
+        #     print("RANDOM LABELS")
+        #     #random labels
+        #     self.targetLabels = [random.choice([0, 1]) for _ in range(len(self.targetLabels))]  # random labels for training
+            
             
         if intersect:
             print(f"Groups leaking between train and test: {intersect}")

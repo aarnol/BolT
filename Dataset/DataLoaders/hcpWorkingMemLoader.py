@@ -31,17 +31,21 @@ def hcpWorkingMemLoader(atlas, targetTask):
     for data in dataset:
         
         label = int(data["pheno"]["label"])
-        #assign a random label isntead of the one in the dataset
-        label = np.random.randint(0, 2)
+        
         #filter out bad channels
         data["roiTimeseries"] = np.delete(data["roiTimeseries"], bad_channels, axis=1)
-        print("Shape of roiTimeseries: ", data["roiTimeseries"].shape)
+       
         if(healthCheckOnRoiSignal(data["roiTimeseries"].T)):
-            
+            if(data['roiTimeseries'].shape[0] ==8):
+                print("Skipping subject: ", data["pheno"]["subjectId"])
+                continue
             x.append(data["roiTimeseries"].T)
             y.append(label)
             subjectIds.append(int(data["pheno"]["subjectId"]))
         else:
             print("Skipping subject: ", data["pheno"]["subjectId"])
 
+    #print distribution of labels
+    unique, counts = np.unique(y, return_counts=True)
+    print("Label distribution: ", dict(zip(unique, counts)))
     return x, y, subjectIds
