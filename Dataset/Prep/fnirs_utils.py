@@ -44,14 +44,17 @@ def load_fnirs(target_folder):
         print(f"Subject {sub} loaded")
         sub+=1
     return formatted_data, digitization
-
+def load_mni(target_folder):
+    MNI_path = os.path.join(target_folder, 'HCP_MNI_final.mat')
+    digitization =scipy.io.loadmat(MNI_path)['MNI']
+    return digitization
 def load_fnirs_subject_mni(subject_id):
     """
     Load the fNIRS data from the target folder.
     """
     target_folder = f"Dataset/Data/fNIRS"
-    MNI_path = os.path.join(target_folder, 'fNIRS_HCP_SubjSpecific 1.mat')
-    digitization =scipy.io.loadmat(MNI_path)['Data_fNIRS'][subject_id][1]
+    MNI_path = os.path.join(target_folder, 'HCP_MNI_final.mat')
+    digitization =scipy.io.loadmat(MNI_path)['Data_fNIRS'][subject_id-1][1]
    
     return digitization
 
