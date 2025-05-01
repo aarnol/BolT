@@ -76,8 +76,10 @@ def load_fnirs(target_folder):
         sub+=1
     return formatted_data, digitization
 def load_mni(target_folder):
-    MNI_path = os.path.join(target_folder, 'HCP_MNI_final.mat')
-    digitization =scipy.io.loadmat(MNI_path)['MNI']
+    MNI_path = os.path.join(target_folder, 'MNIs_Average.mat')
+    
+    digitization =scipy.io.loadmat(MNI_path)['MNIs_Mean']
+
     return digitization
 def load_fnirs_subject_mni(subject_id):
     """
@@ -220,7 +222,7 @@ def load28(root, type = 'HbR'):
         tback_stims = data[subject][4][0][1]
         rest_stims = data[subject][4][0][-1]
         
-        for num, stims in enumerate([rest_stims,tback_stims]):
+        for num, stims in enumerate([zback_stims,tback_stims]):
             for i in range(len(stims[1][0])):
                 
                 
@@ -275,22 +277,32 @@ def load28(root, type = 'HbR'):
 
 def getBadChannels(root):
     """
-    get the bad channels from the fnirs HBR data
-    subject and type do not matter so HBC and subject 0 are used
+    Get the bad channels (columns with all zeros) from fNIRS HBR data,
+    excluding short separation channels (1-based indices).
     """
-    
-    file = os.path.join(root, f'fNIRS28HBC.mat')    
+
+    file = os.path.join(root, 'fNIRS28HBC.mat')    
     data = scipy.io.loadmat(file)['simpleData'][0]
     
+    # Convert short separation channels from 1-based to 0-based indexing
+    short_separation_channels_1_based = [22, 26, 36, 55, 65, 83, 102, 108]
+    short_separation_channels = [i - 1 for i in short_separation_channels_1_based]
+    
     subject = 0
-      
-    time = data[subject][0]
     full_timeseries = data[subject][1]
-    #find columns of all 0s
-    if subject == 0:
-        all_zeros = np.where(np.all(full_timeseries == 0, axis=0))[0]
-        print("All zeros: ", all_zeros)
-    return all_zeros
+
+    # Remove short separation channels
+    mask = np.ones(full_timeseries.shape[1], dtype=bool)
+    mask[short_separation_channels] = False
+    cleaned_timeseries = full_timeseries[:, mask]
+
+    # Find all-zero columns in the cleaned timeseries
+    bad_channels = np.where(np.all(cleaned_timeseries == 0, axis=0))[0]
+
+    print("Bad channels (excluding short separation):", bad_channels)
+
+    return bad_channels.tolist()
+
     
 
     
@@ -603,4 +615,5 @@ if __name__ == '__main__':
     data_dir = "./Dataset/Data/fNIRS/fNIRS28-1.38/"
     data = load28(data_dir, type='HbR')
     print(len(data))
-    
+    data_dir = "./Dataset/Data/fNIRS/"
+    print(load_mni(data_dir))

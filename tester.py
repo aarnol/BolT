@@ -15,6 +15,7 @@ parser.add_argument("-m", "--model", type=str, default="bolT")
 parser.add_argument("-a", "--analysis", type=bool, default=False)
 parser.add_argument("--device", type=int, default=0)
 parser.add_argument("--name", type=str, default="noname")
+parser.add_argument("-p","--pretrained_model", type=str, default=None)
 
 
 
@@ -76,7 +77,7 @@ for i, seed in enumerate(seeds):
 
     print("Running the model with seed : {}".format(seed))
     if(argv.model == "bolT"):
-        results = runModel(hyperParams, Option({**datasetDetails,"datasetSeed":seed}), device="cuda:{}".format(argv.device), analysis=argv.analysis, name = argv.name)
+        results = runModel(hyperParams, Option({**datasetDetails,"datasetSeed":seed}), device="cuda:{}".format(argv.device), analysis=argv.analysis, name = argv.name, pretrained_model=argv.pretrained_model)
     else:
         results = runModel(hyperParams, Option({**datasetDetails,"datasetSeed":seed}), device="cuda:{}".format(argv.device))
 

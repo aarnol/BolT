@@ -6,7 +6,7 @@ import os
 import sys
 
 from datetime import datetime
-
+from transfer import TransferModel
 if(not "utils" in os.getcwd()):
     sys.path.append("../../../")
 
@@ -134,7 +134,7 @@ def test(model, dataset, fold, invert = False):
 
 
 
-def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False, name = "noname"):
+def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False, name = "noname", pretrained_model=None):
 
 
     # extract datasetDetails
@@ -157,10 +157,17 @@ def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False, name 
 
 
     results = []
-
+    fold_accuracies = []
     for fold in range(foldCount):
+        if pretrained_model is not None:
+            model_path = os.path.join(os.getcwd(), "Analysis", "TargetSavedModels", "hcpWM", pretrained_model,"seed_0", "model_0.save")
+            
+            model = torch.load(model_path, weights_only=False)
+            transfer
 
-        model = Model(hyperParams, details)
+            
+        else:
+            model = Model(hyperParams, details)
 
 
         train_preds, train_probs, train_groundTruths, train_loss, epoch_metrics, step_metrics, test_metrics, test_results = train(model, dataset, fold, nOfEpochs)   
@@ -185,13 +192,16 @@ def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False, name 
         }
 
         results.append(result)
-
+        print(test_metrics)
+        fold_accuracies.append(test_metrics[-1]["accuracy"])
 
         if(analysis):
             targetSaveDir = "./Analysis/TargetSavedModels/{}/{}/seed_{}/".format(datasetDetails.datasetName, name, datasetSeed)
             os.makedirs(targetSaveDir, exist_ok=True)
             torch.save(model, targetSaveDir + "/model_{}.save".format(fold))
         
-        break
+        
+    print("avergage accuracy : {}".format(np.mean(fold_accuracies)))
+    print("std accuracy : {}".format(np.std(fold_accuracies)))
 
     return results
