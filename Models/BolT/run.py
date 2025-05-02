@@ -6,7 +6,7 @@ import os
 import sys
 
 from datetime import datetime
-from transfer import TransferModel
+
 if(not "utils" in os.getcwd()):
     sys.path.append("../../../")
 
@@ -27,7 +27,7 @@ def train(model, dataset, fold, nOfEpochs):
     step_metrics = []
     losses = []
     for epoch in range(nOfEpochs):
-
+        torch.cuda.empty_cache()
         preds = []
         probs = []
         groundTruths = []
@@ -163,11 +163,18 @@ def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False, name 
             model_path = os.path.join(os.getcwd(), "Analysis", "TargetSavedModels", "hcpWM", pretrained_model,"seed_0", "model_0.save")
             
             model = torch.load(model_path, weights_only=False)
-            transfer
+            #print the model structure
+            for name, param in model.model.named_parameters():
+                if 'classifier' not in name:
+                    param.requires_grad = False
+            for name, param in model.model.named_parameters():
+                if param.requires_grad:
+                    print(name, param.data.shape)
 
             
         else:
             model = Model(hyperParams, details)
+            print('training from scratch')
 
 
         train_preds, train_probs, train_groundTruths, train_loss, epoch_metrics, step_metrics, test_metrics, test_results = train(model, dataset, fold, nOfEpochs)   
@@ -200,7 +207,7 @@ def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False, name 
             os.makedirs(targetSaveDir, exist_ok=True)
             torch.save(model, targetSaveDir + "/model_{}.save".format(fold))
         
-        
+        break
     print("avergage accuracy : {}".format(np.mean(fold_accuracies)))
     print("std accuracy : {}".format(np.std(fold_accuracies)))
 

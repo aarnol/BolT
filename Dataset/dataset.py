@@ -232,7 +232,7 @@ class SupervisedDataset(Dataset):
         timeseries = subject  # (numberOfRois, time)
         
         # #z score
-        timeseries = (timeseries - np.mean(timeseries, axis=1, keepdims=True)) / np.std(timeseries, axis=1, keepdims=True)
+        #timeseries = (timeseries - np.mean(timeseries, axis=1, keepdims=True)) / np.std(timeseries, axis=1, keepdims=True)
 
         #normalize to between 0 and 1
         #timeseries = (timeseries - np.min(timeseries, axis=1, keepdims=True)) / (np.max(timeseries, axis=1, keepdims=True) - np.min(timeseries, axis=1, keepdims=True))

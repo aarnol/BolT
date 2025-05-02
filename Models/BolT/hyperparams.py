@@ -9,12 +9,12 @@ def getHyper_bolT():
 
             "weightDecay" : 0,
 
-            "lr" : 2e-5,
-            "minLr" : 2e-6,
-            "maxLr" : 4e-5,
+            "lr" : 2e-4,
+            "minLr" : 2e-5,
+            "maxLr" : 4e-4,
 
             # FOR BOLT
-            "nOfLayers" : 12,
+            "nOfLayers" : 3,
             #change this based on the atlas!
             # Schaefer 400 = 400
             # AAL = 116

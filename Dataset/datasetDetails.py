@@ -62,11 +62,11 @@ datasetDetailsDict = {
         "datasetName" : "hcpWM",
         "targetTask" : "nback",
         "nOfClasses" : 2,        
-        "dynamicLength" : None,
+        "dynamicLength" : 30,
         "foldCount" : 5,
         "atlas" : "sphere",
         "nOfEpochs" : 20,
-        "batchSize" : 32,
+        "batchSize" : 16,
         "normalize" : True,
         "fNIRS": False,
 
