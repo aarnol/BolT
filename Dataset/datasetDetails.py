@@ -75,11 +75,11 @@ datasetDetailsDict = {
         "datasetName" : "hcpWM",
         "targetTask" : "motor",
         "nOfClasses" : 2,        
-        "dynamicLength" : 30,
+        "dynamicLength" : 15,
         "foldCount" : 5,
         "atlas" : "sphere",
         "nOfEpochs" : 20,
-        "batchSize" : 32,
+        "batchSize" : 16,
         "normalize" : True,
         "fNIRS": False,
 

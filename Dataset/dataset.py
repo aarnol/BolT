@@ -244,7 +244,7 @@ class SupervisedDataset(Dataset):
             timeseries = timeseries[:, samplingInit : samplingInit + self.dynamicLength]
             
             # add noise
-            #timeseries = guassianNoise(timeseries, mean=0, std=0.1)
+            timeseries = guassianNoise(timeseries, mean=0, std=0.1)
         
         
         return {"timeseries" : timeseries.astype(np.float32), "label" : label, "subjId" : subjId}
