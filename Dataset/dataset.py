@@ -13,6 +13,7 @@ from .DataLoaders.hcpWorkingMemLoader import hcpWorkingMemLoader
 from .DataLoaders.hcpfNIRSLoader import hcpfNIRSLoader
 from .DataLoaders.hcpMotorLoader import hcpMotorLoader
 
+from copy import deepcopy
 loaderMapper = {
     #"hcpRest" : hcpRestLoader,
     #"hcpTask" : hcpTaskLoader,
@@ -132,96 +133,88 @@ class SupervisedDataset(Dataset):
         else:
             return len(self.data)        
 
-    def setFold(self, fold, train=True):
 
+
+    def setFold(self, fold, train=True):
         self.k = fold
         self.train = train
 
-        if(self.foldCount == None):  # if this is the case, TEST must be True (different behavior) than original BolT
+        if self.foldCount is None:
             testIdx = list(range(len(self.data)))
+            self.trainIdx, self.testIdx = [], testIdx  # Make sure indices are defined
             self.targetData = [self.data[idx] for idx in testIdx]
-            self.targetLabels =  [self.labels[idx] for idx in testIdx]
-            self.targetSubjIds =  [self.subjectIds[idx] for idx in testIdx]
+            self.targetLabels = [self.labels[idx] for idx in testIdx]
+            self.targetSubjIds = [self.subjectIds[idx] for idx in testIdx]
             return
-
-
-
-
 
         else:
             splits = list(self.kFold.split(self.data, self.labels, self.groups))
             trainIdx, testIdx = splits[fold]
 
-            # Ensure groups are not shared between train and test
-            
-            train_groups = set([self.groups[idx] for idx in trainIdx])
-            test_groups = set([self.groups[idx] for idx in testIdx])
+            train_groups = set(self.groups[idx] for idx in trainIdx)
+            test_groups = set(self.groups[idx] for idx in testIdx)
             intersect = train_groups.intersection(test_groups)
+
             if intersect:
                 raise ValueError(f"Group(s) {intersect} found in both train and test splits for fold {fold}!")
             else:
                 print(f"Fold {fold} is valid.")
-      
 
-        self.trainIdx = trainIdx
-        self.testIdx = testIdx
+            self.trainIdx = trainIdx.copy()
+            self.testIdx = testIdx
 
-        random.Random(self.seed).shuffle(trainIdx)
+            rng = random.Random(self.seed)
+            rng.shuffle(self.trainIdx)
 
-        self.targetData = [self.data[idx] for idx in trainIdx] if train else [self.data[idx] for idx in testIdx]
-        self.targetLabels = [self.labels[idx] for idx in trainIdx] if train else [self.labels[idx] for idx in testIdx]
-        self.targetSubjIds = [self.subjectIds[idx] for idx in trainIdx] if train else [self.subjectIds[idx] for idx in testIdx]
-        train_groups = set([self.groups[idx] for idx in trainIdx])
-        test_groups = set([self.groups[idx] for idx in testIdx])
-        intersect = train_groups.intersection(test_groups)
-        if(train):
-            train_subjects = set(self.targetSubjIds)
-            val_subjects = set(self.subjectIds[idx] for idx in self.testIdx)
-            if train_subjects & val_subjects:
-                print(train_subjects & val_subjects)
-                raise ValueError("Train and test subjects are leaking!")
-            
-            else:
-                print("Train and test subjects are properly separated.")
-        if(not train):
+            idx_to_use = self.trainIdx if train else self.testIdx
+
+            self.targetData = [self.data[idx] for idx in idx_to_use]
+            self.targetLabels = [self.labels[idx] for idx in idx_to_use]
+            self.targetSubjIds = [self.subjectIds[idx] for idx in idx_to_use]
+
             train_subjects = set(self.subjectIds[idx] for idx in self.trainIdx)
-            val_subjects = set(self.subjectIds[idx] for idx in self.testIdx)
-            if train_subjects & val_subjects:
-                print(train_subjects & val_subjects)
-                raise ValueError("Train and test subjects are leaking!")
-            
+            test_subjects = set(self.subjectIds[idx] for idx in self.testIdx)
+
+            if train:
+                if train_subjects & test_subjects:
+                    print(train_subjects & test_subjects)
+                    raise ValueError("Train and test subjects are leaking!")
+                else:
+                    print("Train and test subjects are properly separated.")
             else:
-                print("Train and test subjects are properly separated.")
+                if train_subjects & test_subjects:
+                    print(train_subjects & test_subjects)
+                    raise ValueError("Train and test subjects are leaking!")
+                else:
+                    print("Train and test subjects are properly separated.")
 
+            # if train:
+            #     print("RANDOM LABELS")
+            #     self.targetLabels = [random.choice([0, 1]) for _ in range(len(self.targetLabels))]
 
-        # if train:
-        #     print("RANDOM LABELS")
-        #     #random labels
-        #     self.targetLabels = [random.choice([0, 1]) for _ in range(len(self.targetLabels))]  # random labels for training
-            
-            
-        if intersect:
-            print(f"Groups leaking between train and test: {intersect}")
-            exit()
-        else:
-            print("No leakage between train and test groups.")
+            if intersect:
+                print(f"Groups leaking between train and test: {intersect}")
+                exit()
+            else:
+                print("No leakage between train and test groups.")
 
-        if(train and not isinstance(self.dynamicLength, type(None))):
-            np.random.seed(self.seed+1)
-            
-                
-            self.randomRanges = [[np.random.randint(0, self.data[idx].shape[-1] - self.dynamicLength) for k in range(9999)] for idx in trainIdx]
+            if train and self.dynamicLength is not None:
+                np.random.seed(self.seed + 1)
+                self.randomRanges = [
+                    [np.random.randint(0, self.data[idx].shape[-1] - self.dynamicLength) for _ in range(9999)]
+                    for idx in self.trainIdx
+                ]
 
     def getFold(self, fold, train=True):
+        # Clone a clean copy of the dataset object to avoid state leaks
+        dataset_copy = deepcopy(self)
+        dataset_copy.setFold(fold, train=train)
 
-        self.setFold(fold, train)
-        
-
-        if(train):
-            return DataLoader(self, batch_size=self.batchSize, shuffle=False, collate_fn = custom_collate_fn)
+        if train:
+            return DataLoader(dataset_copy, batch_size=dataset_copy.batchSize, shuffle=False, collate_fn=custom_collate_fn)
         else:
+            return DataLoader(dataset_copy, batch_size=1, shuffle=False)
            
-            return DataLoader(self, batch_size=1, shuffle=False)            
 
     def __getitem__(self, idx):
         subject = self.targetData[idx]
@@ -232,7 +225,7 @@ class SupervisedDataset(Dataset):
         timeseries = subject  # (numberOfRois, time)
         
         # #z score
-        #timeseries = (timeseries - np.mean(timeseries, axis=1, keepdims=True)) / np.std(timeseries, axis=1, keepdims=True)
+        timeseries = (timeseries - np.mean(timeseries, axis=1, keepdims=True)) / np.std(timeseries, axis=1, keepdims=True)
 
         #normalize to between 0 and 1
         #timeseries = (timeseries - np.min(timeseries, axis=1, keepdims=True)) / (np.max(timeseries, axis=1, keepdims=True) - np.min(timeseries, axis=1, keepdims=True))
@@ -250,8 +243,8 @@ class SupervisedDataset(Dataset):
 
             timeseries = timeseries[:, samplingInit : samplingInit + self.dynamicLength]
             
-            # # add noise
-            # timeseries = guassianNoise(timeseries, mean=0, std=0.1)
+            # add noise
+            #timeseries = guassianNoise(timeseries, mean=0, std=0.1)
         
         
         return {"timeseries" : timeseries.astype(np.float32), "label" : label, "subjId" : subjId}

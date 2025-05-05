@@ -22,15 +22,38 @@ class Model():
         self.criterion = torch.nn.CrossEntropyLoss(label_smoothing=0.0)#, weight = classWeights)
        
         # set optimizer
-        self.optimizer = torch.optim.Adam(self.model.parameters(), lr = hyperParams.lr, weight_decay = hyperParams.weightDecay)
+        self.optimizer = torch.optim.Adam(self.model.classifierHead.parameters(), lr = hyperParams.lr, weight_decay = hyperParams.weightDecay)
 
         # set scheduler
+        
         steps_per_epoch = int(np.ceil(details.nOfTrains / details.batchSize))         
         
         divFactor = hyperParams.maxLr / hyperParams.lr
         finalDivFactor = hyperParams.lr / hyperParams.minLr
-        self.scheduler = torch.optim.lr_scheduler.OneCycleLR(self.optimizer, hyperParams.maxLr, details.nOfEpochs * (steps_per_epoch) +10, div_factor=divFactor, final_div_factor=finalDivFactor, pct_start=0.3)
+        self.scheduler = torch.optim.lr_scheduler.OneCycleLR(self.optimizer, hyperParams.maxLr, details.nOfEpochs * (steps_per_epoch)+10, div_factor=divFactor, final_div_factor=finalDivFactor, pct_start=0.3)
+    
+    def reinitialize(self, hyperParams, details):
+        """
+            Reinitialize the model with new hyperparameters and details for finetuning
+        """
+        self.hyperParams = hyperParams
+        self.details = details
+
+
+        # load model into gpu
         
+        self.model = self.model.to(details.device)
+
+        # set criterion
+        self.criterion = torch.nn.CrossEntropyLoss(label_smoothing=0.0)
+
+        # set optimizer
+        self.optimizer = torch.optim.Adam(self.model.parameters(), lr = hyperParams.lr, weight_decay = hyperParams.weightDecay)
+        #set scheduler
+        steps_per_epoch = int(np.ceil(details.nOfTrains / details.batchSize))
+        finalDivFactor = hyperParams.lr / hyperParams.minLr
+        self.scheduler = torch.optim.lr_scheduler.OneCycleLR(self.optimizer, hyperParams.maxLr, details.nOfEpochs * (steps_per_epoch)+10, div_factor=hyperParams.maxLr / hyperParams.lr, final_div_factor=finalDivFactor, pct_start=0.3)
+
     def step(self, x, y, train=True):
 
         """

@@ -100,7 +100,7 @@ for seed in targetSeeds:
                 "fNIRS" : False,
                 "targetTask" : "nback",
                 "atlas" : "sphere30",
-                "datasetName" : datasetNahcp
+                "datasetName" : datasetName
 
             }))
     elif(datasetName =="hcpWM_fNIRS_HbR"):

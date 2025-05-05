@@ -25,7 +25,8 @@ def hcpfNIRSLoader(atlas, targetTask, signal, subject= None):
         x : (#subjects, N)
     """
     
-    dataset = fnirs_utils.load28(datadir, type = signal)
+    dataset = fnirs_utils.load28(datadir, type = signal, task = targetTask)
+    
 
     x = []
     y = []
@@ -41,7 +42,7 @@ def hcpfNIRSLoader(atlas, targetTask, signal, subject= None):
         if(healthCheckOnRoiSignal(data["roiTimeseries"].T) or 1):
             
             
-            x.append(data["roiTimeseries"].T)
+            x.append(data["roiTimeseries"].T * -1)
             y.append(label)
             subjectIds.append(int(data["pheno"]["subjectId"]))
         else:

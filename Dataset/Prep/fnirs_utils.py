@@ -202,7 +202,7 @@ def load(root, type='HbR'):
     print("Label distribution:", label_counts)
     return fnirs_data
 
-def load28(root, type = 'HbR'):
+def load28(root, type = 'HbR', task = 'nback'):
     fnirs_data = []
     file = os.path.join(root, f'fNIRS28{type}.mat')    
     data = scipy.io.loadmat(file)['simpleData'][0]
@@ -220,9 +220,17 @@ def load28(root, type = 'HbR'):
         sampling_rate = data[subject][3][0][0]
         zback_stims = data[subject][4][0][0]
         tback_stims = data[subject][4][0][1]
+        lhand_stims = data[subject][4][0][2]
+        lfoot_stims = data[subject][4][0][3]
+        rhand_stims = data[subject][4][0][4]
+        rfoot_stims = data[subject][4][0][5]
+        tongue_stims = data[subject][4][0][6]
         rest_stims = data[subject][4][0][-1]
-        
-        for num, stims in enumerate([zback_stims,tback_stims]):
+        if task == 'nback':
+            stims = [zback_stims, tback_stims]
+        elif task == 'motor':
+            stims = [lhand_stims, rhand_stims]
+        for num, stims in enumerate(stims):
             for i in range(len(stims[1][0])):
                 
                 
@@ -239,21 +247,6 @@ def load28(root, type = 'HbR'):
                 if timeseries.shape[0] == 0 or timeseries.shape[0] < 19:
                     # print("Empty timeseries")
                     continue
-                
-                #downsample the timeseries to 1.39Hz
-                
-                #timeseries = downsample(timeseries, sampling_rate, 1.39)
-                #remove bad channels
-                # # Channels to remove (1-based to 0-based)
-                # short_separation_channels = [22, 26, 36, 55, 65, 83, 102, 108]
-                # bad_quality_channels = [32, 42, 55, 84, 85, 86, 90, 91, 92, 94, 95, 96, 114, 115]
-
-                # # Merge and deduplicate
-                # channels_to_remove = sorted(set(short_separation_channels + bad_quality_channels))
-                # channels_to_remove = [i - 1 for i in channels_to_remove]  # convert to 0-based indexing
-
-                # Remove the specified channels
-                # timeseries = np.delete(timeseries, channels_to_remove, axis=1)
                 
                 #get the subject ID and label from the file name or directory structure
                 subject_id = subject
@@ -614,6 +607,6 @@ if __name__ == '__main__':
     # print(arrs[0].shape)
     data_dir = "./Dataset/Data/fNIRS/fNIRS28-1.38/"
     data = load28(data_dir, type='HbR')
-    print(len(data))
+    
     data_dir = "./Dataset/Data/fNIRS/"
-    print(load_mni(data_dir))
+    

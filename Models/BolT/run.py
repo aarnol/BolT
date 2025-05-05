@@ -27,7 +27,7 @@ def train(model, dataset, fold, nOfEpochs):
     step_metrics = []
     losses = []
     for epoch in range(nOfEpochs):
-        torch.cuda.empty_cache()
+        # torch.cuda.empty_cache()
         preds = []
         probs = []
         groundTruths = []
@@ -160,17 +160,33 @@ def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False, name 
     fold_accuracies = []
     for fold in range(foldCount):
         if pretrained_model is not None:
-            model_path = os.path.join(os.getcwd(), "Analysis", "TargetSavedModels", "hcpWM", pretrained_model,"seed_0", "model_0.save")
-            
-            model = torch.load(model_path, weights_only=False)
-            #print the model structure
-            for name, param in model.model.named_parameters():
-                if 'classifier' not in name:
-                    param.requires_grad = False
-            for name, param in model.model.named_parameters():
-                if param.requires_grad:
-                    print(name, param.data.shape)
+            model_path = os.path.join(
+                os.getcwd(), "Analysis", "TargetSavedModels", "hcpWM",
+                pretrained_model, "seed_0", "model_0.save"
+            )
 
+            # Load full model
+            model = torch.load(model_path, weights_only=False)
+
+            # Reinitialize (updates optimizer/scheduler/criterion/etc.)
+            
+
+            # --- 🔁 Replace classifier head for transfer learning ---
+            # Assumes details.newNumClasses is defined and != original
+            in_features = model.model.classifierHead.in_features
+            head = torch.nn.Sequential(
+                torch.nn.Linear(in_features, in_features//2),
+                torch.nn.ReLU(),
+                torch.nn.Linear(in_features//2, details.nOfClasses)
+            )
+            model.model.classifierHead = head.to(details.device)
+
+            # --- 🔒 Optional: Freeze all layers except the classifier head ---
+            for param in model.model.parameters():
+                param.requires_grad = False
+            for param in model.model.classifierHead.parameters():
+                param.requires_grad = True
+            model.reinitialize(hyperParams, details)
             
         else:
             model = Model(hyperParams, details)
@@ -199,15 +215,16 @@ def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False, name 
         }
 
         results.append(result)
-        print(test_metrics)
+       
         fold_accuracies.append(test_metrics[-1]["accuracy"])
 
         if(analysis):
             targetSaveDir = "./Analysis/TargetSavedModels/{}/{}/seed_{}/".format(datasetDetails.datasetName, name, datasetSeed)
             os.makedirs(targetSaveDir, exist_ok=True)
             torch.save(model, targetSaveDir + "/model_{}.save".format(fold))
-        
         break
+        
+        
     print("avergage accuracy : {}".format(np.mean(fold_accuracies)))
     print("std accuracy : {}".format(np.std(fold_accuracies)))
 
