@@ -27,7 +27,7 @@ def train(model, dataset, fold, nOfEpochs):
     step_metrics = []
     losses = []
     for epoch in range(nOfEpochs):
-
+        # torch.cuda.empty_cache()
         preds = []
         probs = []
         groundTruths = []
@@ -128,13 +128,15 @@ def test(model, dataset, fold, invert = False):
     # Calculate metrics
     metrics = calculateMetric({"predictions": preds, "probs": probs, "labels": groundTruths})
     # print("\n \n Test metrics : {}".format(metrics))                
-
+    #print the number of predictions for each class
+    classes, counts = np.unique(preds, return_counts=True)
+    print("Predictions counts: ", counts)
     return preds, probs, groundTruths, loss, metrics
 
 
 
 
-def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False, name = "noname"):
+def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False, name = "noname", pretrained_model=None):
 
 
     # extract datasetDetails
@@ -157,10 +159,43 @@ def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False, name 
 
 
     results = []
-
+    fold_accuracies = []
     for fold in range(foldCount):
+        if pretrained_model is not None:
+            model_path = os.path.join(
+                os.getcwd(), "Analysis", "TargetSavedModels", "hcpWM",
+                pretrained_model, "seed_0", "model_0.save"
+            )
 
-        model = Model(hyperParams, details)
+            # Load full model
+            model = torch.load(model_path, weights_only=False)
+
+            # Reinitialize (updates optimizer/scheduler/criterion/etc.)
+            
+
+            # --- 🔁 Replace classifier head for transfer learning ---
+            # Assumes details.newNumClasses is defined and != original
+            in_features = model.model.classifierHead.in_features
+            head = torch.nn.Sequential(
+                torch.nn.Linear(in_features, details.nOfClasses)
+            )
+            model.model.classifierHead = head.to(details.device)
+
+            # --- 🔒 Optional: Freeze all layers except the classifier head ---
+            for name, param in model.model.named_parameters():
+                if "classifierHead" not in name and "7" not in name:
+                    param.requires_grad = False
+                else:
+                    param.requires_grad = True
+                    print(name)
+
+                
+            
+            model.reinitialize(hyperParams, details)
+            
+        else:
+            model = Model(hyperParams, details)
+            print('training from scratch')
 
 
         train_preds, train_probs, train_groundTruths, train_loss, epoch_metrics, step_metrics, test_metrics, test_results = train(model, dataset, fold, nOfEpochs)   
@@ -185,13 +220,17 @@ def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False, name 
         }
 
         results.append(result)
-
+       
+        fold_accuracies.append(test_metrics[-1]["accuracy"])
 
         if(analysis):
             targetSaveDir = "./Analysis/TargetSavedModels/{}/{}/seed_{}/".format(datasetDetails.datasetName, name, datasetSeed)
             os.makedirs(targetSaveDir, exist_ok=True)
             torch.save(model, targetSaveDir + "/model_{}.save".format(fold))
         
-        break
+        
+        
+    print("avergage accuracy : {}".format(np.mean(fold_accuracies)))
+    print("std accuracy : {}".format(np.std(fold_accuracies)))
 
     return results

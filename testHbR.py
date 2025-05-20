@@ -37,7 +37,7 @@ for invert in [True, False]:
         dataset = "hcpWM_fNIRS_HbO"
         datasetDetails = datasetDetailsDict[dataset]
         seed = 0
-        model_name = f"hcp85_sphere30"
+        model_name = f"hcp85_sphere30_20epochs"
         model_path = os.path.join(os.getcwd(), "Analysis", "TargetSavedModels", "hcpWM", model_name,"seed_0", "model_0.save")
         device = argv.device
         model = torch.load(model_path, weights_only=False)

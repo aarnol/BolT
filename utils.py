@@ -68,12 +68,12 @@ def calculateMetric(result):
 
     if isMultiClass:
         try:
-            precision = skmetr.precision_score(labels, predictions, average="micro")
+            precision = skmetr.precision_score(labels, predictions, average="micro", zero_division=0)
         except Exception as e:
             precision = np.nan
 
         try:
-            recall = skmetr.recall_score(labels, predictions, average="micro")
+            recall = skmetr.recall_score(labels, predictions, average="micro", zero_division=0)
         except Exception as e:
             recall = np.nan
 
@@ -86,12 +86,12 @@ def calculateMetric(result):
             roc = np.nan
     else:
         try:
-            precision = skmetr.precision_score(labels, predictions, average="binary")
+            precision = skmetr.precision_score(labels, predictions, average="binary", zero_division=0)
         except Exception as e:
             precision = np.nan
 
         try:
-            recall = skmetr.recall_score(labels, predictions, average="binary")
+            recall = skmetr.recall_score(labels, predictions, average="binary", zero_division=0)
         except Exception as e:
             recall = np.nan
 
