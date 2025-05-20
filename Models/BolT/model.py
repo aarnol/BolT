@@ -22,7 +22,7 @@ class Model():
         self.criterion = torch.nn.CrossEntropyLoss(label_smoothing=0.0)#, weight = classWeights)
        
         # set optimizer
-        self.optimizer = torch.optim.Adam(self.model.classifierHead.parameters(), lr = hyperParams.lr, weight_decay = hyperParams.weightDecay)
+        self.optimizer = torch.optim.Adam(self.model.parameters(), lr = hyperParams.lr, weight_decay = hyperParams.weightDecay)
 
         # set scheduler
         
@@ -48,7 +48,7 @@ class Model():
         self.criterion = torch.nn.CrossEntropyLoss(label_smoothing=0.0)
 
         # set optimizer
-        self.optimizer = torch.optim.Adam(self.model.parameters(), lr = hyperParams.lr, weight_decay = hyperParams.weightDecay)
+        self.optimizer = torch.optim.Adam(self.model.classifierHead.parameters(), lr = hyperParams.lr, weight_decay = hyperParams.weightDecay)
         #set scheduler
         steps_per_epoch = int(np.ceil(details.nOfTrains / details.batchSize))
         finalDivFactor = hyperParams.lr / hyperParams.minLr

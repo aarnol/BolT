@@ -12,7 +12,7 @@ from torch.nn.utils.rnn import pad_sequence
 from .DataLoaders.hcpWorkingMemLoader import hcpWorkingMemLoader
 from .DataLoaders.hcpfNIRSLoader import hcpfNIRSLoader
 from .DataLoaders.hcpMotorLoader import hcpMotorLoader
-
+import os
 from copy import deepcopy
 loaderMapper = {
     #"hcpRest" : hcpRestLoader,
@@ -233,7 +233,7 @@ class SupervisedDataset(Dataset):
 
 
         timeseries = np.nan_to_num(timeseries, 0)
-        #check if timeseries is zscored properly
+        
         
         
         # dynamic sampling if train
@@ -249,6 +249,113 @@ class SupervisedDataset(Dataset):
         
         return {"timeseries" : timeseries.astype(np.float32), "label" : label, "subjId" : subjId}
 
+
+from torch.utils.data import Dataset, DataLoader
+from sklearn.model_selection import GroupKFold
+import numpy as np
+import random
+from copy import deepcopy
+
+class TripletDataset(Dataset):
+    def __init__(self, datasetDetails):
+        self.dataset = SupervisedDataset(datasetDetails)
+        self.batchSize = datasetDetails.batchSize
+        self.dynamicLength = datasetDetails.dynamicLength
+        self.foldCount = datasetDetails.foldCount
+        self.seed = datasetDetails.datasetSeed
+        self.num_triplets = datasetDetails.numTriplets
+
+        # Load both modalities
+        self.fmri_data, self.fmri_labels, self.fmri_subjectIds = hcpWorkingMemLoader(datasetDetails.atlas, datasetDetails.targetTask)
+        self.fnirs_data, self.fnirs_labels, self.fnirs_subjectIds = hcpfNIRSLoader(datasetDetails.atlas, datasetDetails.targetTask, datasetDetails.signal)
+
+        # Label modality (0 for fMRI, 1 for fNIRS)
+        self.fmri_modality = [0] * len(self.fmri_data)
+        self.fnirs_modality = [1] * len(self.fnirs_data)
+
+        # Combine data for fold separation
+        self.data = self.fmri_data + self.fnirs_data
+        self.labels = self.fmri_labels + self.fnirs_labels
+        self.subjectIds = self.fmri_subjectIds + self.fnirs_subjectIds
+        self.modalities = self.fmri_modality + self.fnirs_modality
+        self.groups = self.subjectIds  # used for GroupKFold
+
+        # KFold setup
+        self.kFold = GroupKFold(self.foldCount) if self.foldCount else None
+        self.triplets = []
+
+    def __len__(self):
+        return len(self.triplets)
+
+    def mine_triplets(self):
+        """Mine triplets using only self.targetData and self.targetLabels for the current fold."""
+        triplets = []
+
+        # Separate the data by modality from the current fold
+        anchor_pool = [(i, d, l) for i, (d, l, m) in enumerate(zip(self.targetData, self.targetLabels, self.targetModalities)) if m == 0]  # fMRI
+        positive_pool = [(i, d, l) for i, (d, l, m) in enumerate(zip(self.targetData, self.targetLabels, self.targetModalities)) if m == 1]  # fNIRS
+
+        label_to_fmri = {}
+        label_to_fnirs = {}
+
+        for _, data, label in anchor_pool:
+            label_to_fmri.setdefault(label, []).append(data)
+        for _, data, label in positive_pool:
+            label_to_fnirs.setdefault(label, []).append(data)
+
+        labels = list(set(label_to_fmri.keys()) & set(label_to_fnirs.keys()))
+        rng = random.Random(self.seed)
+
+        for _ in range(self.num_triplets):
+            label = rng.choice(labels)
+            anchor = rng.choice(label_to_fmri[label])
+            positive = rng.choice(label_to_fnirs[label])
+
+            # Pick negative label
+            negative_label = rng.choice([l for l in labels if l != label])
+            # Choose randomly negative from fMRI or fNIRS
+            if rng.random() < 0.5:
+                negative = rng.choice(label_to_fmri[negative_label])
+            else:
+                negative = rng.choice(label_to_fnirs[negative_label])
+
+            triplets.append((anchor, positive, negative))
+
+        self.triplets = triplets
+
+    def setFold(self, fold, train=True):
+        self.k = fold
+        self.train = train
+
+        if self.foldCount is None:
+            raise ValueError("Fold count is required for triplet training with GroupKFold.")
+        
+        splits = list(self.kFold.split(self.data, self.labels, self.groups))
+        trainIdx, testIdx = splits[fold]
+
+        train_groups = set(self.groups[idx] for idx in trainIdx)
+        test_groups = set(self.groups[idx] for idx in testIdx)
+        intersect = train_groups.intersection(test_groups)
+        if intersect:
+            raise ValueError(f"Group(s) {intersect} found in both train and test splits!")
+
+        idx_to_use = trainIdx if train else testIdx
+        self.targetData = [self.data[i] for i in idx_to_use]
+        self.targetLabels = [self.labels[i] for i in idx_to_use]
+        self.targetSubjIds = [self.subjectIds[i] for i in idx_to_use]
+        self.targetModalities = [self.modalities[i] for i in idx_to_use]
+
+        if train:
+            self.mine_triplets()  # Only mine triplets for training
+        else:
+            self.triplets = []  # No triplets needed for test mode
+
+    def getFold(self, fold, train=True):
+        dataset_copy = deepcopy(self)
+        dataset_copy.setFold(fold, train=train)
+        return DataLoader(dataset_copy, batch_size=dataset_copy.batchSize if train else 1, shuffle=False)
+
+        
 
 
 

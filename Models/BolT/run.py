@@ -128,7 +128,9 @@ def test(model, dataset, fold, invert = False):
     # Calculate metrics
     metrics = calculateMetric({"predictions": preds, "probs": probs, "labels": groundTruths})
     # print("\n \n Test metrics : {}".format(metrics))                
-
+    #print the number of predictions for each class
+    classes, counts = np.unique(preds, return_counts=True)
+    print("Predictions counts: ", counts)
     return preds, probs, groundTruths, loss, metrics
 
 
@@ -175,17 +177,20 @@ def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False, name 
             # Assumes details.newNumClasses is defined and != original
             in_features = model.model.classifierHead.in_features
             head = torch.nn.Sequential(
-                torch.nn.Linear(in_features, in_features//2),
-                torch.nn.ReLU(),
-                torch.nn.Linear(in_features//2, details.nOfClasses)
+                torch.nn.Linear(in_features, details.nOfClasses)
             )
             model.model.classifierHead = head.to(details.device)
 
             # --- 🔒 Optional: Freeze all layers except the classifier head ---
-            for param in model.model.parameters():
-                param.requires_grad = False
-            for param in model.model.classifierHead.parameters():
-                param.requires_grad = True
+            for name, param in model.model.named_parameters():
+                if "classifierHead" not in name and "7" not in name:
+                    param.requires_grad = False
+                else:
+                    param.requires_grad = True
+                    print(name)
+
+                
+            
             model.reinitialize(hyperParams, details)
             
         else:
@@ -222,7 +227,7 @@ def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False, name 
             targetSaveDir = "./Analysis/TargetSavedModels/{}/{}/seed_{}/".format(datasetDetails.datasetName, name, datasetSeed)
             os.makedirs(targetSaveDir, exist_ok=True)
             torch.save(model, targetSaveDir + "/model_{}.save".format(fold))
-        break
+        
         
         
     print("avergage accuracy : {}".format(np.mean(fold_accuracies)))

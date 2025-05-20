@@ -93,12 +93,11 @@ def hcpWorkingMemLoaderConcatenatePermuted(atlas, target_task, max_perms_per_gro
 
     for (subj_id, label), samples in grouped_data.items():
         if len(samples) < 3:
-            continue  # Need at least 3 to create permutations
+            continue  # Need at least 3 to concatenate
 
-        for perm in islice(permutations(samples, 3), max_perms_per_group):
-            concatenated = np.concatenate(perm, axis=1)  # (channels, total_time)
-            #z score so each channel has mean 0 and std 1
-            concatenated = (concatenated - np.mean(concatenated, axis=1, keepdims=True)) / np.std(concatenated, axis=1, keepdims=True)
+        for i in range(len(samples) - 2):
+            concatenated = np.concatenate(samples[i:i + 3], axis=1)  # (channels, total_time)
+            
             print(concatenated.shape)
             x_concat.append(concatenated)
             y_concat.append(label)
@@ -111,7 +110,7 @@ def hcpWorkingMemLoaderConcatenatePermuted(atlas, target_task, max_perms_per_gro
     return x_concat, y_concat, subject_ids_concat
 
 
-#hcpWorkingMemLoader = hcpWorkingMemLoaderConcatenatePermuted
+hcpWorkingMemLoader = hcpWorkingMemLoaderConcatenatePermuted
 if __name__ == "__main__":
     # Example usage
     

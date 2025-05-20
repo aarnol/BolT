@@ -42,7 +42,7 @@ def hcpfNIRSLoader(atlas, targetTask, signal, subject= None):
         if(healthCheckOnRoiSignal(data["roiTimeseries"].T) or 1):
             
             
-            x.append(data["roiTimeseries"].T * -1)
+            x.append(data["roiTimeseries"].T )
             y.append(label)
             subjectIds.append(int(data["pheno"]["subjectId"]))
         else:

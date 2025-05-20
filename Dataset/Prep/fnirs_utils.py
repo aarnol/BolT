@@ -247,6 +247,12 @@ def load28(root, type = 'HbR', task = 'nback'):
                 if timeseries.shape[0] == 0 or timeseries.shape[0] < 19:
                     # print("Empty timeseries")
                     continue
+                if task == 'nback':
+                    #get only first 35 samples
+                    
+                    timeseries = timeseries[:35]
+              
+
                 
                 #get the subject ID and label from the file name or directory structure
                 subject_id = subject

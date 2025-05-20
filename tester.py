@@ -29,16 +29,21 @@ from Dataset.datasetDetails import datasetDetailsDict
 
 from Models.SVM.run import run_svm
 from Models.BolT.run import run_bolT 
+from Models.Triplet.run import run_triplet
 # import hyper param fetchers
 
 from Models.SVM.hyperparams import getHyper_svm
-from Models.BolT.hyperparams import getHyper_bolT
+from Models.BolT.hyperparams import getHyper_bolT, getTransferHyper_bolT
+from Models.Triplet.hyperparams import getHyper_triplet
+# import metric fetchers
+
 import pickle
 
 hyperParamDict = {
 
         "svm" : getHyper_svm,
         "bolT" : getHyper_bolT,
+        "triplet" : getHyper_bolT,
 
 }
 
@@ -46,8 +51,8 @@ modelDict = {
 
         "svm" : run_svm,
         "bolT" : run_bolT,
+        "triplet" : run_triplet,
 }
-
 
 getHyper = hyperParamDict[argv.model]
 runModel = modelDict[argv.model]
@@ -57,7 +62,10 @@ print("\nTest model is {}".format(argv.model))
 
 datasetName = argv.dataset
 datasetDetails = datasetDetailsDict[datasetName]
-hyperParams = getHyper()
+if argv.pretrained_model is not None:
+    hyperParams = getTransferHyper_bolT()
+else:
+    hyperParams = getHyper()
 
 print("Dataset details : {}".format(datasetDetails))
 
@@ -78,6 +86,8 @@ for i, seed in enumerate(seeds):
     print("Running the model with seed : {}".format(seed))
     if(argv.model == "bolT"):
         results = runModel(hyperParams, Option({**datasetDetails,"datasetSeed":seed}), device="cuda:{}".format(argv.device), analysis=argv.analysis, name = argv.name, pretrained_model=argv.pretrained_model)
+    elif(argv.model == "triplet"):
+        results = runModel(hyperParams, Option({**datasetDetails,"datasetSeed":seed}), device="cuda:{}".format(argv.device), analysis=argv.analysis, name = argv.name)
     else:
         results = runModel(hyperParams, Option({**datasetDetails,"datasetSeed":seed}), device="cuda:{}".format(argv.device))
 
