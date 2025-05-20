@@ -75,8 +75,8 @@ def load_fnirs(target_folder):
         sub+=1
     return formatted_data, digitization
 def load_mni(target_folder):
-    MNI_path = os.path.join(target_folder, 'HCP_MNI_final.mat')
-    digitization =scipy.io.loadmat(MNI_path)['MNI']
+    MNI_path = os.path.join(target_folder, 'MNIs_Average.mat')
+    digitization =scipy.io.loadmat(MNI_path)['MNIs_Mean']
     return digitization
 def load_fnirs_subject_mni(subject_id):
     """
@@ -316,7 +316,7 @@ def get_parcel_label(mni_coord, atlas_data, affine, radius_mm=30):
         else:
             hemisphere = "left"
         print(mni_coord)
-        print(brodmann_to_name(labels[np.argmax(counts)]), hemisphere)
+        #print(brodmann_to_name(labels[np.argmax(counts)]), hemisphere)
         return labels[np.argmax(counts)], hemisphere
     except Exception as e:
         print(f"Error: {e}")

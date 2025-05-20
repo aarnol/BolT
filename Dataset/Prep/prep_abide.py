@@ -19,18 +19,21 @@ datadir = "/scratch/alpine/alar6830/BoltROIs/"
 
 def process_scan(scanImage_fileName, MNI_coords, dataset, atlasImage =None,parcels = None, atlas = 'sphere', radius = 15, smooth_fwhm = None):
     try:
+        if smooth_fwhm == 0:
+            smooth_fwhm = None
         # Load the scan image and extract ROI time series
         scanImage = nil.image.load_img(scanImage_fileName)
         
         # Apply smoothing
         if smooth_fwhm is not None:
-            scanImage = nilearn.image.smooth_image(scanImage, fwhm = smooth_fwhm)
+            scanImage = nilearn.image.smooth_img(scanImage, fwhm = smooth_fwhm)
         roiTimeseries = []
         if(atlasImage == None):
             for coord in MNI_coords:
-                MNI_values = calculate_average_bold(coord, scanImage.get_fdata(), scanImage.affine)
+                MNI_values = calculate_average_bold(coord, scanImage.get_fdata(), scanImage.affine, radius)
                 roiTimeseries.append(MNI_values)
             roiTimeseries = np.array(roiTimeseries).T
+        
         elif parcels != None:
             if(atlas == "AAL"):
                 parcel_labels = [2001, 2002, 2101, 2102, 2111, 2112, 2201, 2202, 2211, 2212, 
@@ -92,7 +95,7 @@ def process_scan(scanImage_fileName, MNI_coords, dataset, atlasImage =None,parce
             label = base_name[8]
             
         else:
-            print("why am i here", flush = True)
+           
             label = base_name[8]
             condition = None 
        
@@ -193,7 +196,8 @@ def prep_abide(atlas, fnirs = False):
 
 def prep_hcp(atlas, name, dataset, fnirs = False, radius= 15, smooth_fwhm = None, unique = False):
     # Define directory for HCP data
-    print(dataset)
+    #print(dataset)
+    print(fnirs, flush = True)
     if dataset == "hcpWM":
         bulkDataDir = "/scratch/alpine/alar6830/WM_All/"
     else:
@@ -203,7 +207,7 @@ def prep_hcp(atlas, name, dataset, fnirs = False, radius= 15, smooth_fwhm = None
         fnirs_folder = os.path.join(os.path.dirname(__file__), '..', 'Data','fNIRS')
         # MNI_coords = load_fnirs_subject_mni(1)
         MNI_coords = load_mni(fnirs_folder)
-        print(MNI_coords)
+        #print(MNI_coords)
     else:
         MNI_coords = None
     
@@ -214,7 +218,8 @@ def prep_hcp(atlas, name, dataset, fnirs = False, radius= 15, smooth_fwhm = None
     if(atlas!= "sphere" and fnirs):
         parcels = []
         for coord in MNI_coords:
-            
+            print("really should not be here my goodness",flush = True)
+            raise Exception("oh dear god")
             parcel, hemisphere = get_parcel_label(coord, atlasImage.get_fdata(), atlasImage.affine)
             
             parcels.append((parcel,hemisphere))

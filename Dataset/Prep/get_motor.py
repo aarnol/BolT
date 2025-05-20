@@ -4,89 +4,101 @@ import nibabel as nib
 import concurrent.futures
 import torch
 import pandas as pd
-
-
-# Define the root directory
-root_dir = "/scratch/alpine/alar6830/motor_labeled/"
-meta_dir = "/scratch/alpine/alar6830/motor"
-encodings = ["LR", "RL"]
-
-# Function to process each subject and encoding
-def process_subject(subject, enc):
-    try:
-        if os.path.exists(os.path.join(root_dir, f"{subject}141.nii.gz")):
-            print(f"done with {subject}", flush =True)
-            return
-
-        image_path = f"/scratch/alpine/alar6830/motor/{subject}/{enc}/tfMRI_MOTOR_{enc}.nii.gz"
-        img = nib.load(image_path)
-        full_data = img.get_fdata()  # Convert to NumPy array
-        
-
-
-        # Path to onset files
-        onset_paths = f"/scratch/alpine/alar6830/motor/{subject}/{enc}/metadata/"
-        if not os.path.exists(onset_paths):
- 
-            os.mkdir(onset_paths)
-            aws_command = f"aws s3 cp s3://hcp-openaccess/HCP_1200/{subject}/MNINonLinear/Results/tfMRI_MOTOR_{enc}/EVs/ {onset_paths} --recursive"
-            os.system(aws_command)
-
-        # Load onset files
-        tongue = np.loadtxt(onset_paths + "t.txt")
-        rh = np.loadtxt(onset_paths + "rh.txt")
-        rf = np.loadtxt(onset_paths + "rf.txt")
-        lh = np.loadtxt(onset_paths + "lh.txt")
-        lf = np.loadtxt(onset_paths + "lf.txt")
-
-        data = [tongue,rh,rf,lh,lf]
-        
-        i = 0
-        for value in data:
-            try:
-                for j in range(2):
-                    
-                    onset = seconds_to_frame(value[j][0])  
-                    offset = seconds_to_frame(value[j][1] + value[j][0])
-
-                    cropped_image = full_data[:, :, :, onset:offset]
-
-                    img = nib.Nifti1Image(cropped_image, img.affine)
-
-                    # Determine encoding number (0 for LR, 1 for RL)
-                    enc_num = 0 if enc == "LR" else 1
-
-                    # Save the cropped image
-                    # subject (0-5) enc (6) trial (7) label (8)
-                    nib.save(img, os.path.join(root_dir, f"{subject}{enc_num}{j}{i}.nii.gz"))
-                i+=1
-            except Exception as e:
-                print(f"Onsets {value} not properly formatted for {subject}: {e}")
-    except Exception as e:
-        print(f"Error processing {subject} with encoding {enc}: {e}", flush = True)
-
+import boto3
 import math
-## if onset time is between frames, use the next available frame
 
-def frame_to_seconds(frame):
-    return math.ceil * 0.72
-
-def seconds_to_frame(sec):
-    return math.ceil(sec/.72)
-
+# Constants
+root_dir = "/scratch/alpine/alar6830/motor_labeled/"
+local_root = "/scratch/alpine/alar6830/motor/"
+encodings = ["LR", "RL"]
+bucket_name = 'hcp-openaccess'
 behavior_data = pd.read_csv("unrestricted_hcp_freesurfer.csv")
 subject_values = behavior_data['Subject'].values
 
-# Use ThreadPoolExecutor for parallel processing
-with concurrent.futures.ThreadPoolExecutor(max_workers=16) as executor:
-    print("starting threads", flush = True)
-    # Submit tasks for each subject and encoding combination
-    futures = []
-    for subject in subject_values:
-        for enc in encodings:
-            futures.append(executor.submit(process_subject, subject, enc))
-         
+# Initialize S3 client
+s3_client = boto3.client('s3')
 
-    # Wait for all tasks to complete
+def frame_to_seconds(frame):
+    return math.ceil(frame * 0.72)
+
+def seconds_to_frame(sec):
+    return math.ceil(sec / 0.72)
+
+def check_s3_path_exists(bucket_name, path):
+    try:
+        response = s3_client.list_objects_v2(Bucket=bucket_name, Prefix=path)
+        return 'Contents' in response
+    except Exception as e:
+        print(f"Error checking path {path}: {e}")
+        return False
+
+def download_file_from_s3(bucket_name, s3_key, local_path):
+    try:
+        s3_client.download_file(bucket_name, s3_key, local_path)
+        print(f"Downloaded {s3_key} to {local_path}")
+    except Exception as e:
+        print(f"Error downloading file {s3_key}: {e}")
+
+def process_subject(subject, enc):
+    try:
+        subject = str(subject)
+        for trial_idx in range(2):
+            if os.path.exists(os.path.join(root_dir, f"{subject}{enc}{trial_idx}.nii.gz")):
+                return  # Skip if already exists
+
+        enc_num = 0 if enc == "LR" else 1
+        s3_key = f"HCP_1200/{subject}/MNINonLinear/Results/tfMRI_MOTOR_{enc}/tfMRI_MOTOR_{enc}.nii.gz"
+        local_path = os.path.join(local_root, subject, enc, f"tfMRI_MOTOR_{enc}.nii.gz")
+
+        os.makedirs(os.path.dirname(local_path), exist_ok=True)
+
+        if not os.path.exists(local_path):
+            if check_s3_path_exists(bucket_name, s3_key):
+                download_file_from_s3(bucket_name, s3_key, local_path)
+            else:
+                print(f"S3 path does not exist: {s3_key}")
+                return
+
+        img = nib.load(local_path)
+        full_data = img.get_fdata()
+
+        # Load onset files
+        onset_dir = os.path.join(local_root, subject, enc, "metadata")
+        os.makedirs(onset_dir, exist_ok=True)
+        ev_s3_path = f"HCP_1200/{subject}/MNINonLinear/Results/tfMRI_MOTOR_{enc}/EVs/"
+
+        # Download EVs if not present
+        for label in ["t", "rh", "rf", "lh", "lf"]:
+            ev_file = os.path.join(onset_dir, f"{label}.txt")
+            if not os.path.exists(ev_file):
+                try:
+                    s3_client.download_file(bucket_name, f"{ev_s3_path}{label}.txt", ev_file)
+                except Exception as e:
+                    print(f"Failed to download EV file {label}.txt: {e}")
+                    return
+
+        # Process onset files
+        labels = [np.loadtxt(os.path.join(onset_dir, f"{l}.txt")) for l in ["t", "rh", "rf", "lh", "lf"]]
+
+        for i, value in enumerate(labels):
+            try:
+                for j in range(2):
+                    onset = seconds_to_frame(value[j][0])
+                    offset = seconds_to_frame(value[j][0] + value[j][1])
+
+                    cropped_image = full_data[:, :, :, onset:offset]
+                    cropped_img = nib.Nifti1Image(cropped_image, img.affine)
+
+                    output_path = os.path.join(root_dir, f"{subject}{enc_num}{j}{i}.nii.gz")
+                    nib.save(cropped_img, output_path)
+            except Exception as e:
+                print(f"Problem with onsets for {subject} {enc}: {e}")
+
+    except Exception as e:
+        print(f"Error processing subject {subject} {enc}: {e}")
+
+# Run with threading
+with concurrent.futures.ThreadPoolExecutor(max_workers=16) as executor:
+    futures = [executor.submit(process_subject, subject, enc) for subject in subject_values for enc in encodings]
     for future in concurrent.futures.as_completed(futures):
-        future.result()  # This will raise exceptions if any occurred in the thread
+        future.result()
