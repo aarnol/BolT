@@ -61,7 +61,8 @@ def custom_collate_fn(batch):
     return inputs_padded, labels_stacked
 def getDataset(options):
     return SupervisedDataset(options)
-
+def getTripletDataset(options):
+    return TripletDataset(options)
 def guassianNoise(data, mean=0, std=0.1):
     """
     Add Gaussian noise to the data.
@@ -244,7 +245,7 @@ class SupervisedDataset(Dataset):
             timeseries = timeseries[:, samplingInit : samplingInit + self.dynamicLength]
             
             # add noise
-            timeseries = guassianNoise(timeseries, mean=0, std=0.1)
+            #timeseries = guassianNoise(timeseries, mean=0, std=0.1)
         
         
         return {"timeseries" : timeseries.astype(np.float32), "label" : label, "subjId" : subjId}
@@ -286,11 +287,16 @@ class TripletDataset(Dataset):
 
     def __len__(self):
         return len(self.triplets)
+    def get_nOfTrains_perFold(self):
+        if(self.foldCount != None):
+            return int(np.ceil(len(self.data) * (self.foldCount - 1) / self.foldCount))           
+        else:
+            return len(self.data) 
 
     def mine_triplets(self):
         """Mine triplets using only self.targetData and self.targetLabels for the current fold."""
         triplets = []
-
+        print("Mining triplets...")
         # Separate the data by modality from the current fold
         anchor_pool = [(i, d, l) for i, (d, l, m) in enumerate(zip(self.targetData, self.targetLabels, self.targetModalities)) if m == 0]  # fMRI
         positive_pool = [(i, d, l) for i, (d, l, m) in enumerate(zip(self.targetData, self.targetLabels, self.targetModalities)) if m == 1]  # fNIRS
@@ -298,31 +304,29 @@ class TripletDataset(Dataset):
         label_to_fmri = {}
         label_to_fnirs = {}
 
-        for _, data, label in anchor_pool:
-            label_to_fmri.setdefault(label, []).append(data)
-        for _, data, label in positive_pool:
-            label_to_fnirs.setdefault(label, []).append(data)
+        for i, data, label in anchor_pool:
+            label_to_fmri.setdefault(label, []).append(i)  # store index
+
+        for i, data, label in positive_pool:
+            label_to_fnirs.setdefault(label, []).append(i)
+
 
         labels = list(set(label_to_fmri.keys()) & set(label_to_fnirs.keys()))
         rng = random.Random(self.seed)
 
         for _ in range(self.num_triplets):
             label = rng.choice(labels)
-            anchor = rng.choice(label_to_fmri[label])
-            positive = rng.choice(label_to_fnirs[label])
+            anchor_idx = rng.choice(label_to_fmri[label])
+            positive_idx = rng.choice(label_to_fnirs[label])
 
-            # Pick negative label
+            # Pick a negative label different from the anchor's label
             negative_label = rng.choice([l for l in labels if l != label])
-            # Choose randomly negative from fMRI or fNIRS
-            if rng.random() < 0.5:
-                negative = rng.choice(label_to_fmri[negative_label])
-            else:
-                negative = rng.choice(label_to_fnirs[negative_label])
+            negative_pool = label_to_fmri if rng.random() < 0.5 else label_to_fnirs
+            negative_idx = rng.choice(negative_pool[negative_label])
 
-            triplets.append((anchor, positive, negative))
-
+            triplets.append((anchor_idx, positive_idx, negative_idx))
         self.triplets = triplets
-
+        print(f"Triplets mined: {len(self.triplets)}")
     def setFold(self, fold, train=True):
         self.k = fold
         self.train = train
@@ -332,7 +336,10 @@ class TripletDataset(Dataset):
         
         splits = list(self.kFold.split(self.data, self.labels, self.groups))
         trainIdx, testIdx = splits[fold]
-
+        #save the groups for that fold to a file for later use
+        with open(f"fold_{fold}_groups.txt", "w") as f:
+            f.write(f"Train groups: {set(self.groups[idx] for idx in trainIdx)}\n")
+            f.write(f"Test groups: {set(self.groups[idx] for idx in testIdx)}\n")
         train_groups = set(self.groups[idx] for idx in trainIdx)
         test_groups = set(self.groups[idx] for idx in testIdx)
         intersect = train_groups.intersection(test_groups)
@@ -347,6 +354,11 @@ class TripletDataset(Dataset):
 
         if train:
             self.mine_triplets()  # Only mine triplets for training
+            self.randomRanges = [
+                [np.random.randint(0, self.targetData[i].shape[-1] - self.dynamicLength) for _ in range(9999)]
+                for i in range(len(self.targetData))
+    ]
+
         else:
             self.triplets = []  # No triplets needed for test mode
 
@@ -355,8 +367,31 @@ class TripletDataset(Dataset):
         dataset_copy.setFold(fold, train=train)
         return DataLoader(dataset_copy, batch_size=dataset_copy.batchSize if train else 1, shuffle=False)
 
-        
+    def __getitem__(self, idx):
+        anchor_idx, positive_idx, negative_idx = self.triplets[idx]
 
+        anchor_data = self.targetData[anchor_idx]
+        positive_data = self.targetData[positive_idx]
+        negative_data = self.targetData[negative_idx]
+
+        # Normalize timeseries
+        anchor_data = (anchor_data - np.mean(anchor_data, axis=1, keepdims=True)) / np.std(anchor_data, axis=1, keepdims=True)
+        positive_data = (positive_data - np.mean(positive_data, axis=1, keepdims=True)) / np.std(positive_data, axis=1, keepdims=True)
+        negative_data = (negative_data - np.mean(negative_data, axis=1, keepdims=True)) / np.std(negative_data, axis=1, keepdims=True)
+
+        if self.train and self.dynamicLength is not None:
+            samplingInit = self.randomRanges[anchor_idx].pop()
+
+            anchor_data = anchor_data[:, samplingInit:samplingInit + self.dynamicLength]
+            positive_data = positive_data[:, samplingInit:samplingInit + self.dynamicLength]
+            negative_data = negative_data[:, samplingInit:samplingInit + self.dynamicLength]
+
+            # # Add noise
+            # anchor_data = guassianNoise(anchor_data, mean=0, std=0.1)
+            # positive_data = guassianNoise(positive_data, mean=0, std=0.1)
+            # negative_data = guassianNoise(negative_data, mean=0, std=0.1)
+        return torch.tensor(anchor_data).float(), torch.tensor(positive_data).float(), torch.tensor(negative_data).float(), torch.tensor(self.targetLabels[anchor_idx]).float(), self.targetSubjIds[anchor_idx]
+        
 
 
 

@@ -19,11 +19,13 @@ def getHyper_triplet():
             # Schaefer 400 = 400
             # AAL = 116
             # MNI = 107
-            "dim" : 85,        
+            # reduced = 85
+
+            "dim" : 116,        
             "margin" : .5, # margin for triplet loss
             "numHeads" : 36,
             "headDim" : 20,
-
+        
         
             "windowSize" : 5, #changed for shorter sequences
             "shiftCoeff" : 0.8,            
@@ -35,7 +37,7 @@ def getHyper_triplet():
             "drop" : 0.1,
             "attnDrop" : 0.1,
             "lambdaCons" : 1,
-
+           
             # extra for ablation study
             "pooling" : "cls", # ["cls", "gmp"]         
                 

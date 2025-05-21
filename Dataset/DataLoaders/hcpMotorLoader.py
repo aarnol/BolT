@@ -25,7 +25,7 @@ def hcpMotorLoader(atlas, targetTask):
         x : (#subjects, N)
     """
 
-    dataset = torch.load(datadir + "/hcpMotor_sphere_newMNI.save", weights_only=False)
+    dataset = torch.load(datadir + "/SFN_data/hcpMotor_AAL_6_base.save", weights_only=False)
 
     x = []
     y = []
@@ -42,7 +42,7 @@ def hcpMotorLoader(atlas, targetTask):
         elif label != 1:
             continue
         #filter out bad channels
-        data["roiTimeseries"] = np.delete(data["roiTimeseries"], bad_channels, axis=1)
+        #data["roiTimeseries"] = np.delete(data["roiTimeseries"], bad_channels, axis=1)
     
         if(healthCheckOnRoiSignal(data["roiTimeseries"].T)):
             if(data['roiTimeseries'].shape[0] ==8):

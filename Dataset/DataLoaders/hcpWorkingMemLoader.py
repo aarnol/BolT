@@ -27,7 +27,7 @@ def hcpWorkingMemLoader(atlas, targetTask):
         x : (#subjects, N)
     """
     
-    dataset = torch.load(datadir + "/hcpWM_sphere_newMNI.save")
+    dataset = torch.load(datadir + "/SFN_data/hcpWM_AAL_10_base.save")
     bad_channels = getBadChannels(fnirs_dir)
     x = []
     y = []
@@ -38,7 +38,7 @@ def hcpWorkingMemLoader(atlas, targetTask):
         label = int(data["pheno"]["label"])
         
         #filter out bad channels
-        data["roiTimeseries"] = np.delete(data["roiTimeseries"], bad_channels, axis=1)
+        #data["roiTimeseries"] = np.delete(data["roiTimeseries"], bad_channels, axis=1)
        
         if(healthCheckOnRoiSignal(data["roiTimeseries"].T)):
             if(data['roiTimeseries'].shape[0] ==8):
@@ -110,7 +110,7 @@ def hcpWorkingMemLoaderConcatenatePermuted(atlas, target_task, max_perms_per_gro
     return x_concat, y_concat, subject_ids_concat
 
 
-hcpWorkingMemLoader = hcpWorkingMemLoaderConcatenatePermuted
+#hcpWorkingMemLoader = hcpWorkingMemLoaderConcatenatePermuted
 if __name__ == "__main__":
     # Example usage
     

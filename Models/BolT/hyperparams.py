@@ -14,12 +14,14 @@ def getHyper_bolT():
             "maxLr" : 4e-4,
 
             # FOR BOLT
-            "nOfLayers" : 8,
+            "nOfLayers" : 4,
             #change this based on the atlas!
             # Schaefer 400 = 400
             # AAL = 116
             # MNI = 107
-            "dim" : 85,        
+            #brodmann_base = 41
+            # reduced = 85
+            "dim" : 116,        
 
             "numHeads" : 36,
             "headDim" : 20,

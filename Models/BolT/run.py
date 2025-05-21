@@ -227,7 +227,7 @@ def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False, name 
             targetSaveDir = "./Analysis/TargetSavedModels/{}/{}/seed_{}/".format(datasetDetails.datasetName, name, datasetSeed)
             os.makedirs(targetSaveDir, exist_ok=True)
             torch.save(model, targetSaveDir + "/model_{}.save".format(fold))
-        
+        break
         
         
     print("avergage accuracy : {}".format(np.mean(fold_accuracies)))

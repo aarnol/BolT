@@ -46,6 +46,18 @@ datasetDetailsDict = {
         "normalize" : True,
         "fNIRS": False,    
     },
+    "hcpMotor" : {
+        "datasetName" : "hcpMotor",
+        "targetTask" : "motor",
+        "nOfClasses" : 2,        
+        "dynamicLength" : 15,
+        "foldCount" : 5,
+        "atlas" : "schaefer7_400",
+        "nOfEpochs" : 10,
+        "batchSize" : 32,
+        "normalize" : True,
+        "fNIRS": False,    
+    },
     "hcpWM_AAL" : {
         "datasetName" : "hcpWM",
         "targetTask" : "nback",
@@ -62,10 +74,10 @@ datasetDetailsDict = {
         "datasetName" : "hcpWM",
         "targetTask" : "nback",
         "nOfClasses" : 2,        
-        "dynamicLength" : 15,
+        "dynamicLength" : 30,
         "foldCount" : 5,
         "atlas" : "sphere",
-        "nOfEpochs" : 40,
+        "nOfEpochs" : 10,
         "batchSize" : 16,
         "normalize" : True,
         "fNIRS": False,
@@ -128,7 +140,26 @@ datasetDetailsDict = {
         "signal": "HBC",
         "subject": None,
 
+    },
+    "hcpWM_HbC_triplet" : {
+        "datasetName" : "hcpfNIRS",
+        "targetTask" : "nback",
+        "nOfClasses" : 2,        
+        "dynamicLength" : 15,
+        "foldCount" : 5,
+        "atlas" : None,
+        "nOfEpochs" : 10,
+        "batchSize" : 16,
+        "normalize" : True,
+        "fNIRS": True,
+        "signal": "HBC",
+        "subject": None,
+        "numTriplets": 16
+
+
     }
+
+    
  }
 
 

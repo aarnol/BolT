@@ -43,7 +43,7 @@ hyperParamDict = {
 
         "svm" : getHyper_svm,
         "bolT" : getHyper_bolT,
-        "triplet" : getHyper_bolT,
+        "triplet" : getHyper_triplet,
 
 }
 

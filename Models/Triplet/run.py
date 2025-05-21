@@ -15,7 +15,7 @@ from utils import Option
 from utils import Option, calculateMetric
 
 from Models.Triplet.model import Model
-from Dataset.dataset import getDataset
+from Dataset.dataset import getTripletDataset
 from torch.nn.utils.rnn import pad_sequence
 
 
@@ -45,6 +45,9 @@ def train(model, dataset, fold, nOfEpochs):
 
          
             losses.append(train_loss.item())
+            if(i % 100 == 0):
+                print("Epoch: {} Fold: {} Iteration: {} Loss: {}".format(epoch, fold, i, train_loss.item()))
+                
   
     return losses
 
@@ -64,7 +67,7 @@ def run_triplet(hyperParams, datasetDetails, device="cuda:3", analysis=False, na
     foldCount = datasetDetails.foldCount
 
 
-    dataset = getDataset(datasetDetails)
+    dataset = getTripletDataset(datasetDetails)
 
 
     details = Option({
@@ -102,3 +105,26 @@ def run_triplet(hyperParams, datasetDetails, device="cuda:3", analysis=False, na
     
 
     return results
+
+
+def test_triplet(hyperParams, train, test, fold, datasetDetails, device="cuda:3", analysis=False, name = "noname"):
+
+
+    # extract datasetDetails
+
+   
+    datasetSeed = datasetDetails.datasetSeed
+    nOfEpochs = datasetDetails.nOfEpochs
+    foldCount = datasetDetails.foldCount
+
+
+    dataset = getTripletDataset(datasetDetails)
+
+
+    details = Option({
+        "device" : device,
+        "nOfTrains" : dataset.get_nOfTrains_perFold(),
+        "batchSize" : datasetDetails.batchSize,
+        "nOfEpochs" : nOfEpochs
+    })
+    

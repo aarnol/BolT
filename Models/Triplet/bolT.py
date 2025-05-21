@@ -96,3 +96,27 @@ class BolT(nn.Module):
         return embedding, cls  # Optionally: only return embedding if cls isn't needed
 
 
+class ShallowClassifier(nn.Module):
+    def __init__(self, hyperParams, details):
+        super().__init__()
+        self.hyperParams = hyperParams
+        self.details = details
+        self.num_layers = hyperParams.nOfLayers
+        self.classifierHead = torch.nn.Sequential(
+            torch.nn.Linear(hyperParams.dim, hyperParams.dim//2),
+            torch.nn.ReLU(),
+            torch.nn.Linear(hyperParams.dim//2, hyperParams.dim//4),
+            torch.nn.ReLU(),
+            torch.nn.Linear(hyperParams.dim//4, details.nOfClasses)
+        )
+        self.initializeWeights()
+
+
+
+    def initializeWeights(self):
+        torch.nn.init.xavier_uniform_(self.classifierHead.weight)  # Xavier initialization for weights
+        torch.nn.init.zeros_(self.classifierHead.bias)  # Zero initialization for bias
+    
+    def forward(self, x):
+        x = self.classifierHead(x)
+        return x
