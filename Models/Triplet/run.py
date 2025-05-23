@@ -39,7 +39,7 @@ def train(model, dataset, fold, nOfEpochs):
 
             # NOTE: xTrain and yTrain are still on "cpu" at this point
 
-            train_loss = model.step(xTrain, train=True)
+            train_loss, _, _, _ = model.step(xTrain, train=True)
 
             torch.cuda.empty_cache()
 
@@ -47,9 +47,60 @@ def train(model, dataset, fold, nOfEpochs):
             losses.append(train_loss.item())
             if(i % 100 == 0):
                 print("Epoch: {} Fold: {} Iteration: {} Loss: {}".format(epoch, fold, i, train_loss.item()))
-                
+        if epoch % 2 == 0:
+            test(model, dataset, fold, epoch)    
   
     return losses
+
+def test(model, dataset, fold, epoch):
+    #calculate the distance between the embeddings of the anchor, positive and negative samples
+    # and return the loss
+   
+    dataLoader = dataset.getFold(fold, train=False)
+    losses = []
+    neg_distances = []
+    pos_distances = []
+    for i, data in enumerate(tqdm(dataLoader, ncols=60, desc=f'fold:{fold} epoch:{epoch}')):
+        xTest = data
+
+        test_loss, anchor_embeddings, pos_embeddings, negative_embeddings = model.step(xTest, train=False)
+       
+        # Check for NaNs in embeddings
+        for name, tensor in [('anchor', anchor_embeddings), ('positive', pos_embeddings), ('negative', negative_embeddings)]:
+            if torch.isnan(tensor).any():
+                print(f"NaN detected in {name} embeddings at batch {i}")
+            if torch.norm(tensor, dim=1).eq(0).any():
+                print(f"Zero vector detected in {name} embeddings at batch {i}")
+
+        # Clamp cosine similarity results to avoid NaNs from bad inputs
+        anchor_positive_distance = torch.mean(1 - torch.nn.functional.cosine_similarity(anchor_embeddings, pos_embeddings))
+        anchor_negative_distance = torch.mean(1 - torch.nn.functional.cosine_similarity(anchor_embeddings, negative_embeddings))
+
+        # Check for NaNs in distances
+        if torch.isnan(anchor_positive_distance):
+            print(f"NaN in anchor-positive distance at batch {i}")
+        if torch.isnan(anchor_negative_distance):
+            print(f"NaN in anchor-negative distance at batch {i}")
+        if torch.isnan(test_loss):
+            print(f"NaN in loss at batch {i}")
+
+        # Append only if valid
+        if not (torch.isnan(anchor_positive_distance) or torch.isnan(anchor_negative_distance) or torch.isnan(test_loss)):
+            pos_distances.append(anchor_positive_distance.item())
+            neg_distances.append(anchor_negative_distance.item())
+            losses.append(test_loss.item())
+
+        torch.cuda.empty_cache()
+
+
+    print("Fold: {} Epoch: {} Loss: {}".format(fold, epoch, np.mean(losses)))
+    print("Fold: {} Epoch: {} Positive Distance: {}".format(fold, epoch, np.mean(pos_distances)))
+    print("Fold: {} Epoch: {} Negative Distance: {}".format(fold, epoch, np.mean(neg_distances)))
+    return np.mean(neg_distances), np.mean(pos_distances), np.mean(losses)
+     
+       
+        
+   
 
 
 

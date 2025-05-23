@@ -27,7 +27,7 @@ def hcpWorkingMemLoader(atlas, targetTask):
         x : (#subjects, N)
     """
     
-    dataset = torch.load(datadir + "/SFN_data/hcpWM_AAL_10_base.save")
+    dataset = torch.load(datadir + "/SFN_data/hcpWM_sphere_6_MNI30.save")
     bad_channels = getBadChannels(fnirs_dir)
     x = []
     y = []
@@ -38,7 +38,7 @@ def hcpWorkingMemLoader(atlas, targetTask):
         label = int(data["pheno"]["label"])
         
         #filter out bad channels
-        #data["roiTimeseries"] = np.delete(data["roiTimeseries"], bad_channels, axis=1)
+        data["roiTimeseries"] = np.delete(data["roiTimeseries"], bad_channels, axis=1)
        
         if(healthCheckOnRoiSignal(data["roiTimeseries"].T)):
             if(data['roiTimeseries'].shape[0] ==8):

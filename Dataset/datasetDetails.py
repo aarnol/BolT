@@ -77,7 +77,7 @@ datasetDetailsDict = {
         "dynamicLength" : 30,
         "foldCount" : 5,
         "atlas" : "sphere",
-        "nOfEpochs" : 10,
+        "nOfEpochs" : 30,
         "batchSize" : 16,
         "normalize" : True,
         "fNIRS": False,
@@ -145,7 +145,7 @@ datasetDetailsDict = {
         "datasetName" : "hcpfNIRS",
         "targetTask" : "nback",
         "nOfClasses" : 2,        
-        "dynamicLength" : 15,
+        "dynamicLength" : 30,
         "foldCount" : 5,
         "atlas" : None,
         "nOfEpochs" : 10,
@@ -154,10 +154,25 @@ datasetDetailsDict = {
         "fNIRS": True,
         "signal": "HBC",
         "subject": None,
-        "numTriplets": 16
+        "numTriplets": 10000
 
 
-    }
+    },
+    "hcpWM_sphere_triplet" : {
+        "datasetName" : "hcpWM",
+        "targetTask" : "nback",
+        "nOfClasses" : 2,        
+        "dynamicLength" : 30,
+        "foldCount" : 5,
+        "atlas" : "sphere",
+        "nOfEpochs" : 30,
+        "batchSize" : 16,
+        "normalize" : True,
+        "fNIRS": False,
+        "numTriplets": 16,
+        "signal": "HBC",
+
+    },
 
     
  }

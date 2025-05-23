@@ -15,7 +15,7 @@ class Model():
 
         #triplet loss
         self.criterion = torch.nn.TripletMarginWithDistanceLoss(
-            distance_function=lambda x, y: 1 - torch.nn.functional.cosine_similarity(x, y, dim=1),
+            distance_function=self.cosine_distance,
             margin=hyperParams.margin,
             reduction='mean'
         )
@@ -39,6 +39,9 @@ class Model():
             final_div_factor=finalDivFactor,
             pct_start=0.3
         )
+    def cosine_distance(self, x, y):
+        return 1 - torch.nn.functional.cosine_similarity(x, y, dim=1)
+
 
     def step(self, x, train=True):
         """
@@ -46,14 +49,23 @@ class Model():
         Each of anchor, positive, negative is a tensor of shape (N, T)
         Goal: Return loss and embeddings
         """
-        # Unpack the triplets into separate tensors
-        anchors, positives, negatives = zip(*x)  # unzip the list of triplets
+        if train:
+            # Unpack the triplets into separate tensors
+            anchors =  [y[0] for y in x]
+            positives = [y[1] for y in x]
+            negatives = [y[2] for y in x]
+        
 
-        # Stack them into batches
-        anchor = torch.stack(anchors)     # shape: (batch, N, T)
-        positive = torch.stack(positives) # shape: (batch, N, T)
-        negative = torch.stack(negatives) # shape: (batch, N, T)
-
+            # Stack them into batches
+            anchor = torch.stack(anchors)     # shape: (batch, N, T)
+            positive = torch.stack(positives) # shape: (batch, N, T)
+            negative = torch.stack(negatives) # shape: (batch, N, T)
+        else:
+            anchor = x[0]
+            positive = x[1]
+            negative = x[2]
+        #print shapes sanity check
+        
         # Send to device
         anchor, positive, negative = self.prepareInput(anchor, positive, negative)
 

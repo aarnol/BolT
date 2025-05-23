@@ -21,7 +21,7 @@ def getHyper_triplet():
             # MNI = 107
             # reduced = 85
 
-            "dim" : 116,        
+            "dim" : 85,        
             "margin" : .5, # margin for triplet loss
             "numHeads" : 36,
             "headDim" : 20,

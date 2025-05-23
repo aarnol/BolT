@@ -2,8 +2,8 @@
 setlocal enabledelayedexpansion
 
 :: Example values
-set smoothings=0 6 10
-set atlas=AAL
+set smoothings=6 10
+set atlas=sphere
 
 
 for %%A in (%atlas%) do (
@@ -16,7 +16,7 @@ for %%D in (%datasets%) do (
     echo.
     echo Running: python tester.py %%D
     echo ------------------------------------------------------------
-    python tester.py -a True -d hcpWM -a True --name %%D -m bolT
+    python tester.py -a True -d hcpMotor -a True --name %%D -m bolT
     echo ------------------------------------------------------------
     echo Done: python tester.py %%D
     echo ------------------------------------------------------------

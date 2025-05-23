@@ -360,7 +360,7 @@ class TripletDataset(Dataset):
     ]
 
         else:
-            self.triplets = []  # No triplets needed for test mode
+            self.mine_triplets()  # Mine triplets for testing as well
 
     def getFold(self, fold, train=True):
         dataset_copy = deepcopy(self)
@@ -390,7 +390,10 @@ class TripletDataset(Dataset):
             # anchor_data = guassianNoise(anchor_data, mean=0, std=0.1)
             # positive_data = guassianNoise(positive_data, mean=0, std=0.1)
             # negative_data = guassianNoise(negative_data, mean=0, std=0.1)
-        return torch.tensor(anchor_data).float(), torch.tensor(positive_data).float(), torch.tensor(negative_data).float(), torch.tensor(self.targetLabels[anchor_idx]).float(), self.targetSubjIds[anchor_idx]
+        anchor_data = torch.tensor(anchor_data).float()
+        positive_data = torch.tensor(positive_data).float()
+        negative_data = torch.tensor(negative_data).float()
+        return anchor_data, positive_data, negative_data
         
 
 
