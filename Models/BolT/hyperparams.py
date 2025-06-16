@@ -20,7 +20,7 @@ def getHyper_bolT():
             # AAL = 116
             # MNI = 107
             #broddmann = 41
-            "dim" : 107,        
+            "dim" : 41,        
 
             "numHeads" : 36,
             "headDim" : 20,

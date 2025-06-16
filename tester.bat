@@ -2,8 +2,8 @@
 setlocal enabledelayedexpansion
 
 :: Example values
-set smoothings=6 10
-set atlas=sphere
+set smoothings=0 6 10
+set atlas=brodmann
 
 
 for %%A in (%atlas%) do (

@@ -27,7 +27,7 @@ def hcpWorkingMemLoader(atlas, targetTask):
         x : (#subjects, N)
     """
     
-    dataset = torch.load(datadir + "/SFN_data/hcpWM_sphere_6_MNI30.save")
+    dataset = torch.load(datadir + "/SFN_data/hcpWM_sphere_0_MNI30.save")
     bad_channels = getBadChannels(fnirs_dir)
     x = []
     y = []

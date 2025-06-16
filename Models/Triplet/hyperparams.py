@@ -9,9 +9,9 @@ def getHyper_triplet():
 
             "weightDecay" : 0,
 
-            "lr" : 2e-4,
-            "minLr" : 2e-5,
-            "maxLr" : 4e-4,
+            "lr" : 1e-4,
+            "minLr" : 5e-5,
+            "maxLr" : 2e-4,
 
             # FOR BOLT
             "nOfLayers" : 8,
@@ -22,7 +22,7 @@ def getHyper_triplet():
             # reduced = 85
 
             "dim" : 85,        
-            "margin" : .5, # margin for triplet loss
+            "margin" : .2, # margin for triplet loss
             "numHeads" : 36,
             "headDim" : 20,
         

@@ -25,7 +25,7 @@ def hcpMotorLoader(atlas, targetTask):
         x : (#subjects, N)
     """
 
-    dataset = torch.load(datadir + "/SFN_data/hcpMotor_sphere_6_MNI30.save", weights_only=False)
+    dataset = torch.load(datadir + "/SFN_data/hcpMotor_brodmann_10_base.save", weights_only=False)
 
     x = []
     y = []

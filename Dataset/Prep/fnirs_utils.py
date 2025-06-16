@@ -48,6 +48,7 @@ def load_fnirs(target_folder):
     # from the hcp protocol order
     labels =     [1,0,1,0,1,1,0,0,1,0,1,0,1,1,0,0]
     conditions = [4,1,2,4,1,3,2,3,4,1,2,4,1,3,2,3]
+    encoding = [0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1]
     
     sub = 0
     for subject in data:
@@ -63,7 +64,7 @@ def load_fnirs(target_folder):
                 'roiTimeseries': block,
                 'pheno': {
                     'subjectId': f'S{sub}',
-                    'encoding': None,
+                    'encoding': encoding[i],
                     'nback': label,
                     "condition": conditions[i],
                     'modality': 'fNIRS'
@@ -74,6 +75,8 @@ def load_fnirs(target_folder):
             i+=1
         print(f"Subject {sub} loaded")
         sub+=1
+    labels = [data['pheno']['nback'] for data in formatted_data]
+    print(f"label counts: {np.unique(labels, return_counts=True)}")
     return formatted_data, digitization
 def load_mni(target_folder):
     MNI_path = os.path.join(target_folder, 'MNIs_Average.mat')
@@ -230,6 +233,7 @@ def load28(root, type = 'HbR', task = 'nback'):
             stims = [zback_stims, tback_stims]
         elif task == 'motor':
             stims = [lhand_stims, rhand_stims]
+        
         for num, stims in enumerate(stims):
             for i in range(len(stims[1][0])):
                 
@@ -257,12 +261,13 @@ def load28(root, type = 'HbR', task = 'nback'):
                 #get the subject ID and label from the file name or directory structure
                 subject_id = subject
                 label = 0 if num == 0 else 1
-                condition = 0 #CHANGE FOR RSA
+                encoding = 0 if num < 8 else 1
+                condition = i #FOR GNN, not reflective of actual condition
                 f_data = {
                         'roiTimeseries': timeseries,
                         'pheno': {
                             'subjectId': subject_id,
-                            'encoding': None,
+                            'encoding': encoding,
                             'label':label,
                             'condition': condition,
                             'modality': 'fNIRS'
@@ -271,7 +276,9 @@ def load28(root, type = 'HbR', task = 'nback'):
             
         
         
-
+    all_labels = [data['pheno']['label'] for data in fnirs_data]
+    unique, counts = np.unique(all_labels, return_counts=True)
+    print("Label distribution:", dict(zip(unique, counts)))
     return fnirs_data
 
 def getBadChannels(root):
@@ -597,7 +604,7 @@ def brodmann_to_name(num):
     return brodmann_areas[num]
 
 
-
+import torch
 #test load 
 if __name__ == '__main__':
     # #test load
@@ -612,7 +619,10 @@ if __name__ == '__main__':
     # #check the shape of x[0]
     # print(arrs[0].shape)
     data_dir = "./Dataset/Data/fNIRS/fNIRS28-1.38/"
-    data = load28(data_dir, type='HbR')
+    data = load28(data_dir, type='HbC')
+    print(data[:5])
+    torch.save(data, "Dataset/Data/fNIRS/fNIRS28-1.38.save")
+    np.save("Dataset/Data/fNIRS/fNIRS28-1.38.npy", data)
+    torch.load("Dataset/Data/fNIRS/fNIRS28-1.38.save")
     
-    data_dir = "./Dataset/Data/fNIRS/"
     

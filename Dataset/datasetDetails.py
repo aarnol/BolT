@@ -166,10 +166,10 @@ datasetDetailsDict = {
         "foldCount" : 5,
         "atlas" : "sphere",
         "nOfEpochs" : 30,
-        "batchSize" : 16,
+        "batchSize" : 3000,
         "normalize" : True,
         "fNIRS": False,
-        "numTriplets": 16,
+        "numTriplets": 10000,
         "signal": "HBC",
 
     },
