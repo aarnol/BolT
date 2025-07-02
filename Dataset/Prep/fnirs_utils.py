@@ -215,11 +215,17 @@ def load28(root, type = 'HbR', task = 'nback'):
         time = data[subject][0]
         full_timeseries = data[subject][1]
         #find columns of all 0s
-        if subject == 0:
-            all_zeros = np.where(np.all(full_timeseries == 0, axis=0))[0]
-            print("All zeros: ", all_zeros)
-        #remove all 0s
-        full_timeseries = np.delete(full_timeseries, all_zeros, axis=1)
+        bad_channels = getBadChannels(root)
+        #filter out bad channels and non PFC
+        with open("channel_regions.txt", "r") as f:
+            channel_regions = [line.strip() for line in f if line.strip()]
+
+        prefrontal_channels = np.where(np.char.find(np.char.lower(channel_regions), "prefrontal") != -1)[0]
+        # Get indices that are both prefrontal and not bad channels
+        valid_channels = np.setdiff1d(prefrontal_channels, bad_channels)
+
+        full_timeseries = full_timeseries[:, valid_channels]
+        
         sampling_rate = data[subject][3][0][0]
         zback_stims = data[subject][4][0][0]
         tback_stims = data[subject][4][0][1]
@@ -233,8 +239,8 @@ def load28(root, type = 'HbR', task = 'nback'):
             stims = [zback_stims, tback_stims]
         elif task == 'motor':
             stims = [lhand_stims, rhand_stims]
-        
-        for num, stims in enumerate(stims):
+        stims_set = stims
+        for num, stims in enumerate(stims_set):
             for i in range(len(stims[1][0])):
                 
                 
@@ -279,6 +285,7 @@ def load28(root, type = 'HbR', task = 'nback'):
     all_labels = [data['pheno']['label'] for data in fnirs_data]
     unique, counts = np.unique(all_labels, return_counts=True)
     print("Label distribution:", dict(zip(unique, counts)))
+    print("fnirs shape:", fnirs_data[0]['roiTimeseries'].shape)
     return fnirs_data
 
 def getBadChannels(root):
@@ -305,7 +312,7 @@ def getBadChannels(root):
     # Find all-zero columns in the cleaned timeseries
     bad_channels = np.where(np.all(cleaned_timeseries == 0, axis=0))[0]
 
-    print("Bad channels (excluding short separation):", bad_channels)
+    
 
     return bad_channels.tolist()
 

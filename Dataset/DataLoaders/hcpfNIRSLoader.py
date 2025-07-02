@@ -47,5 +47,9 @@ def hcpfNIRSLoader(atlas, targetTask, signal, subject= None):
             subjectIds.append(int(data["pheno"]["subjectId"]))
         else:
             print("Skipping subject: ", data["pheno"]["subjectId"], data["pheno"]["label"])
+        #check if data is normalized
+        if(np.max(data["roiTimeseries"]) > 1.0 or np.min(data["roiTimeseries"]) < -1.0):
+            print("Data is not normalized for subject: ", data["pheno"]["subjectId"])
+            Exception("Data is not normalized for subject: ", data["pheno"]["subjectId"])
 
     return x, y, subjectIds

@@ -114,8 +114,13 @@ class ShallowClassifier(nn.Module):
 
 
     def initializeWeights(self):
-        torch.nn.init.xavier_uniform_(self.classifierHead.weight)  # Xavier initialization for weights
-        torch.nn.init.zeros_(self.classifierHead.bias)  # Zero initialization for bias
+        for layer in self.classifierHead:
+            if isinstance(layer, torch.nn.Linear):
+                # Initialize weights and biases
+                torch.nn.init.xavier_uniform_(layer.weight)
+                if layer.bias is not None:
+                    torch.nn.init.zeros_(layer.bias)
+
     
     def forward(self, x):
         x = self.classifierHead(x)

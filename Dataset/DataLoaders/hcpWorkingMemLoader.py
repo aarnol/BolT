@@ -37,9 +37,15 @@ def hcpWorkingMemLoader(atlas, targetTask):
         
         label = int(data["pheno"]["label"])
         
-        #filter out bad channels
-        data["roiTimeseries"] = np.delete(data["roiTimeseries"], bad_channels, axis=1)
-       
+        #filter out bad channels and non PFC
+        with open("channel_regions.txt", "r") as f:
+            channel_regions = [line.strip() for line in f if line.strip()]
+
+        prefrontal_channels = np.where(np.char.find(np.char.lower(channel_regions), "prefrontal") != -1)[0]
+        # Get indices that are both prefrontal and not bad channels
+        valid_channels = np.setdiff1d(prefrontal_channels, bad_channels)
+        data["roiTimeseries"] = data["roiTimeseries"][:, valid_channels]
+
         if(healthCheckOnRoiSignal(data["roiTimeseries"].T)):
             if(data['roiTimeseries'].shape[0] ==8):
                 print("Skipping subject: ", data["pheno"]["subjectId"])
@@ -53,6 +59,7 @@ def hcpWorkingMemLoader(atlas, targetTask):
     #print distribution of labels
     unique, counts = np.unique(y, return_counts=True)
     print("Label distribution: ", dict(zip(unique, counts)))
+    print('fmri shape:', x[0].shape)
     return x, y, subjectIds
 
 

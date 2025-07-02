@@ -43,6 +43,10 @@ def train(model, dataset, fold, nOfEpochs):
             # NOTE: xTrain and yTrain are still on "cpu" at this point
 
             train_loss, train_preds, train_probs, yTrain = model.step(xTrain, yTrain, train=True)
+            
+            # for name, param in model.model.named_parameters():
+            #     if param.requires_grad:
+            #         print(f"{name} grad mean:", param.grad.abs().mean().item())
 
             torch.cuda.empty_cache()
 
@@ -105,8 +109,7 @@ def test(model, dataset, fold, invert = False):
         yTest = data["label"]
         if invert:
             xTest = -1 * xTest
-        if(i == 0):
-            print(xTest[0,0])
+        
             
         
         test_loss, test_preds, test_probs, yTest = model.step(xTest, yTest, train=False)
@@ -177,13 +180,22 @@ def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False, name 
             # Assumes details.newNumClasses is defined and != original
             in_features = model.model.classifierHead.in_features
             head = torch.nn.Sequential(
-                torch.nn.Linear(in_features, details.nOfClasses)
+                torch.nn.Linear(in_features, in_features // 2),
+                torch.nn.ReLU(),
+                torch.nn.Linear(in_features // 2, details.nOfClasses)   
             )
             model.model.classifierHead = head.to(details.device)
-
+            def reset_classifier_head(model):
+                for module in model.classifierHead.modules():
+                    if isinstance(module, torch.nn.Linear):
+                        torch.nn.init.kaiming_normal_(module.weight)
+                        if module.bias is not None:
+                            torch.nn.init.zeros_(module.bias)
+            reset_classifier_head(model.model)
             # --- 🔒 Optional: Freeze all layers except the classifier head ---
             for name, param in model.model.named_parameters():
-                if "classifierHead" not in name and "7" not in name:
+                if "classifierHead" not in name and "2" not in name and "postNorm" not in name:
+                    print("Freezing layer: ", name)
                     param.requires_grad = False
                 else:
                     param.requires_grad = True

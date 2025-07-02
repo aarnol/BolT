@@ -14,13 +14,13 @@ def getHyper_bolT():
             "maxLr" : 4e-4,
 
             # FOR BOLT
-            "nOfLayers" : 8,
+            "nOfLayers" : 3,
             #change this based on the atlas!
             # Schaefer 400 = 400
             # AAL = 116
             # MNI = 107
             #broddmann = 41
-            "dim" : 41,        
+            "dim" : 20,        
 
             "numHeads" : 36,
             "headDim" : 20,
@@ -50,11 +50,11 @@ def getTransferHyper_bolT():
         Hyperparameters for transfer learning with BOLT
     """
     hyperDict = {
-        "weightDecay": 1e-2,  # Add weight decay to help with generalization
+        "weightDecay": 0,  # Add weight decay to help with generalization
 
         "lr": 1e-5,           # Lower learning rate for fine-tuning
-        "minLr": 1e-6,
-        "maxLr": 2e-5,        # Narrower range
+        "minLr": 5e-6,
+        "maxLr": 1e-4,        # Narrower range
 
         # FOR BOLT
         "nOfLayers": 8,       # Keep same if not changing model depth

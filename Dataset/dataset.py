@@ -308,8 +308,105 @@ class SupervisedDataset(Dataset):
             return DataLoader(dataset_copy, batch_size=dataset_copy.batchSize, shuffle=False, collate_fn=custom_collate_fn)
         else:
             return DataLoader(dataset_copy, batch_size=1, shuffle=False)
-           
+    def load_group_folds(self,filepath):
+        folds = []
+        with open(filepath, 'r') as f:
+            lines = f.readlines()
 
+        assert len(lines) % 2 == 0, "File should contain an even number of lines (train/test per fold)"
+
+        for i in range(0, len(lines), 2):
+            train_line = lines[i].strip()
+            test_line = lines[i + 1].strip()
+
+            # Extract group sets from strings like "{1, 2, 3}"
+            train_groups = set(map(int, train_line.split(':')[1].strip()[1:-1].split(',')))
+            test_groups = set(map(int, test_line.split(':')[1].strip()[1:-1].split(',')))
+
+            folds.append({
+                "train_groups": train_groups,
+                "test_groups": test_groups
+            })
+
+        return train_groups, test_groups
+
+    def getFoldFromFile(self, fold, train=True):
+        """
+        Load a fold from a file.
+        This is useful for debugging or when you want to use precomputed folds.
+        """
+        dataset_copy = deepcopy(self)
+        fold_file = f"fold_{fold}_groups.txt"
+        train_groups, test_groups = self.load_group_folds(fold_file)
+        trainIdx = np.where(np.isin(self.groups, list(train_groups)))[0]
+        assert len(trainIdx) > 0, f"No training indices found for fold {fold} in file {fold_file}"
+        testIdx = np.where(np.isin(self.groups, list(test_groups)))[0]
+        assert len(testIdx) > 0, f"No testing indices found for fold {fold} in file {fold_file}"
+        dataset_copy.setFoldFromFile(trainIdx, testIdx, fold, train=train)
+        if train:
+            return DataLoader(dataset_copy, batch_size=dataset_copy.batchSize, shuffle=False, collate_fn=custom_collate_fn)
+        else:
+            return DataLoader(dataset_copy, batch_size=1, shuffle=False)
+
+        
+        
+        # Load the fold data from a file
+    def setFoldFromFile(self, trainIdx, testIdx, fold, train=True):
+        train_groups = set(self.groups[idx] for idx in trainIdx)
+        test_groups = set(self.groups[idx] for idx in testIdx)
+        intersect = train_groups.intersection(test_groups)
+        self.train = train
+        if intersect:
+            raise ValueError(f"Group(s) {intersect} found in both train and test splits for fold {fold}!")
+        else:
+            print(f"Fold {fold} is valid.")
+
+        self.trainIdx = trainIdx.copy()
+        self.testIdx = testIdx
+
+        rng = random.Random(self.seed)
+        rng.shuffle(self.trainIdx)
+
+        idx_to_use = self.trainIdx if train else self.testIdx
+
+        self.targetData = [self.data[idx] for idx in idx_to_use]
+        self.targetLabels = [self.labels[idx] for idx in idx_to_use]
+        self.targetSubjIds = [self.subjectIds[idx] for idx in idx_to_use]
+
+        train_subjects = set(self.subjectIds[idx] for idx in self.trainIdx)
+        test_subjects = set(self.subjectIds[idx] for idx in self.testIdx)
+
+        if train:
+            if train_subjects & test_subjects:
+                print(train_subjects & test_subjects)
+                raise ValueError("Train and test subjects are leaking!")
+            else:
+                print("Train and test subjects are properly separated.")
+        else:
+            if train_subjects & test_subjects:
+                print(train_subjects & test_subjects)
+                raise ValueError("Train and test subjects are leaking!")
+            else:
+                print("Train and test subjects are properly separated.")
+
+        # if train:
+        #     print("RANDOM LABELS")
+        #     self.targetLabels = [random.choice([0, 1]) for _ in range(len(self.targetLabels))]
+
+        if intersect:
+            print(f"Groups leaking between train and test: {intersect}")
+            exit()
+        else:
+            print("No leakage between train and test groups.")
+
+        if train and self.dynamicLength is not None:
+            np.random.seed(self.seed + 1)
+            self.randomRanges = [
+                [np.random.randint(0, self.data[idx].shape[-1] - self.dynamicLength) for _ in range(9999)]
+                for idx in self.trainIdx
+            ]
+
+        
     def __getitem__(self, idx):
         subject = self.targetData[idx]
         label = self.targetLabels[idx]
@@ -338,7 +435,7 @@ class SupervisedDataset(Dataset):
             timeseries = timeseries[:, samplingInit : samplingInit + self.dynamicLength]
             
             # add noise
-            #timeseries = guassianNoise(timeseries, mean=0, std=0.1)
+            timeseries = guassianNoise(timeseries, mean=0, std=0.05)
         
         
         return {"timeseries" : timeseries.astype(np.float32), "label" : label, "subjId" : subjId}
@@ -664,7 +761,7 @@ class OnlineContrastiveDataset(Dataset):
         """Create pairs of samples for contrastive learning."""
         if self.targetData is None:
             raise ValueError("Must call setFold() first")
-        print("Creating pairs for contrastive learning...")
+        print("Creating pairs for contrastive learning...", flush = True)
         np.random.seed(self.seed + self.k if hasattr(self, 'k') else self.seed)
         
         n_samples = len(self.targetData)
@@ -708,7 +805,8 @@ class OnlineContrastiveDataset(Dataset):
         
         self.pairs = pairs
         self.pair_labels = pair_labels
-        print(f"Created {len(pairs)} pairs: {len(pair_labels)} positive and {len(pair_labels) - sum(pair_labels)} negative.")
+        print(f"Created {len(pairs)} pairs: {len(pair_labels)} positive and {len(pair_labels) - sum(pair_labels)} negative.", flush = True)
+        raise ValueError("Pairs created successfully. Now you can use getFold() to get a DataLoader.")
 
     def setFold(self, fold, train=True):
         """Set the current fold for training or testing."""
@@ -747,7 +845,9 @@ class OnlineContrastiveDataset(Dataset):
             ]
         
         # Create pairs for contrastive learning
+        print("Creating pairs for contrastive learning...", flush=True)
         self._create_pairs()
+        print("Pairs created successfully.", flush=True)
 
     def getFold(self, fold, train=True):
         """Get a DataLoader for a specific fold."""
@@ -794,7 +894,6 @@ class OnlineContrastiveDataset(Dataset):
         
         sample1 = self._get_processed_sample(idx1)
         sample2 = self._get_processed_sample(idx2)
-        print()
         return {
             "sample1": sample1,
             "sample2": sample2,
@@ -802,32 +901,50 @@ class OnlineContrastiveDataset(Dataset):
         }
 
 
+import torch
+import torch.nn.functional as F
+
 def contrastive_collate_fn(batch):
     """
-    Collate function for contrastive learning batches.
-    """
-    sample1_batch = {
-        "timeseries": torch.stack([torch.tensor(item["sample1"]["timeseries"]) for item in batch]),
-        "label": torch.tensor([item["sample1"]["label"] for item in batch]),
-        "modality": torch.tensor([item["sample1"]["modality"] for item in batch]),
-        "subjId": [item["sample1"]["subjId"] for item in batch]
-    }
+    Collate function for contrastive learning batches with variable-length time series.
+    Pads all timeseries to the maximum time length in the batch.
     
-    sample2_batch = {
-        "timeseries": torch.stack([torch.tensor(item["sample2"]["timeseries"]) for item in batch]),
-        "label": torch.tensor([item["sample2"]["label"] for item in batch]),
-        "modality": torch.tensor([item["sample2"]["modality"] for item in batch]),
-        "subjId": [item["sample2"]["subjId"] for item in batch]
-    }
+    Assumes each 'timeseries' has shape (channels, time).
+    """
+    def pad_and_stack(samples, key):
+        timeseries_list = [torch.tensor(item[key]["timeseries"]) for item in batch]
+        labels = torch.tensor([item[key]["label"] for item in batch])
+        modalities = torch.tensor([item[key]["modality"] for item in batch])
+        subjIds = [item[key]["subjId"] for item in batch]
+        
+        # Determine the max time length
+        max_time = max(ts.size(1) for ts in timeseries_list)
+        
+        # Pad sequences along time dimension (dim=1)
+        padded_ts = [
+            F.pad(ts, (0, max_time - ts.size(1)), value=0.0) if ts.size(1) < max_time else ts[:, :max_time]
+            for ts in timeseries_list
+        ]
+        
+        timeseries_stacked = torch.stack(padded_ts)  # Shape: (batch_size, channels, max_time)
+        
+        return {
+            "timeseries": timeseries_stacked,
+            "label": labels,
+            "modality": modalities,
+            "subjId": subjIds
+        }
+
+    sample1_batch = pad_and_stack(batch, "sample1")
+    sample2_batch = pad_and_stack(batch, "sample2")
     
     similarities = torch.tensor([item["similarity"] for item in batch], dtype=torch.float32)
-    
+
     return {
         "sample1": sample1_batch,
         "sample2": sample2_batch,
         "similarities": similarities
     }
-
 
 # Recommended: Balanced Contrastive Dataset for imbalanced modality data
 class BalancedContrastiveDataset(OnlineContrastiveDataset):
@@ -837,7 +954,7 @@ class BalancedContrastiveDataset(OnlineContrastiveDataset):
     regardless of the original modality distribution.
     """
     
-    def _create_pairs(self, positive_ratio=0.5, cross_modal_ratio=0.7):
+    def _create_pairs(self, positive_ratio=0.5, cross_modal_ratio=1.0):
         """Create balanced pairs including cross-modal considerations."""
         if self.targetData is None:
             raise ValueError("Must call setFold() first")
@@ -961,3 +1078,5 @@ class BalancedContrastiveDataset(OnlineContrastiveDataset):
         
         self.pairs = pairs
         self.pair_labels = pair_labels
+        print(f"Created {len(pairs)} pairs: {len(pair_labels)} positive and {len(pair_labels) - sum(pair_labels)} negative.", flush=True)
+        

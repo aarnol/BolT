@@ -1,7 +1,41 @@
 from Models.Triplet.bolT import BolT, ShallowClassifier
 import torch
+import torch.nn.functional as F
 import numpy as np
 
+
+class ContrastiveLoss(torch.nn.Module):
+    """
+    Contrastive loss function for pairs of samples.
+    """
+    def __init__(self, margin=1.0, distance_function=None):
+        super(ContrastiveLoss, self).__init__()
+        self.margin = margin
+        self.distance_function = distance_function or self.euclidean_distance
+    
+    def euclidean_distance(self, x, y):
+        return F.pairwise_distance(x, y, p=2)
+    
+    def cosine_distance(self, x, y):
+        return 1 - F.cosine_similarity(x, y, dim=1)
+    
+    def forward(self, embedding1, embedding2, labels):
+        """
+        Args:
+            embedding1: First embedding tensor [batch_size, embedding_dim]
+            embedding2: Second embedding tensor [batch_size, embedding_dim]
+            labels: Binary labels (1 for similar/positive pairs, 0 for dissimilar/negative pairs)
+        """
+        distances = self.distance_function(embedding1, embedding2)
+        
+        # Contrastive loss: 
+        # For positive pairs (label=1): minimize distance
+        # For negative pairs (label=0): maximize distance up to margin
+        positive_loss = labels * torch.pow(distances, 2)
+        negative_loss = (1 - labels) * torch.pow(torch.clamp(self.margin - distances, min=0.0), 2)
+        
+        loss = 0.5 * (positive_loss + negative_loss)
+        return loss.mean()
 
 
 class Model():
@@ -13,11 +47,10 @@ class Model():
         self.model = BolT(hyperParams, details)
         self.model = self.model.to(details.device)
 
-        #triplet loss
-        self.criterion = torch.nn.TripletMarginWithDistanceLoss(
-            distance_function=self.cosine_distance,
+        # Contrastive loss (instead of triplet loss)
+        self.criterion = ContrastiveLoss(
             margin=hyperParams.margin,
-            reduction='mean'
+            distance_function=self.cosine_distance if hasattr(hyperParams, 'use_cosine') and hyperParams.use_cosine else None
         )
 
         # Optimizer
@@ -39,14 +72,81 @@ class Model():
             final_div_factor=finalDivFactor,
             pct_start=0.3
         )
+
     def cosine_distance(self, x, y):
         return 1 - torch.nn.functional.cosine_similarity(x, y, dim=1)
 
-
-
     def step(self, batch, train=True):
         """
-        Adapted step function for online triplet mining.
+        Step function for contrastive learning.
+        
+        Args:
+            batch: Dictionary containing:
+                - 'sample1': Dictionary with first samples
+                    - 'timeseries': tensor of shape (batch_size, n_rois, time)
+                    - 'label': tensor of shape (batch_size,)
+                    - 'modality': tensor of shape (batch_size,)
+                    - 'subjId': list of subject IDs
+                - 'sample2': Dictionary with second samples (same structure as sample1)
+                - 'similarities': tensor of shape (batch_size,) with 1/0 labels
+            train: bool, whether in training mode
+            
+        Returns:
+            loss: computed contrastive loss
+            embeddings1: computed embeddings for first samples
+            embeddings2: computed embeddings for second samples
+            similarities: similarity labels
+        """
+        
+        # Extract batch data
+        sample1 = batch['sample1']
+        sample2 = batch['sample2']
+        similarities = batch['similarities']
+        
+        timeseries1 = sample1['timeseries']  # shape: (batch_size, n_rois, time)
+        timeseries2 = sample2['timeseries']  # shape: (batch_size, n_rois, time)
+        labels1 = sample1['label']           # shape: (batch_size,)
+        labels2 = sample2['label']           # shape: (batch_size,)
+        modalities1 = sample1['modality']    # shape: (batch_size,)
+        modalities2 = sample2['modality']    # shape: (batch_size,)
+
+        # Send to device
+        timeseries1 = self.prepareInput(timeseries1)[0]
+        timeseries2 = self.prepareInput(timeseries2)[0]
+        similarities = similarities.to(self.details.device, non_blocking=True)
+        labels1 = labels1.to(self.details.device, non_blocking=True)
+        labels2 = labels2.to(self.details.device, non_blocking=True)
+        modalities1 = modalities1.to(self.details.device, non_blocking=True)
+        modalities2 = modalities2.to(self.details.device, non_blocking=True)
+
+        # Set model mode
+        self.model.train() if train else self.model.eval()
+
+        # Forward pass - get embeddings for both samples
+        embeddings1 = self.model(timeseries1)[0]  # shape: (batch_size, embedding_dim)
+        embeddings2 = self.model(timeseries2)[0]  # shape: (batch_size, embedding_dim)
+
+        # Compute contrastive loss
+        loss = self.criterion(embeddings1, embeddings2, similarities)
+
+        if train:
+            self.optimizer.zero_grad()
+            loss.backward()
+            self.optimizer.step()
+            if self.scheduler is not None:
+                self.scheduler.step()
+
+        loss_value = loss.detach().cpu()
+        embeddings1_cpu = embeddings1.detach().cpu()
+        embeddings2_cpu = embeddings2.detach().cpu()
+        
+        torch.cuda.empty_cache()
+
+        return loss_value, embeddings1_cpu, embeddings2_cpu, similarities.cpu()
+
+    def step_single(self, batch, train=False):
+        """
+        Step function for single samples (useful for evaluation/inference).
         
         Args:
             batch: Dictionary containing:
@@ -54,35 +154,18 @@ class Model():
                 - 'labels': tensor of shape (batch_size,)
                 - 'modalities': tensor of shape (batch_size,)
                 - 'subj_ids': list of subject IDs
-            train: bool, whether in training mode
+            train: bool, whether in training mode (usually False for this function)
             
         Returns:
-            loss: computed triplet loss
             embeddings: computed embeddings for the batch
             labels: labels for the batch
             modalities: modalities for the batch
         """
-        
-        if train:
-            # Extract batch data
-            timeseries = batch['timeseries']  # shape: (batch_size, n_rois, time)
-            labels = batch['labels']          # shape: (batch_size,)
-            modalities = batch['modalities']  # shape: (batch_size,)
-            subj_ids = batch['subj_ids']      # list of subject IDs
-        else:
-            # For evaluation, we might still receive the same format
-            # or handle single samples differently based on your needs
-            if isinstance(batch, dict):
-                timeseries = batch['timeseries']
-                labels = batch['labels']
-                modalities = batch['modalities']
-                subj_ids = batch['subj_ids']
-               
-            else:
-                # Fallback for backward compatibility with old triplet format
-                anchor, positive, negative = batch
-                
-                return self._step_triplet_format(anchor, positive, negative, train)
+        # Extract batch data
+        timeseries = batch['timeseries']  # shape: (batch_size, n_rois, time)
+        labels = batch['labels']          # shape: (batch_size,)
+        modalities = batch['modalities']  # shape: (batch_size,)
+        subj_ids = batch['subj_ids']      # list of subject IDs
 
         # Send to device
         timeseries = self.prepareInput(timeseries)[0]
@@ -92,202 +175,90 @@ class Model():
         # Set model mode
         self.model.train() if train else self.model.eval()
 
-        # Forward pass - get embeddings for all samples
-        embeddings = self.model(timeseries)[0]  # shape: (batch_size, embedding_dim)
+        # Forward pass - get embeddings
+        with torch.no_grad() if not train else torch.enable_grad():
+            embeddings = self.model(timeseries)[0]  # shape: (batch_size, embedding_dim)
 
-        # Compute triplet loss using online mining
-        if train:
-            # Use hard triplet mining during training
-            loss = self.batch_hard_triplet_loss(embeddings, labels, modalities, margin=1.0)
-            
-            self.optimizer.zero_grad()
-            loss.backward()
-            self.optimizer.step()
-            if self.scheduler is not None:
-                self.scheduler.step()
-        else:
-            # For evaluation, you might want to use all-triplet loss or just return embeddings
-            loss = self.batch_all_triplet_loss(embeddings, labels, modalities, margin=1.0)
-
-        loss_value = loss.detach().cpu()
         embeddings_cpu = embeddings.detach().cpu()
         
         torch.cuda.empty_cache()
 
-        return loss_value, embeddings_cpu, labels.cpu(), modalities.cpu()
-
-    def _step_triplet_format(self, anchor, positive, negative, train=True):
-        """
-        Backward compatibility function for old triplet format.
-        This handles the case where you still have pre-formed triplets.
-        """
-        if train:
-            # Unpack the triplets into separate tensors
-            if isinstance(anchor, list):
-                anchors = [y[0] for y in anchor]
-                positives = [y[1] for y in anchor]
-                negatives = [y[2] for y in anchor]
-                
-                # Stack them into batches
-                anchor = torch.stack(anchors)     # shape: (batch, N, T)
-                positive = torch.stack(positives) # shape: (batch, N, T)
-                negative = torch.stack(negatives) # shape: (batch, N, T)
-
-        # Send to device
-        anchor, positive, negative = self.prepareInput(anchor, positive, negative)
-
-        # Set model mode
-        self.model.train() if train else self.model.eval()
-
-        # Forward pass
-        anchor_embed = self.model(anchor)[0]
-        positive_embed = self.model(positive)[0]
-        negative_embed = self.model(negative)[0]
-
-        # Compute triplet loss
-        loss = self.criterion(anchor_embed, positive_embed, negative_embed)
-
-        if train:
-            self.optimizer.zero_grad()
-            loss.backward()
-            self.optimizer.step()
-            if self.scheduler is not None:
-                self.scheduler.step()
-
-        loss_value = loss.detach().cpu()
-        torch.cuda.empty_cache()
-
-        return loss_value, anchor_embed.detach().cpu(), positive_embed.detach().cpu(), negative_embed.detach().cpu()
+        return embeddings_cpu, labels.cpu(), modalities.cpu()
 
     def prepareInput(self, *xs):
         """Keep the same prepareInput function"""
         return [x.to(self.details.device, non_blocking=True) for x in xs]
 
-    def get_triplet_mask(self, labels, modalities):
+    def evaluate_pairs(self, embeddings1, embeddings2, similarities, threshold=0.5):
         """
-        Return a 3D mask where mask[a, p, n] is True iff the triplet (a, p, n) is valid.
-        A triplet (i, j, k) is valid if:
-        - i, j, k are distinct
-        - labels[i] == labels[j] and labels[i] != labels[k]
-        - modalities[i] != modalities[j] (cross-modal positive)
+        Evaluate contrastive pairs using distance threshold.
+        
+        Args:
+            embeddings1: First set of embeddings [batch_size, embedding_dim]
+            embeddings2: Second set of embeddings [batch_size, embedding_dim]
+            similarities: Ground truth similarities [batch_size]
+            threshold: Distance threshold for classification
+            
+        Returns:
+            accuracy: Classification accuracy
+            distances: Computed distances
         """
-        # Check that i, j and k are distinct
-        indices_equal = torch.eye(labels.size(0), dtype=torch.bool, device=labels.device)
-        indices_not_equal = ~indices_equal
-        i_not_equal_j = indices_not_equal.unsqueeze(2)
-        i_not_equal_k = indices_not_equal.unsqueeze(1)
-        j_not_equal_k = indices_not_equal.unsqueeze(0)
+        # Compute distances
+        distances = F.pairwise_distance(embeddings1, embeddings2, p=2)
         
-        distinct_indices = (i_not_equal_j & i_not_equal_k) & j_not_equal_k
+        # Classify based on threshold (distance < threshold means similar)
+        predictions = (distances < threshold).float()
+        
+        # Compute accuracy
+        accuracy = (predictions == similarities).float().mean()
+        
+        return accuracy.item(), distances.detach().cpu().numpy()
 
-        # Check if labels[i] == labels[j] and labels[i] != labels[k]
-        label_equal = labels.unsqueeze(0) == labels.unsqueeze(1)
-        i_equal_j = label_equal.unsqueeze(2)
-        i_equal_k = label_equal.unsqueeze(1)
-        
-        valid_labels = i_equal_j & (~i_equal_k)
-        
-        # Check if modalities[i] != modalities[j] (cross-modal positive)
-        modality_equal = modalities.unsqueeze(0) == modalities.unsqueeze(1)
-        i_not_equal_j_modality = (~modality_equal).unsqueeze(2)
-        
-        return distinct_indices & valid_labels & i_not_equal_j_modality
-
-    def batch_all_triplet_loss(self, embeddings, labels, modalities, margin=1.0):
+    def compute_cross_modal_similarity(self, fmri_embeddings, fnirs_embeddings, fmri_labels, fnirs_labels):
         """
-        Build the triplet loss over a batch of embeddings using online mining.
-        Considers all valid triplets in the batch.
+        Compute cross-modal similarity matrix between fMRI and fNIRS embeddings.
+        Useful for evaluating cross-modal retrieval performance.
+        
+        Args:
+            fmri_embeddings: fMRI embeddings [n_fmri, embedding_dim]
+            fnirs_embeddings: fNIRS embeddings [n_fnirs, embedding_dim]
+            fmri_labels: fMRI labels [n_fmri]
+            fnirs_labels: fNIRS labels [n_fnirs]
+            
+        Returns:
+            similarity_matrix: Cross-modal similarity matrix
+            retrieval_accuracy: Top-1 retrieval accuracy
         """
-        # Get the pairwise distance matrix
-        pairwise_dist = torch.cdist(embeddings, embeddings, p=2)
+        # Compute pairwise cosine similarity
+        fmri_norm = F.normalize(fmri_embeddings, p=2, dim=1)
+        fnirs_norm = F.normalize(fnirs_embeddings, p=2, dim=1)
+        similarity_matrix = torch.mm(fmri_norm, fnirs_norm.t())
         
-        # Get anchor-positive distances and anchor-negative distances
-        anchor_positive_dist = pairwise_dist.unsqueeze(2)  # [batch, batch, 1]
-        anchor_negative_dist = pairwise_dist.unsqueeze(1)  # [batch, 1, batch]
+        # Compute retrieval accuracy (fMRI -> fNIRS)
+        _, top_indices = similarity_matrix.topk(1, dim=1)
+        predicted_labels = fnirs_labels[top_indices.squeeze()]
+        retrieval_accuracy = (predicted_labels == fmri_labels).float().mean()
         
-        # Compute triplet loss: max(d(a,p) - d(a,n) + margin, 0)
-        triplet_loss = anchor_positive_dist - anchor_negative_dist + margin
-        
-        # Put to zero the invalid triplets
-        mask = self.get_triplet_mask(labels, modalities)
-        triplet_loss = mask.float() * triplet_loss
-        
-        # Remove negative losses (i.e. the easy triplets)
-        triplet_loss = torch.clamp(triplet_loss, min=0.0)
-        
-        # Count number of positive triplets (where loss > 0)
-        valid_triplets = triplet_loss > 1e-16
-        num_positive_triplets = valid_triplets.sum()
-        
-        # Get final mean triplet loss over the positive valid triplets
-        if num_positive_triplets > 0:
-            triplet_loss = triplet_loss.sum() / num_positive_triplets.float()
-        else:
-            triplet_loss = torch.tensor(0.0, device=embeddings.device, requires_grad=True)
-        
-        return triplet_loss
-
-    def batch_hard_triplet_loss(self, embeddings, labels, modalities, margin=1.0):
+        return similarity_matrix.detach().cpu().numpy(), retrieval_accuracy.item()
+    def getEmbeddings(self, batch):
         """
-        Build the triplet loss over a batch of embeddings using hard mining.
-        For each anchor, we select the hardest positive and hardest negative.
+        Get embeddings for classification.
+        Can work with either single samples or pairs (using first sample).
         """
-        # Get the pairwise distance matrix
-        pairwise_dist = torch.cdist(embeddings, embeddings, p=2)
-        
-        # For each anchor, get the hardest positive
-        # First, create mask for valid positives (same label, different modality)
-        label_equal = labels.unsqueeze(0) == labels.unsqueeze(1)
-        modality_different = modalities.unsqueeze(0) != modalities.unsqueeze(1)
-        valid_positives = label_equal & modality_different
-        
-        # Set distance to negatives and self to a large value so they won't be selected as hardest positive
-        masked_pos_dist = pairwise_dist.clone()
-        masked_pos_dist[~valid_positives] = float('inf')
-        
-        # Get hardest positive for each anchor
-        hardest_positive_dist, _ = masked_pos_dist.min(dim=1)
-        
-        # For each anchor, get the hardest negative
-        # First, create mask for valid negatives (different label)
-        valid_negatives = ~label_equal
-        
-        # Set distance to positives and self to a small value so they won't be selected as hardest negative
-        masked_neg_dist = pairwise_dist.clone()
-        masked_neg_dist[~valid_negatives] = 0.0
-        
-        # Get hardest negative for each anchor
-        hardest_negative_dist, _ = masked_neg_dist.max(dim=1)
-        
-        # Compute triplet loss for each valid anchor
-        triplet_loss = hardest_positive_dist - hardest_negative_dist + margin
-        triplet_loss = torch.clamp(triplet_loss, min=0.0)
-        
-        # Only consider anchors that have valid positives
-        valid_anchors = (hardest_positive_dist != float('inf'))
-        
-        if valid_anchors.sum() > 0:
-            triplet_loss = triplet_loss[valid_anchors].mean()
-        else:
-            triplet_loss = torch.tensor(0.0, device=embeddings.device, requires_grad=True)
-        
-        return triplet_loss
+        self.model.eval()  # Set model to evaluation mode
+       
 
-    # Example usage in your training loop:
-    """
-    # Initialize your online triplet dataset
-    dataset = OnlineTripletDataset(datasetDetails)
-    dataloader = dataset.getFold(fold=0, train=True)
+        # Send to device
+        timeseries = batch.to(self.details.device, non_blocking=True)
 
-    # Training loop
-    for batch in dataloader:
-        # batch is a dictionary with 'timeseries', 'labels', 'modalities', 'subj_ids'
-        loss, embeddings, labels, modalities = model.step(batch, train=True)
+        # Forward pass - get embeddings
+        with torch.no_grad():
+            embeddings = self.model(timeseries)[0]
         
-        # Your logging/monitoring code here
-        print(f"Loss: {loss.item()}")
-"""
-
+        
+        
+        torch.cuda.empty_cache()
+        return embeddings
 
 class Classifier():
     def __init__(self, hyperParams, details):
@@ -320,3 +291,108 @@ class Classifier():
             pct_start=0.3
         )
 
+    def step(self, batch, train=True):
+        """
+        Step function for classification using embeddings.
+        Can work with either single samples or pairs (using first sample).
+        """
+        # Handle both contrastive batch format and single sample format
+    
+       
+        timeseries = batch[0]
+        
+        labels = batch[1]
+        
+        # Send to device
+        timeseries = timeseries.to(self.details.device, non_blocking=True)
+        labels = labels.to(self.details.device, non_blocking=True)
+
+        # Set model mode
+        self.model.train() if train else self.model.eval()
+
+        # Forward pass
+        outputs = self.model(timeseries)
+        if isinstance(outputs, tuple):
+            logits = outputs[0]
+        else:
+            logits = outputs
+
+        # Compute loss
+        loss = self.criterion(logits, labels)
+
+        if train:
+            self.optimizer.zero_grad()
+            loss.backward()
+            self.optimizer.step()
+            if self.scheduler is not None:
+                self.scheduler.step()
+
+        loss_value = loss.detach().cpu()
+        predictions = torch.softmax(logits, dim=1).detach().cpu()
+        
+        torch.cuda.empty_cache()
+
+        return loss_value, predictions, labels.cpu()
+
+    
+
+
+# Example usage in your training loop:
+"""
+# Initialize your contrastive dataset
+dataset = BalancedContrastiveDataset(datasetDetails)
+dataloader = dataset.getFold(fold=0, train=True)
+
+# Initialize model
+model = Model(hyperParams, details)
+
+# Training loop
+for batch in dataloader:
+    # batch contains 'sample1', 'sample2', and 'similarities'
+    loss, emb1, emb2, similarities = model.step(batch, train=True)
+    
+    # Evaluate pair accuracy
+    accuracy, distances = model.evaluate_pairs(emb1, emb2, similarities)
+    
+    print(f"Loss: {loss.item():.4f}, Pair Accuracy: {accuracy:.4f}")
+
+# For evaluation with single samples:
+eval_dataset = OnlineContrastiveDataset(datasetDetails)  # or create single-sample dataset
+eval_dataloader = eval_dataset.getFold(fold=0, train=False)
+
+all_embeddings = []
+all_labels = []
+all_modalities = []
+
+for batch in eval_dataloader:
+    # If using contrastive dataset, extract single samples for evaluation
+    if 'sample1' in batch:
+        single_batch = {
+            'timeseries': batch['sample1']['timeseries'],
+            'labels': batch['sample1']['label'],
+            'modalities': batch['sample1']['modality'],
+            'subj_ids': batch['sample1']['subjId']
+        }
+    else:
+        single_batch = batch
+    
+    embeddings, labels, modalities = model.step_single(single_batch, train=False)
+    all_embeddings.append(embeddings)
+    all_labels.append(labels)
+    all_modalities.append(modalities)
+
+# Compute cross-modal similarity
+fmri_mask = torch.cat(all_modalities) == 0
+fnirs_mask = torch.cat(all_modalities) == 1
+
+fmri_embeddings = torch.cat(all_embeddings)[fmri_mask]
+fnirs_embeddings = torch.cat(all_embeddings)[fnirs_mask]
+fmri_labels = torch.cat(all_labels)[fmri_mask]
+fnirs_labels = torch.cat(all_labels)[fnirs_mask]
+
+sim_matrix, retrieval_acc = model.compute_cross_modal_similarity(
+    fmri_embeddings, fnirs_embeddings, fmri_labels, fnirs_labels
+)
+
+print(f"Cross-modal retrieval accuracy: {retrieval_acc:.4f}")
+"""

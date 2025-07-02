@@ -29,7 +29,7 @@ from Dataset.datasetDetails import datasetDetailsDict
 
 from Models.SVM.run import run_svm
 from Models.BolT.run import run_bolT 
-from Models.Triplet.run import run_triplet
+from Models.Triplet.run import run_triplet, run_classifier
 # import hyper param fetchers
 
 from Models.SVM.hyperparams import getHyper_svm
@@ -44,6 +44,8 @@ hyperParamDict = {
         "svm" : getHyper_svm,
         "bolT" : getHyper_bolT,
         "triplet" : getHyper_triplet,
+        "classifier" : getHyper_triplet, # for classifier, we use the same hyperparams as triplet
+        
 
 }
 
@@ -52,6 +54,7 @@ modelDict = {
         "svm" : run_svm,
         "bolT" : run_bolT,
         "triplet" : run_triplet,
+        "classifier" : run_classifier
 }
 
 getHyper = hyperParamDict[argv.model]
