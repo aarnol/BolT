@@ -4,7 +4,7 @@ import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'Prep'))
 import fnirs_utils
-datadir = "./Dataset/Data/fNIRS/fNIRS28-1.38/"
+
 
 
 def healthCheckOnRoiSignal(roiSignal):
@@ -25,7 +25,8 @@ def hcpfNIRSLoader(atlas, targetTask, signal, subject= None):
         x : (#subjects, N)
     """
     
-    dataset = fnirs_utils.load28(datadir, type = signal, task = targetTask)
+    dataset = fnirs_utils.get_task_data(signal, targetTask)
+    bad_channels = fnirs_utils.get_bad_channels()
     
 
     x = []
@@ -41,15 +42,14 @@ def hcpfNIRSLoader(atlas, targetTask, signal, subject= None):
 
         if(healthCheckOnRoiSignal(data["roiTimeseries"].T) or 1):
             
-            
-            x.append(data["roiTimeseries"].T )
+            ts = data["roiTimeseries"].T
+            # bad channels are already removed in fnirs_utils.get_task_data
+            print(ts.shape)
+            x.append(ts)
             y.append(label)
             subjectIds.append(int(data["pheno"]["subjectId"]))
         else:
             print("Skipping subject: ", data["pheno"]["subjectId"], data["pheno"]["label"])
-        #check if data is normalized
-        if(np.max(data["roiTimeseries"]) > 1.0 or np.min(data["roiTimeseries"]) < -1.0):
-            print("Data is not normalized for subject: ", data["pheno"]["subjectId"])
-            Exception("Data is not normalized for subject: ", data["pheno"]["subjectId"])
+        
 
     return x, y, subjectIds

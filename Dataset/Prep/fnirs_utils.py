@@ -8,7 +8,8 @@ from scipy.interpolate import interp1d
 import pandas as pd
 import numpy as np
 from scipy.signal import resample
-
+import pickle
+from scipy.io import loadmat
 def downsample(fnirs_data, original, new):
     """
     Downsample fNIRS data from one sampling rate to another.
@@ -34,50 +35,12 @@ def downsample(fnirs_data, original, new):
 
     return downsampled
 
+"""
+labels =     [1,0,1,0,1,1,0,0,1,0,1,0,1,1,0,0]
+conditions = [4,1,2,4,1,3,2,3,4,1,2,4,1,3,2,3]
+encoding = [0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1]
+"""
 
-def load_fnirs(target_folder):
-    """
-    Load the fNIRS data from the target folder.
-    """
-    
-    MNI_path = os.path.join(target_folder, 'HCP_MNI_final.mat')
-    digitization =scipy.io.loadmat(MNI_path)['MNI']
-    data = os.path.join(target_folder, 'HCP_fNIRS_NBack.mat')
-    data = scipy.io.loadmat(data)['Data_fNIRS']
-    formatted_data = []
-    # from the hcp protocol order
-    labels =     [1,0,1,0,1,1,0,0,1,0,1,0,1,1,0,0]
-    conditions = [4,1,2,4,1,3,2,3,4,1,2,4,1,3,2,3]
-    encoding = [0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1]
-    
-    sub = 0
-    for subject in data:
-        i = 0
-        blocks = subject[0]
-        blocks = [block[0] for block in blocks]
-       
-        
-        for block in blocks:
-            
-            label = labels[i]
-            f_data = {
-                'roiTimeseries': block,
-                'pheno': {
-                    'subjectId': f'S{sub}',
-                    'encoding': encoding[i],
-                    'nback': label,
-                    "condition": conditions[i],
-                    'modality': 'fNIRS'
-                }
-            }
-            
-            formatted_data.append(f_data)
-            i+=1
-        print(f"Subject {sub} loaded")
-        sub+=1
-    labels = [data['pheno']['nback'] for data in formatted_data]
-    print(f"label counts: {np.unique(labels, return_counts=True)}")
-    return formatted_data, digitization
 def load_mni(target_folder):
     MNI_path = os.path.join(target_folder, 'MNIs_Average.mat')
 
@@ -99,225 +62,208 @@ import os
 import pandas as pd
 import numpy as np
 
-def load(root, type='HbR'):
-    fnirs_data = []
-    bad_path = os.path.join(root, 'bad_channels.csv')
-    bad_channels = pd.read_csv(bad_path)
-    #get the bad channels where count > 9
-    bad_channels = bad_channels[bad_channels['Count'] > 9]['Channel'].tolist()
-    
-    for root_dir, dirs, files in os.walk(root):
-        for file in files:
-            if file.endswith('.csv') and 'block' in file:
-                file_path = os.path.join(root_dir, file)
-                data = pd.read_csv(file_path)
-
-                # Filter out short-separation channels (e.g., D32 or higher)
-                data = data.loc[:, ~data.columns.str.contains(r'D(?:[3-9][2-9]|[4-9][0-9])', regex=True)]
-                
-
-                
-                
-
-                
-                
-
-
-
-                # Extract based on type
-                if type.lower() == 'hbr':
-                    signal = data.loc[:, data.columns.str.contains('hbr', case=False)]
-                elif type.lower() == 'hbo':
-                    signal = data.loc[:, data.columns.str.contains('hbo', case=False)]
-                elif type.lower() == 'hbt':
-                    hbo = data.loc[:, data.columns.str.contains('hbo', case=False)].values
-                    hbr = data.loc[:, data.columns.str.contains('hbr', case=False)].values
-                    signal = hbo + hbr
-                else:
-                    raise ValueError("Invalid type. Choose from 'HbR', 'HbO', or 'HbT'.")
-                
-                drop_bad = True
-                if drop_bad:
-                    # Make a copy of original column list for consistent indexing
-                    original_columns = list(signal.columns)
-                    bad_indices = []
-                    dropped_column_names = []
-
-                    for channel in bad_channels:
-                        pattern = channel[:7].lower()
-                        
-                        # Find matching columns in the *original* column list
-                        matches = [i for i, col in enumerate(original_columns) if pattern in col.lower()]
-                        bad_indices.extend(matches)
-                        dropped_column_names.extend([original_columns[i] for i in matches])
-                        
-                        # Now drop from the *current* signal DataFrame
-                        signal = signal.loc[:, ~signal.columns.str.contains(pattern, case=False, na=False)]
-
-                # # Remove duplicates and sort for consistency
-                # bad_indices = sorted(set(bad_indices))
-
-                # # Final checks
-                # print(f"Total bad indices: {len(bad_indices)}")
-                # print("Bad indices:", bad_indices)
-
-                # # Save to file
-                # with open("bad_channel_indices.txt", "w") as f:
-                #     for idx in bad_indices:
-                #         f.write(f"{idx}\n")
-
-                
-
-
-                #conver to numpy array
-                signal = signal.values
-                # Downsample
-                fnirs_hz = 3.8153376573826785
-                fmri_hz = 1.39
-                signal = downsample(signal, fnirs_hz, fmri_hz)  
-                
-                # Get the subject ID and label from the file name or directory structure
-                dir_name = os.path.basename(root_dir)
-                
-                label = file[-5]  # Assuming the label is the last character before the extension
-                conditions = [4,1,2,4,1,3,2,3,4,1,2,4,1,3,2,3]
-                # Get the condition from the file name or directory structure
-                condition = conditions[int(file.split('_')[1])]  
-                if(label!= '0' and label != '1'):
-                    print(file, label)
-                f_data = {
-                    'roiTimeseries': signal,
-                    'pheno': {
-                        'subjectId': dir_name,
-                        'encoding': None,
-                        'label': int(label),
-                        'condition': condition,
-                        'modality': 'fNIRS'
-                    }
-                }
-                fnirs_data.append(f_data)
-
-    
-    #print distribition of labels
-    labels = [data['pheno']['label'] for data in fnirs_data]
-    unique, counts = np.unique(labels, return_counts=True)
-    label_counts = dict(zip(unique, counts))
-    print("Label distribution:", label_counts)
-    return fnirs_data
-
-def load28(root, type = 'HbR', task = 'nback'):
-    fnirs_data = []
-    file = os.path.join(root, f'fNIRS28{type}.mat')    
-    data = scipy.io.loadmat(file)['simpleData'][0]
-    
-    for subject in range(len(data)):
-      
-        time = data[subject][0]
-        full_timeseries = data[subject][1]
-        #find columns of all 0s
-        bad_channels = getBadChannels(root)
-        #filter out bad channels and non PFC
-        with open("channel_regions.txt", "r") as f:
-            channel_regions = [line.strip() for line in f if line.strip()]
-
-        prefrontal_channels = np.where(np.char.find(np.char.lower(channel_regions), "prefrontal") != -1)[0]
-        # Get indices that are both prefrontal and not bad channels
-        valid_channels = np.setdiff1d(prefrontal_channels, bad_channels)
-
-        full_timeseries = full_timeseries[:, valid_channels]
+class Subject:    
+    def __init__(self, id, time, ts, desc, fs, probes, stims):
+        self.id = id + 1
+        self.time = time
+        self.ts = ts
+        self.desc = desc
+        self.fs = fs
+        self.probes = probes
+        self.stims = stims
         
-        sampling_rate = data[subject][3][0][0]
-        zback_stims = data[subject][4][0][0]
-        tback_stims = data[subject][4][0][1]
-        lhand_stims = data[subject][4][0][2]
-        lfoot_stims = data[subject][4][0][3]
-        rhand_stims = data[subject][4][0][4]
-        rfoot_stims = data[subject][4][0][5]
-        tongue_stims = data[subject][4][0][6]
-        rest_stims = data[subject][4][0][-1]
-        if task == 'nback':
-            stims = [zback_stims, tback_stims]
-        elif task == 'motor':
-            stims = [lhand_stims, rhand_stims]
-        stims_set = stims
-        for num, stims in enumerate(stims_set):
-            for i in range(len(stims[1][0])):
-                
-                
-                start = stims[1][0][i]
-                end = start + stims[2][i]
-                end = end[0]
-                #convert to samples
-                # print(sampling_rate, start, end)
-                start = int(start * sampling_rate)
-                end = int(end * sampling_rate)
 
-                #get the timeseries for the start and end
-                timeseries = full_timeseries[start:end]
-                if timeseries.shape[0] == 0 or timeseries.shape[0] < 19:
-                    # print("Empty timeseries")
-                    continue
-                if task == 'nback':
-                    #get only first 35 samples
-                    
-                    timeseries = timeseries[:35]
-              
+    
+    #printing method for better readability
+    def __repr__(self):
+        return f"Subject(id={self.id}) with fields time, ts, desc, fs, optodes, links, stims"
+    def get_stimulus(self, name):
+        """
+        Get the stimulus data for a specific stimulus name
+        """
+        results = self.stims.get(name, None)
+        if results is None:
+            raise ValueError(f"Stimulus '{name}' not found in subject {self.id}")
+        return results['onsets'], results['durations'], results['amplitudes']
 
-                
-                #get the subject ID and label from the file name or directory structure
-                subject_id = subject
-                label = 0 if num == 0 else 1
-                encoding = 0 if num < 8 else 1
-                condition = i #FOR GNN, not reflective of actual condition
-                f_data = {
-                        'roiTimeseries': timeseries,
-                        'pheno': {
-                            'subjectId': subject_id,
-                            'encoding': encoding,
-                            'label':label,
-                            'condition': condition,
-                            'modality': 'fNIRS'
-                        }}
-                fnirs_data.append(f_data)
+
+def load_fnirs_timeseries(signal):
+    """
+    # Load the fNIRS timeseries data from the specified file path
+    """
+    file_path = f"./Dataset/Data/fNIRS/fNIRS32/fNIRS{signal}.mat"
+    data = loadmat(file_path)
+    return data['simpleData'][0]
+
+def calculate_channel_locations_vectorized(optodes_df, links_df):
+    """
+    Vectorized version for better performance with large datasets.
+    """
+    links_result = links_df.copy()
+    
+    # Separate and index optodes
+    sources = optodes_df[optodes_df['type'] == 'Source'].copy()
+    detectors = optodes_df[optodes_df['type'] == 'Detector'].copy()
+    
+    sources['number'] = sources['name'].str.extract(r'(\d+)').astype(int)
+    detectors['number'] = detectors['name'].str.extract(r'(\d+)').astype(int)
+    
+    sources = sources.set_index('number')
+    detectors = detectors.set_index('number')
+    
+    # Merge to get source coordinates
+    links_with_src = links_result.merge(
+        sources[['X', 'Y', 'Z']], 
+        left_on='src', 
+        right_index=True, 
+        suffixes=('', '_src')
+    )
+    
+    # Merge to get detector coordinates
+    links_complete = links_with_src.merge(
+        detectors[['X', 'Y', 'Z']], 
+        left_on='det', 
+        right_index=True, 
+        suffixes=('_src', '_det')
+    )
+    
+    # Calculate midpoints
+    links_complete['channel_X'] = (links_complete['X_src'] + links_complete['X_det']) / 2
+    links_complete['channel_Y'] = (links_complete['Y_src'] + links_complete['Y_det']) / 2
+    links_complete['channel_Z'] = (links_complete['Z_src'] + links_complete['Z_det']) / 2
+    
+    # Clean up temporary columns
+    links_result = links_complete.drop(['X_src', 'Y_src', 'Z_src', 'X_det', 'Y_det', 'Z_det'], axis=1)
+    
+    return links_result
+def parse(data):
+    """
+    # Parse the loaded data to extract relevant information
+    """
+    subjects = []
+    for id, s in enumerate(data):
+        
+        time = s[0]
+       
+        ts = s[1]
+       
+
+        desc = s[2]
+        fs = s[3]
+        
+        probes = s[6][0][0]
+        
+       
+        #format optodes table
+        optodes = probes[0][0][0]
+        names = optodes[0]
+        names = [str(name[0][0]) for name in names]
+        
+        X = optodes[1]
+        Y = optodes[2]
+        Z = optodes[3]
+        types = optodes[4]
+        types = [str(t[0][0]) for t in types]
+        units = ["mm" for _ in range(len(names))]
+        optodes = pd.DataFrame({
+            'name': names,
+            'X': X.flatten(),
+            'Y': Y.flatten(),
+            'Z': Z.flatten(),
+            'type': types,
+            'units': units
+        })
+        
+        src_pos = probes[1]
+        det_pos = probes[2]
+        links = probes[3][0][0]
+        #parse links 
+        src = links[0]
+        det = links[1]
+        types = links[2]
+        types = [str(t[0][0]) for t in types]
+        ShortSeparation = links[3]
+        ShortSeparation = [bool(s[0]) for s in ShortSeparation]
+       
+
+        links = pd.DataFrame({
+            'src': src.flatten(),
+            'det': det.flatten(),
+            'type': types,
+            'ShortSeparation': ShortSeparation
             
+        })
         
         
-    all_labels = [data['pheno']['label'] for data in fnirs_data]
-    unique, counts = np.unique(all_labels, return_counts=True)
-    print("Label distribution:", dict(zip(unique, counts)))
-    print("fnirs shape:", fnirs_data[0]['roiTimeseries'].shape)
-    return fnirs_data
+        #calculate channel locations
+        links = calculate_channel_locations_vectorized(optodes, links)
+        
+        distances= probes[4]
+        types = probes[5]
+        probes ={
+            'optodes': optodes,
+            'src_pos': src_pos,
+            'det_pos': det_pos,
+            'links': links,
+            'distances': distances,
+            'types': types
+        }
+        #parse stimulus
+        stims = {}
+        stimulus = s[4][0]
+        
+        for stim in stimulus:
+            
+            name = stim[0][0]
+            
+           
+            onsets = stim[1][0]
+           
+            durations = stim[2][0]
+            amplitudes = stim[3][0]
+            stims[name] = {
+                'onsets': onsets.flatten(),
+                'durations': durations.flatten(),
+                'amplitudes': amplitudes.flatten()
+            }
+        
+        
+        
+       
 
-def getBadChannels(root):
+
+        subject = Subject(
+            id=id,
+            time=time,
+            ts=ts,
+            desc=desc,
+            fs=fs,
+            probes =probes,
+            stims=stims,
+            
+            
+            
+        )
+        subjects.append(subject)
+    return subjects
+    
+def get_data(signal):
     """
-    Get the bad channels (columns with all zeros) from fNIRS HBR data,
-    excluding short separation channels (1-based indices).
+    # Get the data for a specific signal type
     """
-
-    file = os.path.join(root, 'fNIRS28HBC.mat')    
-    data = scipy.io.loadmat(file)['simpleData'][0]
-    
-    # Convert short separation channels from 1-based to 0-based indexing
-    short_separation_channels_1_based = [22, 26, 36, 55, 65, 83, 102, 108]
-    short_separation_channels = [i - 1 for i in short_separation_channels_1_based]
-    
-    subject = 0
-    full_timeseries = data[subject][1]
-
-    # Remove short separation channels
-    mask = np.ones(full_timeseries.shape[1], dtype=bool)
-    mask[short_separation_channels] = False
-    cleaned_timeseries = full_timeseries[:, mask]
-
-    # Find all-zero columns in the cleaned timeseries
-    bad_channels = np.where(np.all(cleaned_timeseries == 0, axis=0))[0]
-
-    
-
-    return bad_channels.tolist()
-
-    
-
+    data_path = f"Dataset/Data/fNIRS/fNIRS32/fNIRS{signal}.pkl"
+    if not os.path.exists(data_path):
+        data = load_fnirs_timeseries(signal)
+        data = parse(data)
+        get_bad_channels(data)
+        # Save the data to a pickle file for future use
+        
+        with open(data_path, 'wb') as f:
+            pickle.dump(data, f)
+    else:
+        with open(data_path, 'rb') as f:
+            data = pickle.load(f)
+    return data
     
 
  
@@ -610,6 +556,88 @@ def brodmann_to_name(num):
     }
     return brodmann_areas[num]
 
+def get_task_data(signal='HBR', task = "nback"):
+    """ Get the fNIRS data for a specific task and signal type.
+    Args:
+        signal (str): The type of fNIRS signal to load (e.g., 'HBR', 'HBT').
+        task (str): The task for which to load the data (e.g., 'nback', 'motor').
+    """
+
+    data = get_data(signal=signal)
+    task_data = []
+    if task == "nback":
+        stim_labels= ['Back0', 'Back2']
+    elif task == "motor":
+        stim_labels = ['RightHand', 'LeftHand', 'RightFoot', 'LeftFoot', 'Tongue']
+    for sub in data:
+        # Filter the stims for the specific task
+        stims = {k: v for k, v in sub.stims.items() if any(label in k for label in stim_labels)}
+        #for each stim, get the onsets and durations and get the corresponding data
+        for stim_name, stim_data in stims.items():
+            onsets = stim_data['onsets']
+            durations = stim_data['durations']
+            # Get the corresponding data for each onset and duration
+            
+            for onset, duration in zip(onsets, durations):
+                # Get the data for the specific time window
+                
+                onset_index = np.argmin(np.abs(sub.time - onset))
+                offset_index = np.argmin(np.abs(sub.time - (onset + duration)))
+                
+                timeseries = sub.ts[onset_index:offset_index, :]
+                print(timeseries.shape)
+                links = sub.probes['links']
+                short_sep_indices = np.where(links['ShortSeparation'])[0]
+                zeros = np.where(np.all(timeseries == 0, axis=0))[0]  # Channels where all values are zero
+                # Remove short separation channels and zero channels
+                bad_channel_indices = np.union1d(short_sep_indices, zeros)
+                timeseries = np.delete(timeseries, bad_channel_indices, axis=1)
+                #downsample the timeseries if necessary
+                timeseries = downsample(timeseries, original=sub.fs, new=1/0.72) 
+                print(timeseries.shape)
+                #label is index of the stim_name in stim_labels
+                label = stim_labels.index(stim_name)
+                f_data = {
+                    'roiTimeseries': timeseries,
+                    'pheno': {
+                        'subjectId': sub.id,
+                        'encoding' : np.nan,  # Encoding is not used in this context
+                        'condition': np.nan,  # Condition is not used in this context
+                        'label' : label,
+                        'modality': 'fNIRS',
+                    }
+                }
+                task_data.append(f_data)
+    print(f"Loaded {len(task_data)} samples for task '{task}' with signal '{signal}'.")
+    get_bad_channels(data)
+    return task_data
+
+def get_bad_channels(subject_data = None):
+    """
+    Identify bad channels in the fNIRS data for a specific subject.
+    """
+    bad_channels_path = f"./Dataset/Data/fNIRS/fNIRS32/bad_channels.txt"
+    if not os.path.exists(bad_channels_path):
+        if subject_data is None:
+            raise ValueError("No subject data provided to identify bad channels and no txt file already generated.")
+        #pick one subject to get the bad channels
+        subject = subject_data[0]
+        ts = subject.ts.copy()
+        links = subject.probes['links']
+        short_sep_indices = np.where(links['ShortSeparation'])[0]
+        #remove short separation channels
+        ts = np.delete(ts, short_sep_indices, axis=1)
+        bad_channel_indices = np.where(np.all(ts == 0, axis=0))[0]  # Channels where all values are zero
+        # Save the bad channels to a text file
+        with open(bad_channels_path, 'w') as f:
+            for index in bad_channel_indices:
+                f.write(f"{index}\n")
+    with open(bad_channels_path, 'r') as f:
+        bad_channels = [int(line.strip()) for line in f.readlines()]
+    
+    return bad_channels
+    
+        
 
 import torch
 #test load 
@@ -625,11 +653,9 @@ if __name__ == '__main__':
 
     # #check the shape of x[0]
     # print(arrs[0].shape)
-    data_dir = "./Dataset/Data/fNIRS/fNIRS28-1.38/"
-    data = load28(data_dir, type='HbC')
-    print(data[:5])
-    torch.save(data, "Dataset/Data/fNIRS/fNIRS28-1.38.save")
-    np.save("Dataset/Data/fNIRS/fNIRS28-1.38.npy", data)
-    torch.load("Dataset/Data/fNIRS/fNIRS28-1.38.save")
-    
-    
+   get_task_data(signal='HBR', task='nback')
+
+
+   
+
+

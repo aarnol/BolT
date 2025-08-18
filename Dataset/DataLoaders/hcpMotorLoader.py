@@ -4,9 +4,9 @@ import sys
 import os
 datadir = "./Dataset/Data"
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'Prep'))
-from fnirs_utils import getBadChannels
+from fnirs_utils import get_bad_channels
 fnirs_dir = "./Dataset/Data/fNIRS/fNIRS28-1.38"
-bad_channels = getBadChannels(fnirs_dir)
+bad_channels = get_bad_channels()
 def healthCheckOnRoiSignal(roiSignal):
     """
         roiSignal : (N, T)

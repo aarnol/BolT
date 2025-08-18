@@ -194,7 +194,7 @@ def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False, name 
             reset_classifier_head(model.model)
             # --- 🔒 Optional: Freeze all layers except the classifier head ---
             for name, param in model.model.named_parameters():
-                if "classifierHead" not in name and "2" not in name and "postNorm" not in name:
+                if "classifierHead" not in name :
                     print("Freezing layer: ", name)
                     param.requires_grad = False
                 else:
@@ -239,6 +239,7 @@ def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False, name 
             targetSaveDir = "./Analysis/TargetSavedModels/{}/{}/seed_{}/".format(datasetDetails.datasetName, name, datasetSeed)
             os.makedirs(targetSaveDir, exist_ok=True)
             torch.save(model, targetSaveDir + "/model_{}.save".format(fold))
+        break #only run one fold for now
         
         
         

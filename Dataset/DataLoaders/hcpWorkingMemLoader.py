@@ -4,7 +4,7 @@ import sys
 import os
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'Prep'))
-from fnirs_utils import getBadChannels
+from fnirs_utils import get_bad_channels
 datadir = "./Dataset/Data"
 fnirs_dir = "./Dataset/Data/fNIRS/fNIRS28-1.38"
 
@@ -27,8 +27,10 @@ def hcpWorkingMemLoader(atlas, targetTask):
         x : (#subjects, N)
     """
     
-    dataset = torch.load(datadir + "/SFN_data/hcpWM_sphere_0_MNI30.save")
-    bad_channels = getBadChannels(fnirs_dir)
+    dataset = torch.load(datadir + "/final/hcpWM_sphere_new_mni_30.save")
+    bad_channels = get_bad_channels()
+    
+  
     x = []
     y = []
     subjectIds = []
@@ -38,19 +40,20 @@ def hcpWorkingMemLoader(atlas, targetTask):
         label = int(data["pheno"]["label"])
         
         #filter out bad channels and non PFC
-        with open("channel_regions.txt", "r") as f:
-            channel_regions = [line.strip() for line in f if line.strip()]
+        # with open("channel_regions.txt", "r") as f:
+        #     channel_regions = [line.strip() for line in f if line.strip()]
 
-        prefrontal_channels = np.where(np.char.find(np.char.lower(channel_regions), "prefrontal") != -1)[0]
+        # prefrontal_channels = np.where(np.char.find(np.char.lower(channel_regions), "prefrontal") != -1)[0]
         # Get indices that are both prefrontal and not bad channels
-        valid_channels = np.setdiff1d(prefrontal_channels, bad_channels)
-        data["roiTimeseries"] = data["roiTimeseries"][:, valid_channels]
-
-        if(healthCheckOnRoiSignal(data["roiTimeseries"].T)):
+        # valid_channels = np.setdiff1d(prefrontal_channels, bad_channels)
+        data["roiTimeseries"] = np.delete(data["roiTimeseries"], bad_channels, axis=1)
+        ts = data["roiTimeseries"].T.squeeze()
+        if(healthCheckOnRoiSignal(ts)):
             if(data['roiTimeseries'].shape[0] ==8):
                 print("Skipping subject: ", data["pheno"]["subjectId"])
                 continue
-            x.append(data["roiTimeseries"].T)
+            x.append(ts)
+            print(ts.shape)
             y.append(label)
             subjectIds.append(int(data["pheno"]["subjectId"]))
         else:
@@ -79,7 +82,7 @@ def hcpWorkingMemLoaderConcatenatePermuted(atlas, target_task, max_perms_per_gro
         subject_ids_concat: list of subject IDs
     """
     dataset = torch.load(datadir + "/hcpWM_sphere_newMNI.save")
-    bad_channels = getBadChannels(fnirs_dir)
+    bad_channels = get_bad_channels()
     grouped_data = defaultdict(list)  # {(subjectId, label): [samples]}
 
     for data in dataset:

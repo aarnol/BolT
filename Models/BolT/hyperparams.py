@@ -20,7 +20,7 @@ def getHyper_bolT():
             # AAL = 116
             # MNI = 107
             #broddmann = 41
-            "dim" : 20,        
+            "dim" : 97,        
 
             "numHeads" : 36,
             "headDim" : 20,
@@ -52,9 +52,9 @@ def getTransferHyper_bolT():
     hyperDict = {
         "weightDecay": 0,  # Add weight decay to help with generalization
 
-        "lr": 1e-5,           # Lower learning rate for fine-tuning
-        "minLr": 5e-6,
-        "maxLr": 1e-4,        # Narrower range
+        "lr": 1e-6,           # Lower learning rate for fine-tuning
+        "minLr": 1e-7,
+        "maxLr": 1e-5,        # Narrower range
 
         # FOR BOLT
         "nOfLayers": 8,       # Keep same if not changing model depth
