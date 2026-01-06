@@ -136,6 +136,22 @@ test_results = fold_0_results["test"]["results"]
 with open(os.path.join(results_folder, 'test_results.pkl'), 'wb') as f:
     pickle.dump(test_results, f)
 
+#save hyperparameters for reference
+#convert hyperParams to readable dict
+hyperparams_dict = {key: getattr(hyperParams, key) for key in hyperParams.__dict__.keys()}
+#write to txt file
+with open(os.path.join(results_folder, 'hyperparameters.txt'), 'w') as f:
+    for key, value in hyperparams_dict.items():
+        f.write(f"{key}: {value}\n")
+if argv.pretrained_model is not None:
+    #save the transfer learning hyperparameters too
+    transfer_hyperparams = getTransferHyper_bolT()
+    transfer_hyperparams_dict = {key: getattr(transfer_hyperparams, key) for key in transfer_hyperparams.__dict__.keys()}
+    with open(os.path.join(results_folder, 'transfer_hyperparameters.txt'), 'w') as f:
+        for key, value in transfer_hyperparams_dict.items():
+            f.write(f"{key}: {value}\n")
+
+
 print("Test results saved to {}/test_results.pkl".format(results_folder))
 
 

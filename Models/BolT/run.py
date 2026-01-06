@@ -19,7 +19,7 @@ from Dataset.dataset import getDataset
 from torch.nn.utils.rnn import pad_sequence
 
 
-def train(model, dataset, fold, nOfEpochs):
+def train(model, dataset, fold, nOfEpochs,datasetDetails, name="noname"):
    
     dataLoader = dataset.getFold(fold, train=True)
     test_metrics = []
@@ -77,8 +77,13 @@ def train(model, dataset, fold, nOfEpochs):
         print(f"Epoch {epoch} test metrics: {epoch_test_metrics}")
         test_metrics.append(epoch_test_metrics)
         test_results.append(epoch_test_results)
+        #save model every epoch
+        targetSaveDir = f"./Analysis/Logs/{datasetDetails.datasetName}_{name}/fold_{fold}"
+        os.makedirs(targetSaveDir, exist_ok=True)
+        torch.save(model, targetSaveDir + "/model_epoch_{}.save".format(epoch))
     print(len(test_results))
     print(len(test_metrics))
+    print("loss: ", np.mean([result['loss'] for result in test_results]))
     return preds, probs, groundTruths, losses, metrics, step_metrics, test_metrics, test_results
 
 
@@ -134,6 +139,8 @@ def test(model, dataset, fold, invert = False):
     #print the number of predictions for each class
     classes, counts = np.unique(preds, return_counts=True)
     print("Predictions counts: ", counts)
+    print("true counts: ", np.unique(groundTruths, return_counts=True)[1])
+    print("loss: ", loss)
     return preds, probs, groundTruths, loss, metrics
 
 
@@ -143,6 +150,7 @@ def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False, name 
 
 
     # extract datasetDetails
+   
 
     foldCount = datasetDetails.foldCount
     datasetSeed = datasetDetails.datasetSeed
@@ -166,8 +174,8 @@ def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False, name 
     for fold in range(foldCount):
         if pretrained_model is not None:
             model_path = os.path.join(
-                os.getcwd(), "Analysis", "TargetSavedModels", "hcpWM",
-                pretrained_model, "seed_0", "model_0.save"
+                os.getcwd(), "Analysis", "Logs", "hcpMotor_sphere_motor_fmri",
+                pretrained_model,  "model_epoch_19.save"
             )
 
             # Load full model
@@ -180,9 +188,7 @@ def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False, name 
             # Assumes details.newNumClasses is defined and != original
             in_features = model.model.classifierHead.in_features
             head = torch.nn.Sequential(
-                torch.nn.Linear(in_features, in_features // 2),
-                torch.nn.ReLU(),
-                torch.nn.Linear(in_features // 2, details.nOfClasses)   
+                torch.nn.Linear(in_features, details.nOfClasses)
             )
             model.model.classifierHead = head.to(details.device)
             def reset_classifier_head(model):
@@ -208,10 +214,16 @@ def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False, name 
         else:
             model = Model(hyperParams, details)
             print('training from scratch')
+        #add folder with transfer
+        sys.path.append(os.path.join(os.getcwd(), "Models", "BolT"))
+        import transfer
+        transfer.debug_loss_not_changing(model, dataset.getFold(fold, train=True))
+        transfer.debug_transfer_learning_specific(model)
+        transfer.check_optimizer_and_scheduler(model)
+        #exit()
 
+        train_preds, train_probs, train_groundTruths, train_loss, epoch_metrics, step_metrics, test_metrics, test_results = train(model, dataset, fold, nOfEpochs, datasetDetails = datasetDetails, name=name)
 
-        train_preds, train_probs, train_groundTruths, train_loss, epoch_metrics, step_metrics, test_metrics, test_results = train(model, dataset, fold, nOfEpochs)   
-        
         result = {
             "fold" : fold,
 
@@ -239,7 +251,7 @@ def run_bolT(hyperParams, datasetDetails, device="cuda:3", analysis=False, name 
             targetSaveDir = "./Analysis/TargetSavedModels/{}/{}/seed_{}/".format(datasetDetails.datasetName, name, datasetSeed)
             os.makedirs(targetSaveDir, exist_ok=True)
             torch.save(model, targetSaveDir + "/model_{}.save".format(fold))
-        break #only run one fold for now
+         #only run one fold for now
         
         
         

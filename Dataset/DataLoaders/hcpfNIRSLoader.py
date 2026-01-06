@@ -36,7 +36,12 @@ def hcpfNIRSLoader(atlas, targetTask, signal, subject= None):
     for data in dataset:
         
         label = int(data["pheno"]["label"])
-        
+        if targetTask != "nback":
+            if label == 3:
+                label = 0
+            elif label != 1:
+                continue
+
         
         
 

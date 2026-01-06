@@ -38,8 +38,8 @@ class Model():
         """
         self.hyperParams = hyperParams
         self.details = details
-
-
+        print(hyperParams.lr)
+        
         # load model into gpu
         
         self.model = self.model.to(details.device)
@@ -52,9 +52,11 @@ class Model():
         #set scheduler
         steps_per_epoch = int(np.ceil(details.nOfTrains / details.batchSize))
         finalDivFactor = hyperParams.lr / hyperParams.minLr
-        self.scheduler = torch.optim.lr_scheduler.OneCycleLR(self.optimizer, hyperParams.maxLr, details.nOfEpochs * (steps_per_epoch)+10, div_factor=hyperParams.maxLr / hyperParams.lr, final_div_factor=finalDivFactor, pct_start=0.3)
+        # self.scheduler = torch.optim.lr_scheduler.StepLR(
+        #                     self.optimizer, step_size=10, gamma=0.5
+        #                 )
         ## SET SCHEDULER TO NONE FOR TESTING
-        #self.scheduler = None
+        self.scheduler = None
     def step(self, x, y, train=True):
 
         """

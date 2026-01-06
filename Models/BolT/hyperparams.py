@@ -52,13 +52,13 @@ def getTransferHyper_bolT():
     hyperDict = {
         "weightDecay": 0,  # Add weight decay to help with generalization
 
-        "lr": 1e-6,           # Lower learning rate for fine-tuning
-        "minLr": 1e-7,
-        "maxLr": 1e-5,        # Narrower range
+        "lr": 5e-6,           # Lower learning rate for fine-tuning
+        "minLr": 5e-6,
+        "maxLr": 5e-4,        # Narrower range
 
         # FOR BOLT
-        "nOfLayers": 8,       # Keep same if not changing model depth
-        "dim": 85,            # Keep same based on the atlas used
+        "nOfLayers": 3,       # Keep same if not changing model depth
+        "dim": 97,            # Keep same based on the atlas used
 
         "numHeads": 36,       # Match pre-trained model architecture
         "headDim": 20,
@@ -70,8 +70,8 @@ def getTransferHyper_bolT():
 
         "mlpRatio": 1.0,
         "attentionBias": True,
-        "drop": 0.2,          # Slightly higher dropout for regularization
-        "attnDrop": 0.2,      # Same for attention dropout
+        "drop": 0.1,          # Slightly higher dropout for regularization
+        "attnDrop": 0.1,      # Same for attention dropout
         "lambdaCons": 1,
 
         # For ablation or downstream task performance
